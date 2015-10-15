@@ -1,4 +1,4 @@
-// Render the scene.
+// Render the scene and animate the sprites that have been passed in the input.
 ebg.render = function render (input) {
     var renderer = input.renderer;
     var scene = input.scene;
@@ -8,7 +8,7 @@ ebg.render = function render (input) {
     renderer.render(scene, camera);
 
     if (sprites.dummyCube) {
-        sprites.dummyCube.rotation.y += 0.01;
+        sprites.dummyCube.action(sprites.dummyCube.sprite);
     }
 
     requestAnimationFrame(function() {

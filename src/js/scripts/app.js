@@ -13,7 +13,10 @@
     });
 
     // Dummy cube.
-    var dummyCube = ebg.dummy.cube();
+    var dummyCube = ebg.dummy.cube({
+        size: 15,
+        color: 0x45ec23
+    });
     scene.add(dummyCube);
 
     // Render the scene.
@@ -22,7 +25,14 @@
         scene: scene,
         camera: camera,
         sprites: {
-            dummyCube: dummyCube
+            dummyCube: {
+                sprite: dummyCube,
+                action: function (sprite) {
+                    sprite.rotation.y += 0.02;
+                    sprite.rotation.x += 0.03;
+                    sprite.rotation.z += 0.01;
+                }
+            }
         }
     });
 }(THREE));
