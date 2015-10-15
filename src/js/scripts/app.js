@@ -1,10 +1,18 @@
-(function() {
+// Main app module.
+(function (THREE) {
+    'use strict';
 
-	var canvasElement = document.getElementById('ce');
-	var ctx = canvasElement.getContext('webgl');
+    ebg.scene = new THREE.Scene();
+    ebg.renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
+    ebg.light = new THREE.AmbientLight(0xffffff);
+    ebg.camera = null;
 
-	ctx.clearColor(1,0,0,1);
+    ebg.initScene();
 
-	ctx.clear(ctx.COLOR_BUFFER_BIT);
+    // Dummy cube.
+    var dummyCube = ebg.dummy.cube();
+    ebg.scene.add(dummyCube);
 
-}());
+    // Render the scene.
+    ebg.render();
+}(THREE));

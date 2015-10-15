@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     // Task configuration.
     concat: {
       options: {
-        separator: ';'
+        separator: ''
       },
       js: {
         files: {
@@ -45,36 +45,22 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        unused: true,
-        boss: true,
-        eqnull: true,
-        browser: true,
-        globals: {}
-      },
+      options: config.jshint,
       gruntfile: {
         src: 'Gruntfile.js'
       },
       lib_test: {
-        src: ['src/js/**/*.js', '!src/js/dependencies.js']
+        src: ['src/js/**/*.js', '!src/js/dependencies.js', '!src/js/scripts.js']
       }
     },
     watch: {
       gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
+        files: 'Gruntfile.js',
         tasks: ['jshint:gruntfile']
       },
       lib_test: {
-        files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test']
+        files: ['src/js/scripts/app.js', 'src/js/scripts/**/*.js', 'config.js'],
+        tasks: ['jshint:lib_test', 'concat']
       }
     }
   });
