@@ -15,7 +15,7 @@ bower install
 grunt
 ```
 
-## Start running the game
+## Start running the game during development
 
 ```
 http-server src
@@ -37,6 +37,7 @@ Browse to
 ## todo
 
 * Move to three.js and Firebase
+* Authenticate with Firebase, login with Facebook, create a character.
 * Start interface in Chrome. Ignore other browsers, only focus on Chrome.
 * Add Grunt.
 * Use unit testing in spec (Jasmine) and add test coverage reporting.

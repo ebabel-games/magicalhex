@@ -1,5 +1,7 @@
-/*global module:false*/
+/*global module:false, require:true*/
 module.exports = function(grunt) {
+
+  var config = require('./config');
 
   // Project configuration.
   grunt.initConfig({
@@ -11,25 +13,44 @@ module.exports = function(grunt) {
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
-      dist: {
-        src: ['lib/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      }
-    },
-    uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
-      dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
-      }
-    },
+        concat: {
+            options: {
+                separator: ';'
+            },
+            js: {
+                files: {
+                    // Third party javascript dependencies used in this website.
+                    './src/js/dependencies.js' : config.dependencies,
+                    
+                    // All custom scripts written for this website.
+                    './src/js/scripts.js': config.scripts
+                }
+            }
+        },
+
+        uglify: {
+            options: {
+                mangle: false,
+                sourceMap: true,
+                compress: {
+                    drop_console: true
+                }
+            },
+            scripts: {
+                files: {
+                    './build/js/scripts.min.js': [
+                        './src/js/scripts.js'
+                    ]
+                }
+            },
+            dependencies: {
+                files: {
+                    './build/js/dependencies.min.js': [
+                        './src/js/dependencies.js'
+                    ]
+                }
+            }
+        },
     jshint: {
       options: {
         curly: true,
@@ -50,11 +71,8 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       lib_test: {
-        src: ['lib/**/*.js', 'test/**/*.js']
+        src: ['src/js/**/*.js', '!src/js/dependencies.js']
       }
-    },
-    qunit: {
-      files: ['test/**/*.html']
     },
     watch: {
       gruntfile: {
@@ -63,7 +81,7 @@ module.exports = function(grunt) {
       },
       lib_test: {
         files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'qunit']
+        tasks: ['jshint:lib_test']
       }
     }
   });
@@ -71,11 +89,10 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 
 };
