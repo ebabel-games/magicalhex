@@ -1,5 +1,5 @@
 {
-  "name": "Enchantment",
+  "name": "enchantment",
   "version": "0.3.0",
   "homepage": "https://github.com/ebabel-eu/Enchantment",
   "authors": [
@@ -25,9 +25,6 @@
   ],
   "dependencies": {
     "three.js": "threejs#*",
-    "raphael": "~2.1.4",
-    "underscore": "~1.8.3",
-    "firebase": "~2.3.1",
-    "stats.js": "*"
+    "firebase": "~2.3.1"
   }
 }

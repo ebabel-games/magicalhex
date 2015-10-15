@@ -5,52 +5,45 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    // Metadata.
-    pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
-        concat: {
-            options: {
-                separator: ';'
-            },
-            js: {
-                files: {
-                    // Third party javascript dependencies used in this website.
-                    './src/js/dependencies.js' : config.dependencies,
-                    
-                    // All custom scripts written for this website.
-                    './src/js/scripts.js': config.scripts
-                }
-            }
-        },
+    concat: {
+      options: {
+        separator: ';'
+      },
+      js: {
+        files: {
+          // Third party javascript dependencies used in this website.
+          './src/js/dependencies.js' : config.dependencies,
+          
+          // All custom scripts written for this website.
+          './src/js/scripts.js': config.scripts
+        }
+      }
+    },
 
-        uglify: {
-            options: {
-                mangle: false,
-                sourceMap: true,
-                compress: {
-                    drop_console: true
-                }
-            },
-            scripts: {
-                files: {
-                    './build/js/scripts.min.js': [
-                        './src/js/scripts.js'
-                    ]
-                }
-            },
-            dependencies: {
-                files: {
-                    './build/js/dependencies.min.js': [
-                        './src/js/dependencies.js'
-                    ]
-                }
-            }
-        },
+    uglify: {
+      options: {
+        mangle: false,
+        sourceMap: true,
+        compress: {
+          drop_console: true
+        }
+      },
+      scripts: {
+        files: {
+          './build/js/scripts.min.js': [
+            './src/js/scripts.js'
+          ]
+        }
+      },
+      dependencies: {
+        files: {
+          './build/js/dependencies.min.js': [
+            './src/js/dependencies.js'
+          ]
+        }
+      }
+    },
     jshint: {
       options: {
         curly: true,
