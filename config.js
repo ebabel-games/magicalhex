@@ -12,7 +12,7 @@ module.exports = {
         './bower_components/underscore/underscore.js',
         './bower_components/stats.js/build/stats.min.js',
         './bower_components/raphael/raphael.js',
-        './bower_components/three.js/three.js',
+        './bower_components/three.js/build/three.js',
         './bower_components/firebase/firebase-debug.js'
 
         // Third party libraries downloaded manually because they are not managed by Bower.
