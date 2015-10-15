@@ -20,6 +20,9 @@
     ebg.render({
         renderer: renderer,
         scene: scene,
-        camera: camera
+        camera: camera,
+        sprites: {
+            dummyCube: dummyCube
+        }
     });
 }(THREE));
