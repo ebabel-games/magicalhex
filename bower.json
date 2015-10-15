@@ -1,0 +1,33 @@
+{
+  "name": "Enchantment",
+  "version": "0.3.0",
+  "homepage": "https://github.com/ebabel-eu/Enchantment",
+  "authors": [
+    "Nadjib Amar <hello@ebabel.eu>"
+  ],
+  "description": "Enchantment is a bleeding edge MMORPG game engine. RetroQuest is an attempt to rebuild the magic of EverQuest with the web technologies of today.",
+  "main": "index.html",
+  "moduleType": [
+    "es6"
+  ],
+  "keywords": [
+    "mmo",
+    "webgl",
+    "free"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "three.js": "threejs#*",
+    "raphael": "~2.1.4",
+    "underscore": "~1.8.3",
+    "firebase": "~2.3.1",
+    "stats.js": "*"
+  }
+}
