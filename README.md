@@ -84,5 +84,10 @@ Browse to
 
 ## Versions
 
+### Next release tag
+
 * 0.3.0 Migration to client side only with Firebase backend, Grunt and Bower.
+
+### Released tags
+
 * 0.2.0 Original version from https://github.com/jicksta/Enchantment
