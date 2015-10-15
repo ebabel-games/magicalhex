@@ -1,5 +1,12 @@
 // Render the scene.
-ebg.render = function render() {
-    ebg.renderer.render(ebg.scene, ebg.camera);
-    requestAnimationFrame(ebg.render);
+ebg.render = function render (input) {
+    var renderer = input.renderer;
+    var scene = input.scene;
+    var camera = input.camera;
+
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(function() {
+        ebg.render(input);
+    });
 };
