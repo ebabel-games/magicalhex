@@ -7,7 +7,7 @@ ebg.loadModel = function loadModel (input) {
     var name = input && input.name;
     var scene = input && input.scene;
     var position = input && input.position || { x: 0, y: 0, z: 0 };
-    var scale = input && input.scale || 1;
+    var rotation = input && input.rotation || { x: 0, y: 0, z: 0 };
 
     if (!path || !name || !scene) {
         throw new Error(ebg.err.input.required);
@@ -25,11 +25,8 @@ ebg.loadModel = function loadModel (input) {
             var model = collada.scene;
 
             model.name = name;
-            model.position.set(position.x, position.y, position.z);
-
-            if (scale !== 1) {
-                model.scale.set(scale, scale, scale);
-            }
+            model.position.set(position.x || 0, position.y || 0, position.z || 0);
+            model.rotation.set(rotation.x || 0, rotation.y || 0, rotation.z || 0);
 
             scene.add(model);
         },

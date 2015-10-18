@@ -4,7 +4,7 @@
 
     var scene = new THREE.Scene();
     var renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-    var light = new THREE.AmbientLight(0x404040);
+    var light = new THREE.AmbientLight(0xffffff);
     var camera = ebg.initScene({
         scene: scene,
         renderer: renderer,
@@ -16,8 +16,7 @@
             nearPlane: 1,
             farPlane: 500,
             position: {
-                y: 30,
-                z: 200
+                z: 15
             }
         }
     });
@@ -30,31 +29,19 @@
         });
     });
 
-    // // Static downloaded model: SS1.
-    // ebg.loadModel({
-    //     path: '/models/ss1/SS1.dae',
-    //     name: 'ss1',
-    //     scene: scene,
-    //     position: {
-    //         x: -120,
-    //         y: 0,
-    //         z: -50
-    //     },
-    //     scale: 5
-    // });
-
-    // // Static spaceship.
-    // ebg.loadModel({
-    //     path: '/models/spaceship/spaceship.dae',
-    //     name: 'static-spaceship',
-    //     scene: scene,
-    //     position: {
-    //         x: -100,
-    //         y: 0,
-    //         z: -50
-    //     },
-    //     scale: 10
-    // });
+    // Static spaceship.
+    ebg.loadModel({
+        path: '/models/spaceship/spaceship.dae',
+        name: 'static-spaceship',
+        scene: scene,
+        position: {
+            x: -5,
+            z: 2
+        },
+        rotation: {
+            x: 30
+        }
+    });
 
     // Animated spaceship.
     ebg.loadModel({
@@ -62,11 +49,13 @@
         name: 'animated-spaceship',
         scene: scene,
         position: {
-            x: 0,
-            y: 150,
-            z: -100
+            x: 1.5,
+            y: 15,
+            z: -25
         },
-        scale: 1
+        rotation: {
+            x: 30
+        }
     });
 
     // Render the scene.
@@ -75,11 +64,11 @@
         scene: scene,
         camera: camera,
         sprites: [
-            // {
-            //     // This spaceship is no animated because the orbit controls are used to look at it.
-            //     name: 'static-spaceship',
-            //     scene: scene
-            // },
+            {
+                // This spaceship is no animated because the orbit controls are used to look at it.
+                name: 'static-spaceship',
+                scene: scene
+            },
             {
                 name: 'animated-spaceship',
                 scene: scene,
@@ -102,10 +91,10 @@
                     // Only run code below this point once the sprite has been found in the scene.
                     
                     if (sprite.position.y > 0) {
-                        sprite.position.z += 0.5;
-                        sprite.position.y += -0.5;
-                        sprite.rotation.y += 0.001;
-                        sprite.rotation.x += 0.001;
+                        sprite.position.z += 0.05;
+                        sprite.position.y += -0.05;
+                        sprite.rotation.y += 0.0001;
+                        sprite.rotation.x += 0.0001;
                     } else {
                         sprite.position.z += 3;
                     }
