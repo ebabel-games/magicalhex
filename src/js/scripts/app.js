@@ -46,12 +46,27 @@
     // Animated spaceship.
     ebg.loadModel({
         path: '/models/spaceship/spaceship.dae',
-        name: 'animated-spaceship',
+        name: 'fast-spaceship',
         scene: scene,
         position: {
             x: 1.5,
             y: 15,
             z: -25
+        },
+        rotation: {
+            x: 30
+        }
+    });
+
+    // Animated spaceship.
+    ebg.loadModel({
+        path: '/models/spaceship/spaceship.dae',
+        name: 'slow-spaceship',
+        scene: scene,
+        position: {
+            x: -1,
+            y: 15,
+            z: -45
         },
         rotation: {
             x: 30
@@ -70,7 +85,7 @@
                 scene: scene
             },
             {
-                name: 'animated-spaceship',
+                name: 'fast-spaceship',
                 scene: scene,
                 // The heartbeat of a sprite is run every tick of the main render.
                 heartbeat: function (input) {
@@ -96,7 +111,38 @@
                         sprite.rotation.y += 0.0001;
                         sprite.rotation.x += 0.0001;
                     } else {
-                        sprite.position.z += 3;
+                        sprite.position.z += 1;
+                    }
+                }
+            },
+            {
+                name: 'slow-spaceship',
+                scene: scene,
+                // The heartbeat of a sprite is run every tick of the main render.
+                heartbeat: function (input) {
+                    var name = input && input.name;
+                    var scene = input && input.scene;
+                    var sprite;
+
+                    if (!name || !scene) {
+                        throw new Error(ebg.err.input.required);
+                    }
+
+                    sprite = scene.getObjectByName(name);
+
+                    if (!sprite) {
+                        return; // Sprite hasn't been found yet, it has probably not finished loading.
+                    }
+
+                    // Only run code below this point once the sprite has been found in the scene.
+                    
+                    if (sprite.position.y > -2) {
+                        sprite.position.z += 0.05;
+                        sprite.position.y += -0.05;
+                        sprite.rotation.y += 0.0001;
+                        sprite.rotation.x += 0.0001;
+                    } else {
+                        sprite.position.z += 0.33;
                     }
                 }
             }
