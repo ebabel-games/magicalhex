@@ -36,7 +36,7 @@ Browse to
 
 ## todo
 
-* Use require.js instead of loading all scripts into one file with Grunt.
+* Use require.js instead of loading all scripts into one file with Grunt, but only for my own scripts, not for dependencies. The dependencies should still be concatenated with Grunt and loaded as one script.
 * Move to three.js and Firebase
 * Authenticate with Firebase, login with Facebook, create a character.
 * Start interface in Chrome. Ignore other browsers, only focus on Chrome.
