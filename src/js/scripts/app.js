@@ -18,15 +18,18 @@
             position: {
                 z: 15
             }
+        },
+        controls: {
+            type: 'OrbitControls',
+            listenFor: 'change',
+            callback: function() {
+                ebg.render({
+                    renderer: renderer,
+                    scene: scene,
+                    camera: camera
+                });
+            }
         }
-    });
-    var controls = new THREE.OrbitControls(camera);
-    controls.addEventListener('change', function() {
-        ebg.render({
-            renderer: renderer,
-            scene: scene,
-            camera: camera
-        });
     });
 
     // Static spaceship.

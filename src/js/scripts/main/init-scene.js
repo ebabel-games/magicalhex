@@ -6,7 +6,9 @@ ebg.initScene = function initScene (input) {
     var renderer = input && input.renderer;
     var light = input && input.light;
     var camera = input && input.camera;
+    var controls = input && input.controls;
     var output;
+    var _controls;
 
     if (!scene || !renderer || !light || !camera || 
         !camera.type || !camera.aspectRatio || !camera.nearPlane || !camera.farPlane) {
@@ -30,6 +32,11 @@ ebg.initScene = function initScene (input) {
         camera.position && camera.position.y || 0,
         camera.position && camera.position.z || 100
     );
+
+    if (controls && controls.type && controls.listenFor && controls.callback) {
+        _controls = new THREE[controls.type](output);
+        _controls.addEventListener(controls.listenFor, controls.callback);
+    }
     
     scene.add(output);
 
