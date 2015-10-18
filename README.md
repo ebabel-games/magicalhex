@@ -34,7 +34,9 @@ Browse to
 
 
 
-## todo
+## Tasks
+
+### Next steps
 
 * host this demo on Firebase and document releases.
 * rotating with controls seems to kill the performance of the heartbeat. investigate and fix this.
@@ -47,33 +49,10 @@ Browse to
 * Use unit testing in spec (Jasmine) and add test coverage reporting.
 * address three.js warnings
 
-### Next steps
-
-* Activity logging
-* Zone#attackers should be an IdSet. IdSet should probably support some underscore methods
-* Rename world in the tests to just w
-* Spell modifiers (Spirit of Wolf-esque spell, Invincibility, Debuffs)
-* Inventory
-* Worn item stat modifiers
-* Ability to cast spells to do damage.
-* Use a spell modifier to remove all randomness for easier testing
-* Rolling for damage
-* Initialization of game within the network server
-* Levels
-* Respawning of mobs
-* Experience
-* Stats-based damage
-* Re-integration of physics changes
-* Deploy to Heroku
-* Spells (duration-based actions, not tick-based)
-* UI (HP, mana, stamina chat, buffs, spell slots)
-* Can loot items from dead mob.
-* Chat system (Jabber?!)
-* Zoning
-* Dying and going back to zone point
-
 ### Epics
 
+* Persistent world
+* Multiplayer
 * Pathfinding
 * Mob animations
 * UI
@@ -83,8 +62,8 @@ Browse to
 
 ### Features (that are already implemented)
 
-* 3D world
-* Realtime networking
+* Load Collada models and animate them with their own custom heartbeat.
+* Rotate around the world with mouse controls and arrow keys.
 
 ## Versions
 
