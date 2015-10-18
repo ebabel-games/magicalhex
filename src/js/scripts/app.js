@@ -9,30 +9,82 @@
         scene: scene,
         renderer: renderer,
         light: light,
-        camera: camera
+        camera: {
+            type: 'PerspectiveCamera',
+            angle: 45,
+            aspectRatio: window.innerWidth / window.innerHeight,
+            nearPlane: 1,
+            farPlane: 500,
+            position: {
+                y: 30,
+                z: 180
+            }
+        }
     });
 
-    // Dummy cube.
-    var dummyCube = ebg.dummy.cube({
-        size: 15,
-        color: 0x45ec23
+    // Dummy spaceship.
+    ebg.loadModel({
+        path: '/models/spaceship.dae',
+        name: 'spaceship',
+        scene: scene,
+        position: {
+            x: -5,
+            y: 150,
+            z: -100
+        }
     });
-    scene.add(dummyCube);
 
     // Render the scene.
     ebg.render({
         renderer: renderer,
         scene: scene,
         camera: camera,
-        sprites: {
-            dummyCube: {
-                sprite: dummyCube,
-                action: function (sprite) {
-                    sprite.rotation.y += 0.02;
-                    sprite.rotation.x += 0.03;
-                    sprite.rotation.z += 0.01;
+        sprites: [
+            {
+                name: 'spaceship',
+                scene: scene,
+                // The heartbeat of a sprite is run every tick of the main render.
+                heartbeat: function (input) {
+                    var name = input && input.name;
+                    var scene = input && input.scene;
+                    var sprite;
+
+                    if (!name || !scene) {
+                        throw new Error(ebg.err.input.required);
+                    }
+
+                    sprite = scene.getObjectByName(name);
+
+                    if (!sprite) {
+                        return; // Sprite hasn't been found yet, it has probably not finished loading.
+                    }
+
+                    // Only run code below this point once the sprite has been found in the scene.
+                    
+                    if (sprite.position.y > 0) {
+                        sprite.position.z += 0.5;
+                        sprite.position.y += -0.5;
+                        sprite.rotation.y += 0.001;
+                        sprite.rotation.x += 0.001;
+                    } else {
+                        sprite.position.z += 3;
+                    }
                 }
             }
+        ],
+        // The callback is run every tick of the main render. It co-ordinates running all sprite heartbeats.
+        callback: function callback (input) {
+            var sprites = input && input.sprites;
+
+            if (!sprites) {
+                throw new Error(ebg.err.input.required);
+            }
+
+            sprites.map(function (sprite) {
+                if (sprite.heartbeat) {
+                    sprite.heartbeat(sprite);
+                }
+            });
         }
     });
 }(THREE));

@@ -36,6 +36,7 @@ Browse to
 
 ## todo
 
+* Use require.js instead of loading all scripts into one file with Grunt.
 * Move to three.js and Firebase
 * Authenticate with Firebase, login with Facebook, create a character.
 * Start interface in Chrome. Ignore other browsers, only focus on Chrome.

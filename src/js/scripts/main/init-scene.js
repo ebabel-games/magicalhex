@@ -1,25 +1,35 @@
 // Initialize the scene and return a camera.
 ebg.initScene = function initScene (input) {
-    var scene = input.scene;
-    var renderer = input.renderer;
-    var light = input.light;
-    var camera;
+    'use strict';
+
+    var scene = input && input.scene;
+    var renderer = input && input.renderer;
+    var light = input && input.light;
+    var camera = input && input.camera;
+    var output;
+
+    if (!scene || !renderer || !light || !camera || 
+        !camera.type || !camera.aspectRatio || !camera.nearPlane || !camera.farPlane) {
+        throw new Error(ebg.err.input.required);
+    }
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('webgl-container').appendChild(renderer.domElement);
 
     scene.add(light);
 
-    camera = new THREE.PerspectiveCamera(
-        35,     // Angle.
-        window.innerWidth / window.innerHeight, // Ratio.
-        1,      // Near plane.
-        1000    // Far plane.
+    output = new THREE[camera.type](
+        camera.angle, 
+        camera.aspectRatio, 
+        camera.nearPlane, 
+        camera.farPlane
     );
 
-    camera.position.z = 100;
+    output.position.x = camera.position && camera.position.x ? camera.position.x : 0;
+    output.position.y = camera.position && camera.position.y ? camera.position.y : 0;
+    output.position.z = camera.position && camera.position.z ? camera.position.z : 100;
     
-    scene.add(camera);
+    scene.add(output);
 
-    return camera;
+    return output;
 };
