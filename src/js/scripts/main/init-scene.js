@@ -25,9 +25,11 @@ ebg.initScene = function initScene (input) {
         camera.farPlane
     );
 
-    output.position.x = camera.position && camera.position.x ? camera.position.x : 0;
-    output.position.y = camera.position && camera.position.y ? camera.position.y : 0;
-    output.position.z = camera.position && camera.position.z ? camera.position.z : 100;
+    output.position.set(
+        camera.position && camera.position.x || 0,
+        camera.position && camera.position.y || 0,
+        camera.position && camera.position.z || 100
+    );
     
     scene.add(output);
 

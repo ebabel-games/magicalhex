@@ -13,24 +13,24 @@ ebg.loadModel = function loadModel (input) {
     }
 
     loader = new THREE.ColladaLoader();
+    loader.options.convertUpAxis = true;
 
     loader.load(
         // Model path.
         path,
 
         // Model is loaded.
-        function (collada) {
-            collada.scene.name = name;
+        function loaded (collada) {
+            var model = collada.scene;
 
-            collada.scene.position.x = position.x;
-            collada.scene.position.y = position.y;
-            collada.scene.position.z = position.z;
+            model.name = name;
+            model.position.set(position.x, position.y, position.z);
 
-            scene.add(collada.scene);
+            scene.add(model);
         },
 
         // Model loading in progress.
-        function (xhr) {
+        function loading (xhr) {
             console.log([
                 xhr.currentTarget.responseURL,
                 ' ',
