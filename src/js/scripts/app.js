@@ -62,11 +62,11 @@
         name: 'animated-spaceship',
         scene: scene,
         position: {
-            x: 50,
+            x: 0,
             y: 150,
             z: -100
         },
-        scale: 10
+        scale: 1
     });
 
     // Render the scene.
@@ -75,11 +75,11 @@
         scene: scene,
         camera: camera,
         sprites: [
-            {
-                // This spaceship is no animated because the orbit controls are used to look at it.
-                name: 'static-spaceship',
-                scene: scene
-            },
+            // {
+            //     // This spaceship is no animated because the orbit controls are used to look at it.
+            //     name: 'static-spaceship',
+            //     scene: scene
+            // },
             {
                 name: 'animated-spaceship',
                 scene: scene,

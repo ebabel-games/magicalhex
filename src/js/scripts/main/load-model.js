@@ -14,7 +14,7 @@ ebg.loadModel = function loadModel (input) {
     }
 
     loader = new THREE.ColladaLoader();
-    loader.options.convertUpAxis = true;
+    //loader.options.convertUpAxis = true;
 
     loader.load(
         // Model path.
