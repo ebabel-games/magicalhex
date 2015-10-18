@@ -4,7 +4,7 @@
 
     var scene = new THREE.Scene();
     var renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-    var light = new THREE.AmbientLight(0xffffff);
+    var light = new THREE.AmbientLight(0x404040);
     var camera = ebg.initScene({
         scene: scene,
         renderer: renderer,
@@ -17,7 +17,7 @@
             farPlane: 500,
             position: {
                 y: 30,
-                z: 180
+                z: 200
             }
         }
     });
@@ -30,28 +30,43 @@
         });
     });
 
-    // Static spaceship.
-    ebg.loadModel({
-        path: '/models/spaceship.dae',
-        name: 'static-spaceship',
-        scene: scene,
-        position: {
-            x: -100,
-            y: 0,
-            z: 50
-        }
-    });
+    // // Static downloaded model: SS1.
+    // ebg.loadModel({
+    //     path: '/models/ss1/SS1.dae',
+    //     name: 'ss1',
+    //     scene: scene,
+    //     position: {
+    //         x: -120,
+    //         y: 0,
+    //         z: -50
+    //     },
+    //     scale: 5
+    // });
+
+    // // Static spaceship.
+    // ebg.loadModel({
+    //     path: '/models/spaceship/spaceship.dae',
+    //     name: 'static-spaceship',
+    //     scene: scene,
+    //     position: {
+    //         x: -100,
+    //         y: 0,
+    //         z: -50
+    //     },
+    //     scale: 10
+    // });
 
     // Animated spaceship.
     ebg.loadModel({
-        path: '/models/spaceship.dae',
+        path: '/models/spaceship/spaceship.dae',
         name: 'animated-spaceship',
         scene: scene,
         position: {
             x: 50,
             y: 150,
             z: -100
-        }
+        },
+        scale: 10
     });
 
     // Render the scene.

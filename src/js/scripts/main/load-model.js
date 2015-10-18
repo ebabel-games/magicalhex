@@ -7,6 +7,7 @@ ebg.loadModel = function loadModel (input) {
     var name = input && input.name;
     var scene = input && input.scene;
     var position = input && input.position || { x: 0, y: 0, z: 0 };
+    var scale = input && input.scale || 1;
 
     if (!path || !name || !scene) {
         throw new Error(ebg.err.input.required);
@@ -25,6 +26,10 @@ ebg.loadModel = function loadModel (input) {
 
             model.name = name;
             model.position.set(position.x, position.y, position.z);
+
+            if (scale !== 1) {
+                model.scale.set(scale, scale, scale);
+            }
 
             scene.add(model);
         },
