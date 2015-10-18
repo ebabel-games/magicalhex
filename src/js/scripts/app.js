@@ -22,13 +22,25 @@
         }
     });
 
-    // Dummy spaceship.
+    // Static spaceship.
     ebg.loadModel({
         path: '/models/spaceship.dae',
-        name: 'spaceship',
+        name: 'static-spaceship',
         scene: scene,
         position: {
-            x: -5,
+            x: -100,
+            y: 0,
+            z: 50
+        }
+    });
+
+    // Animated spaceship.
+    ebg.loadModel({
+        path: '/models/spaceship.dae',
+        name: 'animated-spaceship',
+        scene: scene,
+        position: {
+            x: 50,
             y: 150,
             z: -100
         }
@@ -41,7 +53,12 @@
         camera: camera,
         sprites: [
             {
-                name: 'spaceship',
+                // This spaceship is no animated because the orbit controls are used to look at it.
+                name: 'static-spaceship',
+                scene: scene
+            },
+            {
+                name: 'animated-spaceship',
                 scene: scene,
                 // The heartbeat of a sprite is run every tick of the main render.
                 heartbeat: function (input) {
