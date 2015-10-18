@@ -36,6 +36,7 @@ Browse to
 
 ## todo
 
+* address three.js warnings
 * Use require.js instead of loading all scripts into one file with Grunt, but only for my own scripts, not for dependencies. The dependencies should still be concatenated with Grunt and loaded as one script.
 * Optimize memory usage by removing an object that animates beyond what the camera can see, after it has entered the camera field at least once (destructible flag initially set to false, becomes true when object is in the camera field).
 * Move to three.js and Firebase

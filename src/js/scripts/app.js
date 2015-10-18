@@ -53,7 +53,7 @@
         scene: scene,
         position: {
             x: 1.5,
-            y: 15,
+            y: 20,
             z: -25
         },
         rotation: {
@@ -68,7 +68,7 @@
         scene: scene,
         position: {
             x: -1,
-            y: 15,
+            y: 20,
             z: -45
         },
         rotation: {
@@ -109,12 +109,16 @@
                     // Only run code below this point once the sprite has been found in the scene.
                     
                     if (sprite.position.y > 0) {
+                        // First vector: the spaceship slowly comes into view, losing altitude.
                         sprite.position.z += 0.05;
                         sprite.position.y += -0.05;
-                        sprite.rotation.y += 0.0001;
-                        sprite.rotation.x += 0.0001;
                     } else {
+                        // Second vector: the spaceship speeds away from field of camera.
                         sprite.position.z += 1;
+                    }
+
+                    if (sprite.position.z > 25) {
+                        sprite.position.set(1.5, 20, -25); // back to start position.
                     }
                 }
             },
@@ -140,12 +144,16 @@
                     // Only run code below this point once the sprite has been found in the scene.
                     
                     if (sprite.position.y > -2) {
+                        // First vector: the spaceship slowly comes into view, losing altitude.
                         sprite.position.z += 0.05;
                         sprite.position.y += -0.05;
-                        sprite.rotation.y += 0.0001;
-                        sprite.rotation.x += 0.0001;
                     } else {
+                        // Second vector: the spaceship moves away from field of camera, slower than fast-spaceship.
                         sprite.position.z += 0.33;
+                    }
+
+                    if (sprite.position.z > 25) {
+                        sprite.position.set(-1, 20, -45); // back to start position.
                     }
                 }
             }
