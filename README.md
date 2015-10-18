@@ -36,7 +36,7 @@ Browse to
 
 ## todo
 
-* address three.js warnings
+* host this demo on Firebase and document releases.
 * Use require.js instead of loading all scripts into one file with Grunt, but only for my own scripts, not for dependencies. The dependencies should still be concatenated with Grunt and loaded as one script.
 * Optimize memory usage by removing an object that animates beyond what the camera can see, after it has entered the camera field at least once (destructible flag initially set to false, becomes true when object is in the camera field).
 * Move to three.js and Firebase
@@ -44,6 +44,7 @@ Browse to
 * Start interface in Chrome. Ignore other browsers, only focus on Chrome.
 * Add Grunt.
 * Use unit testing in spec (Jasmine) and add test coverage reporting.
+* address three.js warnings
 
 ### Next steps
 

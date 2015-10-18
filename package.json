@@ -1,7 +1,7 @@
 {
   "name": "enchantment",
   "description": "Enchantment is a bleeding edge MMORPG game engine. RetroQuest is an attempt to rebuild the magic of EverQuest with the web technologies of today.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "Gruntfile.js",
   "devDependencies": {
     "grunt": "~0.4.5",
