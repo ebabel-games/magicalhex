@@ -7,13 +7,15 @@ ebg.render = function render (input) {
     var camera = input && input.camera;
     var callback = input && input.callback;
 
-    if (!renderer || !scene || !camera || !callback) {
+    if (!renderer || !scene || !camera) {
         throw new Error(ebg.err.input.required);
     }
 
     renderer.render(scene, camera);
 
-    callback(input);
+    if (callback) {
+        callback(input);
+    }
 
     requestAnimationFrame(function() {
         ebg.render(input);

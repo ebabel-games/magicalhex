@@ -21,6 +21,14 @@
             }
         }
     });
+    var controls = new THREE.OrbitControls(camera);
+    controls.addEventListener('change', function() {
+        ebg.render({
+            renderer: renderer,
+            scene: scene,
+            camera: camera
+        });
+    });
 
     // Static spaceship.
     ebg.loadModel({
