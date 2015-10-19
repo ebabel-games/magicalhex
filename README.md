@@ -59,6 +59,17 @@ Browse to
 
   https://enchantment.firebaseapp.com/
 
+## Branching model
+
+Tackle issues organised in the Github issues system.
+
+Create one branch per issue. Name it after the milestone and words from the title.
+
+For example, for issue "Use Backbone.js and React.js" due for the "prototype" milestone, create a branch named prototype/backbone-react
+
+When the work is completed, merge back to the develop branch.
+
+When a milestone is completed, increase the version number accordingly and release to Firebase. Create a tag for that release number and document it in this README.
 
 ## Features that are already implemented
 
