@@ -53,6 +53,20 @@ module.exports = function(grunt) {
         src: ['src/js/**/*.js', '!src/js/dependencies.js', '!src/js/scripts.js']
       }
     },
+    cssmin: {
+      options: {
+        sourceMap: true
+      },
+      target: {
+        files: [{
+          expand: true,
+          cwd: './src/css',
+          src: ['*.css', '!*.min.css'],
+          dest: './build/css',
+          ext: '.min.css'
+        }]
+      }
+    },
     copy: {
       html: {
         nonull: true,
@@ -107,10 +121,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task to run before deploying.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'copy']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin', 'copy']);
 
 };
