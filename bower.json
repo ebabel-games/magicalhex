@@ -26,6 +26,8 @@
   "dependencies": {
     "three.js": "threejs#*",
     "ammo.js": "https://github.com/kripken/ammo.js.git",
-    "firebase": "~2.3.1"
+    "firebase": "~2.3.1",
+    "howler.js": "~1.1.27",
+    "Keypress": "~2.1.3"
   }
 }

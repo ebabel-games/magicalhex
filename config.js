@@ -8,11 +8,13 @@ module.exports = {
         ]
     },
     'dependencies': [
+        './bower_components/firebase/firebase-debug.js',
+        './bower_components/ammo.js/builds/ammo.js',
+        './bower_components/howler.js/howler.js',
+        './bower_components/Keypress/keypress.js',
         './bower_components/three.js/build/three.js',
         './bower_components/three.js/examples/js/loaders/ColladaLoader.js',
-        './bower_components/three.js/examples/js/controls/OrbitControls.js',
-        './bower_components/ammo.js/builds/ammo.js',
-        './bower_components/firebase/firebase-debug.js'
+        './bower_components/three.js/examples/js/controls/OrbitControls.js'
     ],
     'scripts': [
         './src/js/scripts/main/*.js',
