@@ -23,7 +23,7 @@
 
     // Static spaceship.
     ebg.loadModel({
-        path: '/models/spaceship/spaceship.dae',
+        path: 'models/spaceship/spaceship.dae',
         name: 'static-spaceship',
         scene: scene,
         position: {
@@ -37,7 +37,7 @@
 
     // Animated spaceship.
     ebg.loadModel({
-        path: '/models/spaceship/spaceship.dae',
+        path: 'models/spaceship/spaceship.dae',
         name: 'fast-spaceship',
         scene: scene,
         position: {
@@ -52,7 +52,7 @@
 
     // Animated spaceship.
     ebg.loadModel({
-        path: '/models/spaceship/spaceship.dae',
+        path: 'models/spaceship/spaceship.dae',
         name: 'slow-spaceship',
         scene: scene,
         position: {
