@@ -63,6 +63,7 @@ Browse to
 
 ### Next steps
 
+* read http://davidwalsh.name/3d-websockets
 * host this demo on Firebase and document releases.
 * rotating with controls seems to kill the performance of the heartbeat. investigate and fix this. use cancelAnimationFrame.
 * Use require.js instead of loading all scripts into one file with Grunt, but only for my own scripts, not for dependencies. The dependencies should still be concatenated with Grunt and loaded as one script.
