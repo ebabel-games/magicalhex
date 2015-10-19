@@ -8,6 +8,9 @@ module.exports = {
         ]
     },
     'dependencies': [
+        './bower_components/require/build/require.js',
+        './bower_components/backbone/backbone.js',
+        './bower_components/react/react.js',
         './bower_components/firebase/firebase-debug.js',
         './bower_components/ammo.js/builds/ammo.js',
         './bower_components/howler.js/howler.js',

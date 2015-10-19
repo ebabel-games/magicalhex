@@ -64,9 +64,8 @@ Browse to
 ### Next steps
 
 * read http://davidwalsh.name/3d-websockets but can I use Firebase instead of socket.io ? I probably still need a server for the persistence of the world but initially I will work without and just have a client side app with Firebase as real time Backend (data + web api).
-* host this demo on Firebase and document releases.
-* rotating with controls seems to kill the performance of the heartbeat. investigate and fix this. use cancelAnimationFrame.
-* Use require.js instead of loading all scripts into one file with Grunt, but only for my own scripts, not for dependencies. The dependencies should still be concatenated with Grunt and loaded as one script.
+* Use Backbone.js, React.js and Require.js.
+* Use Require.js instead of loading all scripts into one file with Grunt, but only for my own scripts, not for dependencies. The dependencies should still be concatenated with Grunt and loaded as one script.
 * Optimize memory usage by removing an object that animates beyond what the camera can see, after it has entered the camera field at least once (destructible flag initially set to false, becomes true when object is in the camera field).
 * Move to three.js and Firebase
 * Authenticate with Firebase, login with Facebook, create a character.
