@@ -14,8 +14,7 @@ module.exports = {
         './bower_components/Keypress/keypress.js',
         './bower_components/pepjs/dist/pep.js',
         './bower_components/three.js/build/three.js',
-        './bower_components/three.js/examples/js/loaders/ColladaLoader.js',
-        './bower_components/three.js/examples/js/controls/OrbitControls.js'
+        './bower_components/three.js/examples/js/loaders/ColladaLoader.js'
     ],
     'scripts': [
         './src/js/scripts/main/*.js',

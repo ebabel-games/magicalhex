@@ -18,17 +18,6 @@
             position: {
                 z: 15
             }
-        },
-        controls: {
-            type: 'OrbitControls',
-            listenFor: 'change',
-            callback: function() {
-                ebg.render({
-                    renderer: renderer,
-                    scene: scene,
-                    camera: camera
-                });
-            }
         }
     });
 
