@@ -11,6 +11,16 @@ bower install
 
 ## Build the game
 
+There are 2 sets of tasks, one for development and one to run just before a deployment.
+
+### During development
+
+```
+grunt watch
+```
+
+### Before deployment
+
 ```
 grunt
 ```
@@ -29,10 +39,25 @@ npm install http-server -g
 
 Browse to
 
-  http:192.168.1.69:8080
-  http:127.0.0.1:8080
+  http://localhost:8080
 
+## Preview the game before a deployment
 
+```
+http-server build
+```
+
+## Deploy to Firebase
+
+Note: you may need to adjust your firebase.json settings with `firebase init` after you have logged in with your own Firebase account. Refer to Firebase for further details.
+
+```
+firebase deploy
+```
+
+Browse to
+
+  http://enchantment.firebaseapp.com
 
 ## Tasks
 
