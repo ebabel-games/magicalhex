@@ -8,10 +8,10 @@ module.exports = {
         ]
     },
     'dependencies': [
-        // Libraries managed with Bower.
         './bower_components/three.js/build/three.js',
         './bower_components/three.js/examples/js/loaders/ColladaLoader.js',
         './bower_components/three.js/examples/js/controls/OrbitControls.js',
+        './bower_components/ammo.js/builds/ammo.js',
         './bower_components/firebase/firebase-debug.js'
     ],
     'scripts': [

@@ -25,6 +25,7 @@
   ],
   "dependencies": {
     "three.js": "threejs#*",
+    "ammo.js": "https://github.com/kripken/ammo.js.git",
     "firebase": "~2.3.1"
   }
 }
