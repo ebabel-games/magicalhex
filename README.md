@@ -59,36 +59,10 @@ Browse to
 
   https://enchantment.firebaseapp.com/
 
-## Tasks
 
-### Next steps
-
-* read http://davidwalsh.name/3d-websockets but can I use Firebase instead of socket.io ? I probably still need a server for the persistence of the world but initially I will work without and just have a client side app with Firebase as real time Backend (data + web api).
-* Use Backbone.js, React.js and Require.js.
-* Use Require.js instead of loading all scripts into one file with Grunt, but only for my own scripts, not for dependencies. The dependencies should still be concatenated with Grunt and loaded as one script.
-* Optimize memory usage by removing an object that animates beyond what the camera can see, after it has entered the camera field at least once (destructible flag initially set to false, becomes true when object is in the camera field).
-* Move to three.js and Firebase
-* Authenticate with Firebase, login with Facebook, create a character.
-* Start interface in Chrome. Ignore other browsers, only focus on Chrome.
-* Add Grunt.
-* Use unit testing in spec (Jasmine) and add test coverage reporting.
-* address three.js warnings
-
-### Epics
-
-* Persistent world
-* Multiplayer
-* Pathfinding
-* Mob animations
-* UI
-* Character / Account creation
-* Better content
-* Map editor for defining mob patrols, fear lines, etc
-
-### Features (that are already implemented)
+## Features that are already implemented
 
 * Load Collada models and animate them with their own custom heartbeat.
-* Rotate around the world with mouse controls and arrow keys.
 
 ## Versions
 
