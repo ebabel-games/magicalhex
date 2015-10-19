@@ -13,6 +13,17 @@
         <script src="js/dependencies.js"></script>
     </head>
     <body>
+        <script>
+            var ref = new Firebase("https://enchantment.firebaseio.com");
+            ref.authWithOAuthPopup("facebook", function (error, authData) {
+                if (error) {
+                    console.log("Login Failed!", error);
+                } else {
+                    console.log("Authenticated successfully with payload:", authData);
+                }
+            });
+        </script>
+
         <div id="webgl-container"></div>
         <script src="js/scripts.js"></script>
     </body>
