@@ -53,6 +53,45 @@ module.exports = function(grunt) {
         src: ['src/js/**/*.js', '!src/js/dependencies.js', '!src/js/scripts.js']
       }
     },
+    copy: {
+      html: {
+        nonull: true,
+        src: [
+          'src/index.html',
+        ], 
+        dest: 'build/index.html',
+        options: {
+          process: function (content) {
+            return content
+              .replace(/\.css/g,'.min.css')
+              .replace(/\.js/g, '.min.js')
+              .replace(/\[DEV\]\s/, '');
+          },
+        }
+      },
+      main: {
+        files: [
+          {
+            nonull: true,
+            expand: true, 
+            flatten: true, 
+            src: [
+              'src/robots.txt',
+            ], 
+            dest: 'build/',
+            filter: 'isFile'
+          },
+          {
+            expand: true,
+            dest: 'build/models/',
+            cwd: 'src/models',
+            src: [
+              '**'
+            ] 
+          }
+        ],
+      },
+    },
     watch: {
       gruntfile: {
         files: 'Gruntfile.js',
@@ -65,13 +104,13 @@ module.exports = function(grunt) {
     }
   });
 
-  // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  // Default task to run before deploying.
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'copy']);
 
 };
