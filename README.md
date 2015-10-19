@@ -1,6 +1,6 @@
-# Enchantment & RetroQuest
+# Enchantment
 
-Enchantment is a bleeding edge MMORPG game engine. RetroQuest is an attempt to rebuild the magic of EverQuest with the web technologies of today.
+Enchantment is an attempt to rebuild the magic of EverQuest with the web technologies of today.
 
 ## Installation
 
@@ -57,7 +57,7 @@ firebase deploy
 
 Browse to
 
-  http://enchantment.firebaseapp.com
+  https://enchantment.firebaseapp.com/
 
 ## Tasks
 

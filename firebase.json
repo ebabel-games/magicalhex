@@ -1,5 +1,5 @@
 {
-  "firebase": "Enchantment",
+  "firebase": "enchantment",
   "public": "build",
   "ignore": [
     "firebase.json",
