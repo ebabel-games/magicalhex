@@ -8,7 +8,7 @@ module.exports = {
         ]
     },
     'dependencies': [
-        './bower_components/require/build/require.js',
+        './bower_components/underscore/underscore.js',
         './bower_components/backbone/backbone.js',
         './bower_components/react/react.js',
         './bower_components/firebase/firebase-debug.js',

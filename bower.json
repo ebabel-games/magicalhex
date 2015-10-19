@@ -32,6 +32,6 @@
     "pepjs": "~0.3.0",
     "backbone": "~1.2.3",
     "react": "~0.14.0",
-    "require": "*"
+    "underscore": "~1.8.3"
   }
 }
