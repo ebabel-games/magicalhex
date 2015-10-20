@@ -65,7 +65,7 @@ Tackle issues organised in the Github issues system.
 
 Create one branch per issue. Name it after the milestone and words from the title.
 
-For example, for issue "Use Backbone.js and React.js" due for the "prototype" milestone, create a branch named prototype/backbone-react
+For example, for issue "Authenticate with Firebase to login with Facebook" due for the "0.4.0" milestone, create a branch named 0.4.0/firebase-facebook-login
 
 When the work is completed, merge back to the develop branch.
 
