@@ -14,7 +14,7 @@ ebg.initScene = function initScene (input) {
     }
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('webgl-container').appendChild(renderer.domElement);
+    document.getElementById('game').appendChild(renderer.domElement);
 
     scene.add(light);
 

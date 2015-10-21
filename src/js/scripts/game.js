@@ -1,5 +1,5 @@
-// Main app module.
-(function (THREE) {
+// Game module.
+(function game (THREE) {
     'use strict';
 
     var scene = new THREE.Scene();

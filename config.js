@@ -20,8 +20,9 @@ module.exports = {
         './bower_components/three.js/examples/js/loaders/ColladaLoader.js'
     ],
     'scripts': [
-        './src/js/scripts/main/*.js',
-        './src/js/scripts/app.js'
+        './src/js/scripts/authorisation/*.js',
+        './src/js/scripts/game/*.js',
+        './src/js/scripts/game.js'
     ],
     'jshint': {
         curly: true,
@@ -36,7 +37,9 @@ module.exports = {
         boss: true,
         eqnull: true,
         browser: true,
+        quotmark: 'single',
         globals: {
+            Firebase: true,
             THREE: true,
             ebg: true,
             console: true
