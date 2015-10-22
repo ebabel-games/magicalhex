@@ -17,7 +17,11 @@
             button.disabled = '';
 
             if (error) {
-                ref.child('error/authorisation/facebook').push(error);
+                ref.child('error/authorisation/facebook').push({
+                    code: error.code || ebg.err.error.code,
+                    message: error.message || ebg.err.error.message,
+                    dateLogged: new Date().toJSON()
+                });
 
                 // todo: display error message and give advice.
             } else {

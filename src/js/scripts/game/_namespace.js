@@ -6,6 +6,10 @@ ebg.version = '0.3.1';
 ebg.err = {
     input: {
         required: 'Missing required input.'
+    },
+    error: {
+        code: 'Missing error code.',
+        messages: 'Missing error message.'
     }
 };
 
