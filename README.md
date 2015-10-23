@@ -79,6 +79,8 @@ When a milestone is completed, increase the version number accordingly and relea
 
 ### Next release tag
 
+0.5.0 Backbone.js, React.js and UX syncing when creating or updating a character.
+
 ### Released tags
 
 * 0.4.0 Migration to Firebase backend.
