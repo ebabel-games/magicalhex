@@ -14,6 +14,7 @@
         ref.authWithOAuthPopup('facebook', function (error, authData) {
 
             // todo: hide loading spinner.
+
             button.disabled = '';
 
             if (error) {
@@ -24,6 +25,7 @@
                 });
 
                 // todo: display error message and give advice.
+
             } else {
                 ebg.player = {
                     id: authData.facebook.id,
@@ -44,6 +46,7 @@
                 document.getElementById('login').style.display = 'none';
 
                 // todo: display name and profile image of logged in player.
+
             }
         });
     });
