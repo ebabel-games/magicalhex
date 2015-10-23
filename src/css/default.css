@@ -28,7 +28,8 @@ body {
 #player-details {
     display: none;
     color: #fff;
-    margin: 16px;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, .1);
 }
 
 #player-details img,
@@ -46,4 +47,11 @@ body {
 #player-details span {
     display: block;
     line-height: 50px
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: ' ';
+    display: block;
+    clear: both;
 }
