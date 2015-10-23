@@ -44,7 +44,11 @@
 
                 document.getElementById('login').style.display = 'none';
 
-                // todo: display name and profile image of logged in player.
+                document.getElementById('profile-image').src = ebg.player.profileImageUrl;
+                document.getElementById('display-name').appendChild(
+                    document.createTextNode(ebg.player.displayName)
+                );
+                document.getElementById('player-details').style.display = 'block';
 
             }
         });
