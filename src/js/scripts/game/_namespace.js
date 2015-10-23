@@ -7,11 +7,11 @@ ebg.err = {
     input: {
         required: 'Missing required input.'
     },
+    player: {
+        notFound: 'Player can\'t be found.'
+    },
     error: {
         code: 'Missing error code.',
         messages: 'Missing error message.'
     }
 };
-
-// Current player. This is undefined until a player logs in.
-ebg.player = undefined;

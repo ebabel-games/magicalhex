@@ -19,11 +19,28 @@
                     <button id="facebook-login-button">Play with Facebook</button>
                 </p>
             </div>
-            <div id="player-details" class="clearfix">
-                <button id="create-character">Create character</button>
-                <img src="" id="profile-image">
-                <span id="display-name"></span>
-            </div>
+            <form id="character-creation">
+                <p>
+                    <img src="" id="profile-image">
+                    <span id="creation-points-left"><em class="points"></em> creation points left</span>
+                </p>
+                <label>
+                    <input id="display-name">
+                </label>
+                <label>
+                    strength <span class="points"></span>
+                    <input type="range" min="6" max="18">
+                </label>
+                <label>
+                    dexterity <span class="points"></span>
+                    <input type="range" min="6" max="18">
+                </label>
+                <label>
+                    intelligence <span class="points"></span>
+                    <input type="range" min="6" max="18">
+                </label>
+                <button id="play-button">PLAY</button>
+            </form>
         </div>
 
         <script src="js/scripts.js"></script>

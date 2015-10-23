@@ -1,8 +1,20 @@
 body {
     margin: 0;
-    overflow: hidden;
     background-color: #000;
+    color: #fff;
     font-family: 'Lucida Grande', 'Segoe UI', 'Droid Sans', Verdana, Arial, sans-serif;
+    font-size: 20px;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+button {
+    width: 100%;
+    font-size: 32px;
+    margin: 20px 0;
+    cursor: pointer;
 }
 
 #game {
@@ -12,51 +24,85 @@ body {
     height: 100%;
 }
 
-#login {
-    background-color: #ccc;
+#login,
+#character-creation {
+    background-color: rgba(255, 255, 255, .8);
+    color: #000;
     vertical-align: middle;
     position: absolute;
-    text-align: center;
     width: 50%;
     top: 40%;
-    height: 20%;
     left: 50%;
     margin-left: -25%;
+    margin-bottom: 50px;
+    border-radius: 10px;
 }
 
+#login {
+    text-align: center;
+    height: 150px;
+}
 
-#player-details {
+#facebook-login-button {
+    margin: 52px auto 0;
+}
+
+#character-creation {
     display: none;
-    color: #fff;
-    padding: 16px;
-    background-color: rgba(255, 255, 255, .1);
+    padding: 10px;
 }
 
-#player-details img,
-#player-details span {
-    float: right;
-}
-
-#player-details img {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    margin-left: 16px;
-}
-
-#player-details span {
+#character-creation p,
+#character-creation label {
     display: block;
-    line-height: 50px
+    margin: 0 0 20px;
 }
 
-#create-character {
-    height: 50px;
-    font-size: 20px;
-}
-
-.clearfix:before,
-.clearfix:after {
+#character-creation p:before,
+#character-creation p:after,
+#character-creation label:before,
+#character-creation label:after {
     content: ' ';
     display: block;
     clear: both;
 }
+
+#character-creation input {
+    font-size: 20px;
+    width: 98%;
+    clear: both;
+}
+
+#character-creation #profile-image,
+#character-creation #creation-points-left {
+    float: left;
+    clear: none;
+}
+
+#character-creation #creation-points-left {
+    line-height: 46px;
+}
+
+#profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

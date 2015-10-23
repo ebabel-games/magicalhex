@@ -13,6 +13,8 @@
 
         ref.authWithOAuthPopup('facebook', function (error, authData) {
 
+            var player;
+
             // todo: hide loading spinner.
 
             button.disabled = '';
@@ -27,7 +29,7 @@
                 // todo: display error message and give advice.
 
             } else {
-                ebg.player = {
+                player = {
                     id: authData.facebook.id,
                     loginDate: new Date().toJSON(),
                     displayName: authData.facebook.displayName,
@@ -40,16 +42,13 @@
                     ageRange: authData.facebook.cachedUserProfile.age_range.min
                 };
 
-                ref.child('user/facebook/' + ebg.player.id).push(ebg.player);
+                ref.child('user/facebook/' + player.id).push(player);
 
                 document.getElementById('login').style.display = 'none';
 
-                document.getElementById('profile-image').src = ebg.player.profileImageUrl;
-                document.getElementById('display-name').appendChild(
-                    document.createTextNode(ebg.player.displayName)
-                );
-                document.getElementById('player-details').style.display = 'block';
-
+                ebg.showCharacterCreation({
+                    player: player
+                });
             }
         });
     });

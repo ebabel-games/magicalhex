@@ -21,8 +21,8 @@ module.exports = {
     ],
     'scripts': [
         './src/js/scripts/authorisation/*.js',
-        './src/js/scripts/create-character/*.js',
         './src/js/scripts/game/*.js',
+        './src/js/scripts/character-creation/*.js',
         './src/js/scripts/game.js'
     ],
     'jshint': {
