@@ -20,7 +20,7 @@
             button.disabled = '';
 
             if (error) {
-                ref.child('error/authorisation/facebook').push({
+                ref.child('error/authorisation').push({
                     code: error.code || ebg.err.error.code,
                     message: error.message || ebg.err.error.message,
                     dateLogged: new Date().toJSON()
@@ -31,7 +31,6 @@
             } else {
                 player = {
                     id: authData.facebook.id,
-                    loginDate: new Date().toJSON(),
                     displayName: authData.facebook.displayName,
                     profileImageUrl: authData.facebook.profileImageURL,
                     firstName: authData.facebook.cachedUserProfile.first_name,
@@ -42,7 +41,10 @@
                     ageRange: authData.facebook.cachedUserProfile.age_range.min
                 };
 
-                ref.child('user/facebook/' + player.id).push(player);
+                ref.child('player/' + player.id).set(player);
+                ref.child('login/' + player.id).push({
+                    loginDate: new Date().toJSON()
+                });
 
                 document.getElementById('login').style.display = 'none';
 

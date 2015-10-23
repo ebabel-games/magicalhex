@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         <title>[DEV] Enchantment</title>
-        <base href="/" />
+        <base href="/">
 
         <link rel="stylesheet" type="text/css" href="css/default.css">
 
@@ -19,27 +19,27 @@
                     <button id="facebook-login-button">Play with Facebook</button>
                 </p>
             </div>
-            <form id="character-creation">
+            <form action="#" id="character-creation">
+                <label>
+                    <input id="character-name" placeholder="character's name">
+                </label>
                 <p>
                     <img src="" id="profile-image">
-                    <span id="creation-points-left"><em class="points"></em> creation points left</span>
+                    <span id="creation-points-left"><em class="points">3</em> creation points left</span>
                 </p>
                 <label>
-                    <input id="display-name">
+                    strength <span class="points">13</span>
+                    <input id="character-strength" type="range" min="3" max="19" value="13">
                 </label>
                 <label>
-                    strength <span class="points"></span>
-                    <input type="range" min="6" max="18">
+                    dexterity <span class="points">7</span>
+                    <input id="character-dexterity" type="range" min="3" max="19" value="7">
                 </label>
                 <label>
-                    dexterity <span class="points"></span>
-                    <input type="range" min="6" max="18">
+                    intelligence <span class="points">11</span>
+                    <input id="character-intelligence" type="range" min="3" max="19" value="11">
                 </label>
-                <label>
-                    intelligence <span class="points"></span>
-                    <input type="range" min="6" max="18">
-                </label>
-                <button id="play-button">PLAY</button>
+                <button id="create-character">Create character</button>
             </form>
         </div>
 
