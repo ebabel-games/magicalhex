@@ -79,9 +79,8 @@ When a milestone is completed, increase the version number accordingly and relea
 
 ### Next release tag
 
-* 0.4.0 Migration to Firebase backend.
-
 ### Released tags
 
+* 0.4.0 Migration to Firebase backend.
 * 0.3.1 Migration to client side only with Grunt and Bower.
 * 0.2.0 Original version from https://github.com/jicksta/Enchantment
