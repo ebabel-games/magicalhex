@@ -32,7 +32,6 @@
                     loginDate: new Date().toJSON(),
                     displayName: authData.facebook.displayName,
                     profileImageUrl: authData.facebook.profileImageURL,
-                    accessToken: authData.facebook.accessToken,
                     firstName: authData.facebook.cachedUserProfile.first_name,
                     lastName: authData.facebook.cachedUserProfile.last_name,
                     timezone: authData.facebook.cachedUserProfile.timezone,
