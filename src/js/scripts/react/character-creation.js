@@ -9,16 +9,17 @@
             };
         },
         render: function () {
+            var html;
+
             if (this.state.isHidden) {
                 return null;
             }
 
-            return React.createElement('form', {
-                    id: 'character-creation',
-                    key: 'form',
-                    action: '#'
-                }
-            );
+            html =
+            <form action='#' id='character-creation'>
+            </form>
+
+            return html;
         }
     });
 
