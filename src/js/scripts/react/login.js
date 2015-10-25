@@ -38,7 +38,8 @@
             // Always start by disabling the login button as soon as it's been clicked on,
             // before checking if the login has been succesful or not.
             this.setState({
-                disabled: 'disabled'
+                disabled: 'disabled',
+                isHidden: false
             });
 
             // todo: show loading spinner.
@@ -59,7 +60,8 @@
                     // todo: display error message and give advice.
 
                     _this.setState({
-                        disabled: ''
+                        disabled: '',
+                        isHidden: false
                     });
                 } else {
                     player = {
@@ -80,6 +82,7 @@
                     });
 
                     _this.setState({
+                        disabled: '',
                         isHidden: true
                     });
 
