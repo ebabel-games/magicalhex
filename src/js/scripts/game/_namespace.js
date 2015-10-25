@@ -15,3 +15,5 @@ ebg.err = {
         messages: 'Missing error message.'
     }
 };
+
+ebg.ref = new Firebase('https://enchantment.firebaseio.com');

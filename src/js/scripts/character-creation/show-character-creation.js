@@ -1,7 +1,6 @@
 ebg.showCharacterCreation = function showCharacterCreation (input) {
     var player = input && input.player;
     var character;
-    var ref = new Firebase('https://enchantment.firebaseio.com');
 
     if (!player) {
         throw new Error(ebg.err.player.notFound);
@@ -18,7 +17,7 @@ ebg.showCharacterCreation = function showCharacterCreation (input) {
 
     });
 
-    ref.child('character/' + player.id).once('value', 
+    ebg.ref.child('character/' + player.id).once('value', 
         function getData (snapshot) {
             character = snapshot.val();
             document.getElementById('character-name').value = character.name;
