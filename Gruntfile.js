@@ -16,7 +16,18 @@ module.exports = function(grunt) {
           './src/js/dependencies.js' : config.dependencies,
           
           // All custom scripts written for this website.
-          './src/js/scripts.js': config.scripts
+          './src/js/scripts.concat.js': config.scripts
+        }
+      }
+    },
+
+    babel: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: {
+          './src/js/scripts.js': './src/js/scripts.concat.js'
         }
       }
     },
@@ -50,7 +61,7 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       lib_test: {
-        src: ['src/js/**/*.js', '!src/js/dependencies.js', '!src/js/scripts.js']
+        src: ['!src/js/**/*.js', '!src/js/dependencies.js', 'src/js/scripts.js']
       }
     },
     cssmin: {
@@ -113,12 +124,13 @@ module.exports = function(grunt) {
       },
       lib_test: {
         files: ['src/js/scripts/app.js', 'src/js/scripts/**/*.js', 'config.js'],
-        tasks: ['jshint:lib_test', 'concat']
+        tasks: ['jshint:lib_test', 'concat', 'babel']
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -126,6 +138,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task to run before deploying.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin', 'copy']);
+  grunt.registerTask('default', ['jshint', 'concat', 'babel', 'uglify', 'cssmin', 'copy']);
 
 };

@@ -9,28 +9,23 @@
             };
         },
         render: function () {
+            var html;
+
             if (this.state.isHidden) {
                 return null;
             }
 
-            return React.createElement('div', {
-                    id: 'login',
-                    key: 'div'
-                },
-                React.createElement('p', {
-                        key: 'p'
-                    }, 
-                    React.createElement('button', 
-                        {
-                            id: 'facebook-login-button',
-                            onClick: this.handleClick,
-                            key: 'button',
-                            disabled: this.state.disabled
-                        }, 
-                        'Login to play'
-                    )
-                )
-            );
+            html = 
+            <div id='login'>
+                <p>
+                    <button onClick={this.handleClick} 
+                        disabled={this.state.disabled}>
+                        Login to play
+                    </button>
+                </p>
+            </div>
+
+            return html;
         },
         handleClick: function() {
             var _this = this;
