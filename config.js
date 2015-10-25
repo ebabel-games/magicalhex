@@ -11,6 +11,7 @@ module.exports = {
         './bower_components/underscore/underscore.js',
         './bower_components/backbone/backbone.js',
         './bower_components/react/react.js',
+        './bower_components/react/react-dom.js',
         './bower_components/firebase/firebase-debug.js',
         './bower_components/three.js/build/three.js',
         './bower_components/three.js/examples/js/loaders/ColladaLoader.js'
@@ -40,7 +41,9 @@ module.exports = {
             Firebase: true,
             THREE: true,
             ebg: true,
-            console: true
+            console: true,
+            React: true,
+            ReactDOM: true
         }
     }
 };

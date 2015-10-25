@@ -112,7 +112,7 @@ module.exports = function(grunt) {
         tasks: ['jshint:gruntfile']
       },
       lib_test: {
-        files: ['src/js/scripts/app.js', 'src/js/scripts/**/*.js', 'src/js/scripts/**/*.jsx', 'config.js'],
+        files: ['src/js/scripts/app.js', 'src/js/scripts/**/*.js', 'config.js'],
         tasks: ['jshint:lib_test', 'concat']
       }
     }
