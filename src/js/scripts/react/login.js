@@ -86,9 +86,14 @@
                         isHidden: true
                     });
 
-                    ebg.showCharacterCreation({
-                        player: player
-                    });
+                    // How can this React component talk to another component?
+
+                    // todo: set the input data of the React CharacterCreation to player
+                    // todo: set the isHidden of the React CharacterCreation to false
+
+                    // ebg.showCharacterCreation({
+                    //     player: player
+                    // });
                 }
             });
         }
