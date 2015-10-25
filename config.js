@@ -12,10 +12,6 @@ module.exports = {
         './bower_components/backbone/backbone.js',
         './bower_components/react/react.js',
         './bower_components/firebase/firebase-debug.js',
-        './bower_components/ammo.js/builds/ammo.js',
-        './bower_components/howler.js/howler.js',
-        './bower_components/Keypress/keypress.js',
-        './bower_components/pepjs/dist/pep.js',
         './bower_components/three.js/build/three.js',
         './bower_components/three.js/examples/js/loaders/ColladaLoader.js'
     ],
