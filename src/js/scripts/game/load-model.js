@@ -1,7 +1,5 @@
 // Load a collada model and add it to the scene.
 ebg.loadModel = function loadModel (input) {
-    'use strict';
-
     var loader;
     var path = input && input.path;
     var name = input && input.name;

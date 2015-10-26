@@ -1,7 +1,5 @@
 // Render the scene and animate the sprites that have been passed in the input.
 ebg.render = function render (input) {
-    'use strict';
-
     var renderer = input && input.renderer;
     var scene = input && input.scene;
     var camera = input && input.camera;

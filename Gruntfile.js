@@ -23,7 +23,8 @@ module.exports = function(grunt) {
 
     babel: {
       options: {
-        sourceMap: true
+        sourceMap: true,
+        blacklist: ['strict']
       },
       dist: {
         files: {
@@ -53,15 +54,6 @@ module.exports = function(grunt) {
             './src/js/dependencies.js'
           ]
         }
-      }
-    },
-    jshint: {
-      options: config.jshint,
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib_test: {
-        src: ['!src/js/**/*.js', '!src/js/dependencies.js', 'src/js/scripts.js']
       }
     },
     cssmin: {
@@ -118,13 +110,9 @@ module.exports = function(grunt) {
       },
     },
     watch: {
-      gruntfile: {
-        files: 'Gruntfile.js',
-        tasks: ['jshint:gruntfile']
-      },
       lib_test: {
         files: ['src/js/scripts/app.js', 'src/js/scripts/**/*.js', 'config.js'],
-        tasks: ['jshint:lib_test', 'concat', 'babel']
+        tasks: ['concat', 'babel']
       }
     }
   });
@@ -132,12 +120,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task to run before deploying.
-  grunt.registerTask('default', ['jshint', 'concat', 'babel', 'uglify', 'cssmin', 'copy']);
+  grunt.registerTask('default', ['concat', 'babel', 'uglify', 'cssmin', 'copy']);
 
 };

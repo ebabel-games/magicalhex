@@ -1,6 +1,4 @@
 (function (React, ReactDOM) {
-    'use strict';
-
     var Login = React.createClass({
         getInitialState: function() {
             return {
@@ -9,13 +7,13 @@
             };
         },
         render: function () {
-            var html;
+            var _html;
 
             if (this.state.isHidden) {
                 return null;
             }
 
-            html = 
+            _html = 
             <div id='login'>
                 <p>
                     <button onClick={this.handleClick} 
@@ -25,7 +23,7 @@
                 </p>
             </div>
 
-            return html;
+            return _html;
         },
         handleClick: function() {
             var _this = this;
@@ -40,8 +38,8 @@
             // todo: show loading spinner.
 
             ebg.ref.authWithOAuthPopup('facebook', function (error, authData) {
-
-                var player;
+                var _event;
+                var _player;
 
                 // todo: hide loading spinner.
 
@@ -59,7 +57,7 @@
                         isHidden: false
                     });
                 } else {
-                    player = {
+                    _player = {
                         id: authData.facebook.id,
                         displayName: authData.facebook.displayName,
                         profileImageUrl: authData.facebook.profileImageURL,
@@ -71,8 +69,8 @@
                         ageRange: authData.facebook.cachedUserProfile.age_range.min
                     };
 
-                    ebg.ref.child('player/' + player.id).set(player);
-                    ebg.ref.child('login/' + player.id).push({
+                    ebg.ref.child('player/' + _player.id).set(_player);
+                    ebg.ref.child('login/' + _player.id).push({
                         loginDate: new Date().toJSON()
                     });
 
@@ -81,14 +79,11 @@
                         isHidden: true
                     });
 
-                    // How can this React component talk to another component?
+                    _event = new CustomEvent('show-character-creation', 
+                        { 'detail': _player });
 
-                    // todo: set the input data of the React CharacterCreation to player
-                    // todo: set the isHidden of the React CharacterCreation to false
-
-                    // ebg.showCharacterCreation({
-                    //     player: player
-                    // });
+                    // Set the input data of the React CharacterCreation to player.
+                    document.dispatchEvent(_event);
                 }
             });
         }

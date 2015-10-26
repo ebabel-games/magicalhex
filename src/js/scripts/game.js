@@ -1,7 +1,5 @@
 // Game module.
 (function game (THREE) {
-    'use strict';
-
     var scene = new THREE.Scene();
     var renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     var light = new THREE.AmbientLight(0xffffff);

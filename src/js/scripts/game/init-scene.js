@@ -1,7 +1,5 @@
 // Initialize the scene and return a camera.
 ebg.initScene = function initScene (input) {
-    'use strict';
-
     var scene = input && input.scene;
     var renderer = input && input.renderer;
     var light = input && input.light;

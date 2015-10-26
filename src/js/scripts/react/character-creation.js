@@ -1,9 +1,21 @@
 (function (React, ReactDOM) {
-    'use strict';
-
     var CharacterCreation = React.createClass({
+        componentDidMount: function() {
+            var _this = this;
+
+            document.addEventListener('show-character-creation', 
+                function (event) {
+                    _this.setState({
+                        data: event.detail,
+                        isHidden: false,
+                        disabled: ''
+                    });
+                }, 
+            true);
+        },
         getInitialState: function() {
             return {
+                data: null,
                 isHidden: true,
                 disabled: ''
             };
