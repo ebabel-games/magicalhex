@@ -1,17 +1,13 @@
 (function (React, ReactDOM) {
     var CharacterCreation = React.createClass({
-        componentDidMount: function() {
+        show: function (event) {
             var _this = this;
 
-            document.addEventListener('show-character-creation', 
-                function (event) {
-                    _this.setState({
-                        data: event.detail,
-                        isHidden: false,
-                        disabled: ''
-                    });
-                }, 
-            true);
+            _this.setState({
+                data: event.detail,
+                isHidden: false,
+                disabled: ''
+            });
         },
         getInitialState: function() {
             return {
@@ -21,21 +17,24 @@
             };
         },
         render: function () {
-            var html;
+            var _html;
 
             if (this.state.isHidden) {
                 return null;
             }
 
-            html =
+            _html =
             <form action='#' id='character-creation'>
             </form>
 
-            return html;
+            return _html;
         }
     });
 
     var component = React.createElement(CharacterCreation);
-    ReactDOM.render(component, document.getElementById('game'));
+    ReactDOM.render(component, document.getElementById('game'), function() {
+        document.addEventListener('show-character-creation', this.show, true);
+    });
+
 
 }(React, ReactDOM));
