@@ -92,11 +92,17 @@
     var CharacterCreation = React.createClass({
         show: function (event) {
             var _this = this;
+            var _character;
 
-            _this.setState({
-                data: event.detail,
-                isHidden: false,
-                disabled: ''
+            ebg.ref.child('character/' + event.detail.id).once('value', function getCharacter (snapshot) {
+                _character = snapshot.val();
+
+                _this.setState({
+                    data: event.detail,
+                    character: _character,
+                    isHidden: false,
+                    disabled: ''
+                });
             });
         },
         getInitialState: function() {
@@ -106,6 +112,9 @@
                 disabled: ''
             };
         },
+        componentDidMount: function() {
+            document.addEventListener('show-character-creation', this.show, true);
+        },
         render: function () {
             var _html;
 
@@ -114,9 +123,31 @@
             }
 
             _html =
-            <div action='#' id='character-creation'>
-                test
-            </div>
+            <form action='#' id='character-creation'>
+                <label>
+                    <input id='character-name' placeholder='character name' defaultValue={this.state.character.name} />
+                </label>
+                <p>
+                    <img src={this.state.data.profileImageUrl} title={this.state.data.displayName} id='profile-image' />
+                    <span id='creation-points-left'><em className='points'>3</em> creation points left</span>
+                </p>
+                <label>
+                    strength <span className='points'>{this.state.character.strength}</span>
+                    <input id='character-strength' type='range' min='3' max='19' 
+                        defaultValue={this.state.character.strength} />
+                </label>
+                <label>
+                    dexterity <span className='points'>{this.state.character.dexterity}</span>
+                    <input id='character-dexterity' type='range' min='3' max='19' 
+                        defaultValue={this.state.character.dexterity} />
+                </label>
+                <label>
+                    intelligence <span className='points'>{this.state.character.intelligence}</span>
+                    <input id='character-intelligence' type='range' min='3' max='19' 
+                        defaultValue={this.state.character.intelligence} />
+                </label>
+                <button id='create-character'>Create character</button>
+            </form>
 
             return _html;
         }
@@ -135,12 +166,5 @@
 
     var component = React.createElement(Main);
     ReactDOM.render(component, document.getElementById('game'));
-
-
-
-    // ReactDOM.render(component, document.getElementById('game'), function() {
-    //     document.addEventListener('show-character-creation', this.show, true);
-    // });
-
 
 }(React, ReactDOM));

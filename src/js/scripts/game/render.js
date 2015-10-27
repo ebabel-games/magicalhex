@@ -15,7 +15,7 @@ ebg.render = function render (input) {
         callback(input);
     }
 
-    requestAnimationFrame(function() {
-        ebg.render(input);
-    });
+    // requestAnimationFrame(function() {
+    //     ebg.render(input);
+    // });
 };
