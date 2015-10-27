@@ -15,7 +15,7 @@ module.exports = {
         './bower_components/three.js/examples/js/loaders/ColladaLoader.js'
     ],
     'scripts': [
-        './src/js/scripts/react/*.js',
+        './src/js/scripts/react.js',
         './src/js/scripts/game/*.js',
         './src/js/scripts/character-creation/*.js',
         './src/js/scripts/game.js'

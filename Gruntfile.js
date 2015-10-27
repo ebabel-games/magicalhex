@@ -111,7 +111,12 @@ module.exports = function(grunt) {
     },
     watch: {
       lib_test: {
-        files: ['src/js/scripts/app.js', 'src/js/scripts/**/*.js', 'config.js'],
+        files: [
+          'src/js/scripts/react.js', 
+          'src/js/scripts/app.js', 
+          'src/js/scripts/**/*.js', 
+          'config.js'
+        ],
         tasks: ['concat', 'babel']
       }
     }

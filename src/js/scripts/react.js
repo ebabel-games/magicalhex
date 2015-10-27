@@ -18,7 +18,7 @@
                 <p>
                     <button onClick={this.handleClick} 
                         disabled={this.state.disabled}>
-                        Login to play
+                        Facebook Login
                     </button>
                 </p>
             </div>
@@ -89,7 +89,58 @@
         }
     });
 
-    var component = React.createElement(Login);
+    var CharacterCreation = React.createClass({
+        show: function (event) {
+            var _this = this;
+
+            _this.setState({
+                data: event.detail,
+                isHidden: false,
+                disabled: ''
+            });
+        },
+        getInitialState: function() {
+            return {
+                data: null,
+                isHidden: true,
+                disabled: ''
+            };
+        },
+        render: function () {
+            var _html;
+
+            if (this.state.isHidden) {
+                return null;
+            }
+
+            _html =
+            <div action='#' id='character-creation'>
+                test
+            </div>
+
+            return _html;
+        }
+    });
+
+    var Main = React.createClass({
+        render: function() {
+            return (
+                <div id='main-container'>
+                    <Login />
+                    <CharacterCreation />
+                </div>
+            );
+        }
+    });
+
+    var component = React.createElement(Main);
     ReactDOM.render(component, document.getElementById('game'));
+
+
+
+    // ReactDOM.render(component, document.getElementById('game'), function() {
+    //     document.addEventListener('show-character-creation', this.show, true);
+    // });
+
 
 }(React, ReactDOM));
