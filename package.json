@@ -33,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/ebabel-eu/Enchantment/issues"
   },
-  "homepage": "https://github.com/ebabel-eu/Enchantment#readme"
+  "homepage": "https://github.com/ebabel-eu/Enchantment#readme",
+  "dependencies": {
+    "react": "~0.14.0"
+  }
 }

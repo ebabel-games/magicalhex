@@ -25,7 +25,6 @@
   ],
   "dependencies": {
     "three.js": "threejs#r73",
-    "firebase": "~2.3.1",
-    "react": "~0.14.0"
+    "firebase": "~2.3.1"
   }
 }

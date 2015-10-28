@@ -8,8 +8,6 @@ module.exports = {
         ]
     },
     'dependencies': [
-        './bower_components/react/react.js',
-        './bower_components/react/react-dom.js',
         './bower_components/firebase/firebase-debug.js',
         './bower_components/three.js/build/three.js',
         './bower_components/three.js/examples/js/loaders/ColladaLoader.js'
