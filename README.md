@@ -7,45 +7,25 @@ Enchantment is an attempt to rebuild the magic of EverQuest with the web technol
 ```
 npm install
 bower install
+npm install -g http-server
+npm install -g webpack
 ```
 
 ## Build the game
 
-There are 2 sets of tasks, one for development and one to run just before a deployment.
-
-### During development
-
 ```
-grunt watch
-```
-
-### Before deployment
-
-```
-grunt
+webpack -w
 ```
 
 ## Start running the game during development
 
 ```
-http-server src
-```
-
-If you haven't installed http-server already, install it by following instructions on https://www.npmjs.com/package/http-server
-
-```
-npm install http-server -g
+http-server public
 ```
 
 Browse to
 
   http://localhost:8080
-
-## Preview the game before a deployment
-
-```
-http-server build
-```
 
 ## Deploy to Firebase
 
@@ -79,7 +59,7 @@ When a milestone is completed, increase the version number accordingly and relea
 
 ### Next release tag
 
-0.5.0 Backbone.js, React.js and UX syncing when creating or updating a character.
+0.5.0 React.js and webpack
 
 ### Released tags
 
