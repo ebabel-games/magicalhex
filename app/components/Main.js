@@ -65,7 +65,7 @@ var Login = React.createClass({
 
         return _html;
     },
-    handleClick: function() {
+    handleClick: function (event) {
         var _this = this;
 
         // Always start by disabling the login button as soon as it's been clicked on,
@@ -129,22 +129,52 @@ var Login = React.createClass({
     }
 });
 
-var CharacterCreation = React.createClass({
-    show: function (event) {
-        var _this = this;
-        var _character;
-
-        ebg.ref.child('character/' + event.detail.id).once('value', function getCharacter (snapshot) {
-            _character = snapshot.val();
-
-            _this.setState({
-                data: event.detail,
-                character: _character,
-                isHidden: false,
-                disabled: ''
-            });
-        });
+var CreateCharacterButton = React.createClass({
+    getInitialState: function() {
+        return {
+            disabled: ''
+        };
     },
+    render: function() {
+        return (
+            <button onClick={this.handleClick} 
+                disabled={this.state.disabled}>
+                Create character
+            </button>
+        )
+    },
+    handleClick: function (event) {
+        var _this = this;
+
+        // Disable the button as soon as it's clicked on.
+        this.setState({
+            disabled: 'disabled'
+        });
+
+        // todo: show loading spinner.
+
+        var playerid = _this.props.playerid;
+        var character;
+
+        if (!playerid) {
+            throw new Error(ebg.err.player.notFound);
+        }
+
+        character = {
+            name: document.getElementById('character-name').value,
+            strength: document.getElementById('character-strength').value,
+            dexterity: document.getElementById('character-dexterity').value,
+            intelligence: document.getElementById('character-intelligence').value
+        };
+
+        ebg.ref.child('character/' + playerid).set(character, function onComplete (err) {
+            // todo: if err, show error, otherwise hide the character creation.
+            console.log(err);
+        });
+    }
+});
+
+var CharacterCreation = React.createClass({
     getInitialState: function() {
         return {
             data: null,
@@ -163,7 +193,7 @@ var CharacterCreation = React.createClass({
         }
 
         _html =
-        <form action='#' id='character-creation'>
+        <form action='#' id='character-creation' onSubmit={this.handleSubmit}>
             <label>
                 <input id='character-name' placeholder='character name' defaultValue={this.state.character.name} />
             </label>
@@ -186,10 +216,28 @@ var CharacterCreation = React.createClass({
                 <input id='character-intelligence' type='range' min='3' max='19' 
                     defaultValue={this.state.character.intelligence} />
             </label>
-            <button id='create-character'>Create character</button>
+            <CreateCharacterButton playerid={this.state.data.id} />
         </form>
 
         return _html;
+    },
+    show: function (event) {
+        var _this = this;
+        var _character;
+
+        ebg.ref.child('character/' + event.detail.id).once('value', function getCharacter (snapshot) {
+            _character = snapshot.val();
+
+            _this.setState({
+                data: event.detail,
+                character: _character,
+                isHidden: false,
+                disabled: ''
+            });
+        });
+    },
+    handleSubmit: function (event) {
+        event.preventDefault();
     }
 });
 
@@ -297,27 +345,6 @@ ebg.render = function render (input) {
         ebg.render(input);
     });
 };
-
-
-
-ebg.createCharacter = function createCharacter (input) {
-    var player = input && input.player;
-    var character;
-
-    if (!player) {
-        throw new Error(ebg.err.player.notFound);
-    }
-
-    character = {
-        name: document.getElementById('character-name').value,
-        strength: document.getElementById('character-strength').value,
-        dexterity: document.getElementById('character-dexterity').value,
-        intelligence: document.getElementById('character-intelligence').value
-    };
-
-    ebg.ref.child('character/' + player.id).set(character);
-};
-
 
 
 // Game module.
