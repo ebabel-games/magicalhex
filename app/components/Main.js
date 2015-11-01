@@ -301,6 +301,12 @@ var CharacterCreation = React.createClass({
             });
         });
     },
+    update: function (event) {
+        //var _trait = event...?
+
+        // todo: copy updateStrength but make it generic for all traits.
+    },
+
     updateStrength: function (event) {
         var _strength = parseInt(event.currentTarget.value, 10);
 
@@ -313,7 +319,7 @@ var CharacterCreation = React.createClass({
         var _creationPointsLeft = parseInt(_character.creationPointsLeft, 10);
 
         // May be a negative value.
-        var _difference = _character.strength - _strength;
+        var _difference = parseInt(_character.strength, 10) - _strength;
 
         var _hasEnoughPointsLeft = (_creationPointsLeft + _difference) >= 0;
 
