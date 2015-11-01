@@ -1,4 +1,4 @@
-# Enchantment MMO
+# Rules of the game
 
 Enchantment (working title) is a free browser based MMO. It's a dark world with evil magic, demons and necromancers battling each other for supremacy. To install and develop this game on your own server, see the source code [setup instructions](README.md).
 
