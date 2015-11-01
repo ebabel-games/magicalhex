@@ -19,6 +19,9 @@ ebg.err = {
     error: {
         code: 'Missing error code.',
         messages: 'Missing error message.'
+    },
+    pointsLeft: {
+        notEnough: 'Not enough points left.'
     }
 };
 
@@ -264,7 +267,7 @@ var CharacterCreation = React.createClass({
             <CharacterNameInput name={this.state.character.name} />
             <p>
                 <ProfileImage src={this.state.data.profileImageUrl} title={this.state.data.displayName} />
-                <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft || 3} />
+                <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft} />
             </p>
             <CharacterStrengthInput strength={this.state.character.strength} change={this.updateStrength} />
             <CharacterDexterityInput dexterity={this.state.character.dexterity} />
@@ -281,6 +284,15 @@ var CharacterCreation = React.createClass({
         ebg.ref.child('character/' + event.detail.id).once('value', function getCharacter (snapshot) {
             _character = snapshot.val();
 
+            if (!_character) {
+                _character = {
+                    creationPointsLeft: 3,
+                    strength: 9,
+                    dexterity: 9,
+                    intelligence: 9
+                };
+            }
+
             _this.setState({
                 data: event.detail,
                 character: _character,
@@ -290,7 +302,7 @@ var CharacterCreation = React.createClass({
         });
     },
     updateStrength: function (event) {
-        var _strength = event.currentTarget.value;
+        var _strength = parseInt(event.currentTarget.value, 10);
 
         // Make a deep copy rather than references to the same object, 
         // because I want to update with setState, it's bad practice 
@@ -298,9 +310,22 @@ var CharacterCreation = React.createClass({
         // More about this: http://jsperf.com/cloning-an-object/2
         var _character = JSON.parse(JSON.stringify(this.state.character));
 
-        var _creationPointsLefts = _character.creationPointsLeft;
+        var _creationPointsLeft = parseInt(_character.creationPointsLeft, 10);
+
+        // May be a negative value.
+        var _difference = _character.strength - _strength;
+
+        var _hasEnoughPointsLeft = (_creationPointsLeft + _difference) >= 0;
+
+        if (!_hasEnoughPointsLeft) {
+            event.preventDefault();
+            event.currentTarget.value = _character.strength;
+            console.warn(ebg.err.pointsLeft.notEnough);
+            return;
+        }
 
         _character.strength = _strength;
+        _character.creationPointsLeft = _creationPointsLeft + _difference;
 
         this.setState({
             character: _character
