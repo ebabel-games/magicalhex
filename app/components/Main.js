@@ -210,6 +210,7 @@ var CharacterStrengthInput = React.createClass({
             <label>
                 strength <span className='points'>{this.props.strength}</span>
                 <input id='character-strength' type='range' min='3' max='19' 
+                    onChange={this.props.change} 
                     defaultValue={this.props.strength} />
             </label>
         )
@@ -265,7 +266,7 @@ var CharacterCreation = React.createClass({
                 <ProfileImage src={this.state.data.profileImageUrl} title={this.state.data.displayName} />
                 <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft || 3} />
             </p>
-            <CharacterStrengthInput strength={this.state.character.strength} />
+            <CharacterStrengthInput strength={this.state.character.strength} change={this.updateStrength} />
             <CharacterDexterityInput dexterity={this.state.character.dexterity} />
             <CharacterIntelligenceInput intelligence={this.state.character.intelligence} />
             <CreateCharacterButton playerid={this.state.data.id} />
@@ -286,6 +287,23 @@ var CharacterCreation = React.createClass({
                 isHidden: false,
                 disabled: ''
             });
+        });
+    },
+    updateStrength: function (event) {
+        var _strength = event.currentTarget.value;
+
+        // Make a deep copy rather than references to the same object, 
+        // because I want to update with setState, it's bad practice 
+        // to update the state directly without setState.
+        // More about this: http://jsperf.com/cloning-an-object/2
+        var _character = JSON.parse(JSON.stringify(this.state.character));
+
+        var _creationPointsLefts = _character.creationPointsLeft;
+
+        _character.strength = _strength;
+
+        this.setState({
+            character: _character
         });
     },
     handleSubmit: function (event) {
