@@ -160,7 +160,9 @@ var CreateCharacterButton = React.createClass({
             throw new Error(ebg.err.player.notFound);
         }
 
+        // todo: refactor this so that the id of each control isn't used and this gets updated the React way.
         character = {
+            creationPointsLeft: document.getElementById('creation-points-left').innerHTML,
             name: document.getElementById('character-name').value,
             strength: document.getElementById('character-strength').value,
             dexterity: document.getElementById('character-dexterity').value,
@@ -171,6 +173,70 @@ var CreateCharacterButton = React.createClass({
             // todo: if err, show error, otherwise hide the character creation.
             console.log(err);
         });
+    }
+});
+
+var CharacterNameInput = React.createClass({
+    render: function() {
+        return (
+            <label>
+                <input id='character-name' placeholder='character name' defaultValue={this.props.name} />
+            </label>
+        )
+    }
+});
+
+var ProfileImage = React.createClass({
+    render: function() {
+        return (
+            <img src={this.props.src} title={this.props.title} id='profile-image' />
+        )
+    }
+});
+
+var CreationPointsLeft = React.createClass({
+    render: function() {
+        return (
+            <span>
+                <em id='creation-points-left'>{this.props.creationPointsLeft}</em> creation points left
+            </span>
+        )
+    }
+});
+
+var CharacterStrengthInput = React.createClass({
+    render: function() {
+        return (
+            <label>
+                strength <span className='points'>{this.props.strength}</span>
+                <input id='character-strength' type='range' min='3' max='19' 
+                    defaultValue={this.props.strength} />
+            </label>
+        )
+    }
+});
+
+var CharacterDexterityInput = React.createClass({
+    render: function() {
+        return (
+            <label>
+                dexterity <span className='points'>{this.props.dexterity}</span>
+                <input id='character-dexterity' type='range' min='3' max='19' 
+                    defaultValue={this.props.dexterity} />
+            </label>
+        )
+    }
+});
+
+var CharacterIntelligenceInput = React.createClass({
+    render: function() {
+        return (
+            <label>
+                intelligence <span className='points'>{this.props.intelligence}</span>
+                <input id='character-intelligence' type='range' min='3' max='19' 
+                    defaultValue={this.props.intelligence} />
+            </label>
+        )
     }
 });
 
@@ -194,28 +260,14 @@ var CharacterCreation = React.createClass({
 
         _html =
         <form action='#' id='character-creation' onSubmit={this.handleSubmit}>
-            <label>
-                <input id='character-name' placeholder='character name' defaultValue={this.state.character.name} />
-            </label>
+            <CharacterNameInput name={this.state.character.name} />
             <p>
-                <img src={this.state.data.profileImageUrl} title={this.state.data.displayName} id='profile-image' />
-                <span id='creation-points-left'><em className='points'>3</em> creation points left</span>
+                <ProfileImage src={this.state.data.profileImageUrl} title={this.state.data.displayName} />
+                <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft || 3} />
             </p>
-            <label>
-                strength <span className='points'>{this.state.character.strength}</span>
-                <input id='character-strength' type='range' min='3' max='19' 
-                    defaultValue={this.state.character.strength} />
-            </label>
-            <label>
-                dexterity <span className='points'>{this.state.character.dexterity}</span>
-                <input id='character-dexterity' type='range' min='3' max='19' 
-                    defaultValue={this.state.character.dexterity} />
-            </label>
-            <label>
-                intelligence <span className='points'>{this.state.character.intelligence}</span>
-                <input id='character-intelligence' type='range' min='3' max='19' 
-                    defaultValue={this.state.character.intelligence} />
-            </label>
+            <CharacterStrengthInput strength={this.state.character.strength} />
+            <CharacterDexterityInput dexterity={this.state.character.dexterity} />
+            <CharacterIntelligenceInput intelligence={this.state.character.intelligence} />
             <CreateCharacterButton playerid={this.state.data.id} />
         </form>
 
