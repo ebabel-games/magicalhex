@@ -1,6 +1,8 @@
 # Enchantment
 
-Enchantment is an attempt to rebuild the magic of EverQuest with the web technologies of today.
+Enchantment is the working title of a browser based MMO game.
+
+See the [rules of the game](RULES.md) for further details.
 
 ## Installation
 
@@ -59,10 +61,11 @@ When a milestone is completed, increase the version number accordingly and relea
 
 ### Next release tag
 
-0.5.0 React.js and webpack
+0.6.0 Rules of the game documentation and refactoring to match the rules
 
 ### Released tags
 
+* 0.5.0 React.js and webpack
 * 0.4.0 Migration to Firebase backend.
 * 0.3.1 Migration to client side only with Grunt and Bower.
 * 0.2.0 Original version from https://github.com/jicksta/Enchantment
