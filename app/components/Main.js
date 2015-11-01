@@ -212,7 +212,7 @@ var CharacterStrengthInput = React.createClass({
         return (
             <label>
                 strength <span className='points'>{this.props.strength}</span>
-                <input id='character-strength' type='range' min='3' max='19' 
+                <input id='character-strength' type='range' min='1' max='7' 
                     onChange={this.props.change} 
                     defaultValue={this.props.strength} />
             </label>
@@ -225,7 +225,8 @@ var CharacterDexterityInput = React.createClass({
         return (
             <label>
                 dexterity <span className='points'>{this.props.dexterity}</span>
-                <input id='character-dexterity' type='range' min='3' max='19' 
+                <input id='character-dexterity' type='range' min='1' max='7' 
+                    onChange={this.props.change} 
                     defaultValue={this.props.dexterity} />
             </label>
         )
@@ -237,7 +238,8 @@ var CharacterIntelligenceInput = React.createClass({
         return (
             <label>
                 intelligence <span className='points'>{this.props.intelligence}</span>
-                <input id='character-intelligence' type='range' min='3' max='19' 
+                <input id='character-intelligence' type='range' min='1' max='7' 
+                    onChange={this.props.change} 
                     defaultValue={this.props.intelligence} />
             </label>
         )
@@ -269,9 +271,9 @@ var CharacterCreation = React.createClass({
                 <ProfileImage src={this.state.data.profileImageUrl} title={this.state.data.displayName} />
                 <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft} />
             </p>
-            <CharacterStrengthInput strength={this.state.character.strength} change={this.updateStrength} />
-            <CharacterDexterityInput dexterity={this.state.character.dexterity} />
-            <CharacterIntelligenceInput intelligence={this.state.character.intelligence} />
+            <CharacterStrengthInput strength={this.state.character.strength} change={this.update} />
+            <CharacterDexterityInput dexterity={this.state.character.dexterity} change={this.update} />
+            <CharacterIntelligenceInput intelligence={this.state.character.intelligence} change={this.update} />
             <CreateCharacterButton playerid={this.state.data.id} />
         </form>
 
@@ -287,9 +289,9 @@ var CharacterCreation = React.createClass({
             if (!_character) {
                 _character = {
                     creationPointsLeft: 3,
-                    strength: 9,
-                    dexterity: 9,
-                    intelligence: 9
+                    strength: 3,
+                    dexterity: 3,
+                    intelligence: 3
                 };
             }
 
@@ -302,13 +304,10 @@ var CharacterCreation = React.createClass({
         });
     },
     update: function (event) {
-        //var _trait = event...?
-
-        // todo: copy updateStrength but make it generic for all traits.
-    },
-
-    updateStrength: function (event) {
-        var _strength = parseInt(event.currentTarget.value, 10);
+        var _skill = {
+            name: event.currentTarget.id.substring(10).toLowerCase(),
+            value: parseInt(event.currentTarget.value, 10)
+        };
 
         // Make a deep copy rather than references to the same object, 
         // because I want to update with setState, it's bad practice 
@@ -319,18 +318,18 @@ var CharacterCreation = React.createClass({
         var _creationPointsLeft = parseInt(_character.creationPointsLeft, 10);
 
         // May be a negative value.
-        var _difference = parseInt(_character.strength, 10) - _strength;
+        var _difference = parseInt(_character[_skill.name], 10) - _skill.value;
 
         var _hasEnoughPointsLeft = (_creationPointsLeft + _difference) >= 0;
 
         if (!_hasEnoughPointsLeft) {
             event.preventDefault();
-            event.currentTarget.value = _character.strength;
+            event.currentTarget.value = _character[_skill.name];
             console.warn(ebg.err.pointsLeft.notEnough);
             return;
         }
 
-        _character.strength = _strength;
+        _character[_skill.name] = _skill.value;
         _character.creationPointsLeft = _creationPointsLeft + _difference;
 
         this.setState({
