@@ -167,9 +167,9 @@ var CreateCharacterButton = React.createClass({
         character = {
             creationPointsLeft: document.getElementById('creation-points-left').innerHTML,
             name: document.getElementById('character-name').value,
-            strength: document.getElementById('character-strength').value,
-            dexterity: document.getElementById('character-dexterity').value,
-            intelligence: document.getElementById('character-intelligence').value
+            summoning: document.getElementById('character-summoning').value,
+            magic: document.getElementById('character-magic').value,
+            life: document.getElementById('character-life').value
         };
 
         ebg.ref.child('character/' + playerid).set(character, function onComplete (err) {
@@ -207,40 +207,42 @@ var CreationPointsLeft = React.createClass({
     }
 });
 
-var CharacterStrengthInput = React.createClass({
+// todo: CharacterSummoningInput, CharacterMagicInput and CharacterLifeInput are too similar not to be refactored into one function.
+
+var CharacterSummoningInput = React.createClass({
     render: function() {
         return (
             <label>
-                strength <span className='points'>{this.props.strength}</span>
-                <input id='character-strength' type='range' min='1' max='7' 
+                summoning <span className='points'>{this.props.summoning}</span>
+                <input id='character-summoning' type='range' min='1' max='70' 
                     onChange={this.props.change} 
-                    defaultValue={this.props.strength} />
+                    defaultValue={this.props.summoning} />
             </label>
         )
     }
 });
 
-var CharacterDexterityInput = React.createClass({
+var CharacterMagicInput = React.createClass({
     render: function() {
         return (
             <label>
-                dexterity <span className='points'>{this.props.dexterity}</span>
-                <input id='character-dexterity' type='range' min='1' max='7' 
+                magic <span className='points'>{this.props.magic}</span>
+                <input id='character-magic' type='range' min='1' max='70' 
                     onChange={this.props.change} 
-                    defaultValue={this.props.dexterity} />
+                    defaultValue={this.props.magic} />
             </label>
         )
     }
 });
 
-var CharacterIntelligenceInput = React.createClass({
+var CharacterLifeInput = React.createClass({
     render: function() {
         return (
             <label>
-                intelligence <span className='points'>{this.props.intelligence}</span>
-                <input id='character-intelligence' type='range' min='1' max='7' 
+                life <span className='points'>{this.props.life}</span>
+                <input id='character-life' type='range' min='1' max='70' 
                     onChange={this.props.change} 
-                    defaultValue={this.props.intelligence} />
+                    defaultValue={this.props.life} />
             </label>
         )
     }
@@ -271,9 +273,9 @@ var CharacterCreation = React.createClass({
                 <ProfileImage src={this.state.data.profileImageUrl} title={this.state.data.displayName} />
                 <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft} />
             </p>
-            <CharacterStrengthInput strength={this.state.character.strength} change={this.update} />
-            <CharacterDexterityInput dexterity={this.state.character.dexterity} change={this.update} />
-            <CharacterIntelligenceInput intelligence={this.state.character.intelligence} change={this.update} />
+            <CharacterSummoningInput summoning={this.state.character.summoning} change={this.update} />
+            <CharacterMagicInput magic={this.state.character.magic} change={this.update} />
+            <CharacterLifeInput life={this.state.character.life} change={this.update} />
             <CreateCharacterButton playerid={this.state.data.id} />
         </form>
 
@@ -288,10 +290,10 @@ var CharacterCreation = React.createClass({
 
             if (!_character) {
                 _character = {
-                    creationPointsLeft: 3,
-                    strength: 3,
-                    dexterity: 3,
-                    intelligence: 3
+                    creationPointsLeft: 30,
+                    summoning: 30,
+                    magic: 30,
+                    life: 30
                 };
             }
 

@@ -29,9 +29,9 @@ Demons are always aggressive to all and attack on sight.
 
 Player create only one character and spread points in these skills:
 
-* Summoning: 1 to 7 (actual max is 10)
-* Magic: 1 to 7 (max is 10)
-* Life: 1 to 7 (no max)
+* Summoning: 1 to 70 (actual max is 100)
+* Magic: 1 to 70 (max is 100)
+* Life: 1 to 70 (no max)
 
 There is no leveling and the only way to improve a character are:
 
@@ -41,15 +41,15 @@ There is no leveling and the only way to improve a character are:
 
 ### Summoning
 
-How likely is the summoning to be succesful and how powerful the demon is. All demons are aggressive, but they can be summoned far enough that they don't attack the summoner. Different demons have various agro range. The power of the demon is determined by the summoning score. The quality of his treasures, if defeated, gets better the more powerful the demon is. At character creation the summoning skill can't be higher than 7, the absolute maximum being 10.
+How likely is the summoning to be succesful and how powerful the demon is. All demons are aggressive, but they can be summoned far enough that they don't attack the summoner. Different demons have various agro range. The power of the demon is determined by the summoning score. The quality of his treasures, if defeated, gets better the more powerful the demon is. At character creation the summoning skill can't be higher than 70, the absolute maximum being 100.
 
 ### Magic
 
-Strength of the non-summoning spells cast by the character. Ability to resist magical attacks. This is a percentage, therefore a skill of 10 means the character has a 100% chance of resisting magical attacks. At creation, the maximum is 7, or a 70% chance of resisting magical attacks.
+Strength of the non-summoning spells cast by the character. Ability to resist magical attacks. This is a percentage, therefore a skill of 100 means the character has a 100% chance of resisting magical attacks. At creation, the maximum is 70% chance of resisting magical attacks.
 
 ### Life
 
-There is not maximum for life, but at character creation it can't be higher than 7. Each life point counts. Both physical and magical attacks will inflict damage on a character. When life hits 0, the character loses everything he is carrying and should do a corpse run to regain everything.
+There is no cap at 100 for life, so the maximum amount of life a Necromancer can have is unlimited, but at character creation it can't be higher than 70. Both physical and magical attacks will inflict damage on a character. When life hits 0, the character loses everything he is carrying and should do a corpse run to regain everything. When respawn, the Necromancer appear at his bind point, which can be either the starting Necropolis (safe heaven) or any of the domains he controls. At respawn, the Necromancer only has 3 Life points and could easily be killed. He needs to quickly regain more Life points and recuperate his equipment from his corpse or it might get stolen after a set period of time by any other Necromancer.
 
 Casting a spell doesn't use mana: it uses Life points, either from the character himself or from a sacrificial victim (human preferably, but animals will do).
 
