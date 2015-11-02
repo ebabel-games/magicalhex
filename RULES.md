@@ -29,23 +29,15 @@ Demons are always aggressive to all and attack on sight.
 
 Player create only one character and spread points in these skills:
 
-* Summoning: 1 to 70 (actual max is 100)
-* Magic: 1 to 70 (max is 100)
-* Life: 1 to 70 (no max)
+* Life: 3 to 70 (no maximum with equipment)
+* Magic: 3 to 70 (with equipment, maximum is 100)
+* Summoning: 3 to 70 (with equipment, maximum is 100)
 
 There is no leveling and the only way to improve a character are:
 
 * to gain treasures by defeating demons or
 * stealing treasures stored somewhere by other players or
 * stealing from the corpse of a player that hasn't come back fast enough to get the treasures left where he died.
-
-### Summoning
-
-How likely is the summoning to be succesful and how powerful the demon is. All demons are aggressive, but they can be summoned far enough that they don't attack the summoner. Different demons have various agro range. The power of the demon is determined by the summoning score. The quality of his treasures, if defeated, gets better the more powerful the demon is. At character creation the summoning skill can't be higher than 70, the absolute maximum being 100.
-
-### Magic
-
-Strength of the non-summoning spells cast by the character. Ability to resist magical attacks. This is a percentage, therefore a skill of 100 means the character has a 100% chance of resisting magical attacks. At creation, the maximum is 70% chance of resisting magical attacks.
 
 ### Life
 
@@ -55,6 +47,13 @@ Casting a spell doesn't use mana: it uses Life points, either from the character
 
 Life doesn't regenerate by itself over time. It has to be taken from someone or something alive through a sacrifice ritual. A quick murder generate a small amount of Life for the character, whereas more elaborate rituals that involve time and pain will generate much more Life points.
 
+### Magic
+
+Strength of the non-summoning spells cast by the character. Ability to resist magical attacks. This is a percentage, therefore a skill of 100 means the character has a 100% chance of resisting magical attacks. At creation, the maximum is 70% chance of resisting magical attacks.
+
+### Summoning
+
+How likely is the summoning to be succesful and how powerful the demon is. All demons are aggressive, but they can be summoned far enough that they don't attack the summoner. Different demons have various agro range. The power of the demon is determined by the summoning score. The quality of his treasures, if defeated, gets better the more powerful the demon is. At character creation the summoning skill can't be higher than 70, the absolute maximum being 100.
 
 ## Fighting system
 
@@ -108,6 +107,22 @@ Modeling a territory you have first discovered, before any other Necromancer get
 You can just enslave the humans and the animals already living there to do your bidding.
 
 If another Necromancer has already enslaved the local population, you can easily kill whoever you find with a few spells, but it will be harder to break the other Necromancer's enslavement and impose your own. Breaking such a control isn't that hard but it's not automatic. However, a Necromancer can also place protective enchantments, traps and demons in strategic positions, which can also make it difficult to take other the domain you are vying to control.
+
+
+## Necropolis
+
+At creation, all Necromancers start in Necropolis, a relatively safe heaven that affords some protection to new players.
+
+All Necromancers can:
+
+- [summoning] summon a demon in a specific place, up to 30 metres from the Necromancer and within view. The type, strength and loot table of the demon is entirely based on the summoning skill, so is the chance of success to actually summon the demon and place him where the Necromancer chose to make him appear. Cost: 7 Life points if done quickly. If the ritual takes longer and isn't interupted, it can cost as little as just 1 Life point.
+- [magic / spell] perform a simple ritual that sacrifices a human or three animals to generate Life. It costs 1 Life to cast and generates a minimum of 3 Life points if done quickly. Unless the Necromancer is interupted, this ritual never fails. If the ritual is prolonged, it can generate up to 7 Life points.
+- [magic / spell] inflict instant pain from a distance of up to 10 metres, to a single target. This costs 1 Life to cast and inflicts 3 Life of damage to the target if successful. This is an attack based on the Magic skill.
+- [magic / spell] absorb 2 Life points from a target at up to 10 metres. It costs 1 Life to cast this spell. The target is hurt and the Necromancer gains life only if the spell lands successfully and isn't resisted by the target.
+- [magic / spell] enslave a human or an animal to perform certain basic actions in the environment. Can be cast on a target at up to 5 metres. Cost: 1 Life.
+- [magic / spell] immobilize a human or an animal so they can't move. Can be cast on a target at up to 30 metres. Cost: 1 Life.
+
+
 
 
 

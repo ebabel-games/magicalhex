@@ -6,7 +6,7 @@ var CharacterSummoningInput = React.createClass({
         return (
             <label>
                 summoning <span className='points'>{this.props.summoning}</span>
-                <input id='character-summoning' type='range' min='1' max='70' 
+                <input id='character-summoning' type='range' min='3' max='70' 
                     onChange={this.props.change} 
                     defaultValue={this.props.summoning} />
             </label>
