@@ -10,7 +10,7 @@ var CharacterSummoningInput = require('./CharacterSummoningInput');
 var CharacterMagicInput = require('./CharacterMagicInput');
 var CharacterLifeInput = require('./CharacterLifeInput');
 
-var error = require('./error');
+var error = require('../game/ErrorMessages');
 
 var CharacterCreation = React.createClass({
     mixins: [ReactFireMixin],

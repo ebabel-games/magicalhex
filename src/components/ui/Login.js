@@ -2,7 +2,7 @@ var React = require('react');
 var Firebase = require('firebase');
 var ReactFireMixin = require('reactfire');
 
-var error = require('./error');
+var error = require('../game/ErrorMessages');
 
 var Login = React.createClass({
     mixins: [ReactFireMixin],

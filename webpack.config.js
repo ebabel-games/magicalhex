@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './game/components/Main.js',
+    entry: './src/components/ui/Main.js',
     output: {
         filename: 'public/bundle.js'
     },

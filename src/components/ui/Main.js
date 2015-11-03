@@ -32,7 +32,7 @@ ReactDOM.render(<Main />, document.getElementById('game'));
 
 var THREE = require('three');
 var collada = require('three-loaders-collada')(THREE);
-var error = require('./error');
+var error = require('../game/ErrorMessages');
 
 var ebg = {};
 
