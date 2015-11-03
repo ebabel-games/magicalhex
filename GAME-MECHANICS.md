@@ -41,7 +41,7 @@ There is no leveling and the only way to improve a character are:
 
 ### Life
 
-There is no cap at 100 for life, so the maximum amount of life a Necromancer can have is unlimited, but at character creation it can't be higher than 70. Both physical and magical attacks will inflict damage on a character. When life hits 0, the character loses everything he is carrying and should do a corpse run to regain everything. When respawn, the Necromancer appear at his bind point, which can be either the starting Necropolis (safe heaven) or any of the domains he controls. At respawn, the Necromancer only has 3 Life points and could easily be killed. He needs to quickly regain more Life points and recuperate his equipment from his corpse or it might get stolen after a set period of time by any other Necromancer.
+There is no cap at 100 for life, so the maximum amount of life a Necromancer can have is unlimited, but at character creation it can't be higher than 70. Both physical and magical attacks will inflict damage on a character. When life hits 0, the character loses everything he is carrying and should do a corpse run to regain everything. When respawn, the Necromancer appear at a random place within his own domain or at a specific point anywhere in the world if he learnt the spell to bind himself and set where to respawn. If the Necromancer doesn't have control any domain, he respawns at any random point in the world. At respawn, the Necromancer only has 3 Life points and could easily be killed. He needs to quickly regain more Life points and recuperate his equipment from his corpse or it might get stolen after a set period of time by any other Necromancer.
 
 Casting a spell doesn't use mana: it uses Life points, either from the character himself or from a sacrificial victim (human preferably, but animals will do).
 
@@ -102,11 +102,13 @@ The target of the spell, if it's a demon, a Necromancer or anything that is ench
 
 ### Domain fighting system
 
-Modeling a territory you have first discovered, before any other Necromancer gets there, is very easy.
+When a new character is created, he appears in a newly created domain, on the edge of at least one already discovered domain. The starting domain is therefore "discovered" by the newly made Necromancer and he can start enslaving the local popuplation of humans and animals to make them model the domain for him.
 
-You can just enslave the humans and the animals already living there to do your bidding.
+To own a domain, a Necromancer needs to enslave more humans and animals already living there to do his bidding.
 
-If another Necromancer has already enslaved the local population, you can easily kill whoever you find with a few spells, but it will be harder to break the other Necromancer's enslavement and impose your own. Breaking such a control isn't that hard but it's not automatic. However, a Necromancer can also place protective enchantments, traps and demons in strategic positions, which can also make it difficult to take other the domain you are vying to control.
+If another Necromancer has already enslaved the local population, you can try to enslave more living creatures (humans and/or animals) than the current owner did, or easily kill whoever you find with a few spells. However, a Necromancer can also place protective enchantments, traps and demons in strategic positions, which can also make it difficult to take over the domain you are vying to control.
+
+To get the slaves to build something or change the terrain, the Necromancer needs to acquire books of knowledge from the loot tables of demons. Summoning and fighting demons is the source of all useful equipment, spells and books of knowledge. The other source is to steal them from other other Necromancers. All Necromancers are playing characters.
 
 All Necromancers can:
 
