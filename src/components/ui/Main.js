@@ -7,7 +7,7 @@ var Login = require('./Login');
 var CharacterCreation = require('./CharacterCreation');
 
 // Game.
-var Game = require('../game/Main');
+var Game = require('../game/Game');
 
 // Main component.
 // todo: make this component the only code in this file. Move the game code somewhere else.

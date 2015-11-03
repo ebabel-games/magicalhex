@@ -1,12 +1,16 @@
 var THREE = require('three');
+
 var error = require('./ErrorMessages');
+var InitScene = require('./InitScene');
+var LoadModel = require('./LoadModel');
+var Render = require('./Render');
 
 // Main game module.
 var Game = function game() {
     var scene = new THREE.Scene();
     var renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     var light = new THREE.AmbientLight(0xffffff);
-    var camera = ebg.initScene({
+    var camera = InitScene({
         scene: scene,
         renderer: renderer,
         light: light,
@@ -23,7 +27,7 @@ var Game = function game() {
     });
 
     // Static spaceship.
-    ebg.loadModel({
+    LoadModel({
         path: 'models/spaceship/spaceship.dae',
         name: 'hyper-spaceship',
         scene: scene,
@@ -38,7 +42,7 @@ var Game = function game() {
     });
 
     // Animated spaceship.
-    ebg.loadModel({
+    LoadModel({
         path: 'models/spaceship/spaceship.dae',
         name: 'fast-spaceship',
         scene: scene,
@@ -53,7 +57,7 @@ var Game = function game() {
     });
 
     // Animated spaceship.
-    ebg.loadModel({
+    LoadModel({
         path: 'models/spaceship/spaceship.dae',
         name: 'slow-spaceship',
         scene: scene,
@@ -68,7 +72,7 @@ var Game = function game() {
     });
 
     // Render the scene.
-    ebg.render({
+    Render({
         renderer: renderer,
         scene: scene,
         camera: camera,
