@@ -1,6 +1,6 @@
-# Rules of the game
+# Game mechanics
 
-Enchantment (working title) is a free browser based MMO. It's a dark world with evil magic, demons and necromancers battling each other for supremacy. To install and develop this game on your own server, see the source code [setup instructions](README.md).
+Enchantment (working title) is a free (for ever) browser based MMO. It's a dark world with evil magic, demons and necromancers battling each other for supremacy. To install and develop this game on your own server, see the source code [setup instructions](README.md).
 
 ## About the game
 
@@ -107,11 +107,6 @@ Modeling a territory you have first discovered, before any other Necromancer get
 You can just enslave the humans and the animals already living there to do your bidding.
 
 If another Necromancer has already enslaved the local population, you can easily kill whoever you find with a few spells, but it will be harder to break the other Necromancer's enslavement and impose your own. Breaking such a control isn't that hard but it's not automatic. However, a Necromancer can also place protective enchantments, traps and demons in strategic positions, which can also make it difficult to take other the domain you are vying to control.
-
-
-## Necropolis
-
-At creation, all Necromancers start in Necropolis, a relatively safe heaven that affords some protection to new players.
 
 All Necromancers can:
 

@@ -1,6 +1,6 @@
 # Enchantment MMO
 
-Enchantment (working title) is a free browser based MMO. It's a dark world with evil magic, demons and necromancers battling each other for supremacy. See the [rules of the game](RULES.md) for further details.
+Enchantment (working title) is a free (for ever) browser based MMO. It's a dark world with evil magic, demons and necromancers battling each other for supremacy. See the [game mechanics](GAME-MECHANICS.md) for further details.
 
 ## Installation
 
@@ -56,6 +56,14 @@ When a milestone is completed, increase the version number accordingly and relea
 * Load Collada models and animate them with their own custom heartbeat.
 
 ## Versions
+
+### Semantic versioning
+
+See http://semver.org/
+
+* MAJOR version when you make incompatible API breaking changes,
+* MINOR version when you add functionality in a backwards-compatible manner, and
+* PATCH version when you make backwards-compatible bug fixes.
 
 ### Next release tag
 
