@@ -1,0 +1,25 @@
+var error = require('./ErrorMessages');
+
+// Render the scene and animate the sprites that have been passed in the input.
+var Render = function render (input) {
+    var renderer = input && input.renderer;
+    var scene = input && input.scene;
+    var camera = input && input.camera;
+    var callback = input && input.callback;
+
+    if (!renderer || !scene || !camera) {
+        throw new Error(error.input.required);
+    }
+
+    renderer.render(scene, camera);
+
+    if (callback) {
+        callback(input);
+    }
+
+    requestAnimationFrame(function() {
+        Render(input);
+    });
+};
+
+module.exports = Render;
