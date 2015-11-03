@@ -4,7 +4,7 @@ var ReactDOM = require('react-dom');
 
 // UI.
 var Login = require('./Login');
-var CharacterCreation = require('./CharacterCreation');
+var CharacterCreation = require('./character/Creation');
 
 // Game.
 var Game = require('../game/Game');
