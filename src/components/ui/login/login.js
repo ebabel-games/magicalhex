@@ -21,25 +21,22 @@ class Login extends React.Component {
     }
 
     render() {
-        var _html;
-
         if (this.state.isHidden) {
             return null;
         }
 
         // In handleClick.bind(this), the .bind(this) is required 
         // to expose 'this' from this component to the handleClick function.
-        _html = 
-        <div id='login'>
-            <p>
-                <button onClick={this.handleClick.bind(this)} 
-                    disabled={this.state.disabled}>
-                    Facebook Login
-                </button>
-            </p>
-        </div>
-
-        return _html;
+        return (
+            <div id='login'>
+                <p>
+                    <button onClick={this.handleClick.bind(this)} 
+                        disabled={this.state.disabled}>
+                        Facebook Login
+                    </button>
+                </p>
+            </div>
+        )
     }
 
     handleClick (event) {
