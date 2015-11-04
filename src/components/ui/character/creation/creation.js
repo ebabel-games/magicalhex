@@ -1,10 +1,7 @@
 import React from 'react';
 import Firebase from 'firebase';
 
-import CharacterSummoningInput from './summoningInput';
-import CharacterMagicInput from './magicInput';
-import CharacterLifeInput from './lifeInput';
-
+import SkillInput from './skillInput/skillInput';
 import CreateCharacterButton from './createButton/createButton';
 import CharacterNameInput from './nameInput/nameInput';
 import ProfileImage from './profileImage/profileImage';
@@ -45,9 +42,9 @@ class Creation extends React.Component {
                     <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft} />
                 </p>
 
-                <CharacterLifeInput life={this.state.character.life} change={this.update.bind(this)} />
-                <CharacterMagicInput magic={this.state.character.magic} change={this.update.bind(this)} />
-                <CharacterSummoningInput summoning={this.state.character.summoning} change={this.update.bind(this)} />
+                <SkillInput skill='life' score={this.state.character.life} change={this.update.bind(this)} />
+                <SkillInput skill='magic' score={this.state.character.magic} change={this.update.bind(this)} />
+                <SkillInput skill='summoning' score={this.state.character.summoning} change={this.update.bind(this)} />
 
                 <CreateCharacterButton playerid={this.state.data.id} />
 
