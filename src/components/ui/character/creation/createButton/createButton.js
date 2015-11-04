@@ -2,7 +2,7 @@ import React from 'react';
 import Firebase from 'firebase';
 import ReactFireMixin from 'reactfire';
 
-import error from '../../../../game/errorMessages';
+import error from '../../../../shared/errorMessages';
 
 var CreateCharacterButton = React.createClass({
     mixins: [ReactFireMixin],

@@ -1,6 +1,6 @@
 import THREE from 'three';
 
-import error from './errorMessages';
+import error from '../../shared/errorMessages';
 
 // Initialize the scene and return a camera.
 var InitScene = function initScene (input) {

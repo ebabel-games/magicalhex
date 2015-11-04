@@ -1,7 +1,7 @@
 import THREE from 'three';
 import collada from 'three-loaders-collada';
 
-import error from './errorMessages';
+import error from '../../shared/errorMessages';
 
 collada(THREE);
 

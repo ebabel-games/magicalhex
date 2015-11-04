@@ -11,7 +11,7 @@ import CreateCharacterButton from './createButton/createButton';
 import CharacterNameInput from './nameInput/nameInput';
 import ProfileImage from './profileImage/profileImage';
 import CreationPointsLeft from './pointsLeft/pointsLeft';
-import error from '../../../game/errorMessages';
+import error from '../../../shared/errorMessages';
 import './creation.css';
 
 var CharacterCreation = React.createClass({

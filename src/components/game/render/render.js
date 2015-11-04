@@ -1,4 +1,4 @@
-import error from './errorMessages';
+import error from '../../shared/errorMessages';
 
 // Render the scene and animate the sprites that have been passed in the input.
 var Render = function render (input) {
