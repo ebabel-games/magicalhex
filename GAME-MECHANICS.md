@@ -81,7 +81,7 @@ Steps of the Summoning type of fight:
 
 #### Note on looting
 
-Looting demons is always free for all. First come, first served. Kill stealing is not against the rules of the game. Humans and animals never drop any loot, only demons or the expired corpse of another Necromancer do.
+Looting demons is always free for all. First come, first served. Kill stealing is not against the rules of the game. Humans and animals never drop any loot, only demons do. It's also possible to steal from the expired corpse of another Necromancer or a treasure chest where a Necromancer has stored his belongings.
 
 
 ### Magic fighting system
@@ -109,6 +109,10 @@ To own a domain, a Necromancer needs to enslave more humans and animals already 
 If another Necromancer has already enslaved the local population, you can try to enslave more living creatures (humans and/or animals) than the current owner did, or easily kill whoever you find with a few spells. However, a Necromancer can also place protective enchantments, traps and demons in strategic positions, which can also make it difficult to take over the domain you are vying to control.
 
 To get the slaves to build something or change the terrain, the Necromancer needs to acquire books of knowledge from the loot tables of demons. Summoning and fighting demons is the source of all useful equipment, spells and books of knowledge. The other source is to steal them from other other Necromancers. All Necromancers are playing characters.
+
+Building is not done like in Minecraft, it's ready made models that get placed in the domain according to the books of knowledge the Necromancer has looted from demons.
+
+### Newly created Necromancer
 
 All Necromancers can:
 
