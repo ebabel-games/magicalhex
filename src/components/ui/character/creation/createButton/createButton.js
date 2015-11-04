@@ -3,24 +3,30 @@ import Firebase from 'firebase';
 
 import error from '../../../../shared/errorMessages';
 
-var CreateCharacterButton = React.createClass({
-    getInitialState: function() {
-        return {
-            disabled: ''
+class CreateCharacterButton extends React.Component {
+
+    constructor (props) {
+        super (props);
+
+        this.state = {
+            disabled: props.disabled
         };
-    },
-    componentDidMount: function() {
+    }
+
+    componentDidMount() {
         this.ref = new Firebase('https://enchantment.firebaseio.com');
-    },
-    render: function() {
+    }
+
+    render() {
         return (
-            <button onClick={this.handleClick} 
+            <button onClick={this.handleClick.bind(this)} 
                 disabled={this.state.disabled}>
                 Create character
             </button>
         )
-    },
-    handleClick: function (event) {
+    }
+
+    handleClick (event) {
         var _this = this;
 
         // Disable the button as soon as it's clicked on.
@@ -52,6 +58,16 @@ var CreateCharacterButton = React.createClass({
             console.log(err);
         });
     }
-});
+}
+
+// Validation rules for the properties of this component.
+CreateCharacterButton.propTypes = {
+    disabled: React.PropTypes.string
+};
+
+// Default values of the properties if they haven't been set in the tag.
+CreateCharacterButton.defaultProps = {
+    disabled: ''
+}
 
 module.exports = CreateCharacterButton;
