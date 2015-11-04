@@ -11,10 +11,11 @@ import CreateCharacterButton from './createButton/createButton';
 import CharacterNameInput from './nameInput/nameInput';
 import ProfileImage from './profileImage/profileImage';
 import CreationPointsLeft from './pointsLeft/pointsLeft';
+
 import error from '../../../shared/errorMessages';
 import './creation.css';
 
-var CharacterCreation = React.createClass({
+var Creation = React.createClass({
     mixins: [ReactFireMixin],
     getInitialState: function() {
         return {
@@ -111,4 +112,4 @@ var CharacterCreation = React.createClass({
     }
 });
 
-module.exports = CharacterCreation;
+module.exports = Creation;

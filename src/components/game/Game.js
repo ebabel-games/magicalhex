@@ -7,7 +7,7 @@ import error from '../shared/errorMessages';
 import './game.css';
 
 // Main game module.
-var Game = function game() {
+var game = function game() {
     var scene = new THREE.Scene();
     var renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     var light = new THREE.AmbientLight(0xffffff);
@@ -26,6 +26,8 @@ var Game = function game() {
             }
         }
     });
+
+    // todo: replace these spaceship models by plain cubes made 100% in THREE.js
 
     // Static spaceship.
     LoadModel({
@@ -200,4 +202,4 @@ var Game = function game() {
     });
 };
 
-module.exports = Game;
+module.exports = game;

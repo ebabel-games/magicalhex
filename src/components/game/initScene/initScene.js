@@ -3,7 +3,7 @@ import THREE from 'three';
 import error from '../../shared/errorMessages';
 
 // Initialize the scene and return a camera.
-var InitScene = function initScene (input) {
+var initScene = function initScene (input) {
     var scene = input && input.scene;
     var renderer = input && input.renderer;
     var light = input && input.light;
@@ -38,4 +38,4 @@ var InitScene = function initScene (input) {
     return output;
 };
 
-module.exports = InitScene;
+module.exports = initScene;

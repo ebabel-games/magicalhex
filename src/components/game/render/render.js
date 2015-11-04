@@ -1,7 +1,7 @@
 import error from '../../shared/errorMessages';
 
 // Render the scene and animate the sprites that have been passed in the input.
-var Render = function render (input) {
+var render = function render (input) {
     var renderer = input && input.renderer;
     var scene = input && input.scene;
     var camera = input && input.camera;
@@ -18,8 +18,8 @@ var Render = function render (input) {
     }
 
     requestAnimationFrame(function() {
-        Render(input);
+        render(input);
     });
 };
 
-module.exports = Render;
+module.exports = render;

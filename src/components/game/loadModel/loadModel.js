@@ -6,7 +6,7 @@ import error from '../../shared/errorMessages';
 collada(THREE);
 
 // Load a collada model and add it to the scene.
-var LoadModel = function loadModel (input) {
+var loadModel = function loadModel (input) {
     var loader;
     var path = input && input.path;
     var name = input && input.name;
@@ -45,4 +45,4 @@ var LoadModel = function loadModel (input) {
     );
 };
 
-module.exports = LoadModel;
+module.exports = loadModel;
