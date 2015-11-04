@@ -3,14 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // UI.
-import Login from './Login';
+import Login from './login/login';
 import CharacterCreation from './character/Creation';
+import './ui.css';
 
 // Game.
 import Game from '../game/Game';
 
-// Main component.
-// todo: make this component the only code in this file. Move the game code somewhere else.
+// UI component.
 var Main = React.createClass({
     render: function() {
         return (

@@ -4,7 +4,7 @@ import ReactFireMixin from 'reactfire';
 
 import CreateCharacterButton from './CreateButton';
 import CharacterNameInput from './NameInput';
-import ProfileImage from '../ProfileImage';
+import ProfileImage from './profileImage/ProfileImage';
 import CreationPointsLeft from './CreationPointsLeft';
 import CharacterSummoningInput from './SummoningInput';
 import CharacterMagicInput from './MagicInput';

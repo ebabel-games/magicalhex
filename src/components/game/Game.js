@@ -4,6 +4,7 @@ import error from './ErrorMessages';
 import InitScene from './InitScene';
 import LoadModel from './LoadModel';
 import Render from './Render';
+import './game.css';
 
 // Main game module.
 var Game = function game() {

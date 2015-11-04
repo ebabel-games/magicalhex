@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './profileImage.css';
+
 var ProfileImage = React.createClass({
     render: function() {
         return (

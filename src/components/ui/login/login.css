@@ -1,0 +1,19 @@
+#login {
+    background-color: rgba(255, 255, 255, .8);
+    color: #000;
+    vertical-align: middle;
+    position: fixed;
+    width: 50%;
+    height: 150px;
+    top: 40%;
+    left: 50%;
+    margin-left: -25%;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+#login button {
+    margin: 52px auto 0;
+}
