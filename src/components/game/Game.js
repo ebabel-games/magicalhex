@@ -1,9 +1,9 @@
 import THREE from 'three';
 
-import error from './ErrorMessages';
-import InitScene from './InitScene';
-import LoadModel from './LoadModel';
-import Render from './Render';
+import error from './errorMessages';
+import InitScene from './initScene';
+import LoadModel from './loadModel';
+import Render from './render';
 import './game.css';
 
 // Main game module.

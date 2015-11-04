@@ -2,14 +2,17 @@ import React from 'react';
 import Firebase from 'firebase';
 import ReactFireMixin from 'reactfire';
 
-import CreateCharacterButton from './CreateButton';
-import CharacterNameInput from './NameInput';
+// todo: refactor these 3 input to be a single, reusable input.js
+import CharacterSummoningInput from './summoningInput';
+import CharacterMagicInput from './magicInput';
+import CharacterLifeInput from './lifeInput';
+
+import CreateCharacterButton from './createButton/createButton';
+import CharacterNameInput from './nameInput/nameInput';
 import ProfileImage from './profileImage/profileImage';
 import CreationPointsLeft from './pointsLeft/pointsLeft';
-import CharacterSummoningInput from './SummoningInput';
-import CharacterMagicInput from './MagicInput';
-import CharacterLifeInput from './LifeInput';
-import error from '../../../game/ErrorMessages';
+import error from '../../../game/errorMessages';
+import './creation.css';
 
 var CharacterCreation = React.createClass({
     mixins: [ReactFireMixin],
