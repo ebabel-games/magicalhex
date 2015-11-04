@@ -1,12 +1,7 @@
-node_modules
-bower_components
 .DS_Store
 .idea
 *.log
 *.swp
-tmp/
+node_modules
+tmp
 bundle.js
-src/js/scripts.concat.js
-src/js/scripts.js
-src/js/dependencies.js
-*.js.map
