@@ -1,6 +1,9 @@
-var THREE = require('three');
-var collada = require('three-loaders-collada')(THREE);
-var error = require('./ErrorMessages');
+import THREE from 'three';
+import collada from 'three-loaders-collada';
+
+import error from './ErrorMessages';
+
+collada(THREE);
 
 // Load a collada model and add it to the scene.
 var LoadModel = function loadModel (input) {

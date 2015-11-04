@@ -1,14 +1,24 @@
+var path = require('path');
+
 module.exports = {
-    entry: './src/components/ui/Main.js',
+    entry: './src/components/ui/ui.js',
     output: {
-        filename: 'public/bundle.js'
+        path: path.resolve(__dirname, 'public'),
+        filename: 'bundle.js'
     },
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
+                test: /\.js?$/,
+                exclude: /(node_modules)/,
                 loader: 'babel'
+            },
+            {
+                test: /\.css$/, 
+                loader: [
+                    'style',
+                    'css'
+                ]
             }
         ]
     }

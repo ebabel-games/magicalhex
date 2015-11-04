@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 // todo: CharacterSummoningInput, CharacterMagicInput and CharacterLifeInput are too similar not to be refactored into one function.
 var CharacterSummoningInput = React.createClass({

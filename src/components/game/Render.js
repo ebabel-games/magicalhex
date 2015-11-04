@@ -1,4 +1,4 @@
-var error = require('./ErrorMessages');
+import error from './ErrorMessages';
 
 // Render the scene and animate the sprites that have been passed in the input.
 var Render = function render (input) {

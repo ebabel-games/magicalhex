@@ -1,13 +1,13 @@
 // Third party dependencies.
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // UI.
-var Login = require('./Login');
-var CharacterCreation = require('./character/Creation');
+import Login from './Login';
+import CharacterCreation from './character/Creation';
 
 // Game.
-var Game = require('../game/Game');
+import Game from '../game/Game';
 
 // Main component.
 // todo: make this component the only code in this file. Move the game code somewhere else.

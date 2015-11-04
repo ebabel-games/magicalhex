@@ -1,16 +1,15 @@
-var React = require('react');
-var Firebase = require('firebase');
-var ReactFireMixin = require('reactfire');
+import React from 'react';
+import Firebase from 'firebase';
+import ReactFireMixin from 'reactfire';
 
-var CreateCharacterButton = require('./CreateButton');
-var CharacterNameInput = require('./NameInput');
-var ProfileImage = require('../ProfileImage');
-var CreationPointsLeft = require('./CreationPointsLeft');
-var CharacterSummoningInput = require('./SummoningInput');
-var CharacterMagicInput = require('./MagicInput');
-var CharacterLifeInput = require('./LifeInput');
-
-var error = require('../../game/ErrorMessages');
+import CreateCharacterButton from './CreateButton';
+import CharacterNameInput from './NameInput';
+import ProfileImage from '../ProfileImage';
+import CreationPointsLeft from './CreationPointsLeft';
+import CharacterSummoningInput from './SummoningInput';
+import CharacterMagicInput from './MagicInput';
+import CharacterLifeInput from './LifeInput';
+import error from '../../game/ErrorMessages';
 
 var CharacterCreation = React.createClass({
     mixins: [ReactFireMixin],

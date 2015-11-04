@@ -1,9 +1,9 @@
-var THREE = require('three');
+import THREE from 'three';
 
-var error = require('./ErrorMessages');
-var InitScene = require('./InitScene');
-var LoadModel = require('./LoadModel');
-var Render = require('./Render');
+import error from './ErrorMessages';
+import InitScene from './InitScene';
+import LoadModel from './LoadModel';
+import Render from './Render';
 
 // Main game module.
 var Game = function game() {

@@ -1,5 +1,6 @@
-var THREE = require('three');
-var error = require('./ErrorMessages');
+import THREE from 'three';
+
+import error from './ErrorMessages';
 
 // Initialize the scene and return a camera.
 var InitScene = function initScene (input) {
