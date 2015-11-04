@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './pointsLeft.css';
+
 var CreationPointsLeft = React.createClass({
     render: function() {
         return (

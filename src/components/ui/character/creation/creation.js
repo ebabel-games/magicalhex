@@ -4,12 +4,12 @@ import ReactFireMixin from 'reactfire';
 
 import CreateCharacterButton from './CreateButton';
 import CharacterNameInput from './NameInput';
-import ProfileImage from './profileImage/ProfileImage';
-import CreationPointsLeft from './CreationPointsLeft';
+import ProfileImage from './profileImage/profileImage';
+import CreationPointsLeft from './pointsLeft/pointsLeft';
 import CharacterSummoningInput from './SummoningInput';
 import CharacterMagicInput from './MagicInput';
 import CharacterLifeInput from './LifeInput';
-import error from '../../game/ErrorMessages';
+import error from '../../../game/ErrorMessages';
 
 var CharacterCreation = React.createClass({
     mixins: [ReactFireMixin],

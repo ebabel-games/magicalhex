@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 // UI.
 import Login from './login/login';
-import CharacterCreation from './character/Creation';
+import CharacterCreation from './character/creation/creation';
 import './ui.css';
 
 // Game.

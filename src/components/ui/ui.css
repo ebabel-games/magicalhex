@@ -67,30 +67,3 @@ em {
     width: 98%;
     clear: both;
 }
-
-#character-creation #profile-image,
-#character-creation #creation-points-left {
-    clear: none;
-}
-
-#character-creation #creation-points-left {
-    line-height: 46px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
