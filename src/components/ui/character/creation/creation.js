@@ -1,7 +1,6 @@
 import React from 'react';
 import Firebase from 'firebase';
 
-// todo: refactor these 3 input to be a single, reusable input.js
 import CharacterSummoningInput from './summoningInput';
 import CharacterMagicInput from './magicInput';
 import CharacterLifeInput from './lifeInput';
@@ -14,41 +13,49 @@ import CreationPointsLeft from './pointsLeft/pointsLeft';
 import error from '../../../shared/errorMessages';
 import './creation.css';
 
-var Creation = React.createClass({
-    getInitialState: function() {
-        return {
-            data: null,
-            isHidden: true,
-            disabled: ''
-        };
-    },
-    componentDidMount: function() {
-        this.ref = new Firebase('https://enchantment.firebaseio.com');
-        document.addEventListener('show-character-creation', this.show, true);
-    },
-    render: function () {
-        var _html;
+class Creation extends React.Component {
 
+    constructor (props) {
+        super (props);
+
+        this.state = {
+            data: props.data,
+            isHidden: props.isHidden,
+            disabled: props.disabled
+        };
+    }
+
+    componentDidMount() {
+        this.ref = new Firebase('https://enchantment.firebaseio.com');
+        document.addEventListener('show-character-creation', this.show.bind(this), true);
+    }
+
+    render() {
         if (this.state.isHidden) {
             return null;
         }
 
-        _html =
-        <form action='#' id='character-creation' onSubmit={this.handleSubmit}>
-            <CharacterNameInput name={this.state.character.name} />
-            <p>
-                <ProfileImage src={this.state.data.profileImageUrl} title={this.state.data.displayName} />
-                <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft} />
-            </p>
-            <CharacterLifeInput life={this.state.character.life} change={this.update} />
-            <CharacterMagicInput magic={this.state.character.magic} change={this.update} />
-            <CharacterSummoningInput summoning={this.state.character.summoning} change={this.update} />
-            <CreateCharacterButton playerid={this.state.data.id} />
-        </form>
+        return (
+            <form action='#' id='character-creation' onSubmit={this.handleSubmit.bind(this)}>
 
-        return _html;
-    },
-    show: function (event) {
+                <CharacterNameInput name={this.state.character.name} />
+
+                <p>
+                    <ProfileImage src={this.state.data.profileImageUrl} title={this.state.data.displayName} />
+                    <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft} />
+                </p>
+
+                <CharacterLifeInput life={this.state.character.life} change={this.update.bind(this)} />
+                <CharacterMagicInput magic={this.state.character.magic} change={this.update.bind(this)} />
+                <CharacterSummoningInput summoning={this.state.character.summoning} change={this.update.bind(this)} />
+
+                <CreateCharacterButton playerid={this.state.data.id} />
+
+            </form>
+        )
+    }
+
+    show (event) {
         var _this = this;
         var _character;
 
@@ -71,8 +78,9 @@ var Creation = React.createClass({
                 disabled: ''
             });
         });
-    },
-    update: function (event) {
+    }
+
+    update (event) {
         var _skill = {
             name: event.currentTarget.id.substring(10).toLowerCase(),
             value: parseInt(event.currentTarget.value, 10)
@@ -104,10 +112,26 @@ var Creation = React.createClass({
         this.setState({
             character: _character
         });
-    },
-    handleSubmit: function (event) {
-        event.preventDefault();
     }
-});
+
+    handleSubmit (event) {
+        event.preventDefault();
+
+        var _this = this;
+    }
+
+}
+
+Creation.propTypes = {
+    data: React.PropTypes.object,
+    isHidden: React.PropTypes.bool,
+    disabled: React.PropTypes.string
+};
+
+Creation.defaultProps = {
+    data: null,
+    isHidden: true,
+    disabled: ''
+}
 
 module.exports = Creation;
