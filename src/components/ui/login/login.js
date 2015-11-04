@@ -11,7 +11,7 @@ class Login extends React.Component {
         super (props);
 
         this.state = {
-            isHidden: props.isHiddenfalse,
+            isHidden: props.isHidden,
             disabled: props.disabled
         };
     }
