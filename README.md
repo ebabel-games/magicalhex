@@ -67,11 +67,11 @@ See http://semver.org/
 
 ### Next release tag
 
-0.6.0 Rules of the game documentation and refactoring to match the rules
+0.6.0 Rules of the game documentation, refactoring to match the rules and ES6 refactoring.
 
 ### Released tags
 
-* 0.5.0 React.js and webpack
+* 0.5.0 React.js and webpack.
 * 0.4.0 Migration to Firebase backend.
 * 0.3.1 Migration to client side only with Grunt and Bower.
 * 0.2.0 Original version from https://github.com/jicksta/Enchantment
