@@ -13,10 +13,12 @@ import Game from '../game/Game';
 // UI main component.
 class Main extends React.Component {
     render() {
-        return  <div id='ui'>
-                    <Login />
-                    <Creation />
-                </div>
+        return (
+            <div id='ui'>
+                <Login />
+                <Creation />
+            </div>
+        )
     }
 }
 
