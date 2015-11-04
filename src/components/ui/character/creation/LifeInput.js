@@ -1,7 +1,7 @@
 import React from 'react';
 
-var CharacterLifeInput = React.createClass({
-    render: function() {
+class CharacterLifeInput extends React.Component {
+    render() {
         return (
             <label>
                 life <span className='points'>{this.props.life}</span>
@@ -11,6 +11,6 @@ var CharacterLifeInput = React.createClass({
             </label>
         )
     }
-});
+}
 
 module.exports = CharacterLifeInput;

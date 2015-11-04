@@ -1,7 +1,7 @@
 import React from 'react';
 
-var CharacterMagicInput = React.createClass({
-    render: function() {
+class CharacterMagicInput extends React.Component {
+    render() {
         return (
             <label>
                 magic <span className='points'>{this.props.magic}</span>
@@ -11,6 +11,6 @@ var CharacterMagicInput = React.createClass({
             </label>
         )
     }
-});
+}
 
 module.exports = CharacterMagicInput;

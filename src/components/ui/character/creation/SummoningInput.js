@@ -1,8 +1,7 @@
 import React from 'react';
 
-// todo: CharacterSummoningInput, CharacterMagicInput and CharacterLifeInput are too similar not to be refactored into one function.
-var CharacterSummoningInput = React.createClass({
-    render: function() {
+class CharacterSummoningInput extends React.Component {
+    render() {
         return (
             <label>
                 summoning <span className='points'>{this.props.summoning}</span>
@@ -12,6 +11,6 @@ var CharacterSummoningInput = React.createClass({
             </label>
         )
     }
-});
+}
 
 module.exports = CharacterSummoningInput;
