@@ -1,6 +1,5 @@
 import React from 'react';
 import Firebase from 'firebase';
-import ReactFireMixin from 'reactfire';
 
 // todo: refactor these 3 input to be a single, reusable input.js
 import CharacterSummoningInput from './summoningInput';
@@ -16,7 +15,6 @@ import error from '../../../shared/errorMessages';
 import './creation.css';
 
 var Creation = React.createClass({
-    mixins: [ReactFireMixin],
     getInitialState: function() {
         return {
             data: null,

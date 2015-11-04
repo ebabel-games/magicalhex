@@ -1,11 +1,9 @@
 import React from 'react';
 import Firebase from 'firebase';
-import ReactFireMixin from 'reactfire';
 
 import error from '../../../../shared/errorMessages';
 
 var CreateCharacterButton = React.createClass({
-    mixins: [ReactFireMixin],
     getInitialState: function() {
         return {
             disabled: ''

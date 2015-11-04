@@ -1,32 +1,38 @@
 import React from 'react';
 import Firebase from 'firebase';
-import ReactFireMixin from 'reactfire';
 
 import error from '../../shared/errorMessages';
 import './login.css';
 
-var Login = React.createClass({
-    mixins: [ReactFireMixin],
-    getInitialState: function() {
-        return {
-            isHidden: false,
-            disabled: ''
+class Login extends React.Component {
+
+    // constructor is replacing getInitialState.
+    constructor (props) {
+        super (props);
+
+        this.state = {
+            isHidden: props.isHiddenfalse,
+            disabled: props.disabled
         };
-    },
-    componentDidMount: function() {
+    }
+
+    componentDidMount() {
         this.ref = new Firebase('https://enchantment.firebaseio.com');
-    },
-    render: function () {
+    }
+
+    render() {
         var _html;
 
         if (this.state.isHidden) {
             return null;
         }
 
+        // In handleClick.bind(this), the .bind(this) is required 
+        // to expose 'this' from this component to the handleClick function.
         _html = 
         <div id='login'>
             <p>
-                <button onClick={this.handleClick} 
+                <button onClick={this.handleClick.bind(this)} 
                     disabled={this.state.disabled}>
                     Facebook Login
                 </button>
@@ -34,8 +40,10 @@ var Login = React.createClass({
         </div>
 
         return _html;
-    },
-    handleClick: function (event) {
+    }
+
+    handleClick (event) {
+        // Keep track of the main this object inside the callbacks of Firebase.
         var _this = this;
 
         // Always start by disabling the login button as soon as it's been clicked on,
@@ -97,6 +105,18 @@ var Login = React.createClass({
             }
         });
     }
-});
+}
+
+// Validation rules for the properties of this component.
+Login.propTypes = {
+    isHidden: React.PropTypes.bool,
+    disabled: React.PropTypes.string
+};
+
+// Default values of the properties if they haven't been set in the tag.
+Login.defaultProps = {
+    isHidden: false,
+    disabled: ''
+}
 
 module.exports = Login;
