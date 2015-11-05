@@ -1,7 +1,6 @@
 import THREE from 'three';
 
 import InitScene from './initScene/initScene';
-import LoadModel from './loadModel/loadModel';
 import Render from './render/render';
 import error from '../shared/errorMessages';
 import './game.css';
@@ -27,52 +26,15 @@ var game = function game() {
         }
     });
 
-    // todo: replace these spaceship models by plain cubes made 100% in THREE.js
-
-    // Static spaceship.
-    LoadModel({
-        path: 'models/spaceship/spaceship.dae',
-        name: 'hyper-spaceship',
-        scene: scene,
-        position: {
-            x: -5,
-            y: 20,
-            z: -50
-        },
-        rotation: {
-            x: 30
-        }
-    });
-
-    // Animated spaceship.
-    LoadModel({
-        path: 'models/spaceship/spaceship.dae',
-        name: 'fast-spaceship',
-        scene: scene,
-        position: {
-            x: 1.5,
-            y: 20,
-            z: -25
-        },
-        rotation: {
-            x: 30
-        }
-    });
-
-    // Animated spaceship.
-    LoadModel({
-        path: 'models/spaceship/spaceship.dae',
-        name: 'slow-spaceship',
-        scene: scene,
-        position: {
-            x: -1,
-            y: 20,
-            z: -45
-        },
-        rotation: {
-            x: 30
-        }
-    });
+    var cube = new THREE.Mesh(
+        new THREE.CubeGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial()
+    );
+    cube.name = 'test-cube';
+    cube.position.x = -5;
+    cube.position.y = 20;
+    cube.position.z = -50;
+    scene.add(cube);
 
     // Render the scene.
     Render({
@@ -81,7 +43,7 @@ var game = function game() {
         camera: camera,
         sprites: [
             {
-                name: 'hyper-spaceship',
+                name: 'test-cube',
                 scene: scene,
                 heartbeat: function (input) {
                     var name = input && input.name;
@@ -111,76 +73,6 @@ var game = function game() {
 
                     if (sprite.position.z > 25) {
                         sprite.position.set(-5, 20, -50); // back to start position.
-                    }
-                }
-            },
-            {
-                name: 'fast-spaceship',
-                scene: scene,
-                // The heartbeat of a sprite is run every tick of the main render.
-                heartbeat: function (input) {
-                    var name = input && input.name;
-                    var scene = input && input.scene;
-                    var sprite;
-
-                    if (!name || !scene) {
-                        throw new Error(error.input.required);
-                    }
-
-                    sprite = scene.getObjectByName(name);
-
-                    if (!sprite) {
-                        return; // Sprite hasn't been found yet, it has probably not finished loading.
-                    }
-
-                    // Only run code below this point once the sprite has been found in the scene.
-                    
-                    if (sprite.position.y > 0) {
-                        // First vector: the spaceship slowly comes into view, losing altitude.
-                        sprite.position.z += 0.05;
-                        sprite.position.y += -0.05;
-                    } else {
-                        // Second vector: the spaceship speeds away from field of camera.
-                        sprite.position.z += 1;
-                    }
-
-                    if (sprite.position.z > 25) {
-                        sprite.position.set(1.5, 20, -25); // back to start position.
-                    }
-                }
-            },
-            {
-                name: 'slow-spaceship',
-                scene: scene,
-                // The heartbeat of a sprite is run every tick of the main render.
-                heartbeat: function (input) {
-                    var name = input && input.name;
-                    var scene = input && input.scene;
-                    var sprite;
-
-                    if (!name || !scene) {
-                        throw new Error(error.input.required);
-                    }
-
-                    sprite = scene.getObjectByName(name);
-
-                    if (!sprite) {
-                        return; // Sprite hasn't been found yet, it has probably not finished loading.
-                    }
-
-                    // Only run code below this point once the sprite has been found in the scene.
-                    
-                    if (sprite.position.y > -2) {
-                        // First vector: the spaceship slowly comes into view, losing altitude.
-                        sprite.position.z += 0.05;
-                        sprite.position.y += -0.05;
-                    } else {
-                        // Second vector: the spaceship moves away from field of camera, slower than fast-spaceship.
-                        sprite.position.z += 0.33;
-                    }
-
-                    if (sprite.position.z > 25) {
-                        sprite.position.set(-1, 20, -45); // back to start position.
                     }
                 }
             }
