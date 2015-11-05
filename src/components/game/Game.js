@@ -6,11 +6,11 @@ import error from '../shared/errorMessages';
 import './game.css';
 
 // Main game module.
-var game = function game() {
-    var scene = new THREE.Scene();
-    var renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-    var light = new THREE.AmbientLight(0xffffff);
-    var camera = InitScene({
+const game = function game() {
+    const scene = new THREE.Scene();
+    const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
+    const light = new THREE.AmbientLight(0xffffff);
+    const camera = InitScene({
         scene: scene,
         renderer: renderer,
         light: light,
@@ -26,15 +26,36 @@ var game = function game() {
         }
     });
 
-    var cube = new THREE.Mesh(
-        new THREE.CubeGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial()
-    );
-    cube.name = 'test-cube';
-    cube.position.x = -5;
-    cube.position.y = 20;
-    cube.position.z = -50;
-    scene.add(cube);
+
+    const loader = new THREE.JSONLoader();
+
+    // Test cube.
+    loader.load('models/test-cube/test-cube.json', function (geometry, material) {
+        material = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            wireframe: true
+        });
+        const model = new THREE.Mesh(geometry, material);
+        model.name = 'test-cube';
+        model.position.x = 5;
+        model.position.y = 30;
+        model.position.z = -45;
+        scene.add(model);
+    });
+
+    // Monkey.
+    loader.load('models/monkey/monkey.json', function (geometry, material) {
+        material = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            wireframe: true
+        });
+        const monkey = new THREE.Mesh(geometry, material);
+        monkey.name = 'monkey';
+        monkey.position.x = -5;
+        monkey.position.y = 30;
+        monkey.position.z = -50;
+        scene.add(monkey);
+    });
 
     // Render the scene.
     Render({
@@ -42,6 +63,40 @@ var game = function game() {
         scene: scene,
         camera: camera,
         sprites: [
+            {
+                name: 'monkey',
+                scene: scene,
+                heartbeat: function (input) {
+                    var name = input && input.name;
+                    var scene = input && input.scene;
+                    var sprite;
+
+                    if (!name || !scene) {
+                        throw new Error(error.input.required);
+                    }
+
+                    sprite = scene.getObjectByName(name);
+
+                    if (!sprite) {
+                        return; // Sprite hasn't been found yet, it has probably not finished loading.
+                    }
+
+                    // Only run code below this point once the sprite has been found in the scene.
+                    
+                    if (sprite.position.y > 0) {
+                        // First vector: the spaceship slowly comes into view, losing altitude.
+                        sprite.position.z += 0.05;
+                        sprite.position.y += -0.1;
+                    } else {
+                        // Second vector: the spaceship speeds away from field of camera.
+                        sprite.position.z += 0.1;
+                    }
+
+                    if (sprite.position.z > 25) {
+                        sprite.position.set(-5, 30, -50); // back to start position.
+                    }
+                }
+            },
             {
                 name: 'test-cube',
                 scene: scene,
@@ -65,14 +120,14 @@ var game = function game() {
                     if (sprite.position.y > 0) {
                         // First vector: the spaceship slowly comes into view, losing altitude.
                         sprite.position.z += 0.05;
-                        sprite.position.y += -0.05;
+                        sprite.position.y += -0.1;
                     } else {
                         // Second vector: the spaceship speeds away from field of camera.
-                        sprite.position.z += 1.2;
+                        sprite.position.z += 0.1;
                     }
 
                     if (sprite.position.z > 25) {
-                        sprite.position.set(-5, 20, -50); // back to start position.
+                        sprite.position.set(5, 30, -45); // back to start position.
                     }
                 }
             }
