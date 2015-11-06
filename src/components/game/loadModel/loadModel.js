@@ -8,12 +8,12 @@ import error from '../../shared/errorMessages';
 const loadModel = function loadModel (input) {
 
     const loader = new THREE.JSONLoader();
-    const ref = Firebase(input.firebaseEndpoint);
 
     // todo: validation of input and error handling.
 
     loader.load(input.url, function (geometry, material) {
 
+        const ref = new Firebase('https://enchantment.firebaseio.com');
 
         material = input.material;
 
@@ -23,7 +23,7 @@ const loadModel = function loadModel (input) {
         model.name = input.modelName;
         model.userData = input.userData;
 
-        ref.once('value', function getModelUserData (snapshot) {
+        ref.child(input.firebaseEndpoint).once('value', function getModelUserData (snapshot) {
 
             const userData = snapshot.val();
 

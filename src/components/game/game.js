@@ -32,7 +32,7 @@ const game = function game() {
         material: new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true}),
         modelName: 'test-cube',
         scene: scene,
-        firebaseEndpoint: 'https://enchantment.firebaseio.com/world/test-cube',
+        firebaseEndpoint: 'mob/test-cube',
         userData: {
             life: 50,
             dead: false,
@@ -43,6 +43,11 @@ const game = function game() {
                 y: 30,
                 z: -45
             },
+            equipment: [
+                'armour',
+                'sword',
+                'spell scroll'
+            ],
             heartbeat: function (sprite) {
                 if (!sprite) {
                     return; // Sprite hasn't been found yet, it has probably not finished loading.
@@ -56,15 +61,19 @@ const game = function game() {
                 if (sprite.userData.life <= 0) {
 
                     // The sprite just died.
-                    // todo: refactor this death to become a reusable event for more any sprite.
+                    // todo: refactor this death to become a reusable event for any sprite.
                     if (sprite.userData.dead === false) {
                         const corpse = {
                             location: sprite.getWorldPosition(),
                             deathDate: Date.now(),
-                            equipment: []   // todo: list the equipment left on the corpse
+                            equipment: sprite.userData.equipment
                         };
 
+                        // The sprite keeps track of his corpse(s).
                         sprite.userData.corpses.push(corpse);
+
+                        // The sprite has lost all the equipment he carried at the time of death and left it on the corpse.
+                        sprite.userData.equipment = [];
 
                         console.log('test-cube died: ' + JSON.stringify(corpse));
                     }
