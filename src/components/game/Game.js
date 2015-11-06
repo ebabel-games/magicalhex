@@ -1,5 +1,6 @@
 import THREE from 'three';
 
+import loadModel from './loadModel/loadModel';
 import InitScene from './initScene/initScene';
 import Render from './render/render';
 import error from '../shared/errorMessages';
@@ -26,35 +27,12 @@ const game = function game() {
         }
     });
 
-
-    const loader = new THREE.JSONLoader();
-
-    // Test cube.
-    loader.load('models/test-cube/test-cube.json', function (geometry, material) {
-        material = new THREE.MeshBasicMaterial({
-            color: 0xffffff,
-            wireframe: true
-        });
-        const model = new THREE.Mesh(geometry, material);
-        model.name = 'test-cube';
-        model.position.x = 5;
-        model.position.y = 30;
-        model.position.z = -45;
-        scene.add(model);
-    });
-
-    // Monkey.
-    loader.load('models/monkey/monkey.json', function (geometry, material) {
-        material = new THREE.MeshBasicMaterial({
-            color: 0xffffff,
-            wireframe: true
-        });
-        const monkey = new THREE.Mesh(geometry, material);
-        monkey.name = 'monkey';
-        monkey.position.x = -5;
-        monkey.position.y = 30;
-        monkey.position.z = -50;
-        scene.add(monkey);
+    loadModel({
+        url: '/models/test-cube/test-cube.json',
+        material: new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true}),
+        modelName: 'test-cube',
+        scene: scene,
+        firebaseEndpoint: 'https://enchantment.firebaseio.com/world/test-cube'
     });
 
     // Render the scene.
@@ -63,40 +41,6 @@ const game = function game() {
         scene: scene,
         camera: camera,
         sprites: [
-            {
-                name: 'monkey',
-                scene: scene,
-                heartbeat: function (input) {
-                    var name = input && input.name;
-                    var scene = input && input.scene;
-                    var sprite;
-
-                    if (!name || !scene) {
-                        throw new Error(error.input.required);
-                    }
-
-                    sprite = scene.getObjectByName(name);
-
-                    if (!sprite) {
-                        return; // Sprite hasn't been found yet, it has probably not finished loading.
-                    }
-
-                    // Only run code below this point once the sprite has been found in the scene.
-                    
-                    if (sprite.position.y > 0) {
-                        // First vector: the spaceship slowly comes into view, losing altitude.
-                        sprite.position.z += 0.05;
-                        sprite.position.y += -0.1;
-                    } else {
-                        // Second vector: the spaceship speeds away from field of camera.
-                        sprite.position.z += 0.1;
-                    }
-
-                    if (sprite.position.z > 25) {
-                        sprite.position.set(-5, 30, -50); // back to start position.
-                    }
-                }
-            },
             {
                 name: 'test-cube',
                 scene: scene,
@@ -123,7 +67,8 @@ const game = function game() {
                         sprite.position.y += -0.1;
                     } else {
                         // Second vector: the spaceship speeds away from field of camera.
-                        sprite.position.z += 0.1;
+                        sprite.position.z += 0.5;
+                        sprite.rotation.x += 0.5;
                     }
 
                     if (sprite.position.z > 25) {
