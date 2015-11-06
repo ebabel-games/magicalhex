@@ -1,4 +1,5 @@
 import THREE from 'three';
+import Firebase from 'firebase';
 
 import error from '../../shared/errorMessages';
 
@@ -7,23 +8,41 @@ import error from '../../shared/errorMessages';
 const loadModel = function loadModel (input) {
 
     const loader = new THREE.JSONLoader();
+    const ref = Firebase(input.firebaseEndpoint);
 
     // todo: validation of input and error handling.
 
     loader.load(input.url, function (geometry, material) {
+
+
         material = input.material;
 
         const model = new THREE.Mesh(geometry, material);
 
+
         model.name = input.modelName;
         model.userData = input.userData;
 
-        // todo: use Firebase input.firebaseEndpoint to determine the position, rotation and any game data saved into the model, like Life.
-        model.position.x = 5;
-        model.position.y = 20;
-        model.position.z = -45;
+        ref.once('value', function getModelUserData (snapshot) {
 
-        input.scene.add(model);
+            const userData = snapshot.val();
+
+            if (userData) {
+                model.position.set(
+                    userData.x,
+                    userData.y,
+                    userData.z
+                );
+            } else {
+                model.position.set(
+                    model.userData.start.x,
+                    model.userData.start.y,
+                    model.userData.start.z
+                );
+            }
+
+            input.scene.add(model);
+        });
     });
 
 };

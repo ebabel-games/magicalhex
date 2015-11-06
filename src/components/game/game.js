@@ -37,6 +37,12 @@ const game = function game() {
             life: 50,
             dead: false,
             corpses: [],
+            // Start is a fallback, in case there is no data in Firebase.
+            start: {
+                x: 5,
+                y: 30,
+                z: -45
+            },
             heartbeat: function (sprite) {
                 if (!sprite) {
                     return; // Sprite hasn't been found yet, it has probably not finished loading.
@@ -79,7 +85,12 @@ const game = function game() {
                 }
 
                 if (sprite.position.z > 25) {
-                    sprite.position.set(5, 30, -45); // back to start position.
+                    // Back to start position.
+                    sprite.position.set(
+                        sprite.userData.start.x,
+                        sprite.userData.start.y,
+                        sprite.userData.start.z
+                    );
                 }
             }
         }
