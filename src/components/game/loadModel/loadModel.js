@@ -16,6 +16,7 @@ const loadModel = function loadModel (input) {
         const model = new THREE.Mesh(geometry, material);
 
         model.name = input.modelName;
+        model.userData = input.userData;
 
         // todo: use Firebase input.firebaseEndpoint to determine the position, rotation and any game data saved into the model, like Life.
         model.position.x = 5;
