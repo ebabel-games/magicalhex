@@ -34,7 +34,7 @@ const game = function game() {
         scene: scene,
         firebaseEndpoint: 'https://enchantment.firebaseio.com/world/test-cube',
         userData: {
-            life: 5,
+            life: 50,
             dead: false,
             corpses: [],
             heartbeat: function (sprite) {
@@ -42,7 +42,10 @@ const game = function game() {
                     return; // Sprite hasn't been found yet, it has probably not finished loading.
                 }
 
-                sprite.userData.life += -0.1;
+                if (sprite.userData.life > 0) {
+                    // keep hitting the sprite as long as it's got some life.
+                    sprite.userData.life += -0.1;
+                }
 
                 if (sprite.userData.life <= 0) {
 
