@@ -9,12 +9,12 @@ module.exports = {
         const callback = input.callback;
 
         ref.child('character/' + player.id).once('value', function getCharacter (snapshot) {
-            var toReturn = snapshot.val();
+            var character = snapshot.val();
 
             if (callback) {
                 callback({
                     player: player,
-                    character: toReturn
+                    character: character
                 });
             }
         });
