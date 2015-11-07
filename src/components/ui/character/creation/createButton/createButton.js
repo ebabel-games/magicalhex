@@ -54,8 +54,11 @@ class CreateCharacterButton extends React.Component {
         };
 
         this.ref.child('character/' + playerid).set(character, function onComplete (err) {
-            // todo: if err, show error, otherwise hide the character creation.
-            console.log(err);
+            if (err) {
+                throw new Error(error.character.creation.failed);
+            }
+
+            // todo: set the character creation component state of hidden to true.
         });
     }
 }

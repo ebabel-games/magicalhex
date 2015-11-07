@@ -12,5 +12,10 @@ module.exports = {
     },
     pointsLeft: {
         notEnough: 'Not enough points left.'
+    },
+    character: {
+        creation: {
+            failed: 'Character creation or update failed.'
+        }
     }
 };
