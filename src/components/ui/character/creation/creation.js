@@ -1,5 +1,4 @@
 import React from 'react';
-import Firebase from 'firebase';
 
 import SkillInput from './skillInput/skillInput';
 import CreateCharacterButton from './createButton/createButton';
@@ -24,7 +23,6 @@ class Creation extends React.Component {
     }
 
     componentDidMount() {
-        this.ref = new Firebase('https://enchantment.firebaseio.com');
         document.addEventListener('show-character-creation', this.show.bind(this), true);
     }
 
