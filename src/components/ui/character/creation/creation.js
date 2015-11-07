@@ -60,38 +60,23 @@ class Creation extends React.Component {
     show (event) {
         var _this = this;
         var player = event.detail.player;
-        var _character = event.detail.character;
+        var character = event.detail.character;
 
-        if (_character) {
-            _this.setState({
-                player: event.detail.player,
-                character: _character,
-                isHidden: false,
-                disabled: ''
-            });
+        if (!character) {
+            character = {
+                creationPointsLeft: 30,
+                summoning: 30,
+                magic: 30,
+                life: 30
+            };
         }
 
-        if (!_character) {
-            this.ref.child('character/' + player.id).once('value', function getCharacter (snapshot) {
-                _character = snapshot.val();
-
-                if (!_character) {
-                    _character = {
-                        creationPointsLeft: 30,
-                        summoning: 30,
-                        magic: 30,
-                        life: 30
-                    };
-                }
-
-                _this.setState({
-                    player: event.detail.player,
-                    character: _character,
-                    isHidden: false,
-                    disabled: ''
-                });
-            });
-        }
+        _this.setState({
+            player: event.detail.player,
+            character: character,
+            isHidden: false,
+            disabled: ''
+        });
     }
 
     update (event) {
@@ -104,27 +89,27 @@ class Creation extends React.Component {
         // because I want to update with setState, it's bad practice 
         // to update the state directly without setState.
         // More about this: http://jsperf.com/cloning-an-object/2
-        var _character = JSON.parse(JSON.stringify(this.state.character));
+        var character = JSON.parse(JSON.stringify(this.state.character));
 
-        var _creationPointsLeft = parseInt(_character.creationPointsLeft, 10);
+        var _creationPointsLeft = parseInt(character.creationPointsLeft, 10);
 
         // May be a negative value.
-        var _difference = parseInt(_character[_skill.name], 10) - _skill.value;
+        var _difference = parseInt(character[_skill.name], 10) - _skill.value;
 
         var _hasEnoughPointsLeft = (_creationPointsLeft + _difference) >= 0;
 
         if (!_hasEnoughPointsLeft) {
             event.preventDefault();
-            event.currentTarget.value = _character[_skill.name];
+            event.currentTarget.value = character[_skill.name];
             console.warn(error.pointsLeft.notEnough);
             return;
         }
 
-        _character[_skill.name] = _skill.value;
-        _character.creationPointsLeft = _creationPointsLeft + _difference;
+        character[_skill.name] = _skill.value;
+        character.creationPointsLeft = _creationPointsLeft + _difference;
 
         this.setState({
-            character: _character
+            character: character
         });
     }
 
