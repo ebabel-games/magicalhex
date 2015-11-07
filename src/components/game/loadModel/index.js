@@ -29,9 +29,20 @@ const loadModel = function loadModel (input) {
 
             // Update the start position from the Firebase data, if any.
             if (userData) {
-                model.userData.start.x = userData.x;
-                model.userData.start.y = userData.y;
-                model.userData.start.z = userData.z;
+                model.userData.start.x = userData.position.x;
+                model.userData.start.y = userData.position.y;
+                model.userData.start.z = userData.position.z;
+            }
+
+            // There was no value in Firebase, so lets persist the current default position.
+            if (!userData) {
+                ref.child(input.firebaseEndpoint).set({
+                    position: {
+                        x: model.userData.start.x,
+                        y: model.userData.start.y,
+                        z: model.userData.start.z
+                    }
+                });
             }
 
             // Set the starting position of the model.

@@ -27,6 +27,10 @@ Browse to
 
   http://localhost:8080
 
+To view each individual model, browse to
+
+  http://localhost:8080/models
+
 ## Deploy to Firebase
 
 Note: you may need to adjust your firebase.json settings with `firebase init` after you have logged in with your own Firebase account. Refer to Firebase for further details.
@@ -67,10 +71,11 @@ See http://semver.org/
 
 ### Next release tag
 
-0.7.0 remove collada and use THREE.js models instead
+* 0.8.0 ?
 
 ### Released tags
 
+* 0.7.0 remove collada and use THREE.js models instead
 * 0.6.0 Rules of the game documentation, refactoring to match the rules and ES6 refactoring.
 * 0.5.0 React.js and webpack.
 * 0.4.0 Migration to Firebase backend.

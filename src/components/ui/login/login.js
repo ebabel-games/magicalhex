@@ -20,6 +20,10 @@ class Login extends React.Component {
         this.ref = new Firebase('https://enchantment.firebaseio.com');
     }
 
+    componentWillUnmount() {
+        this.ref.off();
+    }
+
     render() {
         if (this.state.isHidden) {
             return null;

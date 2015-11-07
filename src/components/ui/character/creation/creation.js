@@ -27,6 +27,10 @@ class Creation extends React.Component {
         document.addEventListener('show-character-creation', this.show.bind(this), true);
     }
 
+    componentWillUnmount() {
+        this.ref.off();
+    }
+
     render() {
         if (this.state.isHidden) {
             return null;
