@@ -1,10 +1,11 @@
 import THREE from 'three';
 
-import loadModel from './loadModel/loadModel';
 import InitScene from './initScene/initScene';
 import Render from './render/render';
 import error from '../shared/errorMessages';
 import './game.css';
+
+import initMobs from './initMobs/initMobs';
 
 // Main game module.
 const game = function game() {
@@ -27,90 +28,23 @@ const game = function game() {
         }
     });
 
-    loadModel({
-        url: '/models/test-cube/test-cube.json',
-        material: new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true}),
-        modelName: 'test-cube',
-        scene: scene,
-        firebaseEndpoint: 'mob/test-cube',
-        userData: {
-            life: 50,
-            dead: false,
-            corpses: [],
-            // Start is a fallback, in case there is no data in Firebase.
-            start: {
-                x: 5,
-                y: 30,
-                z: -45
-            },
-            equipment: [
-                'armour',
-                'sword',
-                'spell scroll'
-            ],
-            heartbeat: function (sprite) {
-                if (!sprite) {
-                    return; // Sprite hasn't been found yet, it has probably not finished loading.
-                }
+    // Array of all mobs, players and the world enviroment since it can be modified by players.
+    const sprites = [];
 
-                if (sprite.userData.life > 0) {
-                    // keep hitting the sprite as long as it's got some life.
-                    sprite.userData.life += -0.1;
-                }
-
-                if (sprite.userData.life <= 0) {
-
-                    // The sprite just died.
-                    // todo: refactor this death to become a reusable event for any sprite.
-                    if (sprite.userData.dead === false) {
-                        const corpse = {
-                            location: sprite.getWorldPosition(),
-                            deathDate: Date.now(),
-                            equipment: sprite.userData.equipment
-                        };
-
-                        // The sprite keeps track of his corpse(s).
-                        sprite.userData.corpses.push(corpse);
-
-                        // The sprite has lost all the equipment he carried at the time of death and left it on the corpse.
-                        sprite.userData.equipment = [];
-
-                        console.log('test-cube died: ' + JSON.stringify(corpse));
-                    }
-
-                    // Confirm the sprite is now dead.
-                    sprite.userData.dead = true;
-                    return;
-                }
-                
-                if (sprite.position.y > 0) {
-                    // First vector: the spaceship slowly comes into view, losing altitude.
-                    sprite.position.z += 0.05;
-                    sprite.position.y += -0.1;
-                } else {
-                    // Second vector: the spaceship speeds away from field of camera.
-                    sprite.position.z += 0.5;
-                    sprite.rotation.x += 0.5;
-                }
-
-                if (sprite.position.z > 25) {
-                    // Back to start position.
-                    sprite.position.set(
-                        sprite.userData.start.x,
-                        sprite.userData.start.y,
-                        sprite.userData.start.z
-                    );
-                }
-            }
-        }
+    // Initialize all the mobs and get an array of all their names.
+    const mobs = initMobs({
+        scene: scene
     });
+
+    // Merge the mobs into the array of sprites that will be rendered.
+    sprites.push(...mobs);
 
     // Render the scene.
     Render({
         renderer: renderer,
         scene: scene,
         camera: camera,
-        sprites: [ 'test-cube' ],
+        sprites: sprites,
         // The callback is run every tick of the main render. It co-ordinates running all sprite heartbeats.
         callback: function callback (input) {
             const sprites = input && input.sprites;
