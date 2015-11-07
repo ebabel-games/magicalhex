@@ -1,6 +1,8 @@
 import React from 'react';
 import Firebase from 'firebase';
 
+import character from '../../game/character';
+
 import error from '../../shared/errorMessages';
 import './login.css';
 
@@ -57,7 +59,6 @@ class Login extends React.Component {
         // todo: show loading spinner.
 
         this.ref.authWithOAuthPopup('facebook', function (_error, authData) {
-            var _event;
             var _player;
 
             // todo: hide loading spinner.
@@ -98,11 +99,24 @@ class Login extends React.Component {
                     isHidden: true
                 });
 
-                _event = new CustomEvent('show-character-creation', 
-                    { 'detail': _player });
+                // Get character of logged in player, if any.
+                character.get({
+                    player: _player,
+                    callback: function (input) {
+                        var player = input.player;
+                        var character = input.character;
 
-                // Set the input data of the React CharacterCreation to player.
-                document.dispatchEvent(_event);
+                        if (!character || parseInt(character.creationPointsLeft) > 0) {
+                            // Only show the character creation if the player 
+                            // doesn't have a character already or if the creation points have all been used.
+                            var _event = new CustomEvent('show-character-creation', 
+                                { 'detail': player });
+
+                            // Set the input data of the React CharacterCreation to player.
+                            document.dispatchEvent(_event);
+                        }
+                    }
+                });
             }
         });
     }
