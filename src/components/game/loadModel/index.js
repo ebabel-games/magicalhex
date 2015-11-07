@@ -19,7 +19,6 @@ const loadModel = function loadModel (input) {
 
         const model = new THREE.Mesh(geometry, material);
 
-
         model.name = input.modelName;
         model.userData = input.userData;
 
