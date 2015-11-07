@@ -110,9 +110,14 @@ class Login extends React.Component {
                             // Only show the character creation if the player 
                             // doesn't have a character already or if the creation points have all been used.
                             var _event = new CustomEvent('show-character-creation', 
-                                { 'detail': player });
+                                { 
+                                    'detail': {
+                                        'player': player,
+                                        'character': character
+                                    }
+                                });
 
-                            // Set the input data of the React CharacterCreation to player.
+                            // Set the input data of the React CharacterCreation to player and character (if any).
                             document.dispatchEvent(_event);
                         }
                     }

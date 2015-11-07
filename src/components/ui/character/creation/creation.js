@@ -16,7 +16,8 @@ class Creation extends React.Component {
         super (props);
 
         this.state = {
-            data: props.data,
+            player: props.player,
+            character: props.character,
             isHidden: props.isHidden,
             disabled: props.disabled
         };
@@ -42,7 +43,7 @@ class Creation extends React.Component {
                 <CharacterNameInput name={this.state.character.name} />
 
                 <p>
-                    <ProfileImage src={this.state.data.profileImageUrl} title={this.state.data.displayName} />
+                    <ProfileImage src={this.state.player.profileImageUrl} title={this.state.player.displayName} />
                     <CreationPointsLeft creationPointsLeft={this.state.character.creationPointsLeft} />
                 </p>
 
@@ -50,7 +51,7 @@ class Creation extends React.Component {
                 <SkillInput skill='magic' score={this.state.character.magic} change={this.update.bind(this)} />
                 <SkillInput skill='summoning' score={this.state.character.summoning} change={this.update.bind(this)} />
 
-                <CreateCharacterButton playerid={this.state.data.id} />
+                <CreateCharacterButton playerid={this.state.player.id} />
 
             </form>
         )
@@ -58,27 +59,39 @@ class Creation extends React.Component {
 
     show (event) {
         var _this = this;
-        var _character;
+        var player = event.detail.player;
+        var _character = event.detail.character;
 
-        this.ref.child('character/' + event.detail.id).once('value', function getCharacter (snapshot) {
-            _character = snapshot.val();
-
-            if (!_character) {
-                _character = {
-                    creationPointsLeft: 30,
-                    summoning: 30,
-                    magic: 30,
-                    life: 30
-                };
-            }
-
+        if (_character) {
             _this.setState({
-                data: event.detail,
+                player: event.detail.player,
                 character: _character,
                 isHidden: false,
                 disabled: ''
             });
-        });
+        }
+
+        if (!_character) {
+            this.ref.child('character/' + player.id).once('value', function getCharacter (snapshot) {
+                _character = snapshot.val();
+
+                if (!_character) {
+                    _character = {
+                        creationPointsLeft: 30,
+                        summoning: 30,
+                        magic: 30,
+                        life: 30
+                    };
+                }
+
+                _this.setState({
+                    player: event.detail.player,
+                    character: _character,
+                    isHidden: false,
+                    disabled: ''
+                });
+            });
+        }
     }
 
     update (event) {
@@ -124,13 +137,15 @@ class Creation extends React.Component {
 }
 
 Creation.propTypes = {
-    data: React.PropTypes.object,
+    player: React.PropTypes.object,
+    character: React.PropTypes.object,
     isHidden: React.PropTypes.bool,
     disabled: React.PropTypes.string
 };
 
 Creation.defaultProps = {
-    data: null,
+    player: null,
+    character: null,
     isHidden: true,
     disabled: ''
 }
