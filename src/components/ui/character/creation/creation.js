@@ -24,6 +24,7 @@ class Creation extends React.Component {
 
     componentDidMount() {
         document.addEventListener('show-character-creation', this.show.bind(this), true);
+        document.addEventListener('hide-character-creation', this.hide.bind(this), true);
     }
 
     componentWillUnmount() {
@@ -55,8 +56,14 @@ class Creation extends React.Component {
         )
     }
 
+    hide (event) {
+        this.setState({
+            isHidden: true,
+            disabled: ''
+        });
+    }
+
     show (event) {
-        var _this = this;
         var player = event.detail.player;
         var character = event.detail.character;
 
@@ -69,7 +76,7 @@ class Creation extends React.Component {
             };
         }
 
-        _this.setState({
+        this.setState({
             player: event.detail.player,
             character: character,
             isHidden: false,

@@ -21,7 +21,7 @@ class CreateCharacterButton extends React.Component {
         return (
             <button onClick={this.handleClick.bind(this)} 
                 disabled={this.state.disabled}>
-                Create character
+                Play
             </button>
         )
     }
@@ -40,25 +40,34 @@ class CreateCharacterButton extends React.Component {
         var character;
 
         if (!playerid) {
+            this.setState({
+                disabled: ''
+            });
+
             throw new Error(error.player.notFound);
         }
 
         // todo: refactor this so that the id of each control isn't used and this gets updated the React way.
         // todo: sanitize this input because it could easily be hacked.
         character = {
-            creationPointsLeft: document.getElementById('creation-points-left').innerHTML,
+            creationPointsLeft: parseInt(document.getElementById('creation-points-left').innerHTML),
             name: document.getElementById('character-name').value,
-            summoning: document.getElementById('character-summoning').value,
-            magic: document.getElementById('character-magic').value,
-            life: document.getElementById('character-life').value
+            summoning: parseInt(document.getElementById('character-summoning').value),
+            magic: parseInt(document.getElementById('character-magic').value),
+            life: parseInt(document.getElementById('character-life').value)
         };
 
         this.ref.child('character/' + playerid).set(character, function onComplete (err) {
             if (err) {
+                _this.setState({
+                    disabled: ''
+                });
+
                 throw new Error(error.character.creation.failed);
             }
 
-            // todo: set the character creation component state of hidden to true.
+            var event = new CustomEvent('hide-character-creation');
+            document.dispatchEvent(event);
         });
     }
 }
