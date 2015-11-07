@@ -8,7 +8,7 @@ import Creation from './character/creation/creation';
 import './ui.css';
 
 // Game.
-import game from '../game/game';
+import game from '../game';
 
 // UI main component.
 class Main extends React.Component {

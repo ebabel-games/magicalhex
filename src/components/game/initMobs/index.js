@@ -1,5 +1,5 @@
-import testCube from './test-cube/test-cube';
-import monkey from './monkey/monkey';
+import testCube from './test-cube';
+import monkey from './monkey';
 
 // Initialize the mobs to load.
 const initMobs = function initMobs (input) {

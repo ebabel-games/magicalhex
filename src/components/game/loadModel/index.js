@@ -1,4 +1,4 @@
-import THREE from 'three';
+ import THREE from 'three';
 import Firebase from 'firebase';
 
 import error from '../../shared/errorMessages';
@@ -27,19 +27,19 @@ const loadModel = function loadModel (input) {
 
             const userData = snapshot.val();
 
+            // Update the start position from the Firebase data, if any.
             if (userData) {
-                model.position.set(
-                    userData.x,
-                    userData.y,
-                    userData.z
-                );
-            } else {
-                model.position.set(
-                    model.userData.start.x,
-                    model.userData.start.y,
-                    model.userData.start.z
-                );
+                model.userData.start.x = userData.x;
+                model.userData.start.y = userData.y;
+                model.userData.start.z = userData.z;
             }
+
+            // Set the starting position of the model.
+            model.position.set(
+                model.userData.start.x,
+                model.userData.start.y,
+                model.userData.start.z
+            );
 
             input.scene.add(model);
         });

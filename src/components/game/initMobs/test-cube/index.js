@@ -1,6 +1,6 @@
 import THREE from 'three';
 
-import loadModel from '../../loadModel/loadModel';
+import loadModel from '../../loadModel';
 import heartbeat from './heartbeat';
 
 const mob = function mob (input) {
@@ -8,13 +8,13 @@ const mob = function mob (input) {
     const scene = input.scene;
 
     loadModel({
-        url: '/models/monkey/monkey.json',
-        material: new THREE.MeshLambertMaterial({color: 0xA52A2A}),
-        modelName: 'monkey',
+        url: '/models/test-cube/test-cube.json',
+        material: new THREE.MeshPhongMaterial({color: 0xffffff}),
+        modelName: 'test-cube',
         scene: scene,
-        firebaseEndpoint: 'mobs/monkey',
+        firebaseEndpoint: 'mobs/test-cube',
         userData: {
-            life: 10,
+            life: 50,
             dead: false,
 
             // List all the corpses this sprite currently has.
@@ -22,14 +22,15 @@ const mob = function mob (input) {
 
             // Start is a fallback, in case there is no data in Firebase.
             start: {
-                x: -10,
-                y: 10,
-                z: -35
+                x: 5,
+                y: 30,
+                z: -45
             },
 
             equipment: [
-                'banana',
-                'monkey pelt'
+                'armour',
+                'sword',
+                'spell scroll'
             ],
 
             heartbeat: heartbeat

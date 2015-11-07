@@ -30,13 +30,12 @@ const heartbeat = function heartbeat (sprite) {
     }
     
     if (sprite.position.y > 0) {
-        // First vector: the spaceship slowly comes into view, losing altitude.
+        // First vector: the sprite slowly comes into view, losing altitude.
         sprite.position.z += 0.05;
         sprite.position.y += -0.1;
     } else {
-        // Second vector: the spaceship speeds away from field of camera.
+        // Second vector: the sprite speeds away from field of camera.
         sprite.position.z += 0.5;
-        sprite.rotation.x += 0.5;
     }
 
     if (sprite.position.z > 25) {

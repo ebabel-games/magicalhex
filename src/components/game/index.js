@@ -1,18 +1,18 @@
 import THREE from 'three';
 
-import InitScene from './initScene/initScene';
-import Render from './render/render';
+import initMobs from './initMobs';
+import initScene from './initScene';
+import render from './render';
 import error from '../shared/errorMessages';
 import './game.css';
 
-import initMobs from './initMobs/initMobs';
 
 // Main game module.
 const game = function game() {
     const scene = new THREE.Scene();
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-    const light = new THREE.AmbientLight(0xffffff);
-    const camera = InitScene({
+    const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+    const camera = initScene({
         scene: scene,
         renderer: renderer,
         light: light,
@@ -40,7 +40,7 @@ const game = function game() {
     sprites.push(...mobs);
 
     // Render the scene.
-    Render({
+    render({
         renderer: renderer,
         scene: scene,
         camera: camera,
