@@ -15,6 +15,8 @@ const mob = function mob (input) {
         scene: scene,
         firebaseEndpoint: 'mobs/test-cube',
         userData: {
+            targetName: 'a cube',
+
             life: 3,
             dead: false,
 

@@ -27,10 +27,6 @@ class Creation extends React.Component {
         document.addEventListener('hide-character-creation', this.hide.bind(this), true);
     }
 
-    componentWillUnmount() {
-        this.ref.off();
-    }
-
     render() {
         if (this.state.isHidden) {
             return null;
@@ -56,38 +52,35 @@ class Creation extends React.Component {
         )
     }
 
-    hide (event) {
+    hide (e) {
         this.setState({
             isHidden: true,
             disabled: ''
         });
     }
 
-    show (event) {
-        var player = event.detail.player;
-        var character = event.detail.character;
-
-        if (!character) {
-            character = {
+    show (e) {
+        const player = e.detail.player;
+        const character = e.detail.character || 
+            {
                 creationPointsLeft: 30,
                 summoning: 30,
                 magic: 30,
                 life: 30
             };
-        }
 
         this.setState({
-            player: event.detail.player,
+            player: e.detail.player,
             character: character,
             isHidden: false,
             disabled: ''
         });
     }
 
-    update (event) {
+    update (e) {
         var _skill = {
-            name: event.currentTarget.id.substring(10).toLowerCase(),
-            value: parseInt(event.currentTarget.value, 10)
+            name: e.currentTarget.id.substring(10).toLowerCase(),
+            value: parseInt(e.currentTarget.value, 10)
         };
 
         // Make a deep copy rather than references to the same object, 
@@ -104,8 +97,8 @@ class Creation extends React.Component {
         var _hasEnoughPointsLeft = (_creationPointsLeft + _difference) >= 0;
 
         if (!_hasEnoughPointsLeft) {
-            event.preventDefault();
-            event.currentTarget.value = character[_skill.name];
+            e.preventDefault();
+            e.currentTarget.value = character[_skill.name];
             console.warn(error.pointsLeft.notEnough);
             return;
         }
@@ -118,8 +111,8 @@ class Creation extends React.Component {
         });
     }
 
-    handleSubmit (event) {
-        event.preventDefault();
+    handleSubmit (e) {
+        e.preventDefault();
 
         var _this = this;
     }

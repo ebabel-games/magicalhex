@@ -24,19 +24,28 @@ module.exports = function acquireTarget() {
 
         const recursiveFlag = false;
 
-        const _mouse = {
+        const mouse = {
             x: (mouseCoordinates.x / renderer.domElement.width) * 2 - 1,
             y: - (mouseCoordinates.y / renderer.domElement.height) * 2 + 1
         };
 
-        raycaster.setFromCamera(_mouse, camera);
+        raycaster.setFromCamera(mouse, camera);
 
         const intersects = raycaster.intersectObjects(spriteModels, recursiveFlag);
 
         if (intersects.length > 0) {
             const currentTarget = intersects[0].object;
 
-            // todo: raise an event to update the current target.
+            const _event = new CustomEvent('change-target', 
+                { 
+                    'detail': {
+                        'targetName': currentTarget.userData.targetName,
+                        'life': currentTarget.userData.life,
+                        'currentTarget': currentTarget
+                    }
+                });
+
+            document.dispatchEvent(_event);
         }
     }, true);
 }();
