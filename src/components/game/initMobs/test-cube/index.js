@@ -36,7 +36,8 @@ const mob = function mob (input) {
             heartbeat: heartbeat
         }
     });
-    
+
+    return this;
 }
 
 module.exports = mob;

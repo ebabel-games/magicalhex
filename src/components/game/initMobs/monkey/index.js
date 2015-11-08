@@ -2,6 +2,7 @@ import THREE from 'three';
 
 import loadModel from '../../loadModel';
 import heartbeat from './heartbeat';
+import takeDamage from '../../takeDamage';
 
 const mob = function mob (input) {
 
@@ -32,10 +33,13 @@ const mob = function mob (input) {
                 'monkey pelt'
             ],
 
-            heartbeat: heartbeat
+            heartbeat: heartbeat,
+
+            takeDamage: takeDamage
         }
     });
-    
+
+    return this;    
 }
 
 module.exports = mob;

@@ -46,6 +46,8 @@ const heartbeat = function heartbeat (sprite) {
             sprite.userData.start.z
         );
     }
+
+    return this;
 };
 
 module.exports = heartbeat;

@@ -1,5 +1,6 @@
 import THREE from 'three';
 
+import acquireTarget from './acquireTarget';
 import initMobs from './initMobs';
 import initScene from './initScene';
 import render from './render';
@@ -28,7 +29,7 @@ const game = function game() {
         }
     });
 
-    // Array of all mobs, players and the world enviroment since it can be modified by players.
+    // Array of all mobs, players and the world environment since it can be modified by players.
     const sprites = [];
 
     // Initialize all the mobs and get an array of all their names.
@@ -55,7 +56,7 @@ const game = function game() {
             }
 
             sprites.map(function (spriteName) {
-                const sprite = scene.getObjectByName(spriteName)
+                const sprite = scene.getObjectByName(spriteName);
 
                 if (sprite && sprite.userData && sprite.userData.heartbeat) {
                     sprite.userData.heartbeat(sprite);
@@ -63,6 +64,23 @@ const game = function game() {
             });
         }
     });
+
+    // Listen for attempts to target a sprite.
+    const clickEvent = new CustomEvent('mousedown-event', 
+        { 
+            'detail': {
+                'camera': camera,
+                'scene': scene,
+                'sprites': sprites
+            }
+        });
+    document.addEventListener('mousedown', function() {
+        document.dispatchEvent(clickEvent);
+    }, true);
+
+
+
+    return this;
 };
 
 module.exports = game;

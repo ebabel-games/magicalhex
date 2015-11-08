@@ -20,6 +20,8 @@ var render = function render (input) {
     requestAnimationFrame(function() {
         render(input);
     });
+
+    return this;
 };
 
 module.exports = render;

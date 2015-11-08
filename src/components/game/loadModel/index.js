@@ -1,4 +1,4 @@
- import THREE from 'three';
+import THREE from 'three';
 import Firebase from 'firebase';
 
 import error from '../../shared/errorMessages';
@@ -55,6 +55,7 @@ const loadModel = function loadModel (input) {
         });
     });
 
+    return this;
 };
 
 module.exports = loadModel;
