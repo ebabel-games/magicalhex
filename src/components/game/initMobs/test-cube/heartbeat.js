@@ -12,10 +12,10 @@ const heartbeat = function heartbeat (sprite) {
         return this;
     }
     
-    if (sprite.position.y > 0) {
+    if (sprite.position.y > 0.5) {
         // First vector: the sprite slowly comes into view, losing altitude.
         sprite.position.z += 0.05;
-        sprite.position.y += -0.1;
+        sprite.position.y += -0.5;
     } else {
         // Second vector: the sprite speeds away from field of camera.
         sprite.position.z += 0.5;

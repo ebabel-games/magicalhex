@@ -1,5 +1,6 @@
 import testCube from './test-cube';
 import monkey from './monkey';
+import human from './human';
 
 // Initialize the mobs to load.
 const initMobs = function initMobs (input) {
@@ -10,8 +11,10 @@ const initMobs = function initMobs (input) {
     // The monkey is also a test mob used during development.
     monkey(input);
 
+    human(input);
+
     // Return the mob unique names that will be rendered.
-    return ['test-cube', 'monkey'];
+    return ['test-cube', 'monkey', 'human'];
 }
 
 module.exports = initMobs;

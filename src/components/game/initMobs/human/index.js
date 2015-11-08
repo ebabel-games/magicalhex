@@ -1,7 +1,6 @@
 import THREE from 'three';
 
 import loadModel from '../../loadModel';
-import heartbeat from './heartbeat';
 import takeDamage from '../../takeDamage';
 
 const mob = function mob (input) {
@@ -9,15 +8,15 @@ const mob = function mob (input) {
     const scene = input.scene;
 
     loadModel({
-        url: '/models/test-cube/test-cube.json',
-        material: new THREE.MeshLambertMaterial({color: 0xffffff}),
-        modelName: 'test-cube',
+        url: '/models/human/human.json',
+        material: new THREE.MeshLambertMaterial({color: 0xffe0bd}),
+        modelName: 'human',
         scene: scene,
-        firebaseEndpoint: 'mobs/test-cube',
+        firebaseEndpoint: 'mobs/human',
         userData: {
-            targetName: 'a cube',
+            targetName: 'a human',
 
-            life: 1,
+            life: 3,
             dead: false,
 
             // List all the corpses this sprite currently has.
@@ -25,24 +24,18 @@ const mob = function mob (input) {
 
             // Start is a fallback, in case there is no data in Firebase.
             start: {
-                x: 5,
-                y: 30,
-                z: -45
+                x: 1,
+                y: 0,
+                z: -15
             },
 
-            equipment: [
-                'armour',
-                'sword',
-                'spell scroll'
-            ],
-
-            heartbeat: heartbeat,
+            equipment: [],
 
             takeDamage: takeDamage
         }
     });
 
-    return this;
+    return this;    
 }
 
 module.exports = mob;

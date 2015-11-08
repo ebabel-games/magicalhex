@@ -13,12 +13,25 @@ const game = function game() {
     // Objects to create only once in the game.
     const scene = new THREE.Scene();
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-    const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+    //const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+    const lights = [
+        {
+            light: new THREE.DirectionalLight(0xffcccc),
+            position: { x: 100, y: 100, z: 100 }
+        },
+        {
+            light: new THREE.DirectionalLight(0x800020),
+            position: { x: -100, y: -100, z: -100 }
+        },
+        {
+            light: new THREE.AmbientLight(0x100000)
+        }
+    ];
     const raycaster = new THREE.Raycaster();
     const camera = initScene({
         scene: scene,
         renderer: renderer,
-        light: light,
+        lights: lights,
         camera: {
             type: 'PerspectiveCamera',
             angle: 45,
@@ -30,6 +43,8 @@ const game = function game() {
             }
         }
     });
+
+
 
     // Array of all mobs, players and the world environment since it can be modified by players.
     const sprites = [];
@@ -43,6 +58,8 @@ const game = function game() {
         x: null,
         y: null
     };
+
+    let currentTarget = null;
 
     // Merge the mobs into the array of sprites that will be rendered.
     sprites.push(...mobs);
@@ -89,6 +106,11 @@ const game = function game() {
         mouseCoordinates.y = e.clientY;
 
         document.dispatchEvent(clickEvent);
+    }, true);
+
+    // Listen for a change of target.
+    document.addEventListener('change-target', function (e) {
+        currentTarget = e.detail.currentTarget;
     }, true);
 
 

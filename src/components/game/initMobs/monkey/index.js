@@ -10,14 +10,14 @@ const mob = function mob (input) {
 
     loadModel({
         url: '/models/monkey/monkey.json',
-        material: new THREE.MeshLambertMaterial({color: 0xA52A2A}),
+        material: new THREE.MeshLambertMaterial({color: 0xffad60}),
         modelName: 'monkey',
         scene: scene,
         firebaseEndpoint: 'mobs/monkey',
         userData: {
             targetName: 'a monkey',
 
-            life: 5,
+            life: 20,
             dead: false,
 
             // List all the corpses this sprite currently has.

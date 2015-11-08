@@ -6,11 +6,11 @@ import error from '../../shared/errorMessages';
 var initScene = function initScene (input) {
     var scene = input && input.scene;
     var renderer = input && input.renderer;
-    var light = input && input.light;
+    var lights = input && input.lights;
     var camera = input && input.camera;
     var output;
 
-    if (!scene || !renderer || !light || !camera || 
+    if (!scene || !renderer || !lights || !camera || 
         !camera.type || !camera.aspectRatio || !camera.nearPlane || !camera.farPlane) {
         throw new Error(error.input.required);
     }
@@ -18,7 +18,12 @@ var initScene = function initScene (input) {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('game').appendChild(renderer.domElement);
 
-    scene.add(light);
+    lights.map(function addLight (toAdd) {
+        if (toAdd.position) {
+            toAdd.light.position.set(toAdd.position.x, toAdd.position.y, toAdd.position.z);
+        }
+        scene.add(toAdd.light);
+    });
 
     output = new THREE[camera.type](
         camera.angle, 
