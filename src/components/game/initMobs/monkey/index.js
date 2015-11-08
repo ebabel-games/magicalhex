@@ -15,7 +15,7 @@ const mob = function mob (input) {
         scene: scene,
         firebaseEndpoint: 'mobs/monkey',
         userData: {
-            life: 10,
+            life: 5,
             dead: false,
 
             // List all the corpses this sprite currently has.

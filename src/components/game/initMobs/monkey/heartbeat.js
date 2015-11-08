@@ -1,41 +1,24 @@
+import isAlive from '../../isAlive';
+
 // Custom business logic of a sprite.
 const heartbeat = function heartbeat (sprite) {
     if (!sprite) {
         return; // Sprite hasn't been found yet, it has probably not finished loading.
     }
 
-    if (sprite.userData.life <= 0) {
-
-        // The sprite just died.
-        // todo: refactor this death to become a reusable event for any sprite.
-        if (sprite.userData.dead === false) {
-            const corpse = {
-                location: sprite.getWorldPosition(),
-                deathDate: Date.now(),
-                equipment: sprite.userData.equipment
-            };
-
-            // The sprite keeps track of his corpse(s).
-            sprite.userData.corpses.push(corpse);
-
-            // The sprite has lost all the equipment he carried at the time of death and left it on the corpse.
-            sprite.userData.equipment = [];
-
-            console.log(sprite.name + ' died: ' + JSON.stringify(corpse));
-        }
-
-        // Confirm the sprite is now dead.
-        sprite.userData.dead = true;
-        return;
+    // If the mob is not alive, stop the heartbeat here.
+    const _isAlive = isAlive(sprite);
+    if (!_isAlive) {
+        return this;
     }
     
     if (sprite.position.y > 0) {
         // First vector: the sprite slowly comes into view, losing altitude.
         sprite.position.z += 0.05;
-        sprite.position.y += -0.1;
+        sprite.position.y += -0.5;
     } else {
-        // Second vector: the sprite speeds away from field of camera.
-        sprite.position.z += 0.5;
+        // Second vector: the sprite moves towards the camera.
+        sprite.position.z += 0.1;
     }
 
     if (sprite.position.z > 25) {

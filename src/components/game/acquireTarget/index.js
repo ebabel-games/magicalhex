@@ -1,11 +1,15 @@
 import THREE from 'three';
 
+
 // Compute what the player has clicked on.
 module.exports = function acquireTarget() {
-    document.addEventListener('mousedown-event', function handleClickEvent (event) {
-        const camera = event.detail.camera;
-        const scene = event.detail.scene;
-        const sprites = event.detail.sprites;
+    document.addEventListener('mousedown-event', function handleClickEvent (e) {
+        const camera = e.detail.camera;
+        const scene = e.detail.scene;
+        const renderer = e.detail.renderer;
+        const sprites = e.detail.sprites;
+        const raycaster = e.detail.raycaster;
+        const mouseCoordinates = e.detail.mouseCoordinates;
         const spriteModels = [];
 
         // todo: refactore sprites to already contain all the sprites instead of just sprite names,
@@ -18,15 +22,21 @@ module.exports = function acquireTarget() {
             }
         });
 
-        const projector = new THREE.Projector();
-        const vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
-        vector.unproject(camera);
+        const recursiveFlag = false;
 
-        const raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
-        const intersects = raycaster.intersectObjects( spriteModels );
+        const _mouse = {
+            x: (mouseCoordinates.x / renderer.domElement.width) * 2 - 1,
+            y: - (mouseCoordinates.y / renderer.domElement.height) * 2 + 1
+        };
+
+        raycaster.setFromCamera(_mouse, camera);
+
+        const intersects = raycaster.intersectObjects(spriteModels, recursiveFlag);
 
         if (intersects.length > 0) {
-            console.log('Target is ' + JSON.stringify(intersects[0].object.userData));
+            const currentTarget = intersects[0].object;
+
+            // todo: raise an event to update the current target.
         }
     }, true);
 }();

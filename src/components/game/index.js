@@ -10,9 +10,11 @@ import './game.css';
 
 // Main game module.
 const game = function game() {
+    // Objects to create only once in the game.
     const scene = new THREE.Scene();
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+    const raycaster = new THREE.Raycaster();
     const camera = initScene({
         scene: scene,
         renderer: renderer,
@@ -36,6 +38,11 @@ const game = function game() {
     const mobs = initMobs({
         scene: scene
     });
+
+    const mouseCoordinates = {
+        x: null,
+        y: null
+    };
 
     // Merge the mobs into the array of sprites that will be rendered.
     sprites.push(...mobs);
@@ -71,10 +78,16 @@ const game = function game() {
             'detail': {
                 'camera': camera,
                 'scene': scene,
-                'sprites': sprites
+                'renderer': renderer,
+                'sprites': sprites,
+                'raycaster': raycaster,
+                'mouseCoordinates': mouseCoordinates
             }
         });
-    document.addEventListener('mousedown', function() {
+    document.addEventListener('mousedown', function (e) {
+        mouseCoordinates.x = e.clientX;
+        mouseCoordinates.y = e.clientY;
+
         document.dispatchEvent(clickEvent);
     }, true);
 

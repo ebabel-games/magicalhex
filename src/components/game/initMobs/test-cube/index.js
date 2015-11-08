@@ -2,6 +2,7 @@ import THREE from 'three';
 
 import loadModel from '../../loadModel';
 import heartbeat from './heartbeat';
+import takeDamage from '../../takeDamage';
 
 const mob = function mob (input) {
 
@@ -14,7 +15,7 @@ const mob = function mob (input) {
         scene: scene,
         firebaseEndpoint: 'mobs/test-cube',
         userData: {
-            life: 50,
+            life: 3,
             dead: false,
 
             // List all the corpses this sprite currently has.
@@ -33,7 +34,9 @@ const mob = function mob (input) {
                 'spell scroll'
             ],
 
-            heartbeat: heartbeat
+            heartbeat: heartbeat,
+
+            takeDamage: takeDamage
         }
     });
 
