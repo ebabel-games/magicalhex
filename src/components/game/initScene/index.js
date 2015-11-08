@@ -35,7 +35,7 @@ var initScene = function initScene (input) {
     output.position.set(
         camera.position && camera.position.x || 0,
         camera.position && camera.position.y || 0,
-        camera.position && camera.position.z || 100
+        camera.position && camera.position.z || 2
     );
     
     scene.add(output);

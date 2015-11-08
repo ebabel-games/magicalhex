@@ -37,9 +37,11 @@ const game = function game() {
             angle: 45,
             aspectRatio: window.innerWidth / window.innerHeight,
             nearPlane: 1,
-            farPlane: 500,
+            farPlane: 100,
             position: {
-                z: 15
+                x: 0,
+                y: 0,
+                z: 2
             }
         }
     });
