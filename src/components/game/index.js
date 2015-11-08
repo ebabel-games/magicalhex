@@ -12,8 +12,8 @@ import './game.css';
 const game = function game() {
     // Objects to create only once in the game.
     const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2( 0x000000, 0.01 );
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-    //const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
     const lights = [
         {
             light: new THREE.DirectionalLight(0xffcccc),
@@ -113,6 +113,32 @@ const game = function game() {
         currentTarget = e.detail.currentTarget;
     }, true);
 
+    // Listen for a key.
+    document.addEventListener('keypress', function (e) {
+        // If there is no target, do not handle the keypress any further.
+        if (!currentTarget) {
+            return;
+        }
+
+        // The key [1] has been pressed, which fires damage on the current target (for now).
+        if (e.keyCode === 49) {
+            currentTarget.userData.takeDamage({
+                sprite: currentTarget,
+                damage: 1
+            });
+
+            const _event = new CustomEvent('change-target', 
+                { 
+                    'detail': {
+                        'targetName': currentTarget.userData.targetName,
+                        'life': currentTarget.userData.life,
+                        'currentTarget': currentTarget
+                    }
+                });
+
+            document.dispatchEvent(_event);
+        }
+    });
 
 
     return this;

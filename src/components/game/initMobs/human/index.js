@@ -1,6 +1,7 @@
 import THREE from 'three';
 
 import loadModel from '../../loadModel';
+import heartbeat from './heartbeat';
 import takeDamage from '../../takeDamage';
 
 const mob = function mob (input) {
@@ -9,7 +10,7 @@ const mob = function mob (input) {
 
     loadModel({
         url: '/models/human/human.json',
-        material: new THREE.MeshLambertMaterial({color: 0xffe0bd}),
+        material: new THREE.MeshLambertMaterial({color: 0xffe0bd, fog: true}),
         modelName: 'human',
         scene: scene,
         firebaseEndpoint: 'mobs/human',
@@ -30,6 +31,8 @@ const mob = function mob (input) {
             },
 
             equipment: [],
+
+            heartbeat: heartbeat,
 
             takeDamage: takeDamage
         }

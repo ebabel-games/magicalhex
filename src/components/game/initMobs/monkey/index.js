@@ -10,7 +10,7 @@ const mob = function mob (input) {
 
     loadModel({
         url: '/models/monkey/monkey.json',
-        material: new THREE.MeshLambertMaterial({color: 0xffad60}),
+        material: new THREE.MeshLambertMaterial({color: 0xffad60, fog: true}),
         modelName: 'monkey',
         scene: scene,
         firebaseEndpoint: 'mobs/monkey',

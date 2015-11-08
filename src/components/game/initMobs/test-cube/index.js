@@ -10,7 +10,7 @@ const mob = function mob (input) {
 
     loadModel({
         url: '/models/test-cube/test-cube.json',
-        material: new THREE.MeshLambertMaterial({color: 0xffffff}),
+        material: new THREE.MeshLambertMaterial({color: 0x654321, fog: true}),
         modelName: 'test-cube',
         scene: scene,
         firebaseEndpoint: 'mobs/test-cube',
@@ -30,11 +30,7 @@ const mob = function mob (input) {
                 z: -45
             },
 
-            equipment: [
-                'armour',
-                'sword',
-                'spell scroll'
-            ],
+            equipment: [],
 
             heartbeat: heartbeat,
 
