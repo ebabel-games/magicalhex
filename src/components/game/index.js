@@ -1,5 +1,6 @@
 import THREE from 'three';
 
+import axes from './axes';
 import acquireTarget from './acquireTarget';
 import initMobs from './initMobs';
 import initScene from './initScene';
@@ -12,7 +13,7 @@ import './game.css';
 const game = function game() {
     // Objects to create only once in the game.
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2( 0x000000, 0.01 );
+    scene.fog = new THREE.FogExp2(0x9db3b5, 0.002);
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     const lights = [
         {
@@ -40,13 +41,48 @@ const game = function game() {
             farPlane: 100,
             position: {
                 x: 0,
+                y: 2,
+                z: 0
+            },
+            rotation: {
+                x: 0,
                 y: 0,
-                z: 2
+                z: 0
             }
         }
     });
 
+    // Test: display world axes.
+    axes({
+        scene: scene,
+        axesLength: 1000
+    });
 
+    const keyCodes = {
+        // Move forward.
+        'w': 87,
+
+        // Strafe to the left.
+        'q': 81,
+
+        // Turn to the left.
+        'a': 65,
+
+        // Move backward.
+        's': 83,
+
+        // Turn to the right.
+        'd': 68,
+
+        // Strafe to the right.
+        'e': 69,
+
+        // Cast first memorized spell.
+        '1': 49,
+
+        // Escape: clear current target.
+        'esc': 27
+    };
 
     // Array of all mobs, players and the world environment since it can be modified by players.
     const sprites = [];
@@ -116,29 +152,67 @@ const game = function game() {
     }, true);
 
     // Listen for a key.
-    document.addEventListener('keypress', function (e) {
-        // If there is no target, do not handle the keypress any further.
-        if (!currentTarget) {
-            return;
+    document.addEventListener('keydown', function (e) {
+        // Move forward.
+        if (e.keyCode === keyCodes['w']) {
+            camera.position.z -= 1;
+        }
+
+        // Move backwards.
+        if (e.keyCode === keyCodes['s']) {
+            camera.position.z += 1;
+        }
+
+        // Turn to the left.
+        if (e.keyCode === keyCodes['a']) {
+            camera.rotation.y += 0.1;
+        }
+
+        // Turn to the right.
+        if (e.keyCode === keyCodes['d']) {
+            camera.rotation.y -= 0.1;
+        }
+
+        // Strafe left.
+        if (e.keyCode === keyCodes['q']) {
+            camera.position.x -= 0.1;
+        }
+
+        // Strafe right.
+        if (e.keyCode === keyCodes['e']) {
+            camera.position.x += 0.1;
+        }
+
+        // Clear the current target.
+        if (e.keyCode === keyCodes['esc']) {
+            document.dispatchEvent(
+                new CustomEvent('change-target', 
+                { 
+                    'detail': {
+                        'targetName': 'no target',
+                        'life': null,
+                        'currentTarget': null
+                    }
+                })
+            );
         }
 
         // The key [1] has been pressed, which fires damage on the current target (for now).
-        if (e.keyCode === 49) {
+        if (currentTarget && e.keyCode === keyCodes['1']) {
             currentTarget.userData.takeDamage({
                 sprite: currentTarget,
                 damage: 1
             });
-
-            const _event = new CustomEvent('change-target', 
+            document.dispatchEvent(
+                new CustomEvent('change-target', 
                 { 
                     'detail': {
                         'targetName': currentTarget.userData.targetName,
                         'life': currentTarget.userData.life,
                         'currentTarget': currentTarget
                     }
-                });
-
-            document.dispatchEvent(_event);
+                })
+            );
         }
     });
 

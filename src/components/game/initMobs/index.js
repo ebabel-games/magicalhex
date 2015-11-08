@@ -1,6 +1,7 @@
 import testCube from './test-cube';
 import monkey from './monkey';
 import human from './human';
+import plane from './plane';
 
 // Initialize the mobs to load.
 const initMobs = function initMobs (input) {
@@ -13,8 +14,10 @@ const initMobs = function initMobs (input) {
 
     human(input);
 
+    plane(input);
+
     // Return the mob unique names that will be rendered.
-    return ['test-cube', 'monkey', 'human'];
+    return ['test-cube', 'monkey', 'human', 'plane'];
 }
 
 module.exports = initMobs;

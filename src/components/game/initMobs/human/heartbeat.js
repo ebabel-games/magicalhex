@@ -12,8 +12,6 @@ const heartbeat = function heartbeat (sprite) {
         return this;
     }
 
-    sprite.rotation.y += 0.01;
-
     return this;
 };
 

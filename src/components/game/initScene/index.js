@@ -4,11 +4,10 @@ import error from '../../shared/errorMessages';
 
 // Initialize the scene and return a camera.
 var initScene = function initScene (input) {
-    var scene = input && input.scene;
-    var renderer = input && input.renderer;
-    var lights = input && input.lights;
-    var camera = input && input.camera;
-    var output;
+    const scene = input && input.scene;
+    const renderer = input && input.renderer;
+    const lights = input && input.lights;
+    const camera = input && input.camera;
 
     if (!scene || !renderer || !lights || !camera || 
         !camera.type || !camera.aspectRatio || !camera.nearPlane || !camera.farPlane) {
@@ -25,7 +24,7 @@ var initScene = function initScene (input) {
         scene.add(toAdd.light);
     });
 
-    output = new THREE[camera.type](
+    const output = new THREE[camera.type](
         camera.angle, 
         camera.aspectRatio, 
         camera.nearPlane, 
