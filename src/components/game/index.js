@@ -41,7 +41,7 @@ const game = function game() {
             farPlane: 100,
             position: {
                 x: 0,
-                y: 2,
+                y: 6,
                 z: 0
             },
             rotation: {
