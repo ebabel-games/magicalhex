@@ -31,7 +31,7 @@ Browse to
 
 To view each individual model, browse to
 
-  http://localhost:8080/models
+  http://localhost:8080/json-models
 
 ## Deploy to Firebase
 

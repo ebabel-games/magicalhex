@@ -7,7 +7,7 @@ const mob = function mob (input) {
     const scene = input.scene;
 
     loadModel({
-        url: '/models/plane/plane.json',
+        url: '/json-models/plane/plane.json',
         material: new THREE.MeshLambertMaterial({color: 0x003300, fog: true}),
         modelName: 'plane',
         scene: scene,

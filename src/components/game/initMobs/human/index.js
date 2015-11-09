@@ -9,7 +9,7 @@ const mob = function mob (input) {
     const scene = input.scene;
 
     loadModel({
-        url: '/models/human/human.json',
+        url: '/json-models/human/human.json',
         material: new THREE.MeshLambertMaterial({color: 0xffe0bd, fog: true}),
         modelName: 'human',
         scene: scene,
