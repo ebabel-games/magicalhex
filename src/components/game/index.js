@@ -17,15 +17,12 @@ const game = function game() {
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     const lights = [
         {
-            light: new THREE.DirectionalLight(0xffcccc, 0.1),
+            light: new THREE.DirectionalLight(0xffcccc, 0.5),
             position: { x: 100, y: 100, z: 100 }
         },
         {
-            light: new THREE.DirectionalLight(0x800020, 0.1),
+            light: new THREE.DirectionalLight(0x800020, 0.5),
             position: { x: -100, y: 100, z: -100 }
-        },
-        {
-            light: new THREE.AmbientLight(0x100000)
         }
     ];
     const raycaster = new THREE.Raycaster();
