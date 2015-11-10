@@ -26,7 +26,7 @@ const mob = function mob (input) {
             // Start is a fallback, in case there is no data in Firebase.
             start: {
                 x: -5,
-                y: 25,
+                y: 1.5,
                 z: -45
             },
 

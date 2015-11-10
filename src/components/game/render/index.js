@@ -6,18 +6,28 @@ const render = function render (input) {
     const scene = input && input.scene;
     const camera = input && input.camera;
     const callback = input && input.callback;
+
+    const inverseMaxFPS = input && input.inverseMaxFPS;
+    let frameDelta = input && input.frameDelta;
+    const clock = input && input.clock;
     const keyboardControls = input && input.keyboardControls;
 
     if (!renderer || !scene || !camera || !keyboardControls) {
         throw new Error(error.input.required);
     }
 
-    keyboardControls.update();
+    frameDelta += clock.getDelta();
 
-    renderer.render(scene, camera);
+    while (frameDelta >= inverseMaxFPS) {
+        keyboardControls.update();
 
-    if (callback) {
-        callback(input);
+        renderer.render(scene, camera);
+
+        if (callback) {
+            callback(input);
+        }
+
+        frameDelta -= inverseMaxFPS;
     }
 
     requestAnimationFrame(function() {

@@ -16,7 +16,9 @@ const game = function game() {
     // Objects to create only once in the game.
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x9db3b5, 0.02);
+
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
+
     const lights = [
         {
             light: new THREE.DirectionalLight(0xffcccc, 0.5),
@@ -51,6 +53,9 @@ const game = function game() {
         }
     });
 
+    const inverseMaxFPS = 1 / 60;
+    let frameDelta = 0;
+    const clock = new THREE.Clock();
     const keyboardControls = new KeyboardControls({
         object: camera
     });
@@ -85,6 +90,9 @@ const game = function game() {
         scene: scene,
         camera: camera,
         sprites: sprites,
+        inverseMaxFPS: inverseMaxFPS,
+        frameDelta: frameDelta,
+        clock: clock,
         keyboardControls: keyboardControls,
 
         // The callback is run every tick of the main render. It co-ordinates running all sprite heartbeats.
@@ -172,6 +180,9 @@ const game = function game() {
             );
         }
     });
+
+    // Prevent selection on the page
+    document.onselectstart = function() { return false; }
 
     return this;
 };

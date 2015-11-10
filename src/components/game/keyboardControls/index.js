@@ -3,13 +3,11 @@ class KeyboardControls {
     constructor (input) {
         this.object = input.object;
         this.options = input.options || {};
+        this.moveSpeed = input.moveSpeed || 0.5;
+        this.turnSpeed = input.turnSpeed || 2;
 
-        this.domElement = this.options.domElement || document;
-        this.moveSpeed = this.options.moveSpeed || 0.3;
-        this.turnSpeed = this.options.turnSpeed || 2;
-
-        this.domElement.addEventListener('keydown', this.onKeyDown.bind(this), false);
-        this.domElement.addEventListener('keyup', this.onKeyUp.bind(this), false);
+        document.addEventListener('keydown', this.onKeyDown.bind(this), false);
+        document.addEventListener('keyup', this.onKeyUp.bind(this), false);
     }
 
     update() {
