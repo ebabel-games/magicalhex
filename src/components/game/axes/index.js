@@ -29,15 +29,13 @@ function buildAxes( input ) {
     axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( axesLength, 0, 0 ), 0xFF0000, false ) ); // +X
     axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( -axesLength, 0, 0 ), 0x660000, true) ); // -X
 
-    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, axesLength, 0 ), 0x00FF00, false ) ); // +Y
-    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, -axesLength, 0 ), 0x006600, true ) ); // -Y
+    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, axesLength, 0 ), 0x009900, false ) ); // +Y
+    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, -axesLength, 0 ), 0x003300, true ) ); // -Y
 
     axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, axesLength ), 0x0000FF, false ) ); // +Z
     axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, -axesLength ), 0x000066, true ) ); // -Z
 
     scene.add(axes);
-
-    console.log('x: red, y: green, z: blue');
 
     return this;
 }
