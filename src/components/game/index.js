@@ -5,9 +5,11 @@ import acquireTarget from './acquireTarget';
 import initMobs from './initMobs';
 import initScene from './initScene';
 import render from './render';
+
+import KeyboardControls from './keyboardControls';
+
 import error from '../shared/errorMessages';
 import './game.css';
-
 
 // Main game module.
 const game = function game() {
@@ -49,37 +51,15 @@ const game = function game() {
         }
     });
 
+    const keyboardControls = new KeyboardControls({
+        object: camera
+    });
+
     // Test: display world axes.
     axes({
         scene: scene,
         axesLength: 1000
     });
-
-    const keyCodes = {
-        // Move forward.
-        'w': 87,
-
-        // Strafe to the left.
-        'q': 81,
-
-        // Turn to the left.
-        'a': 65,
-
-        // Move backward.
-        's': 83,
-
-        // Turn to the right.
-        'd': 68,
-
-        // Strafe to the right.
-        'e': 69,
-
-        // Cast first memorized spell.
-        '1': 49,
-
-        // Escape: clear current target.
-        'esc': 27
-    };
 
     // Array of all mobs, players and the world environment since it can be modified by players.
     const sprites = [];
@@ -105,6 +85,8 @@ const game = function game() {
         scene: scene,
         camera: camera,
         sprites: sprites,
+        keyboardControls: keyboardControls,
+
         // The callback is run every tick of the main render. It co-ordinates running all sprite heartbeats.
         callback: function callback (input) {
             const sprites = input && input.sprites;
@@ -123,6 +105,14 @@ const game = function game() {
             });
         }
     });
+
+    const keyCodes = {
+        // Cast first memorized spell.
+        '1': 49,
+
+        // Escape: clear current target.
+        'esc': 27
+    };
 
     // Listen for attempts to target a sprite.
     const clickEvent = new CustomEvent('mousedown-event', 
@@ -150,36 +140,6 @@ const game = function game() {
 
     // Listen for a key.
     document.addEventListener('keydown', function (e) {
-        // Move forward.
-        if (e.keyCode === keyCodes['w']) {
-            camera.position.z -= 1;
-        }
-
-        // Move backwards.
-        if (e.keyCode === keyCodes['s']) {
-            camera.position.z += 1;
-        }
-
-        // Turn to the left.
-        if (e.keyCode === keyCodes['a']) {
-            camera.rotation.y += 0.1;
-        }
-
-        // Turn to the right.
-        if (e.keyCode === keyCodes['d']) {
-            camera.rotation.y -= 0.1;
-        }
-
-        // Strafe left.
-        if (e.keyCode === keyCodes['q']) {
-            camera.position.x -= 0.1;
-        }
-
-        // Strafe right.
-        if (e.keyCode === keyCodes['e']) {
-            camera.position.x += 0.1;
-        }
-
         // Clear the current target.
         if (e.keyCode === keyCodes['esc']) {
             document.dispatchEvent(
@@ -212,7 +172,6 @@ const game = function game() {
             );
         }
     });
-
 
     return this;
 };
