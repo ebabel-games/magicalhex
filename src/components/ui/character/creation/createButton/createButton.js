@@ -57,7 +57,7 @@ class CreateCharacterButton extends React.Component {
             life: parseInt(document.getElementById('character-life').value)
         };
 
-        this.ref.child('character/' + playerid).set(character, function onComplete (err) {
+        this.ref.child('player/' + playerid + '/character/creation').set(character, function onComplete (err) {
             if (err) {
                 _this.setState({
                     disabled: ''

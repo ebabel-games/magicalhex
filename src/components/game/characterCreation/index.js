@@ -8,7 +8,7 @@ module.exports = {
         const player = input.player;
         const callback = input.callback;
 
-        ref.child('character/' + player.id).once('value', function getCharacter (snapshot) {
+        ref.child('player/' + player.id + '/character/creation').once('value', function getCharacter (snapshot) {
             var character = snapshot.val();
 
             if (callback) {

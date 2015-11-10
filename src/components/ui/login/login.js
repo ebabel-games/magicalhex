@@ -1,7 +1,7 @@
 import React from 'react';
 import Firebase from 'firebase';
 
-import character from '../../game/character';
+import character from '../../game/characterCreation';
 
 import error from '../../shared/errorMessages';
 import './login.css';
@@ -89,8 +89,8 @@ class Login extends React.Component {
                     ageRange: authData.facebook.cachedUserProfile.age_range.min
                 };
 
-                _this.ref.child('player/' + _player.id).set(_player);
-                _this.ref.child('login/' + _player.id).push({
+                _this.ref.child('player/' + _player.id + '/account').set(_player);
+                _this.ref.child('player/' + _player.id + '/login').push({
                     loginDate: new Date().toJSON()
                 });
 
