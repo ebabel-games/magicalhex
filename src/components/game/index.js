@@ -13,16 +13,16 @@ import './game.css';
 const game = function game() {
     // Objects to create only once in the game.
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x9db3b5, 0.002);
+    scene.fog = new THREE.FogExp2(0x9db3b5, 0.02);
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     const lights = [
         {
-            light: new THREE.DirectionalLight(0xffcccc),
+            light: new THREE.DirectionalLight(0xffcccc, 0.1),
             position: { x: 100, y: 100, z: 100 }
         },
         {
-            light: new THREE.DirectionalLight(0x800020),
-            position: { x: -100, y: -100, z: -100 }
+            light: new THREE.DirectionalLight(0x800020, 0.1),
+            position: { x: -100, y: 100, z: -100 }
         },
         {
             light: new THREE.AmbientLight(0x100000)
@@ -38,7 +38,7 @@ const game = function game() {
             angle: 45,
             aspectRatio: window.innerWidth / window.innerHeight,
             nearPlane: 1,
-            farPlane: 100,
+            farPlane: 200,
             position: {
                 x: 0,
                 y: 6,
