@@ -73,10 +73,11 @@ See http://semver.org/
 
 ### Next release tag
 
-* 0.8.0 sprite interaction
+* 0.8.1 fix the keyboard controls to move within the scene.
 
 ### Released tags
 
+* 0.8.0 sprite interaction
 * 0.7.0 remove collada and use THREE.js models instead
 * 0.6.0 Rules of the game documentation, refactoring to match the rules and ES6 refactoring.
 * 0.5.0 React.js and webpack.
