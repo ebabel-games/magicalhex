@@ -22,15 +22,6 @@ const heartbeat = function heartbeat (sprite) {
         sprite.rotation.x += 0.1;
     }
 
-    if (sprite.position.z > 25) {
-        // Back to start position.
-        sprite.position.set(
-            sprite.userData.start.x,
-            sprite.userData.start.y,
-            sprite.userData.start.z
-        );
-    }
-
     return this;
 };
 

@@ -14,7 +14,7 @@ const mob = function mob (input) {
         firebaseEndpoint: 'world/plane',
         userData: {
             // Start is a fallback, in case there is no data in Firebase.
-            start: {
+            position: {
                 x: 0,
                 y: 0,
                 z: 0

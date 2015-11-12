@@ -1,6 +1,8 @@
+import THREE from 'three';
+
 import testCube from './test-cube';
 import monkey from './monkey';
-import human from './human';
+import Human from './human';
 import plane from './plane';
 
 // Initialize the mobs to load.
@@ -12,7 +14,11 @@ const initMobs = function initMobs (input) {
     // The monkey is also a test mob used during development.
     monkey(input);
 
-    human(input);
+    const centralHuman = new Human({
+        scene: input.scene,
+        url: '/json-models/human/human.json',
+        material: new THREE.MeshLambertMaterial({color: 0x654321, fog: true})
+    });
 
     plane(input);
 

@@ -24,7 +24,7 @@ const mob = function mob (input) {
             corpses: [],
 
             // Start is a fallback, in case there is no data in Firebase.
-            start: {
+            position: {
                 x: 5,
                 y: 30,
                 z: -45
