@@ -2,32 +2,28 @@ import THREE from 'three';
 
 import axes from './axes';
 import acquireTarget from './acquireTarget';
-import initMobs from './initMobs';
 import initScene from './initScene';
 import render from './render';
 
 import KeyboardControls from './keyboardControls';
 
+import Model from './model';
+import Terrain from './terrain';
+import Human from './human';
+
 import error from '../shared/errorMessages';
 import './game.css';
 
 // Main game module.
-const game = function game() {
+module.exports = function game() {
     // Objects to create only once in the game.
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x9db3b5, 0.02);
 
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-
     const lights = [
-        {
-            light: new THREE.DirectionalLight(0xffcccc, 0.5),
-            position: { x: 100, y: 100, z: 100 }
-        },
-        {
-            light: new THREE.DirectionalLight(0x800020, 0.5),
-            position: { x: -100, y: 100, z: -100 }
-        }
+        { light: new THREE.DirectionalLight(0xffcccc, 0.5), position: { x: 10, y: 10, z: 10 } },
+        { light: new THREE.DirectionalLight(0x800020, 0.5), position: { x: -10, y: 10, z: -10 } }
     ];
     const raycaster = new THREE.Raycaster();
     const camera = initScene({
@@ -40,77 +36,71 @@ const game = function game() {
             aspectRatio: window.innerWidth / window.innerHeight,
             nearPlane: 1,
             farPlane: 200,
-            position: {
-                x: 0,
-                y: 6,
-                z: 0
-            },
-            rotation: {
-                x: 0,
-                y: 0,
-                z: 0
-            }
+            position: { x: 0, y: 6, z: 0 },
+            rotation: { x: 0, y: 0, z: 0 }
         }
     });
-
-    const inverseMaxFPS = 1 / 60;
-    let frameDelta = 0;
-    const clock = new THREE.Clock();
-    const keyboardControls = new KeyboardControls({
-        object: camera
-    });
+    const keyboardControls = new KeyboardControls({ object: camera });
 
     // Test: display world axes.
-    axes({
-        scene: scene,
-        axesLength: 1000
+    axes({ scene: scene, axesLength: 1000 });
+
+    // Collection of models that can be targeted.
+    const models = [];
+
+    // Terrain of current domain.
+    const terrain = new Terrain({
+        // firebaseUrl: '',
+        name: 'ground terrain',
+        geometry: new THREE.PlaneGeometry(2000, 2000),
+        material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true }),
+        rotation: { x: -90 * Math.PI / 180, y: 0, z: 0 }
     });
+    scene.add(terrain.mesh);
 
-    // Array of all mobs, players and the world environment since it can be modified by players.
-    const sprites = [];
 
-    // Initialize all the mobs and get an array of all their names.
-    const mobs = initMobs({
-        scene: scene
+    // Human.
+    const john = new Human({
+        firebaseUrl: 'test-url',
+        life: 3
     });
+    scene.add(john.mesh);
 
-    const mouseCoordinates = {
-        x: null,
-        y: null
-    };
+
+    models.push(john.mesh);
+
+
+    const mouseCoordinates = { x: null, y: null };
 
     let currentTarget = null;
-
-    // Merge the mobs into the array of sprites that will be rendered.
-    sprites.push(...mobs);
 
     // Render the scene.
     render({
         renderer: renderer,
         scene: scene,
         camera: camera,
-        sprites: sprites,
-        inverseMaxFPS: inverseMaxFPS,
-        frameDelta: frameDelta,
-        clock: clock,
         keyboardControls: keyboardControls,
+        models: models,
 
         // The callback is run every tick of the main render. It co-ordinates running all sprite heartbeats.
         callback: function callback (input) {
-            const sprites = input && input.sprites;
+            const models = input && input.models;
             const scene = input && input.scene;
 
-            if (!sprites) {
+            if (!scene) {
                 throw new Error(error.input.required);
             }
 
-            sprites.map(function (spriteName) {
-                const sprite = scene.getObjectByName(spriteName);
+            // Every tick, run through all the models in the scene.
+            if (models) {
+                models.map(function (model) {
 
-                if (sprite && sprite.userData && sprite.userData.heartbeat) {
-                    sprite.userData.heartbeat(sprite);
-                }
-            });
+                    // If the model has a hearbeat, run it now.
+                    if (model && model.userData && model.userData.heartbeat) {
+                        model.userData.heartbeat(model);
+                    }
+                });
+            }
         }
     });
 
@@ -125,13 +115,13 @@ const game = function game() {
     // Listen for attempts to target a sprite.
     const clickEvent = new CustomEvent('mousedown-event', 
         { 
-            'detail': {
-                'camera': camera,
-                'scene': scene,
-                'renderer': renderer,
-                'sprites': sprites,
-                'raycaster': raycaster,
-                'mouseCoordinates': mouseCoordinates
+            detail: {
+                camera: camera,
+                scene: scene,
+                renderer: renderer,
+                models: models,
+                raycaster: raycaster,
+                mouseCoordinates: mouseCoordinates
             }
         });
     document.addEventListener('mousedown', function (e) {
@@ -165,7 +155,7 @@ const game = function game() {
         // The key [1] has been pressed, which fires damage on the current target (for now).
         if (currentTarget && e.keyCode === keyCodes['1']) {
             currentTarget.userData.takeDamage({
-                sprite: currentTarget,
+                model: currentTarget,
                 damage: 1
             });
             document.dispatchEvent(
@@ -186,5 +176,3 @@ const game = function game() {
 
     return this;
 };
-
-module.exports = game;

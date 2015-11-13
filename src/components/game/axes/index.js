@@ -12,7 +12,7 @@ function buildAxis( src, dst, colorHex, dashed ) {
 
     geom.vertices.push( src.clone() );
     geom.vertices.push( dst.clone() );
-    geom.computeLineDistances(); // This one is SUPER important, otherwise dashed lines will appear as simple plain lines
+    geom.computeLineDistances(); // Makes dashed lines.
 
     var axis = new THREE.Line( geom, mat, THREE.LineSegments );
 
@@ -34,6 +34,8 @@ function buildAxes( input ) {
 
     axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, axesLength ), 0x0000FF, false ) ); // +Z
     axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, -axesLength ), 0x000066, true ) ); // -Z
+
+    axes.name = '3D world reference axes';
 
     scene.add(axes);
 

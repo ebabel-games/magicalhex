@@ -17,5 +17,10 @@ module.exports = {
         creation: {
             failed: 'Character creation or update failed.'
         }
+    },
+    model: {
+        load: {
+            failed: 'Model failed to load.'
+        }
     }
 };
