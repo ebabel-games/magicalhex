@@ -1,3 +1,4 @@
+import d2r from '../degreesToRadians';
 import fade from './fade';
 
 module.exports = function isAlive (model) {
@@ -8,7 +9,7 @@ module.exports = function isAlive (model) {
         if (model.userData.dead === false) {
 
             // Make the model fall down.
-            model.rotation.x = 90 * Math.PI / 180;
+            model.rotation.set(d2r(90), 0, 0);
 
             const corpse = {
                 location: model.getWorldPosition(),

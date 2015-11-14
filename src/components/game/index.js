@@ -1,5 +1,6 @@
 import THREE from 'three';
 
+import d2r from './degreesToRadians';
 import axes from './axes';
 import acquireTarget from './acquireTarget';
 import initScene from './initScene';
@@ -10,6 +11,7 @@ import KeyboardControls from './keyboardControls';
 import Model from './model';
 import Terrain from './terrain';
 import Human from './human';
+import Animal from './animal';
 
 import error from '../shared/errorMessages';
 import './game.css';
@@ -55,7 +57,8 @@ module.exports = function game() {
         position: {x: 0, y: 0, z: 0},   // The x and z matter here, since a domain y position is always 0.
     };
 
-    // Collection of models that can be targeted.
+    // Collection of models that can be targeted and 
+    // whose heartbeat will be run by the render callback.
     const models = [];
 
     // Terrain of current domain.
@@ -71,7 +74,7 @@ module.exports = function game() {
     // Human: John.
     const john = new Human({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/john',
-        name: 'John',
+        name: 'john',
         targetName: 'John',
         life: 3
     });
@@ -81,12 +84,22 @@ module.exports = function game() {
     // Human: Sander.
     const sander = new Human({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/sander',
-        name: 'Sander',
+        name: 'sander',
         targetName: 'Sander',
         life: 4
     });
     scene.add(sander.mesh);
     models.push(sander.mesh);
+
+    const horse = new Animal({
+        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/jolly-jumper',
+        name: 'jolly-jumper',
+        targetName: 'Jolly Jumper',
+        life: 1
+    });
+    horse.mesh.rotation.y = d2r(45);
+    scene.add(horse.mesh);
+    models.push(horse.mesh);
 
     const mouseCoordinates = { x: null, y: null };
 
