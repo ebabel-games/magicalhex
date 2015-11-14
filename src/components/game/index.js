@@ -68,16 +68,23 @@ module.exports = function game() {
     });
     scene.add(terrain.mesh);
 
-    // Human.
+    // Human: John.
     const john = new Human({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/john',
+        name: 'John',
         life: 3
     });
     scene.add(john.mesh);
-
-
     models.push(john.mesh);
 
+    // Human: Steve.
+    const steve = new Human({
+        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/steve',
+        name: 'Steve',
+        life: 4
+    });
+    scene.add(steve.mesh);
+    models.push(steve.mesh);
 
     const mouseCoordinates = { x: null, y: null };
 
