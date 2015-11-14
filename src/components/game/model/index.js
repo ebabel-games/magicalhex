@@ -1,6 +1,10 @@
 import THREE from 'three';
 import Firebase from 'firebase';
 
+import populateFromInput from './populateFromInput';
+import populateFromFirebase from './populateFromFirebase';
+import persistToFirebase from './persistToFirebase';
+
 import error from '../../shared/errorMessages';
 
 // Model is the base class for all other model classes.
@@ -8,42 +12,6 @@ import error from '../../shared/errorMessages';
 // It doesn't take damage and has no Life points. 
 // It has a geometry, a texture and a position.
 class Model {
-
-
-    populateFromFirebase() {
-        const ref = new Firebase(this.firebaseUrl);
-
-        ref.once('value', function (snapshot) {
-            const data = snapshot.val();
-
-        });
-    }
-
-    populateFromInput (input) {
-        // Mesh name
-        if (this.mesh) {
-            this.mesh.name = input.name || 'model';
-        }
-
-        // THREE.js position.
-        if (input.position && this.mesh) {
-            this.mesh.position.set(
-                input.position.x || 0, 
-                input.position.y || 0, 
-                input.position.z || 0
-            );
-        }
-
-        // THREEE.js rotation.
-        if (input.rotation && this.mesh) {
-            this.mesh.rotation.set(
-                input.rotation.x || 0,
-                input.rotation.y || 0,
-                input.rotation.z || 0
-            );
-        }
-    }
-
     constructor (input) {
         if (!input) {
             throw new Error(error.input.required);
@@ -57,11 +25,13 @@ class Model {
         // Unique endpoint of each model that is synced to Firebase.
         this.firebaseUrl = input.firebaseUrl;
 
-        if (this.firebaseUrl) {
-            this.populateFromFirebase();
-        }
+        this.populateFromInput = populateFromInput;
+        this.populateFromFirebase = populateFromFirebase;
+        this.persistToFirebase = persistToFirebase;
 
-        if (!this.firebaseUrl) {
+        if (this.firebaseUrl) {
+            this.populateFromFirebase(input);
+        } else {
             this.populateFromInput(input);
         }
 
@@ -71,7 +41,6 @@ class Model {
     createMesh (geometry, material) {
         return new THREE.Mesh(geometry, material);
     }
-
 }
 
 module.exports = Model;
