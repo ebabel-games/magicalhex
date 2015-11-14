@@ -45,12 +45,22 @@ module.exports = function game() {
     // Test: display world axes.
     axes({ scene: scene, axesLength: 1000 });
 
+    // Current domain.
+    // Note: this information is hard coded for now but it will come from 
+    // the logged in player who keeps a record of his location, either 
+    // where he was last player or if it's a new player, 
+    // where he's just being created.
+    const domain = {
+        name: 'hard-coded', // Each domain gets a randomly genereated internal name upon creation.
+        position: {x: 0, y: 0, z: 0},   // The x and z matter here, since a domain y position is always 0.
+    };
+
     // Collection of models that can be targeted.
     const models = [];
 
     // Terrain of current domain.
     const terrain = new Terrain({
-        // firebaseUrl: '',
+        //firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/terrain',
         name: 'ground terrain',
         geometry: new THREE.PlaneGeometry(2000, 2000),
         material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true }),
@@ -61,7 +71,7 @@ module.exports = function game() {
 
     // Human.
     const john = new Human({
-        firebaseUrl: 'test-url',
+        //firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/john',
         life: 3
     });
     scene.add(john.mesh);

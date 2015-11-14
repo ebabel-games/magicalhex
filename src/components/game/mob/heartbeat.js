@@ -1,3 +1,4 @@
+import fade from './fade';
 import isAlive from './isAlive';
 
 // Custom business logic of a model.
@@ -10,6 +11,12 @@ const heartbeat = function heartbeat (model) {
     const _isAlive = isAlive(model);
     if (!_isAlive) {
         return this;
+    }
+
+    // Fade a model that has less life than when he was created.
+    const lifeAtCreation = model.userData.creation.mesh.userData.life;
+    if (model.userData.life < lifeAtCreation) {
+//        const lifePercentange = 
     }
 
     // Sample movement. Do not keep here.

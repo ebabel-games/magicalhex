@@ -1,6 +1,6 @@
 import error from '../../shared/errorMessages';
 
-// Sprite takes damage
+// Model takes damage
 // Note: single responsibility, this function needs to stay small. 
 // Exceptions to taking damage can be handled elsewhere to keep the code scalable.
 // Calling this function means the damage has to be taken.

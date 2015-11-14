@@ -1,3 +1,5 @@
+import fade from './fade';
+
 module.exports = function isAlive (model) {
 
     if (model.userData.life <= 0) {
@@ -30,7 +32,11 @@ module.exports = function isAlive (model) {
         // Confirm the model is now dead.
         model.userData.dead = true;
 
-        model.opacity = 0.2;
+        // Fade the model to the minimum opacity.
+        fade({
+            model: model,
+            opacity: 0.1
+        })
 
         return false;
     }
