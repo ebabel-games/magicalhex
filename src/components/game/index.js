@@ -72,19 +72,21 @@ module.exports = function game() {
     const john = new Human({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/john',
         name: 'John',
+        targetName: 'John',
         life: 3
     });
     scene.add(john.mesh);
     models.push(john.mesh);
 
-    // Human: Steve.
-    const steve = new Human({
-        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/steve',
-        name: 'Steve',
+    // Human: Sander.
+    const sander = new Human({
+        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/sander',
+        name: 'Sander',
+        targetName: 'Sander',
         life: 4
     });
-    scene.add(steve.mesh);
-    models.push(steve.mesh);
+    scene.add(sander.mesh);
+    models.push(sander.mesh);
 
     const mouseCoordinates = { x: null, y: null };
 
