@@ -14,12 +14,15 @@ const heartbeat = function heartbeat (model) {
     }
 
     // Fade a model that has less life than when he was created.
-    const lifeAtCreation = model.userData.creation.mesh.userData.life;
-    if (model.userData.life < lifeAtCreation) {
-//        const lifePercentange = 
+    if (model.userData.life < model.userData.creation.userData.life) {
+        fade({
+            model: model, 
+            opacity: model.userData.life / model.userData.creation.userData.life
+        });
     }
 
     // Sample movement. Do not keep here.
+    // todo: refactor this into something flexible, reusable and generic.
     model.position.z -= 0.05;
     model.position.x += 0.05;
     if (model.position.x > 500 && model.position.z < -500) {

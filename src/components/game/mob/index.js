@@ -31,7 +31,7 @@ class Mob extends Model {
             }
 
             this.mesh.userData.creation = {
-                mesh: this.mesh,
+                userData: JSON.parse(JSON.stringify(this.mesh.userData)),    // Make a deep copy.
                 timestamp: Date.now()
             };
         }

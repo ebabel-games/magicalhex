@@ -162,7 +162,7 @@ module.exports = function game() {
             );
         }
 
-        // The key [1] has been pressed, which fires damage on the current target (for now).
+        // The key [1] has been pressed, which fires damage on the current target.
         if (currentTarget && e.keyCode === keyCodes['1']) {
             currentTarget.userData.takeDamage({
                 model: currentTarget,
