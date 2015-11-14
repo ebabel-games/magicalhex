@@ -105,8 +105,8 @@ module.exports = function game() {
                 models.map(function (model) {
 
                     // If the model has a hearbeat, run it now.
-                    if (model && model.userData && model.userData.heartbeat) {
-                        model.userData.heartbeat(model);
+                    if (model && model.heartbeat) {
+                        model.heartbeat(model);
                     }
                 });
             }
@@ -133,7 +133,7 @@ module.exports = function game() {
                 mouseCoordinates: mouseCoordinates
             }
         });
-    document.addEventListener('mousedown', function (e) {
+    document.addEventListener('mousedown', function onMouseDown (e) {
         mouseCoordinates.x = e.clientX;
         mouseCoordinates.y = e.clientY;
 
@@ -141,12 +141,12 @@ module.exports = function game() {
     }, true);
 
     // Listen for a change of target.
-    document.addEventListener('change-target', function (e) {
+    document.addEventListener('change-target', function onChangeTarget (e) {
         currentTarget = e.detail.currentTarget;
     }, true);
 
     // Listen for a key.
-    document.addEventListener('keydown', function (e) {
+    document.addEventListener('keydown', function onKeyDown (e) {
         // Clear the current target.
         if (e.keyCode === keyCodes['esc']) {
             document.dispatchEvent(
@@ -163,7 +163,7 @@ module.exports = function game() {
 
         // The key [1] has been pressed, which fires damage on the current target.
         if (currentTarget && e.keyCode === keyCodes['1']) {
-            currentTarget.userData.takeDamage({
+            currentTarget.takeDamage({
                 model: currentTarget,
                 damage: 1
             });
@@ -181,7 +181,7 @@ module.exports = function game() {
     });
 
     // Prevent selection on the page
-    document.onselectstart = function() { return false; }
+    document.onselectstart = function onSelectStart() { return false; }
 
     return this;
 };

@@ -11,6 +11,13 @@ class Mob extends Model {
         // If there isn't a mesh already created in Model class, maybe one has been provided in input.
         this.mesh = this.mesh || input.mesh;
 
+        // Order the model to take some damage, which decreases its life points by the amount of damage.
+        // There is no negotiation at this point, when calling this function, the model has no choice but to take damages.
+        this.mesh.takeDamage = takeDamage;
+
+        // Run the heartbeat at each game tick.
+        this.mesh.heartbeat = heartbeat;
+
         if (this.mesh) {
             this.mesh.userData = {
                 // When a model is targetted, what name should it display.
@@ -20,14 +27,7 @@ class Mob extends Model {
                 life: input.life || 1,
 
                 // When a model loses all its life points, its flag switches to true.
-                dead: input.dead || false,
-
-                // Order the model to take some damage, which decreases its life points by the amount of damage.
-                // There is no negotiation at this point, when calling this function, the model has no choice but to take damages.
-                takeDamage: takeDamage,
-
-                // Run the heartbeat at each game tick.
-                heartbeat: heartbeat
+                dead: input.dead || false
             }
 
             this.mesh.userData.creation = {
