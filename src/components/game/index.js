@@ -64,10 +64,10 @@ module.exports = function game() {
     // Terrain of current domain.
     const terrain = new Terrain({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/terrain',
-        name: 'ground terrain',
+        name: 'terrain',
         geometry: new THREE.PlaneGeometry(2000, 2000),
         material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true }),
-        rotation: { x: -90 * Math.PI / 180, y: 0, z: 0 }
+        rotation: { x: d2r(-90), y: 0, z: 0 }
     });
     scene.add(terrain.mesh);
 
