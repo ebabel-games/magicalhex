@@ -11,7 +11,10 @@ class Human extends Mob {
 
         const newMesh = build(input);
 
+        // The new mesh needs to inherit from the Mob's mesh.
         newMesh.userData = this.mesh.userData;
+        newMesh.takeDamage = this.mesh.takeDamage;
+        newMesh.heartbeat = this.mesh.heartbeat;
 
         this.mesh = newMesh;
 
