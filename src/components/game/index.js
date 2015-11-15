@@ -24,8 +24,8 @@ module.exports = function game() {
 
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     const lights = [
-        { light: new THREE.DirectionalLight(0xffcccc, 0.5), position: { x: 10, y: 10, z: 10 } },
-        { light: new THREE.DirectionalLight(0x800020, 0.5), position: { x: -10, y: 10, z: -10 } }
+        { light: new THREE.DirectionalLight(0xffcccc, 0.4), position: { x: 10, y: 10, z: 10 } },
+        { light: new THREE.DirectionalLight(0x800020, 0.6), position: { x: -10, y: 10, z: -10 } }
     ];
     const raycaster = new THREE.Raycaster();
     const camera = initScene({
@@ -61,45 +61,47 @@ module.exports = function game() {
     // whose heartbeat will be run by the render callback.
     const models = [];
 
+    let model;
+
     // Terrain of current domain.
-    const terrain = new Terrain({
+    model = new Terrain({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/terrain',
         name: 'terrain',
         geometry: new THREE.PlaneGeometry(2000, 2000),
         material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true }),
         rotation: { x: d2r(-90), y: 0, z: 0 }
     });
-    scene.add(terrain.mesh);
+    scene.add(model.mesh);
 
     // Human: John.
-    const john = new Human({
-        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/john',
-        name: 'john',
-        targetName: 'John',
-        life: 3
+    model = new Human({
+        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/john-laforge',
+        name: 'john-laforge',
+        targetName: 'John Laforge',
+        position: { x: -5, y: 0, z: 0 }
     });
-    scene.add(john.mesh);
-    models.push(john.mesh);
+    scene.add(model.mesh);
+    models.push(model.mesh);
 
     // Human: Sander.
-    const sander = new Human({
-        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/sander',
-        name: 'sander',
-        targetName: 'Sander',
-        life: 4
+    model = new Human({
+        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/sander-marsh',
+        name: 'sander-marsh',
+        targetName: 'Sander Marsh',
+        position: { x: 5, y: 0, z: 0 }
     });
-    scene.add(sander.mesh);
-    models.push(sander.mesh);
+    scene.add(model.mesh);
+    models.push(model.mesh);
 
-    const horse = new Animal({
+    model = new Animal({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/jolly-jumper',
         name: 'jolly-jumper',
         targetName: 'Jolly Jumper',
-        life: 1
+        position: { x: 5, y: 0, z: 0 }
     });
-    horse.mesh.rotation.y = d2r(45);
-    scene.add(horse.mesh);
-    models.push(horse.mesh);
+    model.mesh.rotation.y = d2r(45);
+    scene.add(model.mesh);
+    models.push(model.mesh);
 
     const mouseCoordinates = { x: null, y: null };
 

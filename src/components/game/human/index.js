@@ -26,6 +26,9 @@ class Human extends Mob {
 
         input.mesh = body;
 
+        // Human default life in case there's no input.
+        input.life = input.life || 3;
+
         super(input);
 
         return this;

@@ -50,6 +50,8 @@ class Animal extends Mob {
 
         input.mesh = body;
 
+        input.life = input.life || 2;
+
         super(input);
 
         return this;
