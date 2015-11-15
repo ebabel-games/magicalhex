@@ -2,7 +2,7 @@ import fade from './fade';
 import isAlive from './isAlive';
 
 // Custom business logic of a model.
-const heartbeat = function heartbeat (model) {
+module.exports = function heartbeat (model) {
     if (!model) {
         return; // Model hasn't been loaded yet.
     }
@@ -32,5 +32,3 @@ const heartbeat = function heartbeat (model) {
 
     return this;
 };
-
-module.exports = heartbeat;
