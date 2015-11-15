@@ -89,7 +89,7 @@ class Login extends React.Component {
                     ageRange: authData.facebook.cachedUserProfile.age_range.min
                 };
 
-                _this.ref.child('player/' + _player.id + '/account').set(_player);
+                _this.ref.child('player/' + _player.id + '/account').update(_player);
                 _this.ref.child('player/' + _player.id + '/login').push({
                     loginDate: new Date().toJSON()
                 });
