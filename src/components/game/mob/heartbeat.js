@@ -21,14 +21,5 @@ module.exports = function heartbeat (model) {
         });
     }
 
-    // Sample movement. Do not keep here.
-    // todo: refactor this into something flexible, reusable and generic.
-    model.position.z -= 0.05;
-    model.position.x += 0.05;
-    if (model.position.x > 500 && model.position.z < -500) {
-        model.position.x = -500;
-        model.position.z = 500;
-    }
-
     return this;
 };
