@@ -7,11 +7,15 @@ class Animal extends Mob {
 
     constructor (input) {
 
-        input.mesh = build(input);
-
-        input.life = input.life || 2;
-
         super(input);
+
+        const newMesh = build(input);
+
+        newMesh.userData = this.mesh.userData;
+
+        this.mesh = newMesh;
+
+        this.mesh.life = input.life;
 
         return this;
     }

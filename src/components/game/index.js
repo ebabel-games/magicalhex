@@ -1,4 +1,5 @@
 import THREE from 'three';
+import Firebase from 'firebase';
 
 import d2r from './degreesToRadians';
 import axes from './axes';
@@ -78,7 +79,8 @@ module.exports = function game() {
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/john-laforge',
         name: 'john-laforge',
         targetName: 'John Laforge',
-        position: { x: -5, y: 0, z: 0 }
+        position: { x: -5, y: 0, z: 0 },
+        life: 3
     });
     scene.add(model.mesh);
     models.push(model.mesh);
@@ -88,7 +90,8 @@ module.exports = function game() {
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/sander-marsh',
         name: 'sander-marsh',
         targetName: 'Sander Marsh',
-        position: { x: 5, y: 0, z: 0 }
+        position: { x: 5, y: 0, z: 0 },
+        life: 3
     });
     scene.add(model.mesh);
     models.push(model.mesh);
@@ -97,7 +100,8 @@ module.exports = function game() {
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/jolly-jumper',
         name: 'jolly-jumper',
         targetName: 'Jolly Jumper',
-        position: { x: 5, y: 0, z: 0 }
+        position: { x: 5, y: 0, z: 0 },
+        life: 2
     });
     model.mesh.rotation.y = d2r(45);
     scene.add(model.mesh);
@@ -127,6 +131,12 @@ module.exports = function game() {
             // Every tick, run through all the models in the scene.
             if (models) {
                 models.map(function (model) {
+
+                    if (model.userData && model.userData.firebaseUrl) {
+                        const ref = new Firebase(model.userData.firebaseUrl);
+
+                        // todo: implement syncing the mob position, rotation and scale.
+                    }
 
                     // If the model has a hearbeat, run it now.
                     if (model && model.heartbeat) {

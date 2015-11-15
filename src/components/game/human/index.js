@@ -7,12 +7,15 @@ class Human extends Mob {
 
     constructor (input) {
 
-        input.mesh = build(input);
-
-        // Human default life in case there's no input.
-        input.life = input.life || 3;
-
         super(input);
+
+        const newMesh = build(input);
+
+        newMesh.userData = this.mesh.userData;
+
+        this.mesh = newMesh;
+
+        this.mesh.life = input.life;
 
         return this;
     }

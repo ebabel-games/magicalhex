@@ -2,7 +2,7 @@ import Firebase from 'firebase';
 
 // Update the endpoint with the current data.
 module.exports = function persistToFirebase() {
-    const ref = new Firebase(this.firebaseUrl);
+    const ref = new Firebase(this.mesh.userData.firebaseUrl);
     const data = this.mesh;
 
     ref.update({

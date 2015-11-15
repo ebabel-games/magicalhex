@@ -8,38 +8,32 @@ import persistToFirebase from './persistToFirebase';
 import error from '../../shared/errorMessages';
 
 // Model is the base class for all other model classes.
-// It cannot be interacted with, it doesn't move and it can't be targeted. 
-// It doesn't take damage and has no Life points. 
-// It has a geometry, a texture and a position.
 class Model {
     constructor (input) {
-        if (!input) {
+        if (!input || !input.firebaseUrl) {
             throw new Error(error.input.required);
         }
 
         // THREE.js model.
-        if (input.geometry && input.material) {
-            this.mesh = this.createMesh(input.geometry, input.material);
-        }
+        this.mesh = new THREE.Mesh(
+            input.geometry || new THREE.BoxGeometry(1, 1, 1),
+            input.material || new THREE.MeshBasicMaterial( {color: 0xcccccc} )
+        );
 
         // Unique endpoint of each model that is synced to Firebase.
-        this.firebaseUrl = input.firebaseUrl;
+        this.mesh.userData.firebaseUrl = input.firebaseUrl || null;
 
         this.populateFromInput = populateFromInput;
         this.populateFromFirebase = populateFromFirebase;
         this.persistToFirebase = persistToFirebase;
 
-        if (this.firebaseUrl) {
+        if (this.mesh.userData.firebaseUrl) {
             this.populateFromFirebase(input);
         } else {
             this.populateFromInput(input);
         }
 
         return this;
-    }
-
-    createMesh (geometry, material) {
-        return new THREE.Mesh(geometry, material);
     }
 }
 
