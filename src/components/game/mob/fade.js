@@ -8,8 +8,7 @@ module.exports = function fade (input) {
 		material.opacity = opacity;
 	}
 
-    // Opacity of a mob that is still alive can't be less than 0.1, which is the opacity of a dead mob.
-    if (model.userData.dead === false && input.opacity < 0.1) {
+    if (input.opacity < 0.1) {
         opacity = 0.1;
     }
 
