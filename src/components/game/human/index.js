@@ -13,6 +13,7 @@ class Human extends Mob {
 
         // The new mesh needs to inherit from the Mob's mesh.
         newMesh.userData = this.mesh.userData;
+        newMesh.update = this.mesh.update;
         newMesh.takeDamage = this.mesh.takeDamage;
         newMesh.heartbeat = this.mesh.heartbeat;
 

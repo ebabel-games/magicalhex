@@ -1,8 +1,8 @@
 import THREE from 'three';
 import Firebase from 'firebase';
 
-import populate from './populate';
-//import persist from './persist';
+import keepInSync from './keep-in-sync';
+import update from './update';
 
 import error from '../../shared/errorMessages';
 
@@ -20,11 +20,12 @@ class Model {
         );
 
         // Unique endpoint of each model that is synced to Firebase.
-        this.mesh.userData.firebaseUrl = input.firebaseUrl || null;
+        this.mesh.userData.firebaseUrl = input.firebaseUrl;
 
-        this.populate = populate;
-        //this.persist = persist;
-        this.populate(input);
+        this.mesh.update = update;
+
+        this.keepInSync = keepInSync;
+        this.keepInSync();
 
         return this;
     }

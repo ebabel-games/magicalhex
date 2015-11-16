@@ -26,11 +26,12 @@ module.exports = function takeDamage (input) {
     }
 
     // Update Firebase with the new Life points.
-    const ref = new Firebase(model.userData.firebaseUrl + '/userData');
-
-    ref.update({
-        life: updatedLifePoints
-    });
+    model.update({
+        endpoint: model.userData.firebaseUrl + '/userData',
+        payload: {
+            life: updatedLifePoints
+        }
+    })
 
     return this;
 }
