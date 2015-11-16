@@ -24,6 +24,7 @@ class Mob extends Model {
         this.mesh.userData.life = input.life || 1;
 
         // When a model loses all its life points, its flag switches to true.
+        // Note: do not update dead directly, it gets updated by isAlive.js
         this.mesh.userData.dead = input.dead || false;
 
         this.mesh.userData.creation = {

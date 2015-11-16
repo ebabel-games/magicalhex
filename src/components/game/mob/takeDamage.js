@@ -31,7 +31,7 @@ module.exports = function takeDamage (input) {
         payload: {
             life: updatedLifePoints
         }
-    })
+    });
 
     return this;
 }
