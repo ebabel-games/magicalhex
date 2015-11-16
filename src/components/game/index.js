@@ -37,7 +37,7 @@ module.exports = function game() {
             angle: 45,
             aspectRatio: window.innerWidth / window.innerHeight,
             nearPlane: 1,
-            farPlane: 200,
+            farPlane: 150,
             position: { x: 0, y: 6, z: 0 },
             rotation: { x: 0, y: 0, z: 0 }
         }
