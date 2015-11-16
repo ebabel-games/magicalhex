@@ -42,5 +42,9 @@ module.exports = function isAlive (model) {
         return false;
     }
 
+    if (model.userData.life > 0) {
+        model.userData.dead = false;
+    }
+
     return true;
 };

@@ -1,9 +1,8 @@
 import THREE from 'three';
 import Firebase from 'firebase';
 
-import populateFromInput from './populateFromInput';
-import populateFromFirebase from './populateFromFirebase';
-import persistToFirebase from './persistToFirebase';
+import populate from './populate';
+//import persist from './persist';
 
 import error from '../../shared/errorMessages';
 
@@ -17,21 +16,15 @@ class Model {
         // THREE.js model.
         this.mesh = new THREE.Mesh(
             input.geometry || new THREE.BoxGeometry(1, 1, 1),
-            input.material || new THREE.MeshBasicMaterial( {color: 0xcccccc} )
+            input.material || new THREE.MeshBasicMaterial({color: 0xcccccc})
         );
 
         // Unique endpoint of each model that is synced to Firebase.
         this.mesh.userData.firebaseUrl = input.firebaseUrl || null;
 
-        this.populateFromInput = populateFromInput;
-        this.populateFromFirebase = populateFromFirebase;
-        this.persistToFirebase = persistToFirebase;
-
-        if (this.mesh.userData.firebaseUrl) {
-            this.populateFromFirebase(input);
-        } else {
-            this.populateFromInput(input);
-        }
+        this.populate = populate;
+        //this.persist = persist;
+        this.populate(input);
 
         return this;
     }

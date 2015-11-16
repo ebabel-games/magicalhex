@@ -1,3 +1,5 @@
+import Firebase from 'firebase';
+
 import error from '../../shared/errorMessages';
 
 // Model takes damage
@@ -17,12 +19,18 @@ module.exports = function takeDamage (input) {
         return this;
     }
 
-    if (damage >= model.userData.life) {
-        model.userData.life = 0;
-        return this;
+    let updatedLifePoints = model.userData.life - damage;
+
+    if (updatedLifePoints < 0) {
+        updatedLifePoints = 0;
     }
 
-    model.userData.life -= damage;
+    // Update Firebase with the new Life points.
+    const ref = new Firebase(model.userData.firebaseUrl + '/userData');
+
+    ref.update({
+        life: updatedLifePoints
+    });
 
     return this;
 }
