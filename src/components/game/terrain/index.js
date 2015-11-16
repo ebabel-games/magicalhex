@@ -10,11 +10,6 @@ class Terrain extends Model {
 
         this.mesh.name = input.name || 'terrain';
 
-        // Player currently controlling this domain.
-        if (this.mesh && this.mesh.userData) {
-            this.mesh.userData.controlledByPlayer = input.controlledByPlayer || null;
-        }
-
         return this;        
     }
 
