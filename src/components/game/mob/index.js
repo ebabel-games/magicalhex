@@ -5,10 +5,37 @@ import Model from '../model';
 import heartbeat from './heartbeat';
 import takeDamage from './takeDamage';
 
+// 3D models.
+import human from './human';
+import animal from './animal';
+
 class Mob extends Model {
 
     constructor (input) {
         super(input);
+
+        let _mesh;
+
+        switch (input.race) {
+            case 'animal':
+                _mesh = animal(input);
+                break;
+            default:
+                // Human is the default.
+                _mesh = human(input);
+        }
+
+        // The new mesh needs to copy from the Model's mesh.
+        _mesh.userData = this.mesh.userData;
+
+        // Copy methods from the Model's mesh.
+        _mesh.update = this.mesh.update;
+
+        // Merge of inherited mesh and the new model are now the current mesh.
+        this.mesh = _mesh;
+
+        // Each mob needs to have a race (i.e. a custom 3D model).
+        this.mesh.userData.race = input.race;
 
         // Run the heartbeat at each game tick.
         this.mesh.heartbeat = heartbeat;

@@ -11,8 +11,7 @@ import KeyboardControls from './keyboardControls';
 
 import Model from './model';
 import Terrain from './terrain';
-import Human from './human';
-import Animal from './animal';
+import Mob from './mob';
 
 import error from '../shared/errorMessages';
 import './game.css';
@@ -75,10 +74,11 @@ module.exports = function game() {
     scene.add(model.mesh);
 
     // Human: John.
-    model = new Human({
+    model = new Mob({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/john-laforge',
         name: 'john-laforge',
         targetName: 'John Laforge',
+        race: 'human',
         position: { x: -5, y: 0, z: 0 },
         life: 3
     });
@@ -86,20 +86,22 @@ module.exports = function game() {
     models.push(model.mesh);
 
     // Human: Sander.
-    model = new Human({
+    model = new Mob({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/sander-marsh',
         name: 'sander-marsh',
         targetName: 'Sander Marsh',
+        race: 'human',
         position: { x: 5, y: 0, z: 0 },
         life: 3
     });
     scene.add(model.mesh);
     models.push(model.mesh);
 
-    model = new Animal({
+    model = new Mob({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/jolly-jumper',
         name: 'jolly-jumper',
         targetName: 'Jolly Jumper',
+        race: 'animal',
         position: { x: 5, y: 0, z: 0 },
         life: 2
     });

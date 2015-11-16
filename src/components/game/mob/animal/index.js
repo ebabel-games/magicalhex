@@ -1,6 +1,6 @@
 import THREE from 'three';
 
-import d2r from '../degreesToRadians';
+import d2r from '../../degreesToRadians';
 
 module.exports = function build (input) {
     const body = new THREE.Group();

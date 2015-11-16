@@ -22,8 +22,10 @@ class Model {
         // Unique endpoint of each model that is synced to Firebase.
         this.mesh.userData.firebaseUrl = input.firebaseUrl;
 
+        // Send data from game to Firebase.
         this.mesh.update = update;
 
+        // Listen for data changes from Firebase to game.
         this.keepInSync = keepInSync;
         this.keepInSync();
 
