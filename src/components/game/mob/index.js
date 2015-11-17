@@ -34,9 +34,6 @@ class Mob extends Model {
         // Merge of inherited mesh and the new model are now the current mesh.
         this.mesh = _mesh;
 
-        // Each mob needs to have a race (i.e. a custom 3D model).
-        this.mesh.userData.race = input.race;
-
         // Run the heartbeat at each game tick.
         this.mesh.heartbeat = heartbeat;
 
@@ -47,17 +44,10 @@ class Mob extends Model {
         // When a model is targetted, what name should it display.
         this.mesh.userData.targetName = input.targetName || 'a mob';
 
-        // Every model has at least 1 life.
-        this.mesh.userData.life = input.life || 1;
-
-        // When a model loses all its life points, its flag switches to true.
-        // Note: do not update dead directly, it gets updated by isAlive.js
-        this.mesh.userData.dead = input.dead || false;
-
-        this.mesh.userData.creation = {
-            userData: JSON.parse(JSON.stringify(this.mesh.userData)),    // Make a deep copy.
-            timestamp: Date.now()
-        };
+        // Set position, rotation and scale.
+        this.mesh.position.set(input.position.x, input.position.y, input.position.z);
+        this.mesh.rotation.set(input.rotation.x, input.rotation.y, input.rotation.z);
+        this.mesh.scale.set(input.scale.x, input.scale.y, input.scale.z);
 
         return this;
     }

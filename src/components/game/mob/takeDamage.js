@@ -1,5 +1,3 @@
-import Firebase from 'firebase';
-
 import error from '../../shared/errorMessages';
 
 // Model takes damage

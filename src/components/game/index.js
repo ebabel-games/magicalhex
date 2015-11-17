@@ -5,9 +5,6 @@ import d2r from './degreesToRadians';
 import axes from './axes';
 import acquireTarget from './acquireTarget';
 import initScene from './initScene';
-import render from './render';
-
-import KeyboardControls from './keyboardControls';
 
 import Model from './model';
 import Domain from './domain';
@@ -42,7 +39,6 @@ module.exports = function game() {
             rotation: { x: 0, y: 0, z: 0 }
         }
     });
-    const keyboardControls = new KeyboardControls({ object: camera });
 
     // Test: display world axes.
     axes({ scene: scene, axesLength: 1000 });
@@ -56,49 +52,15 @@ module.exports = function game() {
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/test-domain',
         name: 'test-domain', // Each domain will get a randomly genereated internal name upon creation.
         geometry: new THREE.PlaneGeometry(2000, 2000),
-        material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true })
+        material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true }),
+        camera: camera,
+        scene: scene,
+        renderer: renderer,
+        raycaster: raycaster
     });
     scene.add(domain.mesh);
-    domain.mob.map(function (mob) {
-        scene.add(mob.mesh);
-    });
-
-    const mouseCoordinates = { x: null, y: null };
 
     let currentTarget = null;
-
-    // Render the scene.
-    render({
-        renderer: renderer,
-        scene: scene,
-        camera: camera,
-        keyboardControls: keyboardControls,
-        mob: domain.mob,
-
-        // The callback is run every tick of the main render. It co-ordinates running all sprite heartbeats.
-        callback: function callback (input) {
-            const scene = input && input.scene;
-
-            if (!scene) {
-                throw new Error(error.input.required);
-            }
-
-            // Every tick, run through all the mobs in the scene.
-            if (input.mob) {
-                input.mob.map(function (mob) {
-
-                    if (mob.mesh.userData && mob.mesh.userData.firebaseUrl) {
-                        const ref = new Firebase(mob.mesh.userData.firebaseUrl);
-                    }
-
-                    // If the mob has a hearbeat, run it now.
-                    if (mob.mesh.heartbeat) {
-                        mob.mesh.heartbeat(mob.mesh);
-                    }
-                });
-            }
-        }
-    });
 
     const keyCodes = {
         // Cast first memorized spell.
@@ -107,25 +69,6 @@ module.exports = function game() {
         // Escape: clear current target.
         'esc': 27
     };
-
-    // Listen for attempts to target a sprite.
-    const clickEvent = new CustomEvent('mousedown-event', 
-        { 
-            detail: {
-                camera: camera,
-                scene: scene,
-                renderer: renderer,
-                mob: domain.mob.map(function (mob) { return mob.mesh }),
-                raycaster: raycaster,
-                mouseCoordinates: mouseCoordinates
-            }
-        });
-    document.addEventListener('mousedown', function onMouseDown (e) {
-        mouseCoordinates.x = e.clientX;
-        mouseCoordinates.y = e.clientY;
-
-        document.dispatchEvent(clickEvent);
-    }, true);
 
     // Listen for a change of target.
     document.addEventListener('change-target', function onChangeTarget (e) {
