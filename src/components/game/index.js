@@ -10,7 +10,7 @@ import render from './render';
 import KeyboardControls from './keyboardControls';
 
 import Model from './model';
-import Terrain from './terrain';
+import Domain from './domain';
 import Mob from './mob';
 
 import error from '../shared/errorMessages';
@@ -51,63 +51,18 @@ module.exports = function game() {
     // Note: this information is hard coded for now but it will come from 
     // the logged in player who keeps a record of his location, either 
     // where he was last player or if it's a new player, 
-    // where he's just being created.
-    const domain = {
-        name: 'test-domain', // Each domain gets a randomly genereated internal name upon creation.
-        position: {x: 0, y: 0, z: 0},   // The x and z matter here, since a domain y position is always 0.
-    };
-
-    // Collection of models that can be targeted and 
-    // whose heartbeat will be run by the render callback.
-    const models = [];
-
-    let model;
-
-    // Terrain of current domain.
-    model = new Terrain({
-        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/terrain',
-        name: 'terrain',
+    // where he's just been created.
+    const domain = new Domain({
+        firebaseUrl: 'https://enchantment.firebaseio.com/domain/test-domain',
+        name: 'test-domain', // Each domain will get a randomly genereated internal name upon creation.
         geometry: new THREE.PlaneGeometry(2000, 2000),
-        material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true }),
-        rotation: { x: d2r(-90), y: 0, z: 0 }
+        material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true })
     });
-    scene.add(model.mesh);
+    scene.add(domain.mesh);
 
-    // Human: John.
-    model = new Mob({
-        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/john-laforge',
-        name: 'john-laforge',
-        targetName: 'John Laforge',
-        race: 'human',
-        position: { x: -5, y: 0, z: 0 },
-        life: 3
+    domain.models.map(function (model) {
+        scene.add(model.mesh);
     });
-    scene.add(model.mesh);
-    models.push(model.mesh);
-
-    // Human: Sander.
-    model = new Mob({
-        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/sander-marsh',
-        name: 'sander-marsh',
-        targetName: 'Sander Marsh',
-        race: 'human',
-        position: { x: 5, y: 0, z: 0 },
-        life: 3
-    });
-    scene.add(model.mesh);
-    models.push(model.mesh);
-
-    model = new Mob({
-        firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + domain.name + '/mob/jolly-jumper',
-        name: 'jolly-jumper',
-        targetName: 'Jolly Jumper',
-        race: 'animal',
-        position: { x: 5, y: 0, z: 0 },
-        life: 2
-    });
-    model.mesh.rotation.y = d2r(45);
-    scene.add(model.mesh);
-    models.push(model.mesh);
 
     const mouseCoordinates = { x: null, y: null };
 
@@ -119,7 +74,7 @@ module.exports = function game() {
         scene: scene,
         camera: camera,
         keyboardControls: keyboardControls,
-        models: models,
+        models: domain.models,
 
         // The callback is run every tick of the main render. It co-ordinates running all sprite heartbeats.
         callback: function callback (input) {
@@ -134,15 +89,15 @@ module.exports = function game() {
             if (models) {
                 models.map(function (model) {
 
-                    if (model.userData && model.userData.firebaseUrl) {
-                        const ref = new Firebase(model.userData.firebaseUrl);
+                    if (model.mesh.userData && model.mesh.userData.firebaseUrl) {
+                        const ref = new Firebase(model.mesh.userData.firebaseUrl);
 
                         // todo: implement syncing the mob position, rotation and scale.
                     }
 
                     // If the model has a hearbeat, run it now.
-                    if (model && model.heartbeat) {
-                        model.heartbeat(model);
+                    if (model.mesh.heartbeat) {
+                        model.mesh.heartbeat(model.mesh);
                     }
                 });
             }
@@ -164,7 +119,7 @@ module.exports = function game() {
                 camera: camera,
                 scene: scene,
                 renderer: renderer,
-                models: models,
+                models: domain.models.map(function (model) { return model.mesh }),
                 raycaster: raycaster,
                 mouseCoordinates: mouseCoordinates
             }
