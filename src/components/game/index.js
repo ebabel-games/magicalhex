@@ -59,9 +59,8 @@ module.exports = function game() {
         material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true })
     });
     scene.add(domain.mesh);
-
-    domain.models.map(function (model) {
-        scene.add(model.mesh);
+    domain.mob.map(function (mob) {
+        scene.add(mob.mesh);
     });
 
     const mouseCoordinates = { x: null, y: null };
@@ -74,30 +73,27 @@ module.exports = function game() {
         scene: scene,
         camera: camera,
         keyboardControls: keyboardControls,
-        models: domain.models,
+        mob: domain.mob,
 
         // The callback is run every tick of the main render. It co-ordinates running all sprite heartbeats.
         callback: function callback (input) {
-            const models = input && input.models;
             const scene = input && input.scene;
 
             if (!scene) {
                 throw new Error(error.input.required);
             }
 
-            // Every tick, run through all the models in the scene.
-            if (models) {
-                models.map(function (model) {
+            // Every tick, run through all the mobs in the scene.
+            if (input.mob) {
+                input.mob.map(function (mob) {
 
-                    if (model.mesh.userData && model.mesh.userData.firebaseUrl) {
-                        const ref = new Firebase(model.mesh.userData.firebaseUrl);
-
-                        // todo: implement syncing the mob position, rotation and scale.
+                    if (mob.mesh.userData && mob.mesh.userData.firebaseUrl) {
+                        const ref = new Firebase(mob.mesh.userData.firebaseUrl);
                     }
 
-                    // If the model has a hearbeat, run it now.
-                    if (model.mesh.heartbeat) {
-                        model.mesh.heartbeat(model.mesh);
+                    // If the mob has a hearbeat, run it now.
+                    if (mob.mesh.heartbeat) {
+                        mob.mesh.heartbeat(mob.mesh);
                     }
                 });
             }
@@ -119,7 +115,7 @@ module.exports = function game() {
                 camera: camera,
                 scene: scene,
                 renderer: renderer,
-                models: domain.models.map(function (model) { return model.mesh }),
+                mob: domain.mob.map(function (mob) { return mob.mesh }),
                 raycaster: raycaster,
                 mouseCoordinates: mouseCoordinates
             }

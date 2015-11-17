@@ -11,10 +11,10 @@ class Domain extends Model {
 
         this.mesh.name = input.name || 'terrain';
 
-        // todo: move from hard-coded collection of models to Firebase driven data.
-        this.models = [
+        // todo: move from hard-coded collection of mobs to Firebase driven data.
+        this.mob = [
             new Mob({
-                firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + input.name + '/models/john-laforge',
+                firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + input.name + '/mob/john-laforge',
                 name: 'john-laforge',
                 targetName: 'John Laforge',
                 race: 'human',
@@ -22,7 +22,7 @@ class Domain extends Model {
                 life: 3
             }),
             new Mob({
-                firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + input.name + '/models/sander-marsh',
+                firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + input.name + '/mob/sander-marsh',
                 name: 'sander-marsh',
                 targetName: 'Sander Marsh',
                 race: 'human',
@@ -30,7 +30,7 @@ class Domain extends Model {
                 life: 3
             }),
             new Mob({
-                firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + input.name + '/models/jolly-jumper',
+                firebaseUrl: 'https://enchantment.firebaseio.com/domain/' + input.name + '/mob/jolly-jumper',
                 name: 'jolly-jumper',
                 targetName: 'Jolly Jumper',
                 race: 'animal',

@@ -6,7 +6,7 @@ module.exports = function acquireTarget() {
         const camera = e.detail.camera;
         const scene = e.detail.scene;
         const renderer = e.detail.renderer;
-        const models = e.detail.models;
+        const mob = e.detail.mob;
         const raycaster = e.detail.raycaster;
         const mouseCoordinates = e.detail.mouseCoordinates;
         const recursiveFlag = true;
@@ -17,7 +17,7 @@ module.exports = function acquireTarget() {
 
         raycaster.setFromCamera(mouse, camera);
 
-        const intersects = raycaster.intersectObjects(models, recursiveFlag);
+        const intersects = raycaster.intersectObjects(mob, recursiveFlag);
 
         if (intersects.length > 0) {
             const currentTarget = intersects[0].object;
