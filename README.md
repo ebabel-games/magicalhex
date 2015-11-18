@@ -1,6 +1,6 @@
 # Enchantment MMO
 
-version 0.8.0
+version 0.9.0
 
 Enchantment (working title) is a free (for ever) browser based MMO. It's a dark world with evil magic, demons and necromancers battling each other for supremacy. See the [wiki](https://github.com/ebabel-eu/Enchantment/wiki) for further details.
 
@@ -73,10 +73,11 @@ See http://semver.org/
 
 ### Next release tag
 
-0.9.0 refactor data and classes
+0.10.0 server side
 
 ### Released tags
 
+* 0.9.0 refactor data and classes
 * 0.8.1 fix the keyboard controls to move within the scene.
 * 0.8.0 sprite interaction
 * 0.7.0 remove collada and use THREE.js models instead
