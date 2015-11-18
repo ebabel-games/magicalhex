@@ -1,8 +1,8 @@
 # Enchantment MMO
 
-version 0.9.0
+version 0.10.0
 
-Enchantment (working title) is a free (for ever) browser based MMO. It's a dark world with evil magic, demons and necromancers battling each other for supremacy. See the [wiki](https://github.com/ebabel-eu/Enchantment/wiki) for further details.
+Enchantment (working title) is a free (for ever) browser based MMO. It's a dark world wher necromancers try to survive battling each other. See the [wiki](https://github.com/ebabel-eu/Enchantment/wiki) for further details.
 
 ## Installation
 

@@ -25,12 +25,15 @@ module.exports = function takeDamage (input) {
 
     const isDead = updatedLifePoints <= 0;
 
+    const opacity = updatedLifePoints / model.userData.creation.userData.life;
+
     // Update Firebase with the new Life points.
     model.update({
         endpoint: model.userData.firebaseUrl + '/userData',
         payload: {
             life: updatedLifePoints,
-            dead: isDead
+            dead: isDead,
+            opacity: opacity
         }
     });
 

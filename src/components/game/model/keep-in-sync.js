@@ -1,3 +1,5 @@
+import fade from './fade';
+
 // Keep model in sync with Firebase.
 // Data flows from Firebase to the model.
 module.exports = function keepInSync() {
@@ -17,6 +19,11 @@ module.exports = function keepInSync() {
         _this.mesh.position.set(data.position.x, data.position.y, data.position.z);
         _this.mesh.rotation.set(data.rotation.x, data.rotation.y, data.rotation.z);
         _this.mesh.scale.set(data.scale.x, data.scale.y, data.scale.z);
+
+        fade({
+            model: _this, 
+            opacity: data.userData.opacity
+        });
     }
 
     registerFirebase();

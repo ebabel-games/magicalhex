@@ -5,7 +5,6 @@ const render = function render (input) {
     const renderer = input && input.renderer;
     const scene = input && input.scene;
     const camera = input && input.camera;
-    const callback = input && input.callback;
     const keyboardControls = input && input.keyboardControls;
 
     if (!renderer || !scene || !camera || !keyboardControls) {
@@ -16,11 +15,7 @@ const render = function render (input) {
 
     renderer.render(scene, camera);
 
-    if (callback) {
-        callback(input);
-    }
-
-    requestAnimationFrame(function() {
+    requestAnimationFrame(function callRender() {
         render(input);
     });
 

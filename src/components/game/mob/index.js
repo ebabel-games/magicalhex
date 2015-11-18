@@ -2,8 +2,8 @@ import THREE from 'three';
 
 import Model from '../model';
 
-import heartbeat from './heartbeat';
 import takeDamage from './takeDamage';
+import fade from '../model/fade';
 
 // 3D models.
 import human from './human';
@@ -34,9 +34,6 @@ class Mob extends Model {
         // Merge of inherited mesh and the new model are now the current mesh.
         this.mesh = _mesh;
 
-        // Run the heartbeat at each game tick.
-        this.mesh.heartbeat = heartbeat;
-
         // Order the model to take some damage, which decreases its life points by the amount of damage.
         // There is no negotiation at this point, when calling this function, the model has no choice but to take damages.
         this.mesh.takeDamage = takeDamage;
@@ -48,6 +45,12 @@ class Mob extends Model {
         this.mesh.position.set(input.position.x, input.position.y, input.position.z);
         this.mesh.rotation.set(input.rotation.x, input.rotation.y, input.rotation.z);
         this.mesh.scale.set(input.scale.x, input.scale.y, input.scale.z);
+
+        // Set opacity when Mob is loaded.
+        fade({
+            model: this,
+            opacity: this.mesh.userData.opacity
+        });
 
         return this;
     }

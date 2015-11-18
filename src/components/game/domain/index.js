@@ -39,7 +39,7 @@ class Domain extends Model {
                     rotation: mob.rotation,
                     scale: mob.scale,
                     life: mob.userData.life
-                })
+                });
 
                 _this.mob.push(mobInstance);
 
@@ -68,41 +68,15 @@ class Domain extends Model {
                 document.dispatchEvent(clickEvent);
             }, true);
 
-            // Render the scene.
+            // Render the scene
+            // Note: render is called from here because only now are the mobs loaded.
             render({
                 renderer: input.renderer,
                 scene: input.scene,
                 camera: input.camera,
                 keyboardControls: new KeyboardControls({ object: input.camera }),
-                mob: _this.mob,
-
-                // The callback is run every tick of the main render. It co-ordinates running all sprite heartbeats.
-                callback: function callback (input) {
-                    const scene = input && input.scene;
-
-                    if (!scene) {
-                        throw new Error(error.input.required);
-                    }
-
-                    // Every tick, run through all the mobs in the scene.
-                    if (input.mob) {
-                        input.mob.map(function (mob) {
-
-                            if (mob.mesh.userData && mob.mesh.userData.firebaseUrl) {
-                                const ref = new Firebase(mob.mesh.userData.firebaseUrl);
-                            }
-
-                            // If the mob has a hearbeat, run it now.
-                            if (mob.mesh.heartbeat) {
-                                mob.mesh.heartbeat(mob.mesh);
-                            }
-                        });
-                    }
-                }
+                mob: _this.mob
             });
-
-
-
 
         });
 
