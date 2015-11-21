@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Foliage 01</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+        <style type="text/css">
+            body {
+                margin: 0;
+            }
+        </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/threejs/r73/three.min.js"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+
+    <body>
+        <div id="container"></div>
+
+
+        <script>
+            var camera, controls, scene, renderer;
+
+            init();
+            animate();
+
+            function init() {
+
+                scene = new THREE.Scene();
+                scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
+
+                renderer = new THREE.WebGLRenderer();
+                renderer.setClearColor( scene.fog.color );
+                renderer.setPixelRatio( window.devicePixelRatio );
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+                var container = document.getElementById( 'container' );
+                container.appendChild( renderer.domElement );
+
+                camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 500 );
+                camera.position.set(0, 180, 180);
+                camera.rotation.x = -40 * Math.PI / 180;
+
+                controls = new THREE.OrbitControls( camera, renderer.domElement );
+                //controls.addEventListener( 'change', render ); // add this only if there is no animation loop (requestAnimationFrame)
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.25;
+                controls.enableZoom = false;
+
+
+                // Ground
+                var ground = {
+                    geometry: new THREE.PlaneGeometry(1000, 1000),
+                    material: new THREE.MeshLambertMaterial({color: 0x009900, side: THREE.DoubleSide})
+                };
+                ground.mesh = new THREE.Mesh(ground.geometry, ground.material);
+                ground.mesh.rotation.set(-90 * Math.PI / 180, 0, 0);
+                scene.add(ground.mesh);
+
+
+                // Tree trunk
+                var trunk = {
+                    geometry: new THREE.CylinderGeometry(3, 6, 60, 3, 1),
+                    material: new THREE.MeshLambertMaterial({color: 0x654321})
+                };
+                trunk.mesh = new THREE.Mesh(trunk.geometry, trunk.material);
+                trunk.mesh.position.set(0, 30, 0);
+
+
+                // Tree foliage
+                var foliageTexture = THREE.ImageUtils.loadTexture('foliage-01_256x128.png');
+                var foliage = {
+                    geometry: new THREE.PlaneGeometry(128, 64),
+                    material: new THREE.MeshLambertMaterial({map: foliageTexture, side: THREE.DoubleSide, alphaTest: 0.5, fog: true})
+                };
+                foliage.mesh = new THREE.Mesh(foliage.geometry, foliage.material);
+                foliage.mesh.position.set(0, 80, 0);
+                var foliage2 = foliage.mesh.clone();
+                foliage2.rotation.set(0, 90 * Math.PI / 180, 0);
+
+                // Tree
+                var tree = new THREE.Group();
+                tree.add(trunk.mesh);
+                tree.add(foliage.mesh);
+                tree.add(foliage2);
+                scene.add(tree);
+
+
+                // Forest
+                var forest = [];
+                for (var i = 0; i < 200; i++) {
+                    var treeClone = tree.clone();
+                    treeClone.position.x = (Math.random() - 0.5) * 1000;
+                    treeClone.position.z = (Math.random() - 0.5) * 1000;
+                    treeClone.rotation.y = ((Math.random() - 0.5) * 180) * Math.PI / 180;
+                    scene.add(treeClone);
+                }
+
+
+                // lights
+
+                light = new THREE.DirectionalLight( 0x993322 );
+                light.position.set( -1, -1, -1 );
+                scene.add( light );
+
+                light = new THREE.AmbientLight( 0x222222 );
+                scene.add( light );
+
+                window.addEventListener( 'resize', onWindowResize, false );
+            }
+
+            function onWindowResize() {
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+            }
+
+            function animate() {
+
+                requestAnimationFrame( animate );
+
+                controls.update(); // required if controls.enableDamping = true, or if controls.autoRotate = true
+
+                render();
+
+            }
+
+            function render() {
+
+                renderer.render( scene, camera );
+
+            }
+
+        </script>
+
+    </body>
+</html>
