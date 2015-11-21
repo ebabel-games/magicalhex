@@ -69,7 +69,7 @@
                 // Tree trunk
                 var trunkTexture = THREE.ImageUtils.loadTexture('wood-texture.jpg');
                 var trunk = {
-                    geometry: new THREE.CylinderGeometry(3, 6, 60, 3, 1),
+                    geometry: new THREE.CylinderGeometry(6, 9, 60, 3, 1),
                     material: new THREE.MeshLambertMaterial({map: trunkTexture, fog: true})
                 };
                 trunk.mesh = new THREE.Mesh(trunk.geometry, trunk.material);
@@ -96,13 +96,15 @@
 
 
                 // Forest
-                for (var i = -50; i < 50; i++) {
-                    var treeClone = tree.clone();
-                    treeClone.position.x = ((Math.random() - 0.5) * 10)+(i*10);
-                    treeClone.position.z = ((Math.random() - 0.5) * 10)+(i*10);
-                    treeClone.rotation.y = ((Math.random() - 0.5) * 180) * Math.PI / 180;
-                    console.log(Math.floor(treeClone.position.x), Math.floor(treeClone.position.z));
-                    scene.add(treeClone);
+                for (var i = -498; i < 498; i=i+120) {
+                    for (var j = -498; j < 498; j=j+120){
+                        var treeClone = tree.clone();
+                        treeClone.position.x = ((Math.random() - 0.5) * 50)+i;
+                        treeClone.position.z = ((Math.random() - 0.5) * 50)+j;
+                        treeClone.rotation.y = ((Math.random() - 0.5) * 180) * Math.PI / 180;
+                        console.log(Math.floor(treeClone.position.x), Math.floor(treeClone.position.z));
+                        scene.add(treeClone);
+                    }
                 }
 
                 // lights
