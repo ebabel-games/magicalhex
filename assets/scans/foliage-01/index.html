@@ -56,7 +56,7 @@
                 var groundTexture = THREE.ImageUtils.loadTexture('grass.jpg');
                 groundTexture.wrapS = THREE.RepeatWrapping;
                 groundTexture.wrapT = THREE.RepeatWrapping;
-                groundTexture.repeat.set(1000/64, 1000/64);
+                groundTexture.repeat.set(1000/256, 1000/256);
                 var ground = {
                     geometry: new THREE.PlaneGeometry(1000, 1000),
                     material: new THREE.MeshLambertMaterial({map: groundTexture, fog: true, side: THREE.DoubleSide})
