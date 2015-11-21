@@ -89,15 +89,14 @@
 
 
                 // Forest
-                var forest = [];
-                for (var i = 0; i < 200; i++) {
+                for (var i = -50; i < 50; i++) {
                     var treeClone = tree.clone();
-                    treeClone.position.x = (Math.random() - 0.5) * 1000;
-                    treeClone.position.z = (Math.random() - 0.5) * 1000;
+                    treeClone.position.x = ((Math.random() - 0.5) * 10)+(i*10);
+                    treeClone.position.z = ((Math.random() - 0.5) * 10)+(i*10);
                     treeClone.rotation.y = ((Math.random() - 0.5) * 180) * Math.PI / 180;
+                    console.log(Math.floor(treeClone.position.x), Math.floor(treeClone.position.z));
                     scene.add(treeClone);
                 }
-
 
                 // lights
 
