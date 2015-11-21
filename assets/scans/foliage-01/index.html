@@ -53,9 +53,13 @@
 
 
                 // Ground
+                var groundTexture = THREE.ImageUtils.loadTexture('grass.jpg');
+                groundTexture.wrapS = THREE.RepeatWrapping;
+                groundTexture.wrapT = THREE.RepeatWrapping;
+                groundTexture.repeat.set(1000/64, 1000/64);
                 var ground = {
                     geometry: new THREE.PlaneGeometry(1000, 1000),
-                    material: new THREE.MeshLambertMaterial({color: 0x009900, side: THREE.DoubleSide})
+                    material: new THREE.MeshLambertMaterial({map: groundTexture, fog: true, side: THREE.DoubleSide})
                 };
                 ground.mesh = new THREE.Mesh(ground.geometry, ground.material);
                 ground.mesh.rotation.set(-90 * Math.PI / 180, 0, 0);
