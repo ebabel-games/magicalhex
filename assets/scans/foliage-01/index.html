@@ -8,7 +8,10 @@
 
         <style type="text/css">
             body {
+                color: #000;
+                background-color: #fff;
                 margin: 0;
+                overflow: hidden;
             }
         </style>
 
@@ -43,8 +46,7 @@
                 camera.position.set(0, 180, 180);
                 camera.rotation.x = -40 * Math.PI / 180;
 
-                controls = new THREE.OrbitControls( camera, renderer.domElement );
-                //controls.addEventListener( 'change', render ); // add this only if there is no animation loop (requestAnimationFrame)
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
                 controls.enableDamping = true;
                 controls.dampingFactor = 0.25;
                 controls.enableZoom = false;
@@ -61,9 +63,10 @@
 
 
                 // Tree trunk
+                var trunkTexture = THREE.ImageUtils.loadTexture('wood-texture.jpg');
                 var trunk = {
                     geometry: new THREE.CylinderGeometry(3, 6, 60, 3, 1),
-                    material: new THREE.MeshLambertMaterial({color: 0x654321})
+                    material: new THREE.MeshLambertMaterial({map: trunkTexture, fog: true})
                 };
                 trunk.mesh = new THREE.Mesh(trunk.geometry, trunk.material);
                 trunk.mesh.position.set(0, 30, 0);
