@@ -43,7 +43,7 @@
                 container.appendChild( renderer.domElement );
 
                 camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 500 );
-                camera.position.set(0, 180, 180);
+                camera.position.set(0, 60, 180);
                 camera.rotation.x = -40 * Math.PI / 180;
 
                 controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -92,20 +92,9 @@
                 tree.add(trunk.mesh);
                 tree.add(foliage.mesh);
                 tree.add(foliage2);
-                scene.add(tree);
-
 
                 // Forest
-                for (var i = -498; i < 498; i=i+120) {
-                    for (var j = -498; j < 498; j=j+120){
-                        var treeClone = tree.clone();
-                        treeClone.position.x = ((Math.random() - 0.5) * 50)+i;
-                        treeClone.position.z = ((Math.random() - 0.5) * 50)+j;
-                        treeClone.rotation.y = ((Math.random() - 0.5) * 180) * Math.PI / 180;
-                        console.log(Math.floor(treeClone.position.x), Math.floor(treeClone.position.z));
-                        scene.add(treeClone);
-                    }
-                }
+                plotModels({ model: tree, minimumScale: 2 });
 
                 // lights
 
@@ -117,6 +106,44 @@
                 scene.add( light );
 
                 window.addEventListener( 'resize', onWindowResize, false );
+            }
+
+            function plotModels (input) {
+                var model = input && input.model;
+
+                var width = input && input.width || 1000;
+                var height = input && input.height || 1000;
+
+                var boundaries = {
+                    west: width / -2,
+                    east: width / 2,
+                    north: height / 2,
+                    south: height / -2
+                };
+
+                // How wide apart the trees can be from each other.
+                var spacing = input && input.spacing || 120;
+
+                // How random the position is.
+                var positionDeviation = input && input.positionDeviation || 50;
+
+                // How random the size is.
+                var scaleDeviation = input && input.scaleDeviation || 0.8;
+
+                var minimumScale = input && input.minimumScale || 1;
+
+                for (var i = boundaries.west; i < boundaries.east; i = i + spacing) {
+                    for (var j = boundaries.south; j < boundaries.north; j = j + spacing) {
+                        var clone = model.clone();
+                        var scale = (Math.random() * scaleDeviation) + minimumScale;
+                        clone.position.x = ((Math.random() - 0.5) * positionDeviation) + i;
+                        clone.position.z = ((Math.random() - 0.5) * positionDeviation) + j;
+                        clone.rotation.y = ((Math.random() - 0.5) * 180) * Math.PI / 180;
+                        clone.scale.set(scale, scale, scale);
+                        scene.add(clone);
+                    }
+                }
+
             }
 
             function onWindowResize() {
