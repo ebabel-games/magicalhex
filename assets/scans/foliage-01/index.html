@@ -94,12 +94,27 @@
                 tree.add(foliage2);
 
                 // Forest
-                var plotResult = plotModelsOnGrid({
+                var forest = plotModelsOnGrid({
                     model: tree,
                     numberModelsToPlot: 100,
-                    scale: { min: 1, max: 1.2 }
+                    scale: { min: 1, max: 1.5 },
+                    rotate: true
                 });
-                scene.add(plotResult.group);
+
+                // Spikes: use the previously added forest to make sure the same position isn't re-used.
+                var spikes = plotModelsOnGrid({
+                    group: forest.group,
+                    freeGridPositions: forest.freeGridPositions,
+                    model: new THREE.Mesh(
+                        new THREE.CylinderGeometry(0, 4, 24, 3), 
+                        new THREE.MeshLambertMaterial({map: trunkTexture, fog: true})),
+                    numberModelsToPlot: 20,
+                    positionY: 12,
+                    scale: false
+                });
+
+                // Finally, add all the models of the forest and the spikes.
+                scene.add(spikes.group);
 
                 // lights
 
@@ -136,7 +151,8 @@
                 var numberModelsToPlot = input && input.numberModelsToPlot || 
                     ((freeGridPositionsLength > 20) ? 20 : freeGridPositionsLength);
 
-                var scale = input && input.scale || { min: 1, max: 2 };
+                var scale = input && input.scale;
+                var rotate = input && input.rotate || false;
 
                 // Positions that have been plotted with a model.
                 var plottedPositions = [];
@@ -145,7 +161,8 @@
                     // Pick a random position from the array of positions still available.
                     var index = Math.floor(Math.random() * freeGridPositions.length);
                     var position = freeGridPositions[index];
-                    var size = Math.random() * scale.max + scale.min;
+                    var size = scale ? (Math.random() * scale.max + scale.min) : 1;
+                    var rotation = rotate ? (Math.random() * -45) * Math.PI / 180  : 0;
 
                     // Remove the plotted position from the array of free positions.
                     freeGridPositions.splice(index, 1);
@@ -157,6 +174,7 @@
                     var clone = model.clone();
                     clone.position.set(position.x, positionY, position.z);
                     clone.scale.set(size, size, size);
+                    clone.rotation.set(0, rotation, 0);
                     group.add(clone);
                 }
 
