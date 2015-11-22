@@ -14,7 +14,7 @@ import error from '../shared/errorMessages';
 import './game.css';
 
 // Main game module.
-module.exports = function game() {
+module.exports = function game (playerId) {
     // Objects to create only once in the game.
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x9db3b5, 0.02);
@@ -25,6 +25,9 @@ module.exports = function game() {
         { light: new THREE.DirectionalLight(0x800020, 0.6), position: { x: -10, y: 10, z: -10 } }
     ];
     const raycaster = new THREE.Raycaster();
+
+
+
     const camera = initScene({
         scene: scene,
         renderer: renderer,
@@ -41,7 +44,7 @@ module.exports = function game() {
     });
 
     // Test: display world axes.
-    axes({ scene: scene, axesLength: 1000 });
+    axes({ scene: scene, axesLength: 500 });
 
     // Current domain.
     // Note: this information is hard coded for now but it will come from 

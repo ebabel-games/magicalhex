@@ -6,6 +6,9 @@ import character from '../../game/characterCreation';
 import error from '../../shared/errorMessages';
 import './login.css';
 
+// Game.
+import game from '../../game';
+
 class Login extends React.Component {
 
     // constructor is replacing getInitialState.
@@ -88,6 +91,9 @@ class Login extends React.Component {
                     gender: authData.facebook.cachedUserProfile.gender,
                     ageRange: authData.facebook.cachedUserProfile.age_range.min
                 };
+
+                // Start the game.
+                game(_player.id);
 
                 _this.ref.child('player/' + _player.id + '/account').update(_player);
                 _this.ref.child('player/' + _player.id + '/login').push({

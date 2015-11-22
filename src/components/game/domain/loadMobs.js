@@ -1,3 +1,4 @@
+import THREE from 'three';
 import Firebase from 'firebase';
 
 import KeyboardControls from '../keyboardControls';
@@ -19,6 +20,8 @@ module.exports = function loadMobs (input) {
 
         _this.mob = [];
 
+        _this.models = new THREE.Group();
+
         Object.keys(mobs).map(function (value, index) {
             mob = mobs[value];
 
@@ -35,8 +38,11 @@ module.exports = function loadMobs (input) {
 
             _this.mob.push(mobInstance);
 
-            input.scene.add(mobInstance.mesh);
+            _this.models.add(mobInstance.mesh);
         });
+
+        // Add all mobs to the scene in one group.
+        input.scene.add(_this.models);
 
         _this.mouseCoordinates = { x: null, y: null };
 

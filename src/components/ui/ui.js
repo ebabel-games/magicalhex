@@ -8,9 +8,6 @@ import Login from './login/login';
 import Creation from './character/creation/creation';
 import './ui.css';
 
-// Game.
-import game from '../game';
-
 // UI main component.
 class Main extends React.Component {
     render() {
@@ -25,5 +22,3 @@ class Main extends React.Component {
 }
 
 ReactDOM.render(<Main />, document.getElementById('game'));
-
-game();
