@@ -42,8 +42,8 @@
                 var container = document.getElementById( 'container' );
                 container.appendChild( renderer.domElement );
 
-                camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 550 );
-                camera.position.set(0, 60, 180);
+                camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 500 );
+                camera.position.set(0, 6, 50);
                 camera.rotation.x = -40 * Math.PI / 180;
 
                 controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -96,8 +96,8 @@
                 // Forest
                 var forest = plotModelsOnGrid({
                     model: tree,
-                    numberModelsToPlot: 100,
-                    scale: { min: 1, max: 1.5 },
+                    numberModelsToPlot: 800,
+                    scale: { min: 0.16, max: 0.2 },
                     rotate: true
                 });
 
@@ -106,10 +106,10 @@
                     group: forest.group,
                     freeGridPositions: forest.freeGridPositions,
                     model: new THREE.Mesh(
-                        new THREE.CylinderGeometry(0, 4, 24, 3), 
+                        new THREE.CylinderGeometry(0, 2, 12, 3), 
                         new THREE.MeshLambertMaterial({map: trunkTexture, fog: true})),
-                    numberModelsToPlot: 20,
-                    positionY: 12,
+                    numberModelsToPlot: 100,
+                    positionY: 6,
                     scale: false
                 });
 
@@ -197,7 +197,7 @@
                     south: height / 2
                 };
 
-                var tileSize = input && input.tileSize || 50;
+                var tileSize = input && input.tileSize || 10;
 
                 for (var x = boundaries.west; x < boundaries.east; x = x + tileSize) {
                     for (var z = boundaries.north; z < boundaries.south; z = z + tileSize) {
