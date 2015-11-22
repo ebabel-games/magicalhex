@@ -51,7 +51,7 @@ module.exports = function game() {
     const domain = new Domain({
         firebaseUrl: 'https://enchantment.firebaseio.com/domain/test-domain',
         name: 'test-domain', // Each domain will get a randomly genereated internal name upon creation.
-        geometry: new THREE.PlaneGeometry(2000, 2000),
+        geometry: new THREE.PlaneGeometry(1000, 1000),
         material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true }),
         camera: camera,
         scene: scene,
