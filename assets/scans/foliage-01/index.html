@@ -15,7 +15,7 @@
             }
         </style>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/threejs/r73/three.min.js"></script>
+        <script src="three.min.js"></script>
         <script src="OrbitControls.js"></script>
     </head>
 
@@ -94,10 +94,10 @@
                 tree.add(foliage2);
 
                 // Forest
-                //plotModels({ model: tree, minimumScale: 2 });
                 var plotResult = plotModelsOnGrid({
                     model: tree,
-                    numberModelsToPlot: 400
+                    numberModelsToPlot: 100,
+                    scale: { min: 1, max: 1.2 }
                 });
                 scene.add(plotResult.group);
 
@@ -115,7 +115,8 @@
 
             // Return the models as a group and the remaining 
             // grid positions still free to be plotted on.
-            // Note: No model is added to the scene, only clones of the model are grouped and returned, for performance optimization.
+            // Note: No model is added to the scene, only clones of the model are grouped and returned, 
+            // for performance optimization.
             function plotModelsOnGrid (input) {
                 // The empty container where all model instances will be grouped.
                 var group = input && input.group || new THREE.Group();
@@ -128,12 +129,14 @@
                 var positionY = input && input.positionY || 0;
 
                 // Grid co-ordinates not already plotted with a model.
-                var freeGridPositions = input && input.freeGridPositions || getGridPositions();
+                var freeGridPositions = input && input.freeGridPositions || createGridPositions();
                 var freeGridPositionsLength = freeGridPositions.length;
 
                 // Number of model instances to plot.
                 var numberModelsToPlot = input && input.numberModelsToPlot || 
-                    (freeGridPositionsLength > 20) ? 20 : freeGridPositionsLength;
+                    ((freeGridPositionsLength > 20) ? 20 : freeGridPositionsLength);
+
+                var scale = input && input.scale || { min: 1, max: 2 };
 
                 // Positions that have been plotted with a model.
                 var plottedPositions = [];
@@ -142,6 +145,7 @@
                     // Pick a random position from the array of positions still available.
                     var index = Math.floor(Math.random() * freeGridPositions.length);
                     var position = freeGridPositions[index];
+                    var size = Math.random() * scale.max + scale.min;
 
                     // Remove the plotted position from the array of free positions.
                     freeGridPositions.splice(index, 1);
@@ -152,6 +156,7 @@
                     // Create a clone and place it at the correct position.
                     var clone = model.clone();
                     clone.position.set(position.x, positionY, position.z);
+                    clone.scale.set(size, size, size);
                     group.add(clone);
                 }
 
@@ -162,44 +167,8 @@
                 };
             }
 
-            function plotModels (input) {
-                var model = input && input.model;
-
-                var width = input && input.width || 1000;
-                var height = input && input.height || 1000;
-
-                var boundaries = {
-                    west: width / -2,
-                    east: width / 2,
-                    north: height / -2,
-                    south: height / 2
-                };
-
-                // How wide apart the trees can be from each other.
-                var spacing = input && input.spacing || 120;
-
-                // How random the position is.
-                var positionDeviation = input && input.positionDeviation || 50;
-
-                // How random the size is.
-                var scaleDeviation = input && input.scaleDeviation || 0.8;
-
-                var minimumScale = input && input.minimumScale || 1;
-
-                for (var i = boundaries.west; i < boundaries.east; i = i + spacing) {
-                    for (var j = boundaries.north; j < boundaries.south; j = j + spacing) {
-                        var clone = model.clone();
-                        var scale = (Math.random() * scaleDeviation) + minimumScale;
-                        clone.position.x = ((Math.random() - 0.5) * positionDeviation) + i;
-                        clone.position.z = ((Math.random() - 0.5) * positionDeviation) + j;
-                        clone.rotation.y = ((Math.random() - 0.5) * 180) * Math.PI / 180;
-                        clone.scale.set(scale, scale, scale);
-                        scene.add(clone);
-                    }
-                }
-            }
-
-            function getGridPositions (input) {
+            // Create a grid of x and z positions.
+            function createGridPositions (input) {
                 var gridPositions = [];
 
                 var width = input && input.width || 1000;
@@ -224,30 +193,20 @@
             }
 
             function onWindowResize() {
-
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
-
                 renderer.setSize( window.innerWidth, window.innerHeight );
-
             }
 
             function animate() {
-
                 requestAnimationFrame( animate );
-
-                controls.update(); // required if controls.enableDamping = true, or if controls.autoRotate = true
-
+                controls.update();
                 render();
-
             }
 
             function render() {
-
                 renderer.render( scene, camera );
-
             }
-
         </script>
 
     </body>
