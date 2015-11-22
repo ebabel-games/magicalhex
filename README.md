@@ -1,8 +1,8 @@
-# Enchantment MMO
+# Single player adventure game
 
 version 0.10.0
 
-Enchantment (working title) is a free (for ever) browser based MMO. It's a dark world wher necromancers try to survive battling each other. See the [wiki](https://github.com/ebabel-eu/Enchantment/wiki) for further details.
+Enchantment (working title) is a free (for ever) browser based single player adventure game. See the [wiki](https://github.com/ebabel-eu/Enchantment/wiki) for further details.
 
 ## Installation
 
@@ -28,10 +28,6 @@ http-server public
 Browse to
 
   http://localhost:8080
-
-To view each individual model, browse to
-
-  http://localhost:8080/json-models
 
 ## Deploy to Firebase
 
@@ -73,7 +69,7 @@ See http://semver.org/
 
 ### Next release tag
 
-0.10.0 server side
+0.10.0 single player
 
 ### Released tags
 

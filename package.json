@@ -1,7 +1,7 @@
 {
   "name": "enchantment",
   "version": "0.10.0",
-  "description": "Enchantment (working title) is a free browser based MMO. It's a dark world with evil magic, demons and necromancers battling each other for supremacy.",
+  "description": "Enchantment (working title) is a free (for ever) browser based single player adventure game.",
   "engines": {
     "node": ">= 4.2.2"
   },
