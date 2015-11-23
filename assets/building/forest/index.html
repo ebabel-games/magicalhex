@@ -15,8 +15,8 @@
             }
         </style>
 
-        <script src="three.min.js"></script>
-        <script src="OrbitControls.js"></script>
+        <script src="/three.min.js"></script>
+        <script src="/OrbitControls.js"></script>
     </head>
 
     <body>
@@ -53,7 +53,7 @@
 
 
                 // Ground
-                var groundTexture = THREE.ImageUtils.loadTexture('grass.jpg');
+                var groundTexture = THREE.ImageUtils.loadTexture('ground.jpg');
                 groundTexture.wrapS = THREE.RepeatWrapping;
                 groundTexture.wrapT = THREE.RepeatWrapping;
                 groundTexture.repeat.set(1000/256, 1000/256);
@@ -67,7 +67,7 @@
 
 
                 // Tree trunk
-                var trunkTexture = THREE.ImageUtils.loadTexture('wood-texture.jpg');
+                var trunkTexture = THREE.ImageUtils.loadTexture('wood.jpg');
                 var trunk = {
                     geometry: new THREE.CylinderGeometry(6, 9, 60, 3, 1),
                     material: new THREE.MeshLambertMaterial({map: trunkTexture, fog: true})
