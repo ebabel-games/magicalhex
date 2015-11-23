@@ -78,7 +78,7 @@ module.exports = function game (input) {
 
 
     // Test: display world axes.
-    axes({ scene: scene, axesLength: 500 });
+    axes({ scene: scene, axesLength: 6 });
 
     let currentTarget = null;
 
