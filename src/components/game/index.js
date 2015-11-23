@@ -14,10 +14,14 @@ import error from '../shared/errorMessages';
 import './game.css';
 
 // Main game module.
-module.exports = function game (playerId) {
+// Note: the unit is in inches. The eyes of the player are 6 inches from the ground.
+module.exports = function game (input) {
+    const playerId = input && input.playerId;
+    let character = input && input.character;
+
     // Objects to create only once in the game.
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x9db3b5, 0.02);
+    scene.fog = new THREE.FogExp2(0x9db3b5, 0.005);
 
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     const lights = [
@@ -26,42 +30,54 @@ module.exports = function game (playerId) {
     ];
     const raycaster = new THREE.Raycaster();
 
+    let camera = null;
 
+    const ref = new Firebase('https://enchantment.firebaseio.com/player/' + playerId + '/character');
+    ref.once('value', function getCharacter (snapshot) {
+        character = snapshot.val() || character;
 
-    const camera = initScene({
-        scene: scene,
-        renderer: renderer,
-        lights: lights,
-        camera: {
-            type: 'PerspectiveCamera',
-            angle: 45,
-            aspectRatio: window.innerWidth / window.innerHeight,
-            nearPlane: 1,
-            farPlane: 150,
-            position: { x: 0, y: 6, z: 0 },
-            rotation: { x: 0, y: 0, z: 0 }
-        }
+        let data = snapshot.val();
+
+        character.position = data && data.position || { x: 0, y: 6, z: 0 };
+        character.rotation = data && data.rotation || { x: 0, y: 0, z: 0 };
+        character.scale = data && data.scale || { x: 1, y: 1, z: 1 };
+        character.domain = data && data.domain || 'centralDomain';
+
+        camera = initScene({
+            scene: scene,
+            renderer: renderer,
+            lights: lights,
+            camera: {
+                type: 'PerspectiveCamera',
+                angle: 45,
+                aspectRatio: window.innerWidth / window.innerHeight,
+                nearPlane: 1,
+                farPlane: 300,
+                position: { x: character.position.x, y: character.position.y, z: character.position.z },
+                rotation: { x: character.rotation.x, y: character.rotation.y, z: character.rotation.z }
+            }
+        });
+
+        ref.update(character);
+
+        // Current domain of the logged in player.
+        const domain = new Domain({
+            firebaseUrl: 'https://enchantment.firebaseio.com/player/' + playerId + '/domain/' + character.domain,
+            name: character.domain,
+            camera: camera,
+            scene: scene,
+            renderer: renderer,
+            raycaster: raycaster
+        });
+
+        scene.add(domain.still);
+        scene.add(domain.mob);
+
     });
+
 
     // Test: display world axes.
     axes({ scene: scene, axesLength: 500 });
-
-    // Current domain.
-    // Note: this information is hard coded for now but it will come from 
-    // the logged in player who keeps a record of his location, either 
-    // where he was last player or if it's a new player, 
-    // where he's just been created.
-    const domain = new Domain({
-        firebaseUrl: 'https://enchantment.firebaseio.com/domain/test-domain',
-        name: 'test-domain', // Each domain will get a randomly genereated internal name upon creation.
-        geometry: new THREE.PlaneGeometry(1000, 1000),
-        material: new THREE.MeshLambertMaterial({ color: 0xadff60, fog: true }),
-        camera: camera,
-        scene: scene,
-        renderer: renderer,
-        raycaster: raycaster
-    });
-    scene.add(domain.mesh);
 
     let currentTarget = null;
 

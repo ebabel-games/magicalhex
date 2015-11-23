@@ -1,6 +1,8 @@
 import React from 'react';
 import Firebase from 'firebase';
 
+import game from '../../../../game';
+
 import error from '../../../../shared/errorMessages';
 
 class CreateCharacterButton extends React.Component {
@@ -65,6 +67,11 @@ class CreateCharacterButton extends React.Component {
 
                 throw new Error(error.character.creation.failed);
             }
+
+            game({
+                playerId: _this.props.playerid,
+                character: character
+            });
 
             var event = new CustomEvent('hide-character-creation');
             document.dispatchEvent(event);

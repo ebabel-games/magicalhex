@@ -92,9 +92,6 @@ class Login extends React.Component {
                     ageRange: authData.facebook.cachedUserProfile.age_range.min
                 };
 
-                // Start the game.
-                game(_player.id);
-
                 _this.ref.child('player/' + _player.id + '/account').update(_player);
                 _this.ref.child('player/' + _player.id + '/login').push({
                     loginDate: new Date().toJSON()
@@ -125,6 +122,11 @@ class Login extends React.Component {
 
                             // Set the input data of the React CharacterCreation to player and character (if any).
                             document.dispatchEvent(_event);
+                        } else {
+                            game({
+                                playerId: player.id,
+                                character: character
+                            });
                         }
                     }
                 });
