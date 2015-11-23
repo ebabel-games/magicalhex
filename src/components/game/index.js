@@ -25,8 +25,9 @@ module.exports = function game (input) {
 
     const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
     const lights = [
-        { light: new THREE.DirectionalLight(0xffcccc, 0.4), position: { x: 10, y: 10, z: 10 } },
-        { light: new THREE.DirectionalLight(0x800020, 0.6), position: { x: -10, y: 10, z: -10 } }
+        { light:  new THREE.HemisphereLight(0xffffcc, 0x080820, 0.2) },
+        { light: new THREE.DirectionalLight(0xccff20, 0.4), position: { x: 10, y: 10, z: 10 } },
+        { light: new THREE.DirectionalLight(0xccff20, 0.4), position: { x: -10, y: 10, z: -10 } }
     ];
     const raycaster = new THREE.Raycaster();
 
