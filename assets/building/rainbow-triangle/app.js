@@ -25,11 +25,6 @@ function init() {
     controls.dampingFactor = 0.25;
     controls.enableZoom = false;
 
-    // Rock texture.
-    var rockTexture = THREE.ImageUtils.loadTexture('rock.jpg');
-    rockTexture.wrapS = THREE.RepeatWrapping;
-    rockTexture.wrapT = THREE.RepeatWrapping;
-
     // Rock geometry.
     var rockGeometry = new THREE.Geometry();
     rockGeometry.vertices.push(new THREE.Vector3(0.0, 1.0, -10.0));     // 0.white    0xffffff
@@ -51,8 +46,8 @@ function init() {
     rockGeometry.faces.push(new THREE.Face3(0, 3, 1));  // Left
     rockGeometry.faces[2].vertexColors = [white, green, blue];
 
-    // rockGeometry.faces.push(new THREE.Face3(1, 3, 2));  // Underneath
-    // rockGeometry.faces[3].vertexColors = [blue, green, red];
+    rockGeometry.faces.push(new THREE.Face3(1, 3, 2));  // Underneath
+    rockGeometry.faces[3].vertexColors = [blue, green, red];
 
     rockGeometry.computeFaceNormals();
     rockGeometry.computeVertexNormals();
@@ -60,10 +55,8 @@ function init() {
     // Rock mesh.
     var rock = new THREE.Mesh(rockGeometry, 
         new THREE.MeshPhongMaterial({
-            //map: rockTexture,
             vertexColors: THREE.VertexColors,
-            side: THREE.DoubleSide,
-
+            side: THREE.DoubleSide
         }));
 
     scene.add(rock);
