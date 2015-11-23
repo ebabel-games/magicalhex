@@ -29,6 +29,7 @@ function init() {
     var rockTexture = THREE.ImageUtils.loadTexture('rock.jpg');
     rockTexture.wrapS = THREE.RepeatWrapping;
     rockTexture.wrapT = THREE.RepeatWrapping;
+    rockTexture.repeat.set(1, 1);
 
     // Rock geometry.
     var rockGeometry = new THREE.Geometry();
@@ -61,12 +62,12 @@ function init() {
     rockGeometry.faces.push(new THREE.Face3(9, 10, 11));        // N
 
     rockGeometry.computeFaceNormals();
-    // rockGeometry.computeVertexNormals();
+    rockGeometry.computeVertexNormals();
 
     // Rock mesh.
     var rock = new THREE.Mesh(rockGeometry, 
         new THREE.MeshLambertMaterial({
-            //map: rockTexture,
+            map: rockTexture,
             vertexColors: THREE.VertexColors,
             side: THREE.DoubleSide
         }));
