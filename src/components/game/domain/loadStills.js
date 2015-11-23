@@ -83,7 +83,7 @@ module.exports = function loadStills (input) {
     _this.still.add(cutTrunks.group);
 
     // Rock texture.
-    const rockTexture = THREE.ImageUtils.loadTexture('rock.jpg');
+    const rockTexture = THREE.ImageUtils.loadTexture('red-white.jpg');
     rockTexture.wrapS = THREE.RepeatWrapping;
     rockTexture.wrapT = THREE.RepeatWrapping;
     rockTexture.repeat.set(1, 1);
@@ -102,6 +102,7 @@ module.exports = function loadStills (input) {
     rockGeometry.vertices.push(new THREE.Vector3(0, 2, 6));     // 9
     rockGeometry.vertices.push(new THREE.Vector3(6, 2, 2));     // 10
     rockGeometry.vertices.push(new THREE.Vector3(0, 4, -8));    // 11
+
     rockGeometry.faces.push(new THREE.Face3(0, 1, 11));         // A
     rockGeometry.faces.push(new THREE.Face3(1, 8, 11));         // B
     rockGeometry.faces.push(new THREE.Face3(1, 2, 8));          // C
@@ -116,16 +117,19 @@ module.exports = function loadStills (input) {
     rockGeometry.faces.push(new THREE.Face3(5, 10, 9));         // L
     rockGeometry.faces.push(new THREE.Face3(7, 11, 10));        // M
     rockGeometry.faces.push(new THREE.Face3(9, 10, 11));        // N
+
+    rockGeometry.faceVertexUvs[0].push([new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);
+    //rockGeometry.faceVertexUvs[1].push([new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);
+
     rockGeometry.computeFaceNormals();
     rockGeometry.computeVertexNormals();
+
 
     // Rock mesh.
     const rock = new THREE.Mesh(
         rockGeometry, 
         new THREE.MeshLambertMaterial({
-            map: rockTexture,
-            vertexColors: THREE.VertexColors,
-            side: THREE.DoubleSide
+            map: rockTexture
         })
     );
 
