@@ -131,7 +131,7 @@ function plotModelsOnGrid (input) {
         var index = Math.floor(Math.random() * freeGridPositions.length);
         var position = freeGridPositions[index];
         var size = scale ? (Math.random() * scale.max + scale.min) : 1;
-        var rotation = rotate ? (Math.random() * -45) * Math.PI / 180  : 0;
+        var rotation = rotate ? Math.random() * (-45 * Math.PI / 180) : 0;
 
         // Remove the plotted position from the array of free positions.
         freeGridPositions.splice(index, 1);
