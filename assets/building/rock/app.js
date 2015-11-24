@@ -73,6 +73,36 @@ function init() {
     rockGeometry.faces.push(new THREE.Face3(7, 11, 10));        // M
     rockGeometry.faces.push(new THREE.Face3(9, 10, 11));        // N
 
+    // UVs to map faces to the texture.
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // A
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // B
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // C
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // D
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // E
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // F
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // G
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // H
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // I
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // J
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // K
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // L
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // M
+    rockGeometry.faceVertexUvs[0].push(
+        [new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);   // N
+
     rockGeometry.computeFaceNormals();
     rockGeometry.computeVertexNormals();
 
@@ -98,13 +128,13 @@ function init() {
     scene.add(rocks.group);
 
     // Lights.
-    var intensity = 0.2;
+    var intensity = 0.6;
     light = new THREE.HemisphereLight(0xffffcc, 0x080820, intensity);
     scene.add(light);
-    light = new THREE.DirectionalLight(0xccff20, intensity);
+    light = new THREE.DirectionalLight(0xcc0020, intensity);
     light.position.set(10, 10, 10);
     scene.add(light);
-    light = new THREE.DirectionalLight(0xccff20, intensity);
+    light = new THREE.DirectionalLight(0x00cc00, intensity);
     light.position.set(-10, 10, -10);
     scene.add(light);
 

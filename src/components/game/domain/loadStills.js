@@ -126,9 +126,9 @@ module.exports = function loadStills (input) {
         rockGeometry.faceVertexUvs[0].push([new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1)]);
     });
 
+    rockGeometry.mergeVertices();
     rockGeometry.computeFaceNormals();
     rockGeometry.computeVertexNormals();
-
 
     // Rock mesh.
     const rock = new THREE.Mesh(
