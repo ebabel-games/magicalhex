@@ -101,9 +101,9 @@ module.exports = function loadStills (input) {
     rockGeometry.vertices.push(new THREE.Vector3(8, 0, 0));     // 6
     rockGeometry.vertices.push(new THREE.Vector3(6, 0, -10));   // 7
     rockGeometry.vertices.push(new THREE.Vector3(-6, 1, -1));   // 8
-    rockGeometry.vertices.push(new THREE.Vector3(0, 2, 6));     // 9
-    rockGeometry.vertices.push(new THREE.Vector3(6, 2, 2));     // 10
-    rockGeometry.vertices.push(new THREE.Vector3(0, 4, -8));    // 11
+    rockGeometry.vertices.push(new THREE.Vector3(0, 4, 6));     // 9
+    rockGeometry.vertices.push(new THREE.Vector3(6, 4, 2));     // 10
+    rockGeometry.vertices.push(new THREE.Vector3(0, 6, -8));    // 11
 
     // Faces (flat areas).
     rockGeometry.faces.push(new THREE.Face3(0, 1, 11));         // A
