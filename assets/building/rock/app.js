@@ -1,12 +1,22 @@
-var camera, controls, scene, renderer;
+var camera, controls, scene, renderer, stats;
 
 window.onload = function() {
+    stats = new Stats();
+    stats.setMode(0); // 0: fps, 1: ms, 2: mb
+
+    // Align top-left.
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+
+    document.body.appendChild(stats.domElement);
+
     init();
+
     animate();
 };
 
 function init() {
-
     scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2( 0xcccccc, 0.005 );
 
@@ -44,9 +54,9 @@ function init() {
     rockGeometry.vertices.push(new THREE.Vector3(8, 0, 0));     // 6
     rockGeometry.vertices.push(new THREE.Vector3(6, 0, -10));   // 7
     rockGeometry.vertices.push(new THREE.Vector3(-6, 1, -1));   // 8
-    rockGeometry.vertices.push(new THREE.Vector3(0, 2, 6));     // 9
-    rockGeometry.vertices.push(new THREE.Vector3(6, 2, 2));     // 10
-    rockGeometry.vertices.push(new THREE.Vector3(0, 4, -8));    // 11
+    rockGeometry.vertices.push(new THREE.Vector3(0, 4, 6));     // 9
+    rockGeometry.vertices.push(new THREE.Vector3(6, 4, 2));     // 10
+    rockGeometry.vertices.push(new THREE.Vector3(0, 6, -8));    // 11
 
     rockGeometry.faces.push(new THREE.Face3(0, 1, 11));         // A
     rockGeometry.faces.push(new THREE.Face3(1, 8, 11));         // B
@@ -100,7 +110,8 @@ function init() {
 
     window.addEventListener( 'resize', onWindowResize, false );
 
-    gui({
+    showGui({
+        rock: rock,
         scene: scene,
         camera: camera
     });
@@ -193,26 +204,50 @@ function onWindowResize() {
 }
 
 function animate() {
-    requestAnimationFrame( animate );
+
+    stats.begin();  // Start monitoring.
+
+    // Stats monitored code goes here.
     controls.update();
     render();
+
+    stats.end();    // End of monitoring.
+
+    // Self reference to keep running the animate function.
+    requestAnimationFrame(animate);
 }
 
 function render() {
     renderer.render( scene, camera );
 }
 
-function gui (input) {
+function showGui (input) {
     var gui = new dat.GUI();
 
     var scene = input && input.scene;
     var camera = input && input.camera;
+    var rock = input && input.rock;
+
+    var rockScale = gui.addFolder('Rock scale');
+    rockScale.add(rock.scale, 'x', 1, 5);
+    rockScale.add(rock.scale, 'y', 1, 5);
+    rockScale.add(rock.scale, 'z', 1, 5);
+    rockScale.open();
+
+    var rockPosition = gui.addFolder('Rock position');
+    rockPosition.add(rock.position, 'x', -50, 50);
+    rockPosition.add(rock.position, 'y', -50, 50);
+    rockPosition.add(rock.position, 'z', -50, 50);
+
+    var rockRotation = gui.addFolder('Rock rotation');
+    rockRotation.add(rock.rotation, 'x', 0 * Math.PI / 180, 360 * Math.PI / 180);
+    rockRotation.add(rock.rotation, 'y', 0 * Math.PI / 180, 360 * Math.PI / 180);
+    rockRotation.add(rock.rotation, 'z', 0 * Math.PI / 180, 360 * Math.PI / 180);
 
     var scenePosition = gui.addFolder('Scene position');
-    scenePosition.add(scene.position, 'x', -1000, 1000);
-    scenePosition.add(scene.position, 'y', -1000, 1000);
-    scenePosition.add(scene.position, 'z', -1000, 1000);
-    scenePosition.open();
+    scenePosition.add(scene.position, 'x', -500, 500);
+    scenePosition.add(scene.position, 'y', -500, 500);
+    scenePosition.add(scene.position, 'z', -500, 500);
 
     var fogFolder = gui.addFolder('Fog');
     fogFolder.add(scene.fog.color, 'r', 0, 1);
@@ -221,7 +256,17 @@ function gui (input) {
     fogFolder.add(scene.fog, 'density', 0.002, 0.01);
 
     var cameraPosition = gui.addFolder('Camera position');
-    cameraPosition.add(camera.position, 'x', -1000, 1000);
-    cameraPosition.add(camera.position, 'y', -1000, 1000);
-    cameraPosition.add(camera.position, 'z', -1000, 1000);
+    cameraPosition.add(camera.position, 'x', -500, 500);
+    cameraPosition.add(camera.position, 'y', -500, 500);
+    cameraPosition.add(camera.position, 'z', -500, 500);
 }
+
+
+
+
+
+
+
+
+
+
