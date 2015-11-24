@@ -1,7 +1,9 @@
 var camera, controls, scene, renderer;
 
-init();
-animate();
+window.onload = function() {
+    init();
+    animate();
+};
 
 function init() {
 
@@ -97,6 +99,11 @@ function init() {
     scene.add(light);
 
     window.addEventListener( 'resize', onWindowResize, false );
+
+    gui({
+        scene: scene,
+        camera: camera
+    });
 }
 
 // Return the models as a group and the remaining 
@@ -193,4 +200,28 @@ function animate() {
 
 function render() {
     renderer.render( scene, camera );
+}
+
+function gui (input) {
+    var gui = new dat.GUI();
+
+    var scene = input && input.scene;
+    var camera = input && input.camera;
+
+    var scenePosition = gui.addFolder('Scene position');
+    scenePosition.add(scene.position, 'x', -1000, 1000);
+    scenePosition.add(scene.position, 'y', -1000, 1000);
+    scenePosition.add(scene.position, 'z', -1000, 1000);
+    scenePosition.open();
+
+    var fogFolder = gui.addFolder('Fog');
+    fogFolder.add(scene.fog.color, 'r', 0, 1);
+    fogFolder.add(scene.fog.color, 'g', 0, 1);
+    fogFolder.add(scene.fog.color, 'b', 0, 1);
+    fogFolder.add(scene.fog, 'density', 0.002, 0.01);
+
+    var cameraPosition = gui.addFolder('Camera position');
+    cameraPosition.add(camera.position, 'x', -1000, 1000);
+    cameraPosition.add(camera.position, 'y', -1000, 1000);
+    cameraPosition.add(camera.position, 'z', -1000, 1000);
 }
