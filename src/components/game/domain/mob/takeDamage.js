@@ -1,4 +1,4 @@
-import error from '../../shared/errorMessages';
+import error from '../../../shared/errorMessages';
 
 // Model takes damage
 // Note: single responsibility, this function needs to stay small. 

@@ -8,7 +8,7 @@ import initScene from './initScene';
 
 import Model from './model';
 import Domain from './domain';
-import Mob from './mob';
+import Mob from './domain/mob';
 
 import error from '../shared/errorMessages';
 import './game.css';

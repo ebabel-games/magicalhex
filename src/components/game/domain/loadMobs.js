@@ -3,7 +3,7 @@ import Firebase from 'firebase';
 
 import KeyboardControls from '../keyboardControls';
 
-import Mob from '../mob';
+import Mob from './mob';
 
 import render from '../render';
 

@@ -41,7 +41,7 @@ class Login extends React.Component {
                 <p>
                     <button onClick={this.handleClick.bind(this)} 
                         disabled={this.state.disabled}>
-                        Facebook Login
+                        Play
                     </button>
                 </p>
             </div>

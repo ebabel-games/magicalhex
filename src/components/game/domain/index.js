@@ -11,6 +11,7 @@ class Domain extends Model {
     constructor (input) {
         super(input);
 
+
         // Name of the domain.
         this.mesh.name = input.name;
 

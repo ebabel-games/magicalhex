@@ -29,26 +29,28 @@ class KeyboardControls {
     }
 
     setDirection (input) {
-        const keyCode = input.keyCode;
-        const enable = input.enable;
+        const event = input && input.event;
+        const keyCode = input && input.keyCode;
+        const enable = input && input.enable;
 
         switch (keyCode) {
-            case 38: // up arrow
+            case 38: // Up arrow.
             case 87: // W
                 this.moveForward = enable;
                 break;
 
-            case 40: // down arrow
+            case 40: // Down arrow.
             case 83: // S
                 this.moveBackward = enable;
+                event.preventDefault(); // Prevent the whole page scrolling down when using the down arrow key.
                 break;
 
-            case 37: // left arrow
+            case 37: // Left arrow.
             case 65: // A
                 this.turnLeft = enable;
                 break;
 
-            case 39: // right arrow
+            case 39: // Right arrow.
             case 68: // D
                 this.turnRight = enable;
                 break;
@@ -57,6 +59,7 @@ class KeyboardControls {
 
     onKeyDown (e) {
         this.setDirection({
+            event: e,
             keyCode: e.keyCode,
             enable: true
         });
@@ -64,6 +67,7 @@ class KeyboardControls {
 
     onKeyUp (e) {
         this.setDirection({
+            event: e,
             keyCode: e.keyCode,
             enable: false
         });
