@@ -13,7 +13,11 @@ class Domain extends Model {
 
 
         // Name of the domain.
-        this.mesh.name = input.name;
+        this.mesh.name = input && input.name;
+
+        // Dimensions of the domain.
+        this.width = input && input.width;
+        this.height = input && input.height;
 
         // Still models that can't move. 
         // Add to the scene at the latest possible time, 

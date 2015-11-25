@@ -8,13 +8,17 @@ module.exports = function loadStills (input) {
     // Keep track of the domain instance scope.
     const _this = this;
 
+    // Domain total width and height.
+    const width = input && input.width || 1000;
+    const height = input && input.height || 1000;
+
     // Ground.
     const groundTexture = THREE.ImageUtils.loadTexture('ground.jpg');
     groundTexture.wrapS = THREE.RepeatWrapping;
     groundTexture.wrapT = THREE.RepeatWrapping;
-    groundTexture.repeat.set(1000/256, 1000/256);
+    groundTexture.repeat.set(width / 256, height / 256);
     const ground = {
-        geometry: new THREE.PlaneGeometry(1000, 1000),
+        geometry: new THREE.PlaneGeometry(width, height),
         material: new THREE.MeshLambertMaterial({map: groundTexture, side: THREE.DoubleSide})
     };
     ground.mesh = new THREE.Mesh(ground.geometry, ground.material);
@@ -56,7 +60,12 @@ module.exports = function loadStills (input) {
         model: tree,
         numberModelsToPlot: 800,
         scale: { min: 0.16, max: 0.2 },
-        rotate: true
+        rotate: true,
+
+        // Total width and height of the domain.
+        // Note: this is used by createGridPositions to decide how many tiles are available.
+        width: input && input.width || 1000,
+        height: input && input.height || 1000
     });
 
     // Add the forest to the domain.

@@ -16,7 +16,11 @@ module.exports = function plotModelsOnGrid (input) {
     const positionY = input && input.positionY || 0;
 
     // Grid co-ordinates not already plotted with a model.
-    const freeGridPositions = input && input.freeGridPositions || createGridPositions();
+    const freeGridPositions = input && input.freeGridPositions || createGridPositions({
+        width: input && input.width || 1000,
+        height: input && input.height || 1000
+    });
+
     const freeGridPositionsLength = freeGridPositions.length;
 
     // Number of model instances to plot.

@@ -68,7 +68,9 @@ module.exports = function game (input) {
             camera: camera,
             scene: scene,
             renderer: renderer,
-            raycaster: raycaster
+            raycaster: raycaster,
+            width: 1000,
+            height: 1000
         });
 
         scene.add(domain.still);
