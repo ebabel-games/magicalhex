@@ -58,6 +58,8 @@ class Rock {
             })
         );
 
+        rock.name = 'rock';
+
         return rock;
     }
 }

@@ -54,4 +54,6 @@ module.exports = function loadStills (input) {
         freeGridPositions: cutTrunks.freeGridPositions  // Place rocks where there is still room.
     });
     this.still.add(rocks.group);
+
+    this.still.name = 'still-models';
 };

@@ -25,7 +25,7 @@ class CutTrunks {
             }
         });
 
-        cutTrunks.group.name = 'rocks';
+        cutTrunks.group.name = 'cut-trunks';
 
         return cutTrunks;
     }
