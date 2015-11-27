@@ -8,7 +8,7 @@ import createGridPositions from './createGridPositions';
 // for performance optimization.
 module.exports = function plotModelsOnGrid (input) {
     // The empty container where all model instances will be grouped.
-    const group = input && input.group || new THREE.Group();
+    const group = new THREE.Group();
 
     // Model to be plotted on the grid free positions.
     const model = input && input.model;
@@ -30,9 +30,6 @@ module.exports = function plotModelsOnGrid (input) {
     const scale = input && input.scale;
     const rotate = input && input.rotate || false;
 
-    // Positions that have been plotted with a model.
-    const plottedPositions = [];
-
     for (let counter = 0; counter < numberModelsToPlot; counter++) {
         // Pick a random position from the array of positions still available.
         const index = Math.floor(Math.random() * freeGridPositions.length);
@@ -42,9 +39,6 @@ module.exports = function plotModelsOnGrid (input) {
 
         // Remove the plotted position from the array of free positions.
         freeGridPositions.splice(index, 1);
-
-        // Add the plotted position to the array of positions that have been plotted.
-        plottedPositions.push(position);
 
         // Create a clone and place it at the correct position.
         const clone = model.clone();
@@ -56,7 +50,6 @@ module.exports = function plotModelsOnGrid (input) {
 
     return {
         group: group,
-        plottedPositions: plottedPositions,
         freeGridPositions: freeGridPositions
     };
 };
