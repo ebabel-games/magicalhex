@@ -13,7 +13,7 @@ module.exports = function loadMobs (input) {
     // Keep track of the domain instance scope.
     const _this = this;
 
-    const ref = new Firebase(this.mesh.userData.firebaseUrl + '/mob');
+    const ref = new Firebase(this.firebaseUrl + '/mob');
 
     ref.once('value', function getMobs (snapshot) {
         const mobs = snapshot.val();

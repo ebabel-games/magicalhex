@@ -13,7 +13,7 @@ class Domain extends Model {
         super(input);
 
         // Name of the domain.
-        this.mesh.name = input && input.name;
+        this.name = input && input.name;
 
         // Dimensions of the domain.
         this.width = input && input.width;

@@ -3,7 +3,7 @@ import THREE from 'three';
 import Model from '../../model';
 
 import takeDamage from './takeDamage';
-import fade from '../../model/fade';
+import fade from './fade';
 
 // 3D models.
 import human from './human';
