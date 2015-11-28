@@ -1,11 +1,11 @@
 import THREE from 'three';
 import Firebase from 'firebase';
 
-import KeyboardControls from '../keyboardControls';
+import KeyboardControls from '../../keyboardControls';
 
-import Mob from './mob';
+import Mob from './index';
 
-import render from '../render';
+import render from '../../render';
 
 // Load all the mobs of a given domain as a single group.
 module.exports = function loadMobs (input) {

@@ -2,9 +2,9 @@ import THREE from 'three';
 
 import Model from '../model';
 
-import generateStills from './generateStills';
-import loadFirebaseStills from './loadFirebaseStills';
-import loadMobs from './loadMobs';
+import generateStills from './still/generateStills';
+import loadFirebaseStills from './still/loadFirebaseStills';
+import loadMobs from './mob/loadMobs';
 
 // Domain get all mobs from Firebase data and populates itself.
 class Domain extends Model {
