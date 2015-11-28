@@ -8,8 +8,8 @@ import Rocks from './still/rocks';
 import plotModelsOnGrid from './plotModelsOnGrid';
 import createGridPositions from './createGridPositions';
 
-// Load all the still models of a given domain as a single group.
-module.exports = function loadStills (input) {
+// Generate all the still models of a given domain as a single group.
+module.exports = function generateStills (input) {
 
     // Keep track of the domain instance scope.
     const _this = this;

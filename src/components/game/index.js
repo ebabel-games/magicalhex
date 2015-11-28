@@ -73,8 +73,18 @@ module.exports = function game (input) {
             height: 1000
         });
 
+        if (domain.still && domain.still.children.length === 0) {
+            domain.generateStills({
+                width: 1000,
+                height: 1000
+            });
+        }
+
         scene.add(domain.still);
-        scene.add(domain.mob);
+
+        if (domain.mob && domain.mob.children.length > 0) {
+            scene.add(domain.mob);
+        }
 
     });
 
