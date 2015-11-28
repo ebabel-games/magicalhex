@@ -9,6 +9,7 @@ class Forest {
         const width = input && input.width || 1000;
         const height = input && input.height || 1000;
         const freeGridPositions = input && input.freeGridPositions;
+        const numberModelsToPlot = input && input.numberModelsToPlot || 20;
 
         const tree = new Tree(input);
 
@@ -16,7 +17,7 @@ class Forest {
         const forest = plotModelsOnGrid({
             freeGridPositions: freeGridPositions,
             model: tree,
-            numberModelsToPlot: 800,
+            numberModelsToPlot: numberModelsToPlot,
             scale: { min: 0.16, max: 0.2 },
             rotate: true
         });

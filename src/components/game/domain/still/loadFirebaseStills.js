@@ -19,6 +19,12 @@ module.exports = function loadFirebaseStills (event) {
         height: this.height
     });
     const tree = new Tree();
+    const willow = new Tree({
+        foliageImage: 'willow.png',
+        trunkTop: 4,
+        trunkBase: 8,
+        foliageHeight: 95
+    });
     const cutTrunk = new CutTrunk();
     const rock = new Rock();
 
@@ -32,6 +38,9 @@ module.exports = function loadFirebaseStills (event) {
                 break;
             case 'tree':
                 stillModel = tree.clone();
+                break;
+            case 'willow':
+                stillModel = willow.clone();
                 break;
             case 'cut-trunk':
                 stillModel = cutTrunk.clone();

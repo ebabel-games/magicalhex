@@ -35,17 +35,34 @@ module.exports = function generateStills (input) {
     const forest = new Forest({
         width: width,
         height: height,
-        freeGridPositions: freeGridPositions
+        freeGridPositions: freeGridPositions,
+        numberModelsToPlot: 200
     });
     forest.group.children.map(function (tree) {
         _this.still.add(tree);
+    });
+
+    // Willows: variation on the standard forest of basic trees.
+    const willows = new Forest({
+        width: width,
+        height: height,
+        foliageImage: 'willow.png',
+        trunkTop: 4,
+        trunkBase: 8,
+        foliageHeight: 95,
+        freeGridPositions: forest.freeGridPositions,
+        numberModelsToPlot: 400,
+        treeName: 'willow'
+    });
+    willows.group.children.map(function (willow) {
+        _this.still.add(willow);
     });
 
     // Cut trunks.
     const cutTrunks = new CutTrunks({
         width: width,
         height: height,
-        freeGridPositions: forest.freeGridPositions // Place cut trunks where there is still room.
+        freeGridPositions: willows.freeGridPositions // Place cut trunks where there is still room.
     });
     cutTrunks.group.children.map(function (cutTrunk) {
         _this.still.add(cutTrunk);
