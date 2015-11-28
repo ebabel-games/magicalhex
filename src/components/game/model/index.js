@@ -2,6 +2,7 @@ import Firebase from 'firebase';
 
 import keepInSync from './keep-in-sync';
 import update from './update';
+import set from './set';
 
 import error from '../../shared/errorMessages';
 
@@ -15,8 +16,11 @@ class Model {
         // Unique endpoint of each model that is synced to Firebase.
         this.firebaseUrl = input.firebaseUrl;
 
-        // Send data from game to Firebase.
+        // Update data from game to Firebase.
         this.update = update;
+
+        // Set data from game to Firebase.
+        this.set = set;
 
         // Listen for data changes from Firebase to game.
         this.keepInSync = keepInSync;

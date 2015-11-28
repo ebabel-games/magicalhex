@@ -37,7 +37,9 @@ module.exports = function generateStills (input) {
         height: height,
         freeGridPositions: freeGridPositions
     });
-    this.still.add(forest.group);
+    forest.group.children.map(function (tree) {
+        _this.still.add(tree);
+    });
 
     // Cut trunks.
     const cutTrunks = new CutTrunks({
@@ -45,7 +47,9 @@ module.exports = function generateStills (input) {
         height: height,
         freeGridPositions: forest.freeGridPositions // Place cut trunks where there is still room.
     });
-    this.still.add(cutTrunks.group);
+    cutTrunks.group.children.map(function (cutTrunk) {
+        _this.still.add(cutTrunk);
+    });
 
     // Rocks.
     const rocks = new Rocks({
@@ -53,7 +57,22 @@ module.exports = function generateStills (input) {
         height: height,
         freeGridPositions: cutTrunks.freeGridPositions  // Place rocks where there is still room.
     });
-    this.still.add(rocks.group);
+    rocks.group.children.map(function (rock) {
+        _this.still.add(rock);
+    });
 
     this.still.name = 'still-models';
+
+    // Overwrite Firebase still models with data that has just been randomly generated.
+    this.set({
+        endpoint: this.firebaseUrl + '/still',
+        payload: this.still.children.map(function (child) {
+            return { 
+                name: child.name, 
+                position: [child.position.x, child.position.y, child.position.z],
+                rotation: [child.rotation.x, child.rotation.y, child.rotation.z],
+                scale: [child.scale.x, child.scale.y, child.scale.z]  
+            }
+        })
+    });
 };

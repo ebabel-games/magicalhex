@@ -42,7 +42,9 @@ module.exports = function game (input) {
         character.position = data && data.position || { x: 0, y: 6, z: 0 };
         character.rotation = data && data.rotation || { x: 0, y: 0, z: 0 };
         character.scale = data && data.scale || { x: 1, y: 1, z: 1 };
-        character.domain = data && data.domain || 'centralDomain';
+
+        // Name of the domain where the character currently is.
+        character.domain = data && data.domain || 'x0z0';
 
         camera = initScene({
             scene: scene,
@@ -72,20 +74,6 @@ module.exports = function game (input) {
             width: 1000,
             height: 1000
         });
-
-        if (domain.still && domain.still.children.length === 0) {
-            domain.generateStills({
-                width: 1000,
-                height: 1000
-            });
-        }
-
-        scene.add(domain.still);
-
-        if (domain.mob && domain.mob.children.length > 0) {
-            scene.add(domain.mob);
-        }
-
     });
 
 

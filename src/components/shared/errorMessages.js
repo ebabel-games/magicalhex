@@ -21,6 +21,7 @@ module.exports = {
     model: {
         load: {
             failed: 'Model failed to load.'
-        }
+        },
+        unexpected: 'Unexpected model name, it cannot be instantiated.'
     }
 };
