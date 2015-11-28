@@ -13,12 +13,16 @@ module.exports = function loadFirebaseStills (event) {
 
     const _this = this;
 
-    const ground = new Ground();
+    // All the possible still models that can be cloned and placed in a domain.
+    const ground = new Ground({
+        width: this.width,
+        height: this.height
+    });
     const tree = new Tree();
     const cutTrunk = new CutTrunk();
     const rock = new Rock();
 
-    // All the still models of a domain.
+    // Place all the still models of a domain.
     event.detail.data.still.map(function (stillData) {
         let stillModel = null;
 
