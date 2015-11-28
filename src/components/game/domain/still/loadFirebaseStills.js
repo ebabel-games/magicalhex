@@ -23,6 +23,7 @@ module.exports = function loadFirebaseStills (event) {
         foliageImage: 'willow.png',
         trunkTop: 4,
         trunkBase: 8,
+        trunkSides: 3,
         foliageHeight: 95
     });
     const cutTrunk = new CutTrunk();

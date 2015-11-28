@@ -7,12 +7,13 @@ class Tree {
         const trunkImage = input && input.trunkImage || 'wood.jpg';
         const trunkTop = input && input.trunkTop || 6;
         const trunkBase = input && input.trunkBase || 9;
+        const trunkSides = input && input.trunkSides || 5;
         const foliageHeight = input && input.foliageHeight || 110;
 
         // Tree trunk.
         const trunkTexture = THREE.ImageUtils.loadTexture(trunkImage);
         const trunk = {
-            geometry: new THREE.CylinderGeometry(trunkTop, trunkBase, 90, 5, 1),
+            geometry: new THREE.CylinderGeometry(trunkTop, trunkBase, 90, trunkSides, 1),
             material: new THREE.MeshLambertMaterial({map: trunkTexture})
         };
         trunk.mesh = new THREE.Mesh(trunk.geometry, trunk.material);

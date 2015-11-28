@@ -49,6 +49,7 @@ module.exports = function generateStills (input) {
         foliageImage: 'willow.png',
         trunkTop: 4,
         trunkBase: 8,
+        trunkSides: 3,
         foliageHeight: 95,
         freeGridPositions: forest.freeGridPositions,
         numberModelsToPlot: 400,
