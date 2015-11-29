@@ -36,7 +36,7 @@ module.exports = function generateStills (input) {
         width: width,
         height: height,
         freeGridPositions: freeGridPositions,
-        numberModelsToPlot: 200
+        numberModelsToPlot: 300
     });
     forest.group.children.map(function (tree) {
         _this.still.add(tree);
@@ -46,13 +46,18 @@ module.exports = function generateStills (input) {
     const willows = new Forest({
         width: width,
         height: height,
+
+        // Willow.
         foliageImage: 'willow.png',
-        trunkTop: 4,
+        trunkTop: 3,
         trunkBase: 8,
         trunkSides: 3,
-        foliageHeight: 95,
+        foliagePositionY: 95,
+        foliageWidth: 128,
+        foliageHeight: 128,
+
         freeGridPositions: forest.freeGridPositions,
-        numberModelsToPlot: 400,
+        numberModelsToPlot: 300,
         treeName: 'willow'
     });
     willows.group.children.map(function (willow) {

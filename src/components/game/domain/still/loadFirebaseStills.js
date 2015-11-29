@@ -21,10 +21,12 @@ module.exports = function loadFirebaseStills (event) {
     const tree = new Tree();
     const willow = new Tree({
         foliageImage: 'willow.png',
-        trunkTop: 4,
+        trunkTop: 3,
         trunkBase: 8,
         trunkSides: 3,
-        foliageHeight: 95
+        foliagePositionY: 95,
+        foliageWidth: 128,
+        foliageHeight: 128
     });
     const cutTrunk = new CutTrunk();
     const rock = new Rock();

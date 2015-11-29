@@ -8,7 +8,9 @@ class Tree {
         const trunkTop = input && input.trunkTop || 6;
         const trunkBase = input && input.trunkBase || 9;
         const trunkSides = input && input.trunkSides || 5;
-        const foliageHeight = input && input.foliageHeight || 110;
+        const foliagePositionY = input && input.foliagePositionY || 110;
+        const foliageWidth = input && input.foliageWidth || 128;
+        const foliageHeight = input && input.foliageHeight || 64;
 
         // Tree trunk.
         const trunkTexture = THREE.ImageUtils.loadTexture(trunkImage);
@@ -24,11 +26,11 @@ class Tree {
         // Tree foliage.
         const foliageTexture = THREE.ImageUtils.loadTexture(foliageImage);
         const foliage = {
-            geometry: new THREE.PlaneGeometry(128, 64),
+            geometry: new THREE.PlaneGeometry(foliageWidth, foliageHeight),
             material: new THREE.MeshLambertMaterial({map: foliageTexture, side: THREE.DoubleSide, alphaTest: 0.5})
         };
         foliage.mesh = new THREE.Mesh(foliage.geometry, foliage.material);
-        foliage.mesh.position.set(0, foliageHeight, 0);
+        foliage.mesh.position.set(0, foliagePositionY, 0);
         const foliage2 = foliage.mesh.clone();
         foliage2.rotation.set(0, 90 * Math.PI / 180, 0);
 
