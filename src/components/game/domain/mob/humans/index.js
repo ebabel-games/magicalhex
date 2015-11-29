@@ -16,7 +16,7 @@ class Humans {
         const humans = plotModelsOnGrid({
             freeGridPositions: freeGridPositions,
             model: human,
-            numberModelsToPlot: 100,
+            numberModelsToPlot: 9,
             positionY: 0,
             rotate: false,
             scale: false

@@ -31,17 +31,11 @@ module.exports = function loadFirebase (event) {
     const human = new Human();
     const animal = new Animal();
 
-    // Place all models of a domain.
+    // Place all still models of a domain.
     event.detail.data.still.map(function (stillData) {
         let stillModel = null;
 
         switch (stillData.name) {
-            case 'human':
-                stillModel = human.clone();
-                break;
-            case 'animal':
-                stillModel = animal.clone();
-                break;
             case 'tree':
                 stillModel = tree.clone();
                 break;
@@ -68,6 +62,30 @@ module.exports = function loadFirebase (event) {
 
         _this.still.add(stillModel);
     });
+
+    // Place all mob models of a domain.
+    event.detail.data.mob.map(function (mobData) {
+        let mobModel = null;
+
+        switch (mobData.name) {
+            case 'human':
+                mobModel = human.clone();
+                break;
+            case 'animal':
+                mobModel = animal.clone();
+                break;
+            default:
+                throw new Error('Model name: [' + mobData.name + ']. ' + error.model.unexpected);
+                break;
+        }
+
+        mobModel.position.set(mobData.position[0], mobData.position[1], mobData.position[2]);
+        mobModel.rotation.set(mobData.rotation[0], mobData.rotation[1], mobData.rotation[2]);
+        mobModel.scale.set(mobData.scale[0], mobData.scale[1], mobData.scale[2]);
+
+        _this.mob.add(mobModel);
+    });
+
 
     // Emit event the models are ready to be added to the scene.
     document.dispatchEvent(_this.ready);
