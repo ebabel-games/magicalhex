@@ -54,10 +54,16 @@ class Domain extends Model {
             });
 
         // Listen for data being found.
-        document.addEventListener('model-data-found', this.loadFirebaseStills.bind(this), true);
+        this.loadFirebase = function (event) {
+            _this.loadFirebaseStills(event);
+        };
+        document.addEventListener('model-data-found', this.loadFirebase.bind(this), true);
 
         // Listen for data not being found.
-        document.addEventListener('model-data-not-found', this.generateStills.bind(this), true);
+        this.generate = function (event) {
+            _this.generateStills(event);
+        };
+        document.addEventListener('model-data-not-found', this.generate.bind(this), true);
 
         // When models are ready to be added in scene, this is the event handler that does it.
         document.addEventListener('models-ready-to-add-in-scene', function modelsReadyToAddInScene() {
