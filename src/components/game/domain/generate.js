@@ -8,6 +8,7 @@ import Rocks from './still/rocks';
 
 // Mob models.
 import Humans from './mob/humans';
+import Animals from './mob/animals';
 
 import plotModelsOnGrid from './plotModelsOnGrid';
 import createGridPositions from './createGridPositions';
@@ -72,14 +73,26 @@ module.exports = function generate (input) {
 
 
 
-    // Human.
+    // Humans.
     const humans = new Humans({
         width: width,
         height: height,
-        freeGridPositions: rocks.freeGridPositions
+        freeGridPositions: rocks.freeGridPositions,
+        numberModelsToPlot: 13
     });
     for (let index = humans.group.children.length - 1; index >= 0; index--) {
         _this.mob.add(humans.group.children[index]);
+    }
+
+    // Animals.
+    const animals = new Animals({
+        width: width,
+        height: height,
+        freeGridPositions: humans.freeGridPositions,
+        numberModelsToPlot: 21
+    });
+    for (let index = animals.group.children.length - 1; index >= 0; index--) {
+        _this.mob.add(animals.group.children[index]);
     }
 
     this.mob.name = 'mobModels';

@@ -33,4 +33,3 @@ class Human extends Mob {
 }
 
 module.exports = Human;
-
