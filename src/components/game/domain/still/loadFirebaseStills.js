@@ -2,6 +2,7 @@ import THREE from 'three';
 
 import Ground from './ground';
 import Tree from './tree';
+import Willow from './tree/willow';
 import CutTrunk from './cutTrunk';
 import Rock from './rock';
 
@@ -19,15 +20,7 @@ module.exports = function loadFirebaseStills (event) {
         height: this.height
     });
     const tree = new Tree();
-    const willow = new Tree({
-        foliageImage: 'willow.png',
-        trunkTop: 3,
-        trunkBase: 8,
-        trunkSides: 3,
-        foliagePositionY: 95,
-        foliageWidth: 128,
-        foliageHeight: 128
-    });
+    const willow = new Willow();
     const cutTrunk = new CutTrunk();
     const rock = new Rock();
 

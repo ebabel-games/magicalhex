@@ -20,8 +20,8 @@ class CutTrunks {
             positionY: 0,
             rotate: true,
             scale: {
-                min: 0.4,
-                max: 0.6
+                min: 0.5,
+                max: 0.666
             }
         });
 

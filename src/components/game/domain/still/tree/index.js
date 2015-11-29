@@ -2,7 +2,6 @@ import THREE from 'three';
 
 class Tree {
     constructor (input) {
-
         const foliageImage = input && input.foliageImage || 'foliage.png';
         const trunkImage = input && input.trunkImage || 'wood.jpg';
         const trunkTop = input && input.trunkTop || 6;

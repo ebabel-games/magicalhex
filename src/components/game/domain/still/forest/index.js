@@ -1,6 +1,7 @@
 import THREE from 'three';
 
 import Tree from '../tree';
+import Willow from '../tree/willow';
 
 import plotModelsOnGrid from '../../plotModelsOnGrid';
 
@@ -9,17 +10,33 @@ class Forest {
         const width = input && input.width || 1000;
         const height = input && input.height || 1000;
         const freeGridPositions = input && input.freeGridPositions;
-        const numberModelsToPlot = input && input.numberModelsToPlot || 20;
+        const numberTreesToPlot = input && input.numberTreesToPlot || 20;
+        const numberWillowsToPlot = input && input.numberWillowsToPlot || 20;
 
         const tree = new Tree(input);
+        const willow = new Willow(input);
 
-        // Forest.
+        // Standard trees.
         const forest = plotModelsOnGrid({
             freeGridPositions: freeGridPositions,
             model: tree,
-            numberModelsToPlot: numberModelsToPlot,
-            scale: { min: 0.16, max: 0.2 },
+            numberModelsToPlot: numberTreesToPlot,
+            scale: { min: 0.25, max: 0.3 },
             rotate: true
+        });
+
+        // Willows.
+        const willows = plotModelsOnGrid({
+            freeGridPositions: forest.freeGridPositions,
+            model: willow,
+            numberModelsToPlot: numberWillowsToPlot,
+            scale: { min: 0.2, max: 0.35 },
+            rotate: true
+        });
+
+        // Merge the willows into the first forest of standard trees.
+        willows.group.children.map(function addWillow (willowToAdd) {
+            forest.group.add(willowToAdd);
         });
 
         forest.group.name = 'forest';
