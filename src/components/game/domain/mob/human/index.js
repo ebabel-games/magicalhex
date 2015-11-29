@@ -1,23 +1,36 @@
 import THREE from 'three';
 
-module.exports = function build (input) {
-    const body = new THREE.Group();
-    const material = new THREE.MeshLambertMaterial({ color: 0xfeb186, fog: true, transparent: true, opacity: 1 });
+import Mob from '../index';
 
-    const head = new THREE.Mesh(new THREE.SphereGeometry(1, 5, 8), material);
-    head.position.set(0, 6.5, 0);
-    head.name = 'head';
-    body.add(head);
+class Human extends Mob {
+    constructor (input) {
+        super(input);
 
-    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 1.75, 0.75, 8), material);
-    neck.position.set(0, 5.25, 0);
-    neck.name = 'neck';
-    body.add(neck);
+        const material = new THREE.MeshLambertMaterial({ color: 0xfeb186, fog: true, transparent: true, opacity: 1 });
 
-    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(1.75, 0.2, 4, 8), material);
-    trunk.position.set(0, 2.875, 0);
-    trunk.name = 'trunk';
-    body.add(trunk);
+        const head = new THREE.Mesh(new THREE.SphereGeometry(1, 5, 8), material);
+        head.position.set(0, 6.5, 0);
+        head.name = 'head';
 
-    return body;
-};
+        const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 1.75, 0.75, 8), material);
+        neck.position.set(0, 5.25, 0);
+        neck.name = 'neck';
+
+        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(1.75, 0.2, 4, 8), material);
+        trunk.position.set(0, 2.875, 0);
+        trunk.name = 'trunk';
+
+        this.group = new THREE.Group();
+
+        this.group.add(head);
+        this.group.add(neck);
+        this.group.add(trunk);
+
+        this.name = 'human';
+
+        return this;
+    }
+}
+
+module.exports = Human;
+

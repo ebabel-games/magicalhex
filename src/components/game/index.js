@@ -1,14 +1,10 @@
 import THREE from 'three';
 import Firebase from 'firebase';
 
-import d2r from './degreesToRadians';
 import axes from './axes';
-import acquireTarget from './acquireTarget';
 import initScene from './initScene';
 
-import Model from './model';
 import Domain from './domain';
-import Mob from './domain/mob';
 
 import error from '../shared/errorMessages';
 import './game.css';

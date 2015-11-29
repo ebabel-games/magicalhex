@@ -4,7 +4,11 @@ import Model from '../model';
 
 import generateStills from './still/generateStills';
 import loadFirebaseStills from './still/loadFirebaseStills';
-import loadMobs from './mob/loadMobs';
+
+import generateMobs from './mob/generateMobs';
+import loadFirebaseMobs from './mob/loadFirebaseMobs';
+
+import init from '../render/init';
 
 // Domain get all mobs from Firebase data and populates itself.
 class Domain extends Model {
@@ -13,7 +17,9 @@ class Domain extends Model {
         super(input);
 
         const _this = this;
+        const _renderer = input && input.renderer;
         const _scene = input && input.scene;
+        const _camera = input && input.camera;
 
         // Name of the domain.
         this.name = input && input.name;
@@ -25,9 +31,19 @@ class Domain extends Model {
         // Still models that can't move. 
         this.still = new THREE.Group();
 
-        // Spawn all the still models from Firebase.
+        // Mobs are models that can move or stand still. 
+        // They can be targetted and interacted with.
+        this.mob = new THREE.Group();
+
+        // Spawn all the still models either by generating them or
+        // by reading them from Firebase.
         this.generateStills = generateStills;
         this.loadFirebaseStills = loadFirebaseStills;
+
+        // Spawn all the mob models either by generating them or
+        // by reading them from Firebase.
+        this.generateMobs = generateMobs;
+        this.loadFirebaseMobs = loadFirebaseMobs;
 
         // When this event is emitted, it means the data has been found and can be added to the scene.
         this.ready = new CustomEvent('models-ready-to-add-in-scene', 
@@ -38,29 +54,25 @@ class Domain extends Model {
             });
 
         // Listen for data being found.
-        document.addEventListener('model-data-found', this.loadFirebaseStills.bind(this), true);        
+        document.addEventListener('model-data-found', this.loadFirebaseStills.bind(this), true);
 
         // Listen for data not being found.
-        document.addEventListener('model-data-not-found', this.generateStills.bind(this), true);        
+        document.addEventListener('model-data-not-found', this.generateStills.bind(this), true);
 
         // When models are ready to be added in scene, this is the event handler that does it.
         document.addEventListener('models-ready-to-add-in-scene', function modelsReadyToAddInScene() {
             _scene.add(_this.still);
+
+            // Init the rendering of the domain 
+            // with all its still and mob models.
+            init({
+                renderer: _renderer,
+                scene: _scene,
+                camera: _camera,
+                domain: _this
+            });
         });
 
-
-
-        // todo: refactor mob code below to be more like the still models.
-
-        // Mobs are models that can move or stand still, can be targetted and interacted with.
-        this.mob = new THREE.Group();
-
-        // Function to load the mobs (models that can move) that can be spawned in this domain.
-        this.loadMobs = loadMobs;
-
-        // Spawn all the mobs of this domain.
-        this.loadMobs(input);
- 
         return this;
     }
 
