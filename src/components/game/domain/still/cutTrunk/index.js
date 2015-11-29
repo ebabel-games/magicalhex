@@ -9,7 +9,7 @@ class CutTrunk {
             new THREE.MeshLambertMaterial({map: trunkTexture})
         );
 
-        cutTrunk.name = 'cut-trunk';
+        cutTrunk.name = 'cutTrunk';
 
         return cutTrunk;
     }

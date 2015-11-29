@@ -38,7 +38,7 @@ module.exports = function loadFirebase (event) {
             case 'willow':
                 stillModel = willow.clone();
                 break;
-            case 'cut-trunk':
+            case 'cutTrunk':
                 stillModel = cutTrunk.clone();
                 break;
             case 'rock':
