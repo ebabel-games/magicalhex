@@ -39,9 +39,9 @@ module.exports = function generateStills (input) {
         numberWillowsToPlot: 450,
         numberTreesToPlot: 450
     });
-    forest.group.children.map(function (tree) {
-        _this.still.add(tree);
-    });
+    for (let index = forest.group.children.length -1; index >= 0; index--) {
+        _this.still.add(forest.group.children[index]);
+    }
 
     // Cut trunks.
     const cutTrunks = new CutTrunks({
@@ -49,9 +49,9 @@ module.exports = function generateStills (input) {
         height: height,
         freeGridPositions: forest.freeGridPositions // Place cut trunks where there is still room.
     });
-    cutTrunks.group.children.map(function (cutTrunk) {
-        _this.still.add(cutTrunk);
-    });
+    for (let index = cutTrunks.group.children.length - 1; index >= 0; index--) {
+        _this.still.add(cutTrunks.group.children[index]);
+    }
 
     // Rocks.
     const rocks = new Rocks({
@@ -59,9 +59,9 @@ module.exports = function generateStills (input) {
         height: height,
         freeGridPositions: cutTrunks.freeGridPositions  // Place rocks where there is still room.
     });
-    rocks.group.children.map(function (rock) {
-        _this.still.add(rock);
-    });
+    for (let index = rocks.group.children.length - 1; index >= 0; index--) {
+        _this.still.add(rocks.group.children[index]);
+    }
 
     this.still.name = 'still-models';
 

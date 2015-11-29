@@ -35,9 +35,11 @@ class Forest {
         });
 
         // Merge the willows into the first forest of standard trees.
-        willows.group.children.map(function addWillow (willowToAdd) {
-            forest.group.add(willowToAdd);
-        });
+        // Note: add in reverse order because as the forest grows, 
+        // the willows group of children shrinks.
+        for (let index = willows.group.children.length -1; index >= 0; index--) {
+            forest.group.add(willows.group.children[index]);
+        }
 
         forest.group.name = 'forest';
 
