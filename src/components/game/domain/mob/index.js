@@ -1,10 +1,8 @@
 import THREE from 'three';
 
-import Model from '../../model';
-
 // A mob is either static or mobile, but it can always be 
 // interacted with, contrary to the still models.
-class Mob extends Model {
+class Mob {
     constructor (input) {
         super(input);
 

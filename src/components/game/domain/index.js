@@ -5,9 +5,6 @@ import Model from '../model';
 import generateStills from './still/generateStills';
 import loadFirebaseStills from './still/loadFirebaseStills';
 
-import generateMobs from './mob/generateMobs';
-import loadFirebaseMobs from './mob/loadFirebaseMobs';
-
 import init from '../render/init';
 
 // Domain get all mobs from Firebase data and populates itself.
@@ -39,11 +36,6 @@ class Domain extends Model {
         // by reading them from Firebase.
         this.generateStills = generateStills;
         this.loadFirebaseStills = loadFirebaseStills;
-
-        // Spawn all the mob models either by generating them or
-        // by reading them from Firebase.
-        this.generateMobs = generateMobs;
-        this.loadFirebaseMobs = loadFirebaseMobs;
 
         // When this event is emitted, it means the data has been found and can be added to the scene.
         this.ready = new CustomEvent('models-ready-to-add-in-scene', 
