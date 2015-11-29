@@ -1,12 +1,12 @@
 import THREE from 'three';
 
-import Ground from './ground';
-import Tree from './tree';
-import Willow from './tree/willow';
-import CutTrunk from './cutTrunk';
-import Rock from './rock';
+import Ground from './still/ground';
+import Tree from './still/tree';
+import Willow from './still/tree/willow';
+import CutTrunk from './still/cutTrunk';
+import Rock from './still/rock';
 
-import error from '../../../shared/errorMessages';
+import error from '../../shared/errorMessages';
 
 // Data has been found in Firebase and is passed to 
 // this function via the custom event "model-data-found".

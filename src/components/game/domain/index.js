@@ -2,8 +2,8 @@ import THREE from 'three';
 
 import Model from '../model';
 
-import generateStills from './still/generateStills';
-import loadFirebaseStills from './still/loadFirebaseStills';
+import generateStills from './generate';
+import loadFirebaseStills from './loadFirebase';
 
 import init from '../render/init';
 

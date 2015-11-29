@@ -1,12 +1,12 @@
 import THREE from 'three';
 
-import Ground from './ground';
-import Forest from './forest';
-import CutTrunks from './cutTrunks';
-import Rocks from './rocks';
+import Ground from './still/ground';
+import Forest from './still/forest';
+import CutTrunks from './still/cutTrunks';
+import Rocks from './still/rocks';
 
-import plotModelsOnGrid from '../plotModelsOnGrid';
-import createGridPositions from '../createGridPositions';
+import plotModelsOnGrid from './plotModelsOnGrid';
+import createGridPositions from './createGridPositions';
 
 // Generate all the still models of a given domain as a single group.
 module.exports = function generateStills (input) {
