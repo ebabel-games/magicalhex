@@ -1,9 +1,13 @@
 import THREE from 'three';
 
+// Still models.
 import Ground from './still/ground';
 import Forest from './still/forest';
 import CutTrunks from './still/cutTrunks';
 import Rocks from './still/rocks';
+
+// Mob models.
+import Humans from './mob/humans';
 
 import plotModelsOnGrid from './plotModelsOnGrid';
 import createGridPositions from './createGridPositions';
@@ -63,18 +67,46 @@ module.exports = function generate (input) {
         _this.still.add(rocks.group.children[index]);
     }
 
-    this.still.name = 'still-models';
+    this.still.name = 'stillModels';
+
+
+
+
+    // Human.
+    const humans = new Humans({
+        width: width,
+        height: height,
+        freeGridPositions: rocks.freeGridPositions
+    });
+    for (let index = humans.group.children.length - 1; index >= 0; index--) {
+        _this.mob.add(humans.group.children[index]);
+    }
+
+    this.mob.name = 'mobModels';
+
+
+
 
     // Overwrite Firebase still models with data that has just been randomly generated.
     this.set({
-        endpoint: this.firebaseUrl + '/still',
-        payload: this.still.children.map(function (child) {
-            return { 
-                name: child.name, 
-                position: [child.position.x, child.position.y, child.position.z],
-                rotation: [child.rotation.x, child.rotation.y, child.rotation.z],
-                scale: [child.scale.x, child.scale.y, child.scale.z]  
-            }
-        })
+        endpoint: this.firebaseUrl,
+        payload: {
+            still: this.still.children.map(function (child) {
+                return { 
+                    name: child.name, 
+                    position: [child.position.x, child.position.y, child.position.z],
+                    rotation: [child.rotation.x, child.rotation.y, child.rotation.z],
+                    scale: [child.scale.x, child.scale.y, child.scale.z]  
+                }
+            }),
+            mob: this.mob.children.map(function (child) {
+                return {
+                    name: child.name,
+                    position: [child.position.x, child.position.y, child.position.z],
+                    rotation: [child.rotation.x, child.rotation.y, child.rotation.z],
+                    scale: [child.scale.x, child.scale.y, child.scale.z]
+                }
+            })
+        }
     });
 };

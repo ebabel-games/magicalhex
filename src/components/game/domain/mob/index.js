@@ -4,8 +4,6 @@ import THREE from 'three';
 // interacted with, contrary to the still models.
 class Mob {
     constructor (input) {
-        super(input);
-
         this.name = 'mob';
 
         return this;

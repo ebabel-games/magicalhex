@@ -6,6 +6,9 @@ import Willow from './still/tree/willow';
 import CutTrunk from './still/cutTrunk';
 import Rock from './still/rock';
 
+import Human from './mob/human';
+import Animal from './mob/animal';
+
 import error from '../../shared/errorMessages';
 
 // Data has been found in Firebase and is passed to 
@@ -14,7 +17,7 @@ module.exports = function loadFirebase (event) {
 
     const _this = this;
 
-    // All the possible still models that can be cloned and placed in a domain.
+    // All the still models that can be cloned and placed in a domain.
     const ground = new Ground({
         width: this.width,
         height: this.height
@@ -24,13 +27,20 @@ module.exports = function loadFirebase (event) {
     const cutTrunk = new CutTrunk();
     const rock = new Rock();
 
-    // Place all the still models of a domain.
+    // All the mob models.
+    const human = new Human();
+    const animal = new Animal();
+
+    // Place all models of a domain.
     event.detail.data.still.map(function (stillData) {
         let stillModel = null;
 
         switch (stillData.name) {
-            case 'ground':
-                stillModel = ground.clone();
+            case 'human':
+                stillModel = human.clone();
+                break;
+            case 'animal':
+                stillModel = animal.clone();
                 break;
             case 'tree':
                 stillModel = tree.clone();
@@ -43,6 +53,9 @@ module.exports = function loadFirebase (event) {
                 break;
             case 'rock':
                 stillModel = rock.clone();
+                break;
+            case 'ground':
+                stillModel = ground.clone();
                 break;
             default:
                 throw new Error('Model name: [' + stillData.name + ']. ' + error.model.unexpected);

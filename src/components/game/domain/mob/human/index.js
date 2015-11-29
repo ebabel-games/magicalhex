@@ -20,15 +20,15 @@ class Human extends Mob {
         trunk.position.set(0, 2.875, 0);
         trunk.name = 'trunk';
 
-        this.group = new THREE.Group();
+        // Human.
+        const human = new THREE.Group();
+        human.add(head);
+        human.add(neck);
+        human.add(trunk);
 
-        this.group.add(head);
-        this.group.add(neck);
-        this.group.add(trunk);
+        human.name = input && input.humanName || 'human';
 
-        this.name = 'human';
-
-        return this;
+        return human;
     }
 }
 

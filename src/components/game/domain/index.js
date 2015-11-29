@@ -40,8 +40,9 @@ class Domain extends Model {
         // When this event is emitted, it means the data has been found and can be added to the scene.
         this.ready = new CustomEvent('models-ready-to-add-in-scene', 
             { 
-                'detail': {
-                    'still': this.still
+                detail: {
+                    still: this.still,
+                    mob: this.mob
                 }
             });
 
@@ -54,6 +55,7 @@ class Domain extends Model {
         // When models are ready to be added in scene, this is the event handler that does it.
         document.addEventListener('models-ready-to-add-in-scene', function modelsReadyToAddInScene() {
             _scene.add(_this.still);
+            _scene.add(_this.mob);
 
             // Init the rendering of the domain 
             // with all its still and mob models.
