@@ -9,7 +9,7 @@ import plotModelsOnGrid from './plotModelsOnGrid';
 import createGridPositions from './createGridPositions';
 
 // Generate all the still models of a given domain as a single group.
-module.exports = function generateStills (input) {
+module.exports = function generate (input) {
 
     // Keep track of the domain instance scope.
     const _this = this;

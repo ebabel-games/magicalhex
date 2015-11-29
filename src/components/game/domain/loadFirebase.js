@@ -10,7 +10,7 @@ import error from '../../shared/errorMessages';
 
 // Data has been found in Firebase and is passed to 
 // this function via the custom event "model-data-found".
-module.exports = function loadFirebaseStills (event) {
+module.exports = function loadFirebase (event) {
 
     const _this = this;
 

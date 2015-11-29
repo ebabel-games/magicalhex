@@ -2,8 +2,8 @@ import THREE from 'three';
 
 import Model from '../model';
 
-import generateStills from './generate';
-import loadFirebaseStills from './loadFirebase';
+import generate from './generate';
+import loadFirebase from './loadFirebase';
 
 import init from '../render/init';
 
@@ -34,8 +34,8 @@ class Domain extends Model {
 
         // Spawn all the still models either by generating them or
         // by reading them from Firebase.
-        this.generateStills = generateStills;
-        this.loadFirebaseStills = loadFirebaseStills;
+        this.generate = generate;
+        this.loadFirebase = loadFirebase;
 
         // When this event is emitted, it means the data has been found and can be added to the scene.
         this.ready = new CustomEvent('models-ready-to-add-in-scene', 
@@ -46,15 +46,9 @@ class Domain extends Model {
             });
 
         // Listen for data being found.
-        this.loadFirebase = function (event) {
-            _this.loadFirebaseStills(event);
-        };
         document.addEventListener('model-data-found', this.loadFirebase.bind(this), true);
 
         // Listen for data not being found.
-        this.generate = function (event) {
-            _this.generateStills(event);
-        };
         document.addEventListener('model-data-not-found', this.generate.bind(this), true);
 
         // When models are ready to be added in scene, this is the event handler that does it.
