@@ -1,4 +1,5 @@
 import error from '../../../shared/errorMessages';
+import constants from '../../../shared/constants';
 
 // Model takes damage
 // Note: single responsibility, this function needs to stay small. 
@@ -26,7 +27,7 @@ module.exports = function takeDamage (input) {
     model.userData.life = updatedLifePoints;
     model.fade({
         model: model,
-        opacity: model.userData.life / model.userData.maxLife
+        opacity: model.userData.life / model.userData.maxLife + constants.minimumOpacity
     });
 
     return this;

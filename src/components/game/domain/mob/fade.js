@@ -1,3 +1,5 @@
+import constants from '../../../shared/constants';
+
 // Fade a model's opacity to a given value.
 module.exports = function fade (input) {
 
@@ -8,8 +10,8 @@ module.exports = function fade (input) {
         material.opacity = opacity;
     }
 
-    if (input.opacity < 0.1) {
-        opacity = 0.1;
+    if (input.opacity < constants.minimumOpacity) {
+        opacity = constants.minimumOpacity;
     }
 
     // Fade a model with just one material.

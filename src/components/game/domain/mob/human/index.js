@@ -8,6 +8,8 @@ class Human extends Mob {
     constructor (input) {
         super(input);
 
+        const _this = this;
+
         const material = new THREE.MeshLambertMaterial({ color: 0xfeb186, fog: true, transparent: true, opacity: 1 });
 
         const head = new THREE.Mesh(new THREE.SphereGeometry(1, 5, 8), material);
@@ -32,6 +34,16 @@ class Human extends Mob {
         this.group.userData.targetName = randomName();
         this.group.userData.maxLife = 3;
         this.group.userData.life = 3;
+
+        // Actions to run in Render loop.
+        this.group.userData.actions.push(
+            function die () {
+                if (_this.group.userData.life === 0) {
+                    _this.group.rotation.x = 90 * Math.PI / 180;
+                    _this.group.position.y = 1;
+                }
+            }
+        );
 
         return this.group;
     }

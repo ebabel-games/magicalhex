@@ -9,6 +9,8 @@ class Animal extends Mob {
     constructor (input) {
         super(input);
 
+        const _this = this;
+
         const material = new THREE.MeshLambertMaterial({ color: 0x7b4b2a, fog: true, transparent: true, opacity: 1 });
 
         const leftHindLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.2, 5, 6), material);
@@ -53,6 +55,16 @@ class Animal extends Mob {
         this.group.name = input && input.animalName || 'animal';
 
         this.group.userData.targetName = 'a horse';
+
+        // Actions to run in Render loop.
+        this.group.userData.actions.push(
+            function die () {
+                if (_this.group.userData.life === 0) {
+                    _this.group.rotation.set(90 * Math.PI / 180, 0, 0);
+                    _this.group.position.y = -3;
+                }
+            }
+        );
 
         return this.group;
     }
