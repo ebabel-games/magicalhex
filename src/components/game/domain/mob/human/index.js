@@ -29,7 +29,7 @@ class Human extends Mob {
 
         this.group.name = input && input.humanName || 'human';
 
-        this.group.userData.targetName = randomName(2);
+        this.group.userData.targetName = randomName();
         this.group.userData.maxLife = 3;
         this.group.userData.life = 3;
 
