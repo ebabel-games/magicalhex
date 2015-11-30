@@ -2,6 +2,7 @@ import THREE from 'three';
 import Firebase from 'firebase';
 
 import axes from './axes';
+import acquireTarget from './acquireTarget';
 import initScene from './initScene';
 
 import Domain from './domain';
@@ -109,10 +110,12 @@ module.exports = function game (input) {
 
         // The key [1] has been pressed, which fires damage on the current target.
         if (currentTarget && e.keyCode === keyCodes['1']) {
+
             currentTarget.takeDamage({
                 model: currentTarget,
                 damage: 1
             });
+
             document.dispatchEvent(
                 new CustomEvent('change-target', 
                 { 

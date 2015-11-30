@@ -13,13 +13,13 @@ module.exports = function fade (input) {
     }
 
     // Fade a model with just one material.
-    if (model.mesh.material) {
-        setOpacity(model.mesh.material, opacity);
+    if (model.material) {
+        setOpacity(model.material, opacity);
     }
 
     // Fade a model that groups other models.
-    if (model.mesh.children && model.mesh.children.length > 0) {
-        model.mesh.children.map(function (child) {
+    if (model.children && model.children.length > 0) {
+        model.children.map(function (child) {
             setOpacity(child.material, opacity);
         });
     }

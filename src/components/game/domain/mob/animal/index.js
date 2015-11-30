@@ -4,6 +4,7 @@ import Mob from '../index';
 
 import d2r from '../../../degreesToRadians';
 
+// Mob: horse.
 class Animal extends Mob {
     constructor (input) {
         super(input);
@@ -41,18 +42,19 @@ class Animal extends Mob {
         head.name = 'head';
 
         // Animal.
-        const animal = new THREE.Group();
-        animal.add(leftHindLeg);
-        animal.add(rightHindLeg);
-        animal.add(leftFrontLeg);
-        animal.add(rightFrontLeg);
-        animal.add(trunk);
-        animal.add(neck);
-        animal.add(head);
+        this.group.add(leftHindLeg);
+        this.group.add(rightHindLeg);
+        this.group.add(leftFrontLeg);
+        this.group.add(rightFrontLeg);
+        this.group.add(trunk);
+        this.group.add(neck);
+        this.group.add(head);
 
-        animal.name = input && input.animalName || 'animal';
+        this.group.name = input && input.animalName || 'animal';
 
-        return animal;
+        this.group.userData.targetName = 'a horse';
+
+        return this.group;
     }
 }
 

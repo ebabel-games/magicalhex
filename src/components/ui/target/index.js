@@ -40,7 +40,7 @@ Target.propTypes = {
 };
 
 Target.defaultProps = {
-    targetName: 'no target',
+    targetName: 'click to target',
     life: null
 }
 

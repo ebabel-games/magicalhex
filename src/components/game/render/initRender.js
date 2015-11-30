@@ -1,7 +1,7 @@
 import render from './index';
 import KeyboardControls from '../keyboardControls';
 
-module.exports = function init (input) {
+module.exports = function initRender (input) {
 
     const _this = input && input.domain;
 

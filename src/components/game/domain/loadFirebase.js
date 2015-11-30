@@ -27,10 +27,6 @@ module.exports = function loadFirebase (event) {
     const cutTrunk = new CutTrunk();
     const rock = new Rock();
 
-    // All the mob models.
-    const human = new Human();
-    const animal = new Animal();
-
     // Place all still models of a domain.
     event.detail.data.still.map(function (stillData) {
         let stillModel = null;
@@ -69,10 +65,10 @@ module.exports = function loadFirebase (event) {
 
         switch (mobData.name) {
             case 'human':
-                mobModel = human.clone();
+                mobModel = new Human();
                 break;
             case 'animal':
-                mobModel = animal.clone();
+                mobModel = new Animal();
                 break;
             default:
                 throw new Error('Model name: [' + mobData.name + ']. ' + error.model.unexpected);

@@ -17,7 +17,7 @@ module.exports = function acquireTarget() {
 
         raycaster.setFromCamera(mouse, camera);
 
-        const intersects = raycaster.intersectObjects(mob, recursiveFlag);
+        const intersects = raycaster.intersectObjects(mob.children, recursiveFlag);
 
         if (intersects.length > 0) {
             const currentTarget = intersects[0].object;

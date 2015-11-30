@@ -21,14 +21,17 @@ class Human extends Mob {
         trunk.name = 'trunk';
 
         // Human.
-        const human = new THREE.Group();
-        human.add(head);
-        human.add(neck);
-        human.add(trunk);
+        this.group.add(head);
+        this.group.add(neck);
+        this.group.add(trunk);
 
-        human.name = input && input.humanName || 'human';
+        this.group.name = input && input.humanName || 'human';
 
-        return human;
+        this.group.userData.targetName = 'a human';
+        this.group.userData.maxLife = 3;
+        this.group.userData.life = 3;
+
+        return this.group;
     }
 }
 

@@ -5,7 +5,7 @@ import Model from '../model';
 import generate from './generate';
 import loadFirebase from './loadFirebase';
 
-import init from '../render/init';
+import initRender from '../render/initRender';
 
 // Domain get all mobs from Firebase data and populates itself.
 class Domain extends Model {
@@ -17,6 +17,7 @@ class Domain extends Model {
         const _renderer = input && input.renderer;
         const _scene = input && input.scene;
         const _camera = input && input.camera;
+        const _raycaster = input && input.raycaster;
 
         // Name of the domain.
         this.name = input && input.name;
@@ -59,10 +60,11 @@ class Domain extends Model {
 
             // Init the rendering of the domain 
             // with all its still and mob models.
-            init({
+            initRender({
                 renderer: _renderer,
                 scene: _scene,
                 camera: _camera,
+                raycaster: _raycaster,
                 domain: _this
             });
         });
