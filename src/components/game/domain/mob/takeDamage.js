@@ -23,14 +23,10 @@ module.exports = function takeDamage (input) {
         updatedLifePoints = 0;
     }
 
-    const isDead = updatedLifePoints <= 0;
-
-    const opacity = updatedLifePoints / model.userData.maxLife;
-
     model.userData.life = updatedLifePoints;
     model.fade({
         model: model,
-        opacity: opacity
+        opacity: model.userData.life / model.userData.maxLife
     });
 
     return this;
