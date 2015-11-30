@@ -2,6 +2,8 @@ import THREE from 'three';
 
 import Mob from '../index';
 
+import randomName from '../randomName';
+
 class Human extends Mob {
     constructor (input) {
         super(input);
@@ -27,7 +29,7 @@ class Human extends Mob {
 
         this.group.name = input && input.humanName || 'human';
 
-        this.group.userData.targetName = 'a human';
+        this.group.userData.targetName = randomName(2);
         this.group.userData.maxLife = 3;
         this.group.userData.life = 3;
 
