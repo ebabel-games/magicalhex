@@ -37,7 +37,7 @@ class Human extends Mob {
 
         // Actions to run in Render loop.
         this.group.userData.actions.push(
-            function die () {
+            function die() {
                 if (_this.group.userData.life === 0) {
                     _this.group.rotation.x = 90 * Math.PI / 180;
                     _this.group.position.y = 1;
