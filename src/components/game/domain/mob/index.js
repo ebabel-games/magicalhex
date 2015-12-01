@@ -2,6 +2,7 @@ import THREE from 'three';
 
 import takeDamage from './takeDamage';
 import fade from './fade';
+import actions from './actions';
 
 // A mob is either static or mobile, but it can always be 
 // interacted with, contrary to the still models.
@@ -17,7 +18,7 @@ class Mob {
             dead: false,
 
             // Actions run during the Render requestAnimationFrame.
-            actions: [],
+            actions: actions,
 
             // When the mob is spawned, i.e. first introduced 
             // in the game or re-spawned after dying, it goes 
@@ -34,8 +35,14 @@ class Mob {
         this.group.takeDamage = takeDamage;
         this.group.fade = fade;
 
+
+
+
         return this;
     }
+
+
+
 }
 
 module.exports = Mob;
