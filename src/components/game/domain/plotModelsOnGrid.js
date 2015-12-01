@@ -13,6 +13,9 @@ module.exports = function plotModelsOnGrid (input) {
     // Model to be plotted on the grid free positions.
     const model = input && input.model;
 
+    const isMob = input && input.isMob || false;
+    const mobClass = input && input.mobClass;
+
     const positionY = input && input.positionY || 0;
 
     // Grid co-ordinates not already plotted with a model.
@@ -41,7 +44,7 @@ module.exports = function plotModelsOnGrid (input) {
         freeGridPositions.splice(index, 1);
 
         // Create a clone and place it at the correct position.
-        const clone = model.clone();
+        const clone = isMob ? new mobClass() : model.clone();
         clone.position.set(position.x, positionY, position.z);
         clone.scale.set(size, size, size);
         clone.rotation.set(0, rotation, 0);

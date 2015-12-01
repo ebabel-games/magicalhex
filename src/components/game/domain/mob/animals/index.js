@@ -14,7 +14,8 @@ class Animals {
         // Animals.
         const animals = plotModelsOnGrid({
             freeGridPositions: freeGridPositions,
-            modelClass: Animal,
+            isMob: true,
+            mobClass: Animal,
             numberModelsToPlot: numberModelsToPlot,
             positionY: 0,
             rotate: true,

@@ -15,6 +15,15 @@ import error from '../../shared/errorMessages';
 // this function via the custom event "model-data-found".
 module.exports = function loadFirebase (event) {
 
+    // Do not add models in the domain if they are already present,
+    // which does happen when the domain has just been generated.
+    if (this.still && this.still.children && this.still.children.length > 0 &&
+        this.mob && this.mob.children && this.mob.children.length > 0) {
+        document.dispatchEvent(this.ready);
+        return;
+    }
+
+    // Keep track of the domain scope.
     const _this = this;
 
     // All the still models that can be cloned and placed in a domain.
