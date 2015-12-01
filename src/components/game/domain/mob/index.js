@@ -14,7 +14,21 @@ class Mob {
             targetName: 'a mob',
             maxLife: 2,
             life: 2,
-            actions: []
+            dead: false,
+
+            // Actions run during the Render requestAnimationFrame.
+            actions: [],
+
+            // When the mob is spawned, i.e. first introduced 
+            // in the game or re-spawned after dying, it goes 
+            // to this position with this rotation.
+            spawn: {
+                position: [],
+                rotation: []
+            },
+
+            // Position on the y axis when dead.
+            deathY: 0
         };
 
         this.group.takeDamage = takeDamage;

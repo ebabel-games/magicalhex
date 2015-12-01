@@ -75,9 +75,15 @@ module.exports = function loadFirebase (event) {
                 break;
         }
 
+        // Current position, rotation and scale, read from Firebase.
         mobModel.position.set(mobData.position[0], mobData.position[1], mobData.position[2]);
         mobModel.rotation.set(mobData.rotation[0], mobData.rotation[1], mobData.rotation[2]);
         mobModel.scale.set(mobData.scale[0], mobData.scale[1], mobData.scale[2]);
+
+        // Keep track of the original spawn position and rotation.
+        // Only mob models need a spawn since the still models don't move.
+        mobModel.userData.spawn.position = [mobData.position[0], mobData.position[1], mobData.position[2]];
+        mobModel.userData.spawn.rotation = [mobData.rotation[0], mobData.rotation[1], mobData.rotation[2]]
 
         _this.mob.add(mobModel);
     });

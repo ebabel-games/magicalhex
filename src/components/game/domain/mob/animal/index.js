@@ -55,13 +55,14 @@ class Animal extends Mob {
         this.group.name = input && input.animalName || 'animal';
 
         this.group.userData.targetName = 'a horse';
+        this.group.userData.deathY = -3;
 
         // Actions to run in Render loop.
         this.group.userData.actions.push(
             function die() {
                 if (_this.group.userData.life === 0) {
                     _this.group.rotation.set(90 * Math.PI / 180, 0, 0);
-                    _this.group.position.y = -3;
+                    _this.group.position.y = _this.group.userData.deathY;
                 }
             }
         );
