@@ -41,8 +41,8 @@ module.exports = function generate (input) {
         width: width,
         height: height,
         freeGridPositions: freeGridPositions,
-        numberWillowsToPlot: 450,
-        numberTreesToPlot: 450
+        numberWillowsToPlot: 300,
+        numberTreesToPlot: 300
     });
     for (let index = forest.group.children.length -1; index >= 0; index--) {
         _this.still.add(forest.group.children[index]);

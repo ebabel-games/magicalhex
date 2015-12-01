@@ -21,10 +21,6 @@ const render = function render (input) {
     // Mob actions run from here.
     // Display all mob names: input.mob.children.map(function (_mob) { return _mob.userData.targetName });
     mob.children.map(function (_mob) {
-        if (!_mob.userData.actions || _mob.userData.actions.length === 0) {
-            return;
-        }
-
         executeActions(_mob);
     })
 

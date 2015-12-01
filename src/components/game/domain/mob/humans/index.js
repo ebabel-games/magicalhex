@@ -11,12 +11,10 @@ class Humans {
         const freeGridPositions = input && input.freeGridPositions;
         const numberModelsToPlot = input && input.numberModelsToPlot || 9;
 
-        const human = new Human(input);
-
         // Humans.
         const humans = plotModelsOnGrid({
             freeGridPositions: freeGridPositions,
-            model: human,
+            modelClass: Human,
             numberModelsToPlot: numberModelsToPlot,
             positionY: -0.8,
             rotate: true,

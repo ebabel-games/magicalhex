@@ -11,12 +11,10 @@ class Animals {
         const freeGridPositions = input && input.freeGridPositions;
         const numberModelsToPlot = input && input.numberModelsToPlot || 9;
 
-        const animal = new Animal(input);
-
         // Animals.
         const animals = plotModelsOnGrid({
             freeGridPositions: freeGridPositions,
-            model: animal,
+            modelClass: Animal,
             numberModelsToPlot: numberModelsToPlot,
             positionY: 0,
             rotate: true,
