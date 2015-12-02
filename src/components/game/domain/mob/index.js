@@ -16,6 +16,8 @@ class Mob {
             maxLife: 2,
             life: 2,
             dead: false,
+            timeOfDeath: null,
+            respawnTime: 1000 * 60 * 3, // 3 minutes.
 
             // Actions run during the Render requestAnimationFrame.
             actions: actions,
