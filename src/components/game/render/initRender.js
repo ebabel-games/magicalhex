@@ -32,7 +32,7 @@ module.exports = function initRender (input) {
     // Start the THREE.js clock.
     input.clock.start();
 
-    // Render the scene
+    // Initialize the render of the scene.
     // Note: render is called from here because only now are the mobs loaded.
     render({
         renderer: input.renderer,
@@ -40,7 +40,8 @@ module.exports = function initRender (input) {
         camera: input.camera,
         keyboardControls: new KeyboardControls({ object: input.camera }),
         mob: _this.mob,
-        clock: input.clock
+        clock: input.clock,
+        actionsTimer: 0
     });
 
 };
