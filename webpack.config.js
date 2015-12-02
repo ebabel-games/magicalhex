@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-    entry: './src/components/ui/ui.js',
+    entry: './src/ui/ui.js',
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: 'bundle.js'
