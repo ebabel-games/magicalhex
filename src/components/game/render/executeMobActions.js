@@ -1,5 +1,5 @@
 // Run all the actions of a given mob.
-module.exports = function executeActions (mob) {
+module.exports = function executeMobActions (mob) {
     if (!mob.userData.actions || mob.userData.actions.length === 0) {
         return;
     }

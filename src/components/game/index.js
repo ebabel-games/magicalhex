@@ -28,6 +28,8 @@ module.exports = function game (input) {
     ];
     const raycaster = new THREE.Raycaster();
 
+    const clock = new THREE.Clock();
+
     let camera = null;
 
     const ref = new Firebase('https://enchantment.firebaseio.com/player/' + playerId + '/character');
@@ -69,7 +71,8 @@ module.exports = function game (input) {
             renderer: renderer,
             raycaster: raycaster,
             width: 1000,
-            height: 1000
+            height: 1000,
+            clock: clock
         });
     });
 

@@ -18,6 +18,7 @@ class Domain extends Model {
         const _scene = input && input.scene;
         const _camera = input && input.camera;
         const _raycaster = input && input.raycaster;
+        const _clock = input && input.clock;
 
         // Name of the domain.
         this.name = input && input.name;
@@ -65,7 +66,8 @@ class Domain extends Model {
                 scene: _scene,
                 camera: _camera,
                 raycaster: _raycaster,
-                domain: _this
+                domain: _this,
+                clock: _clock
             });
         });
 
