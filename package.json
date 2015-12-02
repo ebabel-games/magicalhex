@@ -1,6 +1,6 @@
 {
   "name": "enchantment",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Enchantment (working title) is a free (for ever) browser based single player adventure game.",
   "engines": {
     "node": ">= 4.2.2"
