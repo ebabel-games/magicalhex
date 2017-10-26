@@ -1,4 +1,4 @@
-import THREE from 'three';
+
 
 function buildAxis( src, dst, colorHex, dashed ) {
     var geom = new THREE.Geometry(),

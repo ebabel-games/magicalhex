@@ -1,4 +1,4 @@
-import THREE from 'three';
+
 
 // Compute what the player has clicked on.
 module.exports = function acquireTarget() {

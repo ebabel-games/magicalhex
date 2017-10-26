@@ -1,4 +1,4 @@
-import THREE from 'three';
+
 
 import Animal from '../animal';
 

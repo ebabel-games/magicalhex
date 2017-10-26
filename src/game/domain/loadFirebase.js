@@ -1,4 +1,4 @@
-import THREE from 'three';
+
 
 import Ground from './still/ground';
 import Tree from './still/tree';

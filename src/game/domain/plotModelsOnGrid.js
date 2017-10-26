@@ -1,4 +1,4 @@
-import THREE from 'three';
+
 
 import createGridPositions from './createGridPositions';
 

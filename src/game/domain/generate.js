@@ -1,4 +1,4 @@
-import THREE from 'three';
+
 
 // Still models.
 import Ground from './still/ground';

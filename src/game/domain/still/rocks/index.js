@@ -1,4 +1,4 @@
-import THREE from 'three';
+
 
 import Rock from '../rock';
 

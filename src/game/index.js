@@ -1,4 +1,4 @@
-import THREE from 'three';
+
 import Firebase from 'firebase';
 
 import axes from './axes';

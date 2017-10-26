@@ -1,4 +1,4 @@
-import THREE from 'three';
+
 
 import takeDamage from './takeDamage';
 import fade from './fade';
