@@ -1,7 +1,5 @@
 # Single player adventure game
 
-version 0.10.1
-
 Enchantment (working title) is a free (for ever) browser based single player adventure game. See the [wiki](https://github.com/ebabel-eu/Enchantment/wiki) for further details.
 
 ## Installation
@@ -58,20 +56,11 @@ When a milestone is completed, increase the version number accordingly and relea
 
 ## Versions
 
-### Semantic versioning
-
-See http://semver.org/
-
-* MAJOR version when you make incompatible API breaking changes,
-* MINOR version when you add functionality in a backwards-compatible manner, and
-* PATCH version when you make backwards-compatible bug fixes.
-
 ### Next release tag
-
-1.0.0 remove Facebook integration and let anyone move around virtual environment without any login
 
 ### Released tags
 
+* 1.0.0 remove Facebook integration and let anyone move around virtual environment without any login
 * 0.10.1 single player fixes
 * 0.10.0 single player
 * 0.9.0 refactor data and classes
