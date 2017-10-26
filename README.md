@@ -8,7 +8,6 @@ Enchantment (working title) is a free (for ever) browser based single player adv
 
 ```
 npm install
-bower install
 npm install -g http-server
 npm install -g webpack
 ```
@@ -69,6 +68,7 @@ See http://semver.org/
 
 ### Next release tag
 
+1.0.0 remove Facebook integration and let anyone move around virtual environment without any login
 
 ### Released tags
 
