@@ -6,13 +6,15 @@ requirejs.config({
 });
 
 // Start the main app logic.
-requirejs(['cube', 'animate'],
-function   (cube, animate) {
+requirejs(['cube', 'animate', 'ground'],
+function   (cube, animate, ground) {
   // Initialize a three.js scene and camera.
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x9db3b5, 0.005);
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 300);
+  camera.position.y = 5;
   camera.position.z = 15;
+  scene.add(camera);
 
   // Lighting.
   const lights = [
@@ -51,6 +53,10 @@ function   (cube, animate) {
 
     return staticCube;
   });
+
+  // Ground.
+  const staticGround = ground();
+  scene.add(staticGround);
 
   // Kickstarts the animation.
   animate(renderer, scene, camera, plainCube, wireframeCube);
