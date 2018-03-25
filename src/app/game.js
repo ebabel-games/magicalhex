@@ -1,19 +1,22 @@
-function Cube(size = 1, wireframe = false, color = 0xff0000) {
-  const box = new THREE.BoxGeometry(size, size, size);
-  let geometry = box;
-  let material;
-
-  if (wireframe) {
-    geometry = new THREE.WireframeGeometry(box);
-    material = new THREE.LineBasicMaterial({ color, lineWidth: 4 });
-    return new THREE.LineSegments(geometry, material);
+requirejs.config({
+  //By default load any module IDs from js/lib
+  baseUrl: 'modules',
+  //except, if the module ID starts with "app",
+  //load it from the js/app directory. paths
+  //config is relative to the baseUrl, and
+  //never includes a ".js" extension since
+  //the paths config could be for a directory.
+  paths: {
+      app: '../app'
   }
-  
-  material = new THREE.MeshBasicMaterial({ color });
-  return new THREE.Mesh(geometry, material);
-}
+});
 
-((THREE) => {
+// Start the main app logic.
+requirejs(['cube'],
+function   (Cube) {
+  // Cube is loaded and can be used here now.
+
+
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   
@@ -22,11 +25,11 @@ function Cube(size = 1, wireframe = false, color = 0xff0000) {
   document.body.appendChild( renderer.domElement );
 
   // Plain cube.
-  const plainCube = new Cube();
+  const plainCube = Cube();
   scene.add(plainCube);
 
   // Wireframe cube.
-  const wireframeCube = new Cube(2, true, 0xffcc00);
+  const wireframeCube = Cube(2, true, 0xffcc00);
   scene.add(wireframeCube);
 
   camera.position.z = 5;
@@ -46,4 +49,4 @@ function Cube(size = 1, wireframe = false, color = 0xff0000) {
   }
   animate();
 
-})(THREE);
+});
