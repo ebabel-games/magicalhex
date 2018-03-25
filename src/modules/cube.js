@@ -1,5 +1,5 @@
 define([], () => {
-  const Cube = (size = 1, wireframe = false, color = 0xff0000) => {
+  const cube = (size = 1, wireframe = false, color = 0xff0000) => {
     const box = new THREE.BoxGeometry(size, size, size);
     let geometry = box;
     let material;
@@ -14,5 +14,5 @@ define([], () => {
     return new THREE.Mesh(geometry, material);
   }
 
-  return Cube;
+  return cube;
 });
