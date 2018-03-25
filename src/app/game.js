@@ -41,11 +41,11 @@ function   (cube, animate) {
 
   // Static cubes.
   const staticCubes = new Array(20).fill({}).map(input => {
-    const staticCube = cube(0.5, false, 0x33ccff);
+    const staticCube = cube(1, false, 0x33ccff);
 
     staticCube.position.x = Math.round(Math.random() * 40 - 20);
     staticCube.position.y = Math.round(Math.random() * 20);
-    staticCube.position.z = -40;
+    staticCube.position.z = -20;
 
     scene.add(staticCube);
 
