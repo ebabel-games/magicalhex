@@ -32,6 +32,7 @@ When a milestone is completed, increase the version number accordingly and relea
 ### Next release tag
 * 2.0.0
 - Switched license from MIT to GPL 3.0
+- upgraded three.js from 87 to 91
 - Remove webpack
 - Remove build step
 - Remove React.js (just Three.js and plain Javascript)
