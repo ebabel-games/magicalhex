@@ -3,32 +3,15 @@ Enchantment (working title) is a free (for ever) browser based single player adv
 
 ## Installation
 ```
-npm install
 npm install -g http-server
-```
-
-## Build the game
-```
-webpack -w
 ```
 
 ## Start running the game during development
 ```
-http-server public
+http-server src
 ```
 
-Browse to
-  http://localhost:8080
-
-## Deploy to Firebase
-Note: you may need to adjust your firebase.json settings with `firebase init` after you have logged in with your own Firebase account. Refer to Firebase for further details.
-
-```
-firebase deploy
-```
-
-Browse to
-  https://enchantment.firebaseapp.com/
+Browse to `http://localhost:8080`
 
 ## Branching model
 Tackle issues organised in the Github issues system.
