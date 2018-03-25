@@ -14,15 +14,15 @@ requirejs.config({
 // Start the main app logic.
 requirejs(['cube'],
 function   (Cube) {
-  // Cube is loaded and can be used here now.
-
-
+  // Initialize a three.js scene and camera.
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  camera.position.z = 5;
   
+  // Create a canvas where everything 3D will be rendered.
   const renderer = new THREE.WebGLRenderer();
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  document.body.appendChild( renderer.domElement );
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
 
   // Plain cube.
   const plainCube = Cube();
@@ -32,9 +32,8 @@ function   (Cube) {
   const wireframeCube = Cube(2, true, 0xffcc00);
   scene.add(wireframeCube);
 
-  camera.position.z = 5;
-
-  function animate() {
+  // Animation that keeps getting called to render everything and all changes.
+  const animate = () => {
     // First line of animate, to ensure a smooth animation.
     requestAnimationFrame(animate);
 
@@ -46,7 +45,8 @@ function   (Cube) {
 
     // Last line of animation, to render all changes.
     renderer.render( scene, camera );
-  }
-  animate();
+  };
 
+  // Kickstarts the animation.
+  animate();
 });
