@@ -1,127 +1,49 @@
-var initScene = function initScene (input) {
-  const scene = input && input.scene;
-  const renderer = input && input.renderer;
-  const lights = input && input.lights;
-  const camera = input && input.camera;
+function Cube(size = 1, wireframe = false, color = 0xff0000) {
+  const box = new THREE.BoxGeometry(size, size, size);
+  let geometry = box;
+  let material;
 
-  if (!scene || !renderer || !lights || !camera || 
-      !camera.type || !camera.aspectRatio || !camera.nearPlane || !camera.farPlane) {
-      throw new Error(error.input.required);
+  if (wireframe) {
+    geometry = new THREE.WireframeGeometry(box);
+    material = new THREE.LineBasicMaterial({ color, lineWidth: 4 });
+    return new THREE.LineSegments(geometry, material);
   }
-
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.getElementById('game').appendChild(renderer.domElement);
-
-  lights.map(function addLight (toAdd) {
-      if (toAdd.position) {
-          toAdd.light.position.set(toAdd.position.x, toAdd.position.y, toAdd.position.z);
-      }
-      scene.add(toAdd.light);
-  });
-
-  const output = new THREE[camera.type](
-      camera.angle, 
-      camera.aspectRatio, 
-      camera.nearPlane, 
-      camera.farPlane
-  );
-
-  output.position.set(
-      camera.position && camera.position.x || 0,
-      camera.position && camera.position.y || 0,
-      camera.position && camera.position.z || 2
-  );
   
-  scene.add(output);
+  material = new THREE.MeshBasicMaterial({ color });
+  return new THREE.Mesh(geometry, material);
+}
 
-  return output;
-};
-
-(() => {
+((THREE) => {
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x9db3b5, 0.005);
+  const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  document.body.appendChild( renderer.domElement );
 
-  const renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-  const lights = [
-      { light:  new THREE.HemisphereLight(0xffffcc, 0x080820, 0.2) },
-      { light: new THREE.DirectionalLight(0xccff20, 0.2), position: { x: 10, y: 10, z: 10 } },
-      { light: new THREE.DirectionalLight(0xccff20, 0.2), position: { x: -10, y: 10, z: -10 } }
-  ];
-  const raycaster = new THREE.Raycaster();
-  const clock = new THREE.Clock();
+  // Plain cube.
+  const plainCube = new Cube();
+  scene.add(plainCube);
 
-  const character = {
-    position: { x: 0, y: 6, z: 0 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: { x: 1, y: 1, z: 1 },
-  };
+  // Wireframe cube.
+  const wireframeCube = new Cube(2, true, 0xffcc00);
+  scene.add(wireframeCube);
 
-  const camera = initScene({
-      scene: scene,
-      renderer: renderer,
-      lights: lights,
-      camera: {
-          type: 'PerspectiveCamera',
-          angle: 45,
-          aspectRatio: window.innerWidth / window.innerHeight,
-          nearPlane: 1,
-          farPlane: 300,
-          position: { x: character.position.x, y: character.position.y, z: character.position.z },
-          rotation: { x: character.rotation.x, y: character.rotation.y, z: character.rotation.z }
-      }
-  });
+  camera.position.z = 5;
 
-  let currentTarget = null;
+  function animate() {
+    // First line of animate, to ensure a smooth animation.
+    requestAnimationFrame(animate);
 
-  const keyCodes = {
-    '1': 49,    // Cast first memorized spell.
-    'esc': 27   // Escape: clear current target.
-  };
+    plainCube.rotation.x += 0.02;
+    plainCube.rotation.y += 0.02;
 
-  // Listen for a change of target.
-  document.addEventListener('change-target', function onChangeTarget (e) {
-    currentTarget = e.detail.currentTarget;
-  }, true);
+    wireframeCube.rotation.x += 0.01;
+    wireframeCube.rotation.y += 0.01;
 
-  // Listen for a key.
-  document.addEventListener('keydown', function onKeyDown (e) {
-    // Clear the current target.
-    if (e.keyCode === keyCodes['esc']) {
-        document.dispatchEvent(
-            new CustomEvent('change-target', 
-            { 
-                'detail': {
-                    'targetName': 'no target',
-                    'life': null,
-                    'currentTarget': null
-                }
-            })
-        );
-    }
+    // Last line of animation, to render all changes.
+    renderer.render( scene, camera );
+  }
+  animate();
 
-    // The key [1] has been pressed, which fires damage on the current target.
-    if (currentTarget && e.keyCode === keyCodes['1']) {
-
-        currentTarget.takeDamage({
-            model: currentTarget,
-            damage: 1
-        });
-
-        document.dispatchEvent(
-            new CustomEvent('change-target', 
-            { 
-                'detail': {
-                    'targetName': currentTarget.userData.targetName,
-                    'life': currentTarget.userData.life,
-                    'currentTarget': currentTarget
-                }
-            })
-        );
-    }
-  });
-
-  // Prevent selection on the page
-  document.onselectstart = function onSelectStart() { return false; }
-
-  return this;
-})();
+})(THREE);
