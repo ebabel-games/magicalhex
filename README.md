@@ -5,7 +5,6 @@ Enchantment (working title) is a free (for ever) browser based single player adv
 ```
 npm install
 npm install -g http-server
-npm install -g webpack
 ```
 
 ## Build the game
@@ -48,7 +47,13 @@ When a milestone is completed, increase the version number accordingly and relea
 ## Versions
 
 ### Next release tag
-* 2.0.0 multiplayer chat
+* 2.0.0
+- Switched license from MIT to GPL 3.0
+- Remove webpack
+- Remove build step
+- Remove React.js (just Three.js and plain Javascript)
+- Remove Firebase
+- Add multiplayer chat
 
 ### Released tags
 * 1.0.0 remove Facebook integration and let anyone move around virtual environment without any login
