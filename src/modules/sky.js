@@ -1,5 +1,5 @@
 define([], () => {
-  const ground = () => {
+  const sky = (camera) => {
     const width = 1000;
     const height = 1000;
   
@@ -7,18 +7,18 @@ define([], () => {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(width / 256, height / 256);
-  
+
     const mesh = new THREE.Mesh(
         new THREE.PlaneGeometry(width, height),
         new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
     );
-  
-    mesh.rotation.set(-90 * Math.PI / 180, 0, 0);
-  
-    mesh.name = 'ground';
-  
+    
+    mesh.name = 'sky';
+    mesh.position.y = 500;
+    mesh.position.z = camera.position.z - camera.far;
+
     return mesh;
   };
 
-  return ground;
+  return sky;
 });
