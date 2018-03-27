@@ -1,5 +1,5 @@
 # Single player adventure game
-Enchantment (working title) is a free (for ever) browser based single player adventure game. See the [wiki](https://github.com/ebabel-eu/Enchantment/wiki) for further details.
+Enchantment (working title) is a free (for ever) browser based single player adventure game.
 
 ## Installation
 ```

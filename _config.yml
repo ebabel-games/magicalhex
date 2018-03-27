@@ -1,0 +1,42 @@
+title: Enchantment
+email: hello@ebabel.eu
+description: > # this means to ignore newlines until "baseurl:"
+  Enchantment (working title) is a free (for ever) browser based single player adventure game.
+
+baseurl: "/src" # the subpath of your site, e.g. /blog
+
+url: "http://example.com" # the base hostname & protocol for your site
+
+twitter_username: ebabel
+github_username:  ebabel-eu
+
+# Build settings
+markdown: kramdown
+
+collections:
+  episodes:
+    output: true
+  seasons:
+    output: true
+  characters:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "episodes"
+    values:
+      layout: "episode"
+  - scope:
+      path: ""
+      type: "characters"
+    values:
+      layout: "character"
+  - scope:
+      path: ""
+      type: "seasons"
+    values:
+      layout: "season"
+
+gems:
+  - octopress-paginate
