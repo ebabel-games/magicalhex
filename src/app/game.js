@@ -7,8 +7,8 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['cube', 'animate', 'ground', 'sky'],
-  (cube, animate, ground, sky) => {
+  ['cube', 'animate', 'ground', 'sky', 'player-movement'],
+  (cube, animate, ground, sky, playerMovement) => {
     // Initialize a three.js scene and camera.
     const scene = new THREE.Scene();
 
@@ -20,6 +20,9 @@ requirejs(
     camera.position.y = 5;
     camera.position.z = 15;
     scene.add(camera);
+
+    // Initialize player movement.
+    playerMovement(camera);
 
     // Overall world lighting.
     const lights = [
