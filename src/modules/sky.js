@@ -3,7 +3,7 @@ define([], () => {
   const height = 1000;
 
   const sky = () => {
-    const texture = new THREE.TextureLoader().load('../textures/sky.jpg');
+    const texture = new THREE.TextureLoader().load('textures/sky.jpg');
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(width / 256, height / 256);
