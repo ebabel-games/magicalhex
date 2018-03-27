@@ -2,10 +2,7 @@ define([], () => {
   const width = 1000;
   const height = 1000;
 
-  // The height nudge helps avoiding a gap appears sometimes when camera is moving.
-  const heightNudge = 5;
-
-  const sky = (camera) => {
+  const sky = () => {
     const texture = new THREE.TextureLoader().load('/textures/sky.jpg');
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -17,13 +14,6 @@ define([], () => {
     );
 
     mesh.name = 'sky';
-    mesh.position.y = height / 2 - heightNudge;
-    mesh.position.z = camera.position.z - camera.far;
-
-    // When the camera moves, the sky needs to adjust to stay in front of the camera.
-    window.document.addEventListener('follow-camera', (e) => {
-      console.log(e.detail);
-    }, false);
 
     return mesh;
   };

@@ -15,10 +15,21 @@ requirejs(
     // Fog: color and density.
     scene.fog = new THREE.FogExp2(0x9db3b5, 0.025);
 
-    // Camera starting point.
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 75);
-    camera.position.y = 5;
-    camera.position.z = 15;
+    // Camera setup.
+    const cameraFov = 45; // Vertical field of view.
+    const cameraAspect = window.innerWidth / window.innerHeight;  // Aspect ratio.
+    const cameraNear = 1; // How near the camera can still show something.
+    const cameraFar = 75; // How far the camera cana see.
+    const camera = new THREE.PerspectiveCamera(cameraFov, cameraAspect, cameraNear, cameraFar);
+    camera.position.set(0, 2, 15);  // x, y, z relative to the scene origin.
+
+    // Relative sky is always in front of the camera, wherever the camera is pointing.
+    // The sky stays perpendicular to the ground and always at the same distance from the camera.
+    const relativeSky = sky();
+    camera.add(relativeSky);
+    relativeSky.position.set(0, 498, 0 - cameraFar);  // x, y, z relative to the camera position.
+
+    // Only add the camera to the scene after the sky has been added to the camera.
     scene.add(camera);
 
     // Initialize player movement.
@@ -54,12 +65,12 @@ requirejs(
     scene.add(wireframeCube);
 
     // Static cubes.
-    const staticCubes = new Array(20).fill({}).map(input => {
+    const staticCubes = new Array(2000).fill({}).map(input => {
       const staticCube = cube(1, false, 0x7b3612);
 
-      staticCube.position.x = Math.round(Math.random() * 40 - 20);
+      staticCube.position.x = Math.round(Math.random() * 1000 - 500);
       staticCube.position.y = Math.round((Math.random() * 0.75 + 0.5) * 10) / 10;
-      staticCube.position.z = Math.round(Math.random() * -35) - 15;
+      staticCube.position.z = Math.round(Math.random() * 1000 - 500);
 
       scene.add(staticCube);
 
@@ -69,11 +80,6 @@ requirejs(
     // Ground.
     const staticGround = ground();
     scene.add(staticGround);
-
-    // Relative sky is always in front of the camera, wherever the camera is pointing.
-    // The sky stays perpendicular to the ground and always at the same distance from the camera.
-    const relativeSky = sky(camera);
-    scene.add(relativeSky);
 
     // Kickstarts the animation.
     animate(renderer, scene, camera, plainCube, wireframeCube);
