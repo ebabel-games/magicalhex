@@ -1,7 +1,7 @@
 {
   "name": "enchantment",
   "version": "2.0.0",
-  "description": "Enchantment (working title) is a free (for ever) browser based multi-player adventure game.",
+  "description": "Enchantment (working title) is a free (for ever) browser based single-player adventure game.",
   "engines": {
     "node": ">= 4.2.2"
   },
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "bitbucket.org:ebabelgames/enchantment-website.git"
+    "url": "git@github.com:ebabel-eu/enchantment.git"
   },
   "keywords": [
     "free",

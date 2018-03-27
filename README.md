@@ -38,7 +38,8 @@ When a milestone is completed, increase the version number accordingly and relea
 - Remove build step
 - Remove React.js (just Three.js and plain Javascript)
 - Remove Firebase
-- Add multiplayer chat
+- Add static starting big square
+- When player goes near edges of the origin static area, generate procedurally the areas where he is likely to go to. These procedural areas should then stored in localStorage and read from there next time.
 
 ### Released tags
 * 1.0.0 remove Facebook integration and let anyone move around virtual environment without any login
