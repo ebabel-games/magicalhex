@@ -13,33 +13,19 @@ http-server src
 
 Browse to `http://localhost:8080`
 
-## Branching model
-Tackle issues organised in the Github issues system.
-
-Create one branch per issue. Name it after the milestone and words from the title.
-
-For example, for issue "Authenticate with Firebase to login with Facebook" due for the "0.4.0" milestone, create a branch named 0.4.0/firebase-facebook-login
-
-When the work is completed, merge back to the develop branch.
-
-When a milestone is completed, increase the version number accordingly and release to Firebase. Create a tag for that release number and document it in this README.
-
-## Features that are already implemented
-* Load Collada models and animate them with their own custom heartbeat.
-
 ## Versions
 
 ### Next release tag
 * 2.0.0
 - Switched license from MIT to GPL 3.0
-- upgraded three.js from 87 to 91
-- switch to require.js modules
+- Upgraded three.js from 87 to 91
+- Switch to require.js modules
 - Remove webpack
 - Remove build step
 - Remove React.js (just Three.js and plain Javascript)
 - Remove Firebase
 - Add static starting big square
-- When player goes near edges of the origin static area, generate procedurally the areas where he is likely to go to. These procedural areas should then stored in localStorage and read from there next time.
+- Infinite world: when player goes near edges of the origin static area, generate procedurally the areas where he is likely to go to. These procedural areas should then stored in localStorage and read from there next time.
 
 ### Released tags
 * 1.0.0 remove Facebook integration and let anyone move around virtual environment without any login
