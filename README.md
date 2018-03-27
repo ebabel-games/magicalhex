@@ -13,6 +13,9 @@ http-server src
 
 Browse to `http://localhost:8080`
 
+## Debug mode
+In your browser console, set window.debug to true and the debug mode will be switched on.
+
 ## Versions
 
 ### Next release tag
@@ -24,7 +27,8 @@ Browse to `http://localhost:8080`
 - Remove build step
 - Remove React.js (just Three.js and plain Javascript)
 - Remove Firebase
-- Add static starting big square
+- Add static starting origin area
+- Add debug flag and debug settings mode when flag is true.
 - Infinite world: when player goes near edges of the origin static area, generate procedurally the areas where he is likely to go to. These procedural areas should then stored in localStorage and read from there next time.
 
 ### Released tags
