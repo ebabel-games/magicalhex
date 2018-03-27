@@ -43,11 +43,13 @@ requirejs(
     
     // Plain cube.
     const plainCube = cube();
+    plainCube.name = 'plain-cube';
     plainCube.position.y = 2;
     scene.add(plainCube);
 
     // Wireframe cube.
     const wireframeCube = cube(2, true, 0xffcc00);
+    wireframeCube.name = 'wireframe-cube';
     wireframeCube.position.y = 2;
     scene.add(wireframeCube);
 
@@ -68,7 +70,7 @@ requirejs(
     const staticGround = ground();
     scene.add(staticGround);
 
-    // Sky: always in front of the camera, wherever the camera is pointing.
+    // Relative sky is always in front of the camera, wherever the camera is pointing.
     // The sky stays perpendicular to the ground and always at the same distance from the camera.
     const relativeSky = sky(camera);
     scene.add(relativeSky);

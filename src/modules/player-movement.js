@@ -1,7 +1,7 @@
 define([], () => {
   const forwardSpeed = 0.5;
   const backwardSpeed = Math.round(forwardSpeed / 3 * 100) / 100;
-  const turnSpeed = Math.round((2 * Math.PI / 180) * 100) / 100;
+  const turnSpeed = Math.round((4 * Math.PI / 180) * 100) / 100;
   const key = {
     up: 38,
     w: 87,
