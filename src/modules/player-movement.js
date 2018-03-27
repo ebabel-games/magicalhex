@@ -22,6 +22,7 @@ define([], () => {
       case key.down:
       case key.s:
         camera.translateZ(backwardSpeed);
+        e.preventDefault(); // Prevent the whole page scrolling down when using the down arrow key.
         break;
       case key.left:
       case key.a:
