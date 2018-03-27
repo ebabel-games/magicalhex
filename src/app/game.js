@@ -7,8 +7,8 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['cube', 'animate', 'ground', 'sky', 'player-movement'],
-  (cube, animate, ground, sky, PlayerMovement) => {
+  ['animate', 'ground', 'sky', 'player-movement', 'static-meshes'],
+  (animate, ground, sky, PlayerMovement, StaticMeshes) => {
     // Initialize a three.js scene and camera.
     const scene = new THREE.Scene();
 
@@ -36,50 +36,26 @@ requirejs(
     const playerMovement = new PlayerMovement(camera);
 
     // Overall world lighting.
-    const lights = [
-      { light:  new THREE.HemisphereLight(0xffffcc, 0x080820, 0.2) },
-      { light: new THREE.DirectionalLight(0xccff20, 0.2), position: { x: 10, y: 10, z: 10 } },
-      { light: new THREE.DirectionalLight(0xccff20, 0.2), position: { x: -10, y: 10, z: -10 } }
-    ].map((toAdd) => {
-      if (toAdd.position) {
-        toAdd.light.position.set(toAdd.position.x, toAdd.position.y, toAdd.position.z);
-      }
-      scene.add(toAdd.light);
-    });
+    const firstLight = new THREE.DirectionalLight(0xccff20, 0.2);
+    firstLight.position.set(10, 10, 10);
+    const secondLight = new THREE.DirectionalLight(0xccff20, 0.2);
+    secondLight.position.set(-10, 10, -10);
+    scene.add(new THREE.HemisphereLight(0xffffcc, 0x080820, 0.2));
+    scene.add(firstLight);
+    scene.add(secondLight);
 
     // Create a canvas where everything 3D will be rendered.
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
-    
-    // Plain cube.
-    const plainCube = cube();
-    plainCube.name = 'plain-cube';
-    plainCube.position.y = 2;
-    scene.add(plainCube);
-
-    // Wireframe cube.
-    const wireframeCube = cube(2, true, 0xffcc00);
-    wireframeCube.name = 'wireframe-cube';
-    wireframeCube.position.y = 2;
-    scene.add(wireframeCube);
-
-    // Static cubes.
-    const staticCubes = new Array(2000).fill({}).map(input => {
-      const staticCube = cube(1, false, 0x7b3612);
-
-      staticCube.position.x = Math.round(Math.random() * 1000 - 500);
-      staticCube.position.y = Math.round((Math.random() * 0.75 + 0.5) * 10) / 10;
-      staticCube.position.z = Math.round(Math.random() * 1000 - 500);
-
-      scene.add(staticCube);
-
-      return staticCube;
-    });
 
     // Ground.
     const staticGround = ground();
     scene.add(staticGround);
+    
+    // Place all the static meshes in the origin square.
+    const originStaticMeshes = new StaticMeshes();
+    scene.add(originStaticMeshes);
 
     // Kickstarts the animation.
     animate(renderer, scene, camera, playerMovement);
