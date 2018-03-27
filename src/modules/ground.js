@@ -3,7 +3,7 @@ define([], () => {
     const width = 1000;
     const height = 1000;
 
-    const texture = new THREE.TextureLoader().load('/textures/ground.jpg');
+    const texture = new THREE.TextureLoader().load('../textures/ground.jpg');
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(width / 256, height / 256);
