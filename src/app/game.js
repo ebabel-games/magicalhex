@@ -82,5 +82,5 @@ requirejs(
     scene.add(staticGround);
 
     // Kickstarts the animation.
-    animate(renderer, scene, camera, plainCube, wireframeCube);
+    animate(renderer, scene, camera, playerMovement);
   });
