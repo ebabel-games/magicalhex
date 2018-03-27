@@ -1,14 +1,11 @@
-define([], () => {
+define(['debug'], (debug) => {
   // Animation that keeps getting called to render everything and all changes.
   const animate = (renderer, scene, camera, playerMovement) => {
     // First line of animate, to ensure a smooth animation.
     requestAnimationFrame((timestamp) => animate(renderer, scene, camera, playerMovement));
 
-    // Set window.debug to switch from normal gameplay to super powered.
-    if (window.debug) {
-      playerMovement.forwardSpeed = 1;
-      playerMovement.backwardSpeed = 1;
-    }
+    // In production, debug should be taken out completely because it has a performance cost.
+    debug(playerMovement, camera);
 
     // Test animations, these should be made generic, like a list of everything that needs animating and each item documenting how it should be animated.
     const plainCube = scene.getObjectByName('plain-cube');
