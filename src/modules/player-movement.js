@@ -2,7 +2,7 @@ define([], () => {
   // Control the movement of the main player via keyboard keys.
   class PlayerMovement {
     constructor(camera) {
-      this.forwardSpeed = 0.05;
+      this.forwardSpeed = 0.1;
       this.backwardSpeed = Math.round(this.forwardSpeed / 3 * 100) / 100;
       this.turnSpeed = Math.round((2 * Math.PI / 180) * 100) / 100;
       this.key = {

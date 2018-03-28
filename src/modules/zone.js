@@ -1,4 +1,4 @@
-define(['ground', 'static-meshes'], (ground, StaticMeshes) => {
+define(['ground', 'static-meshes'], (Ground, StaticMeshes) => {
   class Zone {
     constructor(x, z) {
       // Main container for all static meshes that make up a zone.
@@ -10,7 +10,7 @@ define(['ground', 'static-meshes'], (ground, StaticMeshes) => {
       meshes.name = 'zone0:0';
 
       // Add the ground.
-      meshes.add(ground(`ground-${meshes.name}`));
+      meshes.add(new Ground(`ground-${meshes.name}`));
 
       // Add the test static meshes.
       // todo: delete these static meshes and use a procedural routine to decide what to place in the zone.
