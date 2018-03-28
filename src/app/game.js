@@ -7,9 +7,15 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['animate', 'ground', 'sky', 'player-movement', 'static-meshes'],
-  (animate, ground, sky, PlayerMovement, StaticMeshes) => {
-    // Initialize a three.js scene and camera.
+  ['animate', 'sky', 'player-movement', 'zone'],
+  (animate, sky, PlayerMovement, Zone) => {
+    // todo: enabke clicking on meshes.
+    const raycaster = new THREE.Raycaster();
+
+    // todo: use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU.
+    const clock = new THREE.Clock();
+
+    // Initialize a three.js scene.
     const scene = new THREE.Scene();
 
     // Fog: color and density.
@@ -22,6 +28,7 @@ requirejs(
     const cameraFar = 75; // How far the camera cana see.
     const camera = new THREE.PerspectiveCamera(cameraFov, cameraAspect, cameraNear, cameraFar);
     camera.position.set(0, 2, 15);  // x, y, z relative to the scene origin.
+    // todo: read the position of the camera based on previous games by using localStorage. This will in turn have an impact on starting the new game in the correct zone and location.
 
     // Relative sky is always in front of the camera, wherever the camera is pointing.
     // The sky stays perpendicular to the ground and always at the same distance from the camera.
@@ -31,6 +38,13 @@ requirejs(
 
     // Only add the camera to the scene after the sky has been added to the camera.
     scene.add(camera);
+
+    // Load the data of the current zone to build its static meshes.
+    // const zoneProperties = new ZoneProperties();
+    // const isDataFound = localStorage[zoneProperties.name] === undefined;
+    // const zone = (isDataFound) ? JSON.parse(localStorage[zoneProperties.name]) : new Zone(zoneProperties);
+    const zone = new Zone(camera.position.x, camera.position.z);
+    scene.add(zone);
 
     // Initialize player movement.
     const playerMovement = new PlayerMovement(camera);
@@ -48,14 +62,6 @@ requirejs(
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
-
-    // Ground.
-    const staticGround = ground();
-    scene.add(staticGround);
-    
-    // Place all the static meshes in the origin square.
-    const originStaticMeshes = new StaticMeshes();
-    scene.add(originStaticMeshes);
 
     // Kickstarts the animation.
     animate(renderer, scene, camera, playerMovement);

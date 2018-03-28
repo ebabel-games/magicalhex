@@ -1,5 +1,5 @@
 define([], () => {
-  const ground = () => {
+  const ground = (name) => {
     const width = 1000;
     const height = 1000;
 
@@ -14,7 +14,7 @@ define([], () => {
     );
 
     mesh.rotation.set(-90 * Math.PI / 180, 0, 0);
-    mesh.name = 'ground';
+    mesh.name = name || 'ground';
 
     return mesh;
   };

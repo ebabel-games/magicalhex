@@ -27,9 +27,10 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Remove build step
 - Remove React.js (just Three.js and plain Javascript)
 - Remove Firebase
-- Add static starting origin area
+- Build procedural zones and store them locally for future reuse
 - Add debug flag and debug settings mode when flag is true.
-- Infinite world: when player goes near edges of the origin static area, generate procedurally the areas where he is likely to go to. These procedural areas should then stored in localStorage and read from there next time.
+- Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to. These procedural zones should then stored in localStorage and read from there next time.
+- Persist zones and player position: each time the game loads, start the camera position where the player left off and load the zone that has been procedurally generated.
 
 ### Released tags
 * 1.0.0 remove Facebook integration and let anyone move around virtual environment without any login
