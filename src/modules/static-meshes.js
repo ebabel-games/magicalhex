@@ -1,4 +1,4 @@
-define(['cube'], (cube) => {
+define(['cube'], (Cube) => {
   // Generate multiple static meshes and bind them to a single parent,
   // so they are more performant and can be added to the scene in one go.
   class StaticMeshes {
@@ -12,23 +12,23 @@ define(['cube'], (cube) => {
       // see answer on https://softwareengineering.stackexchange.com/questions/212808/treating-a-1d-data-structure-as-2d-grid
 
       // Plain cube.
-      const plainCube = cube();
+      const plainCube = new Cube();
       plainCube.name = 'plain-cube';
       plainCube.position.y = 2;
       meshes.add(plainCube);
 
       // Wireframe cube.
-      const wireframeCube = cube(2, true, 0xffcc00);
+      const wireframeCube = new Cube(2, true, 0xffcc00);
       wireframeCube.name = 'wireframe-cube';
       wireframeCube.position.y = 2;
       meshes.add(wireframeCube);
 
       // Static cubes.
       const staticCubes = new Array(2000).fill({}).map(input => {
-        const staticCube = cube(1, false, 0x7b3612);
+        const staticCube = new Cube(6, false, 0x03300);
 
         staticCube.position.x = Math.round(Math.random() * 1000 - 500);
-        staticCube.position.y = Math.round((Math.random() * 0.75 + 0.5) * 10) / 10;
+        staticCube.position.y = 3;
         staticCube.position.z = Math.round(Math.random() * 1000 - 500);
 
         meshes.add(staticCube);
