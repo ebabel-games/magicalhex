@@ -9,7 +9,7 @@ requirejs.config({
 requirejs(
   ['animate', 'sky', 'player-movement', 'zone'],
   (animate, sky, PlayerMovement, Zone) => {
-    // todo: enabke clicking on meshes.
+    // todo: enable clicking on meshes.
     const raycaster = new THREE.Raycaster();
 
     // todo: use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU.
