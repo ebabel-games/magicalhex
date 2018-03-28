@@ -2,24 +2,31 @@ define(['ground', 'static-meshes'], (Ground, StaticMeshes) => {
   class Zone {
     constructor(x, z) {
       // Main container for all static meshes that make up a zone.
-      const meshes = new THREE.Object3D();
+      this.meshes = new THREE.Object3D();
+
+      this.x = Math.round(x / 1000);
+      this.z = Math.round(z / 1000);
 
       // Identify a zone name from the camera x and z position.
-      // Any x from -500 to 500 and z from -500 to 500 is the zone 'origin' at 0:0
-      // todo: calculate the name of the zone based on the x and z input.
-      meshes.name = 'zone0:0';
+      this.meshes.name = `zone${this.x}:${this.z}`;
 
       // Add the ground.
-      meshes.add(new Ground(`ground-${meshes.name}`));
+      this.meshes.add(new Ground(`ground-${this.meshes.name}`));
 
       // Add the test static meshes.
       // todo: delete these static meshes and use a procedural routine to decide what to place in the zone.
-      meshes.add(new StaticMeshes());
+      this.meshes.add(new StaticMeshes());
       
       // Last step.
-      return meshes;
+      return this.meshes;
     }
   }
 
   return Zone;
 });
+
+// All the possible positions where meshes can be placed.
+// Ex: this.matrix[0][2] is position x = 0 and z = 2
+// this.matrix = new Array(100).fill(new Array(100).fill({}));
+// todo: work out a good, intuitive way to make a matrix.
+// see answer on https://softwareengineering.stackexchange.com/questions/212808/treating-a-1d-data-structure-as-2d-grid

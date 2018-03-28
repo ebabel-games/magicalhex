@@ -5,12 +5,6 @@ define(['cube'], (Cube) => {
     constructor() {
       const meshes = new THREE.Object3D();
 
-      // All the possible positions where meshes can be placed.
-      // Ex: this.matrix[0][2] is position x = 0 and z = 2
-      // this.matrix = new Array(100).fill(new Array(100).fill({}));
-      // todo: work out a good, intuitive way to make a matrix.
-      // see answer on https://softwareengineering.stackexchange.com/questions/212808/treating-a-1d-data-structure-as-2d-grid
-
       // Plain cube.
       const plainCube = new Cube();
       plainCube.name = 'plain-cube';
