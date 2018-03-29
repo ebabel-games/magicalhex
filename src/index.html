@@ -30,19 +30,24 @@
     <link rel="stylesheet" href="game.css">
   </head>
   <body>
-    <div id="game">
+    <section id="loading">
+      <header>
+        <h1>Magical Hex</h1>
+        <p>Loading, please wait...</p>
+      </header>
+    </section> 
 
+    <section id="game">
       <div id="target-window" class="ui-window">
         <p id="targetName"></p>
         <p id="targetLife"></p>
       </div>
-
       <div id="debug-window" class="ui-window">
         <ul>
           <li><span id="debugX"></span>, <span id="debugZ"></span></li>
         </ul>
-      </div>
-    </div>
+      </div>     
+    </section>
 
     <script async data-main="app/game" src="lib/require.min.js"></script>
   </body>

@@ -7,6 +7,14 @@ define(['ground', 'static-meshes'], (Ground, StaticMeshes) => {
       this.x = Math.round(x / 1000);
       this.z = Math.round(z / 1000);
 
+      // Near the zone edges, the adjacent zones should be loaded.
+      this.edges = {
+        north: this.z * 500 - 400,
+        south: this.z * 500 + 400,
+        east: this.x * 500 + 400,
+        west: this.x * 500 - 400,
+      };
+
       // Identify a zone name from the camera x and z position.
       this.meshes.name = `zone${this.x}:${this.z}`;
 

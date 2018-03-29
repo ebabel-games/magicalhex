@@ -7,8 +7,36 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['animate', 'sky', 'player-movement', 'zone'],
-  (animate, sky, PlayerMovement, Zone) => {
+  ['light', 'animate', 'sky', 'player-movement', 'zone'],
+  (Light, animate, sky, PlayerMovement, Zone) => {
+    THREE.DefaultLoadingManager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+
+      console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    
+    };
+    
+    THREE.DefaultLoadingManager.onLoad = function ( ) {
+    
+      console.log( 'Loading Complete!');
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('game').style.display = 'block';
+    
+    };
+    
+    
+    THREE.DefaultLoadingManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+    
+      console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    
+    };
+    
+    THREE.DefaultLoadingManager.onError = function ( url ) {
+    
+      console.log( 'There was an error loading ' + url );
+    
+    };
+
     // todo: enable clicking on meshes.
     const raycaster = new THREE.Raycaster();
 
@@ -50,13 +78,8 @@ requirejs(
     const playerMovement = new PlayerMovement(camera);
 
     // Overall world lighting.
-    const firstLight = new THREE.DirectionalLight(0xccff20, 0.2);
-    firstLight.position.set(10, 10, 10);
-    const secondLight = new THREE.DirectionalLight(0xccff20, 0.2);
-    secondLight.position.set(-10, 10, -10);
-    scene.add(new THREE.HemisphereLight(0xffffcc, 0x080820, 0.2));
-    scene.add(firstLight);
-    scene.add(secondLight);
+    const sunlight = new Light();
+    scene.add(sunlight);
 
     // Create a canvas where everything 3D will be rendered.
     const renderer = new THREE.WebGLRenderer();

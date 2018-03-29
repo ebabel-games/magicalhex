@@ -19,10 +19,10 @@ define(['cube'], (Cube) => {
 
       // Static cubes.
       const staticCubes = new Array(2000).fill({}).map(input => {
-        const staticCube = new Cube(6, false, 0x03300);
+        const staticCube = new Cube(1, false, 0x03300);
 
         staticCube.position.x = Math.round(Math.random() * 1000 - 500);
-        staticCube.position.y = 3;
+        staticCube.position.y = 0.5;
         staticCube.position.z = Math.round(Math.random() * 1000 - 500);
 
         meshes.add(staticCube);
