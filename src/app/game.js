@@ -7,35 +7,9 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['light', 'animate', 'sky', 'player-movement', 'zone'],
-  (Light, animate, sky, PlayerMovement, Zone) => {
-    THREE.DefaultLoadingManager.onStart = function ( url, itemsLoaded, itemsTotal ) {
-
-      console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-    
-    };
-    
-    THREE.DefaultLoadingManager.onLoad = function ( ) {
-    
-      console.log( 'Loading Complete!');
-
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('game').style.display = 'block';
-    
-    };
-    
-    
-    THREE.DefaultLoadingManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
-    
-      console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-    
-    };
-    
-    THREE.DefaultLoadingManager.onError = function ( url ) {
-    
-      console.log( 'There was an error loading ' + url );
-    
-    };
+  ['toggle-loading', 'light', 'animate', 'sky', 'player-movement', 'zone'],
+  (toggleLoading, Light, animate, sky, PlayerMovement, Zone) => {
+    toggleLoading();
 
     // todo: enable clicking on meshes.
     const raycaster = new THREE.Raycaster();

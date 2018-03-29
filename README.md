@@ -29,6 +29,7 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Remove Firebase
 - Build procedural zones and store them locally for future reuse
 - Add debug flag and debug settings mode when flag is true.
+- Loading screen.
 - Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to. These procedural zones should then stored in localStorage and read from there next time.
 - Persist zones and player position: each time the game loads, start the camera position where the player left off and load the zone that has been procedurally generated.
 - Enable clicking on meshes (target). See raycaster in game.js
