@@ -26,7 +26,7 @@ define(['ground', 'static-meshes'], (Ground, StaticMeshes) => {
       this.meshes.add(new StaticMeshes());
       
       // Last step.
-      return this.meshes;
+      return this;
     }
   }
 

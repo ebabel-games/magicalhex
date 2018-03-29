@@ -42,11 +42,8 @@ requirejs(
     scene.add(camera);
 
     // Load the data of the current zone to build its static meshes.
-    // const zoneProperties = new ZoneProperties();
-    // const isDataFound = localStorage[zoneProperties.name] === undefined;
-    // const zone = (isDataFound) ? JSON.parse(localStorage[zoneProperties.name]) : new Zone(zoneProperties);
     const zone = new Zone(camera.position.x, camera.position.z);
-    scene.add(zone);
+    scene.add(zone.meshes);
 
     // Initialize player movement.
     const playerMovement = new PlayerMovement(camera);
