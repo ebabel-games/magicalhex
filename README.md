@@ -34,6 +34,7 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Persist zones and player position: each time the game loads, start the camera position where the player left off and load the zone that has been procedurally generated.
 - Enable clicking on meshes (target). See raycaster in game.js
 - Use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU. See Clock in game.js
+- If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 
 
 ### Released tags
 * 1.0.0 remove Facebook integration and let anyone move around virtual environment without any login
