@@ -14,6 +14,7 @@ define([], () => {
         a: 65,
         right: 39,
         d: 68,
+        esc: 27,
       };
       this.moveForward = false;
       this.moveBackward = false;
@@ -67,6 +68,9 @@ define([], () => {
         case this.key.right:
         case this.key.d:
           this.turnRight = isEnabled;
+          break;
+        case this.key.esc:
+          document.dispatchEvent(new CustomEvent('toggle-stats'));
           break;
       }
     }

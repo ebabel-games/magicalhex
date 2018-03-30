@@ -7,9 +7,10 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['toggle-loading', 'light', 'animate', 'sky', 'player-movement', 'zone'],
-  (toggleLoading, Light, animate, sky, PlayerMovement, Zone) => {
+  ['toggle-loading', 'light', 'animate', 'sky', 'player-movement', 'zone', 'setup-stats-panel'],
+  (toggleLoading, Light, animate, sky, PlayerMovement, Zone, setupStatsPanel) => {
     toggleLoading();
+    const statsPanel = setupStatsPanel();
 
     // todo: enable clicking on meshes.
     const raycaster = new THREE.Raycaster();
@@ -58,5 +59,5 @@ requirejs(
     document.body.appendChild(renderer.domElement);
 
     // Kickstarts the animation.
-    animate(renderer, scene, camera, playerMovement);
+    animate(renderer, scene, camera, playerMovement, statsPanel);
   });
