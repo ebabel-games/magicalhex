@@ -35,17 +35,15 @@
       gtag('config', 'UA-32495473-10');
     </script>
 
-    <script src="lib/three.min.js"></script>
-
     <link rel="stylesheet" href="game.css">
   </head>
   <body>
     <section id="loading">
-      <button id="play">Play</button>
       <header>
         <h1>Magical Hex</h1>
-        <p>Loading, please wait...</p>
+        <p id="please-wait">Loading, please wait...</p>
       </header>
+      <button id="play">Play</button>
     </section> 
 
     <section id="game">
@@ -60,6 +58,7 @@
       </div>     
     </section>
 
+    <script src="lib/three.min.js"></script>
     <script async src="lib/stats.min.js"></script>
     <script async data-main="app/game" src="lib/require.min.js"></script>    
   </body>

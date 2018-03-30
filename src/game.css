@@ -23,7 +23,7 @@ p {
 }
 #loading header {
   background-color: rgba(0,0,0, .7);
-  padding: 30px 0 60px;
+  padding: 20px 0 60px;
   color: #fff;
   position: absolute;
   bottom: 0;
@@ -40,6 +40,22 @@ p {
   margin: 0;
 }
 
+/* play button */
+#play {
+  display: none;
+  background-color: black;
+  color: white;
+  font-size: 32px;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 35px;
+  left: 30%;
+  width: 40%;
+  border: solid 1px;
+}
+
 /* game */
 #game {
   position: relative;
@@ -51,7 +67,7 @@ p {
 /* style common to several ui windows like target and debug */
 .ui-window {
   position: absolute;
-  top: 5px;
+  right: 5px;
   width: 141px;
   height: 40px;
   padding: 5px 10px;
@@ -61,7 +77,7 @@ p {
 /* target window */
 #target-window {
   background-color: rgba(255,255,255,.5);
-  left: 5px;
+  top: 5px;  
   font-size: 16px;
   text-align: center;
 }
@@ -75,7 +91,7 @@ p {
 
 /* debug window */
 #debug-window {
-  right: 5px;
+  top: 60px;
   background-color: rgba(255,255,255,1);
   font-size: 10px;
   display: none;
