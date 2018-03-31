@@ -76,17 +76,14 @@ p {
   height: 40px;
   padding: 5px 10px;
   border: solid 1px;
+  background-color: rgba(0,0,0,.1);
 }
 
 /* target window */
 #target-panel {
-  background-color: rgba(255,255,255,.5);
   top: 5px;  
   font-size: 16px;
   text-align: center;
-}
-#target-panel:hover {
-  background-color: rgba(255,255,255,.75);
 }
 #target-panel p {
   margin: 0;
@@ -96,7 +93,6 @@ p {
 /* debug window */
 #debug-panel {
   top: 60px;
-  background-color: rgba(255,255,255,1);
   font-size: 10px;
   display: none;
 }

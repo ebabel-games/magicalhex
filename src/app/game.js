@@ -7,8 +7,8 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['toggle-loading', 'light', 'animate', 'sky', 'player-movement', 'zone', 'setup-stats-panel', 'setup-debug-panel'],
-  (toggleLoading, Light, animate, sky, PlayerMovement, Zone, setupStatsPanel, setupDebugPanel) => {
+  ['constants', 'toggle-loading', 'light', 'animate', 'sky', 'player-movement', 'zone', 'setup-stats-panel', 'setup-debug-panel'],
+  (C, toggleLoading, Light, animate, sky, PlayerMovement, Zone, setupStatsPanel, setupDebugPanel) => {
     toggleLoading();
     const statsPanel = setupStatsPanel();
 
@@ -20,24 +20,19 @@ requirejs(
 
     // Initialize a three.js scene.
     const scene = new THREE.Scene();
-
-    // Fog: color and density.
-    scene.fog = new THREE.FogExp2(0x9db3b5, 0.025);
+    scene.fog = new THREE.FogExp2(C.FOG.COLOR, C.FOG.DENSITY);
 
     // Camera setup.
-    const cameraFov = 45; // Vertical field of view.
-    const cameraAspect = window.innerWidth / window.innerHeight;  // Aspect ratio.
-    const cameraNear = 1; // How near the camera can still show something.
-    const cameraFar = 75; // How far the camera cana see.
-    const camera = new THREE.PerspectiveCamera(cameraFov, cameraAspect, cameraNear, cameraFar);
-    camera.position.set(0, 2, 15);  // x, y, z relative to the scene origin.
-    // todo: read the position of the camera based on previous games by using localStorage. This will in turn have an impact on starting the new game in the correct zone and location.
+    const camera = new THREE.PerspectiveCamera(C.CAMERA.FOV, C.CAMERA.RATIO, C.CAMERA.NEAR, C.CAMERA.FAR);
+    camera.position.set(C.CAMERA.X, C.CAMERA.Y, C.CAMERA.Z);
+    // todo: read the position of the camera based on previous games by using localStorage.
+    // This will in turn have an impact on starting the new game in the correct zone and location.
 
     // Relative sky is always in front of the camera, wherever the camera is pointing.
     // The sky stays perpendicular to the ground and always at the same distance from the camera.
     const relativeSky = sky();
     camera.add(relativeSky);
-    relativeSky.position.set(0, 498, 0 - cameraFar);  // x, y, z relative to the camera position.
+    relativeSky.position.set(0, 498, 0 - C.CAMERA.FAR);  // x, y, z relative to the camera position.
 
     // Only add the camera to the scene after the sky has been added to the camera.
     scene.add(camera);

@@ -1,22 +1,10 @@
-define([], () => {
+define(['constants'], (C) => {
   // Control the movement of the main player via keyboard keys.
   class PlayerMovement {
     constructor(camera) {
-      this.forwardSpeed = 0.1;
-      this.backwardSpeed = Math.round(this.forwardSpeed / 3 * 100) / 100;
-      this.turnSpeed = Math.round((2 * Math.PI / 180) * 100) / 100;
-      this.key = {
-        up: 38,
-        w: 87,
-        down: 40,
-        s: 83,
-        left: 37,
-        a: 65,
-        right: 39,
-        d: 68,
-        esc: 27,
-        backtickTilde: 192,
-      };
+      this.forwardSpeed = C.PLAYER_FORWARD_SPEED;
+      this.backwardSpeed = Math.round(C.PLAYER_FORWARD_SPEED / C.PLAYER_BACKWARD_SPEED_SLOWING_FACTOR * 100) / 100;
+      this.turnSpeed = C.PLAYER_TURN_SPEED;
       this.moveForward = false;
       this.moveBackward = false;
       this.turnLeft = false;
@@ -53,28 +41,28 @@ define([], () => {
     // More than one direction can be enabled, so it's possible to press on several keys like forwards and a bit left or right.
     setDirection(e, isEnabled) {
       switch (e.keyCode) {
-        case this.key.up:
-        case this.key.w:
+        case C.KEY.UP:
+        case C.KEY.W:
           this.moveForward = isEnabled;
           break;
-        case this.key.down:
-        case this.key.s:
+        case C.KEY.DOWN:
+        case C.KEY.S:
           this.moveBackward = isEnabled;
           e.preventDefault(); // Prevent the whole page scrolling down when using the down arrow key.
           break;
-        case this.key.left:
-        case this.key.a:
+        case C.KEY.LEFT:
+        case C.KEY.A:
           this.turnLeft = isEnabled;
           break;
-        case this.key.right:
-        case this.key.d:
+        case C.KEY.RIGHT:
+        case C.KEY.D:
           this.turnRight = isEnabled;
           break;
-        case this.key.esc:
-          document.dispatchEvent(new CustomEvent('toggle-stats'));
+        case C.KEY.ESC:
+          document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_STATS));
           break;
-        case this.key.backtickTilde:
-          document.dispatchEvent(new CustomEvent('toggle-debug'));
+        case C.KEY.BACKTICK_TILDE:
+          document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_DEBUG));
           break;
       }
     }

@@ -1,4 +1,4 @@
-define([], () => {
+define(['constants'], (C) => {
   const setupDebugPanel = (playerMovement) => {
     const toggleDebug = (e) => {
       playerMovement.forwardSpeed = 2;
@@ -6,16 +6,10 @@ define([], () => {
       document.getElementById('debug-panel').style.display = 'block';
     };
 
-    document.addEventListener('toggle-debug', toggleDebug);
+    document.addEventListener(C.EVENTS.TOGGLE_DEBUG, toggleDebug);
 
     return this;
   };
 
   return setupDebugPanel;
 });
-
-
-
-
-
-
