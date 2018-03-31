@@ -7,8 +7,8 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['constants', 'toggle-loading', 'light', 'animate', 'sky', 'player-movement', 'zone', 'setup-stats-panel', 'setup-debug-panel'],
-  (C, toggleLoading, Light, animate, sky, PlayerMovement, Zone, setupStatsPanel, setupDebugPanel) => {
+  ['constants', 'toggle-loading', 'light', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel'],
+  (C, toggleLoading, Light, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel) => {
     toggleLoading();
     const statsPanel = setupStatsPanel();
 
@@ -42,7 +42,7 @@ requirejs(
     scene.add(zone.meshes);
 
     // Initialize player movement.
-    const playerMovement = new PlayerMovement(camera);
+    const keyboardControls = new KeyboardControls(camera);
 
     // Overall ambient light.
     const ambientLight = new THREE.AmbientLight(0x002200);
@@ -52,7 +52,7 @@ requirejs(
     const sunlight = new Light();
     scene.add(sunlight);
 
-    const debugPanel = setupDebugPanel(playerMovement);
+    const debugPanel = setupDebugPanel(keyboardControls);
 
     // Create a canvas where everything 3D will be rendered.
     const renderer = new THREE.WebGLRenderer();
@@ -61,5 +61,5 @@ requirejs(
     document.body.appendChild(renderer.domElement);
 
     // Kickstarts the animation.
-    animate(renderer, scene, camera, playerMovement, statsPanel);
+    animate(renderer, scene, camera, keyboardControls, statsPanel);
   });

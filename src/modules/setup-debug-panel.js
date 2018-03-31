@@ -1,8 +1,8 @@
 define(['constants'], (C) => {
-  const setupDebugPanel = (playerMovement) => {
+  const setupDebugPanel = (keyboardControls) => {
     const toggleDebug = (e) => {
-      playerMovement.forwardSpeed = C.DEBUG_FORWARD_SPEED;
-      playerMovement.backwardSpeed = C.DEBUG_BACKWARD_SPEED;
+      keyboardControls.playerMovement.forwardSpeed = C.DEBUG_FORWARD_SPEED;
+      keyboardControls.playerMovement.backwardSpeed = C.DEBUG_BACKWARD_SPEED;
       document.getElementById(C.UI.DEBUG_PANEL).style.display = 'block';
     };
 

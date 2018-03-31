@@ -1,8 +1,8 @@
 define(['update-debug-panel'], (updateDebugPanel) => {
   // Animation that keeps getting called to render everything and all changes.
-  const animate = (renderer, scene, camera, playerMovement, statsPanel) => {
+  const animate = (renderer, scene, camera, keyboardControls, statsPanel) => {
     statsPanel.begin();
-    updateDebugPanel(playerMovement, camera);
+    updateDebugPanel(camera);
 
     // Test animations, these should be made generic, like a list of everything that needs animating and each item documenting how it should be animated.
     const plainCube = scene.getObjectByName('plain-cube');
@@ -12,7 +12,7 @@ define(['update-debug-panel'], (updateDebugPanel) => {
     wireframeCube.rotation.x += 0.01;
     wireframeCube.rotation.y += 0.01;
 
-    playerMovement.update();
+    keyboardControls.playerMovement.update();
 
     // Render everyting.
     renderer.render(scene, camera);
@@ -22,7 +22,7 @@ define(['update-debug-panel'], (updateDebugPanel) => {
     statsPanel.end();
 
     // Last line of animation.
-    requestAnimationFrame((timestamp) => animate(renderer, scene, camera, playerMovement, statsPanel));
+    requestAnimationFrame((timestamp) => animate(renderer, scene, camera, keyboardControls, statsPanel));
   }
 
   return animate;
