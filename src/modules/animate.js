@@ -1,6 +1,6 @@
-define(['update-debug-panel'], (updateDebugPanel) => {
+define(['update-debug-panel', 'zone'], (updateDebugPanel, Zone) => {
   // Animation that keeps getting called to render everything and all changes.
-  const animate = (renderer, scene, camera, keyboardControls, statsPanel) => {
+  const animate = (renderer, scene, camera, keyboardControls, statsPanel, currentZone) => {
     statsPanel.begin();
     updateDebugPanel(camera);
 
@@ -15,6 +15,18 @@ define(['update-debug-panel'], (updateDebugPanel) => {
     keyboardControls.playerMovement.update();
     keyboardControls.playerMovement.persist();
 
+    // Check if the current position of the camera is on one or several edges for the current zone.
+    const edges = currentZone.isOnEdge(camera.position.x, camera.position.z);
+    const contiguousZones = currentZone.contiguousZones();
+    if (edges.isOnNorthEdge) {
+      // Check if the zone on the north edge is already created.
+      const northEdgeZoneMeshes = scene.getObjectByName(contiguousZones.north.name);
+      if (!northEdgeZoneMeshes) {
+        const northEdgeZone = new Zone(contiguousZones.north.x, contiguousZones.north.z);
+        scene.add(northEdgeZone.meshes);
+      }
+    }
+
     // Render everyting.
     renderer.render(scene, camera);
 
@@ -23,7 +35,7 @@ define(['update-debug-panel'], (updateDebugPanel) => {
     statsPanel.end();
 
     // Last line of animation.
-    requestAnimationFrame((timestamp) => animate(renderer, scene, camera, keyboardControls, statsPanel));
+    requestAnimationFrame((timestamp) => animate(renderer, scene, camera, keyboardControls, statsPanel, currentZone));
   }
 
   return animate;

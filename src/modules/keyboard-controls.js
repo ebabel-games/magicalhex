@@ -4,11 +4,11 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
     constructor(camera) {
       this.playerMovement = new PlayerMovement(camera);
 
-      window.document.addEventListener('keydown', (e) => {
+      document.addEventListener('keydown', (e) => {
         this.handleKey(e, true);
       }, false);
 
-      window.document.addEventListener('keyup', (e) => {
+      document.addEventListener('keyup', (e) => {
         this.handleKey(e, false);
       }, false);
 
@@ -39,6 +39,9 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
           break;
         case C.KEY.BACKTICK_TILDE:
           document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_DEBUG));
+          break;
+        case C.KEY.SEVEN:
+          document.dispatchEvent(new CustomEvent(C.EVENTS.CAST_SPELL_GATE));
           break;
       }
     }

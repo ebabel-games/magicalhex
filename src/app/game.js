@@ -7,8 +7,8 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['constants', 'toggle-loading', 'light', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel'],
-  (C, toggleLoading, Light, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel) => {
+  ['constants', 'toggle-loading', 'light', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate'],
+  (C, toggleLoading, Light, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate) => {
     toggleLoading();
     const statsPanel = setupStatsPanel();
 
@@ -43,9 +43,12 @@ requirejs(
     // Only add the camera to the scene after the sky has been added to the camera.
     scene.add(camera);
 
+    // Initialize the spell gate, so that it can be cast.
+    setupSpellGate(camera);
+
     // Load the data of the current zone to build its static meshes.
-    const zone = new Zone(camera.position.x, camera.position.z);
-    scene.add(zone.meshes);
+    const currentZone = new Zone(camera.position.x, camera.position.z);
+    scene.add(currentZone.meshes);
 
     // Initialize player movement.
     const keyboardControls = new KeyboardControls(camera);
@@ -67,5 +70,5 @@ requirejs(
     document.body.appendChild(renderer.domElement);
 
     // Kickstarts the animation.
-    animate(renderer, scene, camera, keyboardControls, statsPanel);
+    animate(renderer, scene, camera, keyboardControls, statsPanel, currentZone);
   });
