@@ -32,11 +32,14 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Add debug mode attached to the backtick/tilde key (just below ESC).
 - Loading screen and play button.
 - Basic version of lighting and shadows, this will need improving in a future release.
-
 - Refactor handling pressing keys separately, because it's not just about player movement. It's a separate concern.
+- Persist position of camera to localStorage and when reloading start there instead of origin.
 
+#### Currently being developed
 - Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to. These procedural zones should then stored in localStorage and read from there next time.
-- Persist zones and player position: each time the game loads, start the camera position where the player left off and load the zone that has been procedurally generated.
+
+#### Next to develop
+- Persist zones: each time the game loads, load the zone that has been procedurally generated where the player current is.
 - Enable clicking on meshes (target). See raycaster in game.js
 - Use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU. See Clock in game.js
 - If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 

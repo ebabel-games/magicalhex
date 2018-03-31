@@ -29,6 +29,13 @@ define(['constants', 'round'], (C, round) => {
         this.camera.rotation.y -= this.turnSpeed;
       }
     }
+
+    persist() {
+      localStorage[C.PERSIST.CAMERA_X] = this.camera.position.x;
+      localStorage[C.PERSIST.CAMERA_Y] = this.camera.position.y;
+      localStorage[C.PERSIST.CAMERA_Z] = this.camera.position.z;
+      localStorage[C.PERSIST.CAMERA_ROTATION_Y] = this.camera.rotation.y;
+    }
   }
 
   return PlayerMovement;

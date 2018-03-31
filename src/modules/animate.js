@@ -13,6 +13,7 @@ define(['update-debug-panel'], (updateDebugPanel) => {
     wireframeCube.rotation.y += 0.01;
 
     keyboardControls.playerMovement.update();
+    keyboardControls.playerMovement.persist();
 
     // Render everyting.
     renderer.render(scene, camera);

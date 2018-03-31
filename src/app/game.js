@@ -24,9 +24,15 @@ requirejs(
 
     // Camera setup.
     const camera = new THREE.PerspectiveCamera(C.CAMERA.FOV, C.CAMERA.RATIO, C.CAMERA.NEAR, C.CAMERA.FAR);
-    camera.position.set(C.CAMERA.X, C.CAMERA.Y, C.CAMERA.Z);
-    // todo: read the position of the camera based on previous games by using localStorage.
+
+    // Read position of the camera based on the previous game.
     // This will in turn have an impact on starting the new game in the correct zone and location.
+    camera.position.set(
+      parseFloat(localStorage[C.PERSIST.CAMERA_X]) || C.CAMERA.X,
+      parseFloat(localStorage[C.PERSIST.CAMERA_Y]) || C.CAMERA.Y,
+      parseFloat(localStorage[C.PERSIST.CAMERA_Z]) || C.CAMERA.Z
+    );
+    camera.rotation.y = parseFloat(localStorage[C.PERSIST.CAMERA_ROTATION_Y]) || C.CAMERA.ROTATION.Y;
 
     // Relative sky is always in front of the camera, wherever the camera is pointing.
     // The sky stays perpendicular to the ground and always at the same distance from the camera.

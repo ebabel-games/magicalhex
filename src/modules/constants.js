@@ -47,6 +47,11 @@ define([], () => {
       X: 0, // Default starting position.
       Y: 2,
       Z: 15,
+      ROTATION: {
+        X: 0,
+        Y: 0,
+        Z: 0,
+      },
     },
     SUNLIGHT: {
       COLOR: 0xffffff,
@@ -55,6 +60,12 @@ define([], () => {
       Y: 10,
       Z: 0,
       NAME: 'sunlight',
+    },
+    PERSIST: {
+      CAMERA_X: 'CAMERA_X',
+      CAMERA_Y: 'CAMERA_Y',
+      CAMERA_Z: 'CAMERA_Z',
+      CAMERA_ROTATION_Y: 'CAMERA_ROTATION_Y',
     },
   };
 
