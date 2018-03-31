@@ -28,8 +28,10 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Remove React.js (just Three.js and plain Javascript)
 - Remove Firebase
 - Build procedural zones and store them locally for future reuse
-- Add debug flag and debug settings mode when flag is true.
-- Loading screen.
+- Show performance stats (top left) when key ESC is pressed.
+- Add debug mode attached to the backtick/tilde key (just below ESC).
+- Loading screen and play button.
+- Basic version of lighting and shadows, this will need improving in a future release.
 - Refactor handling pressing keys separately, because it's not just about player movement. It's a separate concern.
 - Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to. These procedural zones should then stored in localStorage and read from there next time.
 - Persist zones and player position: each time the game loads, start the camera position where the player left off and load the zone that has been procedurally generated.
