@@ -13,7 +13,11 @@ define([], () => {
 
       material = new THREE.MeshLambertMaterial({ color });
 
-      return new THREE.Mesh(geometry, material);
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.receiveShadow = true;
+      mesh.castShadow = true;
+
+      return mesh;
     }
   }
 

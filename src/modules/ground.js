@@ -13,6 +13,7 @@ define([], () => {
     new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
   );
   mesh.rotation.set(-90 * Math.PI / 180, 0, 0);
+  mesh.receiveShadow = true;
 
   // Flat plane mesh that forms the ground in each zone.
   class Ground {
