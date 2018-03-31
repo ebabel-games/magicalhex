@@ -1,7 +1,7 @@
-define([], () => {
+define(['constants', 'round'], (C, round) => {
   const updateDebugPanel = (playerMovement, camera) => {
-    document.getElementById('debugX').textContent = Math.round(camera.position.x * 10) / 10;
-    document.getElementById('debugZ').textContent = Math.round(camera.position.z * 10) / 10;
+    document.getElementById(C.UI.DEBUG_X).textContent = round(camera.position.x, 1);
+    document.getElementById(C.UI.DEBUG_Z).textContent = round(camera.position.z, 1);
   }
 
   return updateDebugPanel;

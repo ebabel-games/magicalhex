@@ -1,9 +1,9 @@
-define([], () => {
+define(['constants'], (C) => {
   // Toggle loading screen off once the game is ready.
   const toggleLoading = () => {
-    document.getElementById('play').addEventListener('click', (e) => {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('game').style.display = 'block';
+    document.getElementById(C.UI.PLAY).addEventListener('click', (e) => {
+      document.getElementById(C.UI.LOADING).style.display = 'none';
+      document.getElementById(C.UI.GAME).style.display = 'block';
     });
 
     THREE.DefaultLoadingManager.onStart = (url, itemsLoaded, itemsTotal ) => {
@@ -11,8 +11,8 @@ define([], () => {
     };
     
     THREE.DefaultLoadingManager.onLoad = () => {
-      document.getElementById('play').disabled = false;
-      document.getElementById('play').innerText = 'Play';
+      document.getElementById(C.UI.PLAY).disabled = false;
+      document.getElementById(C.UI.PLAY).innerText = 'Play';
     };
     
     THREE.DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {

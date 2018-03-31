@@ -11,7 +11,7 @@ define([], () => {
         return new THREE.LineSegments(geometry, material);
       }
 
-      material = new THREE.MeshBasicMaterial({ color });
+      material = new THREE.MeshLambertMaterial({ color });
 
       return new THREE.Mesh(geometry, material);
     }
