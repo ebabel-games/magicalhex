@@ -5,6 +5,7 @@ define([], () => {
     PLAYER_TURN_SPEED: 0.03, // Math.round((2 * Math.PI / 180) * 100) / 100 - note: this is not related to backward speed slowing factor.
     DEBUG_FORWARD_SPEED: 1,
     DEBUG_BACKWARD_SPEED: 1,
+    POSITION_DISPLAY_DECIMALS: 1, // How many decimals to display to the player. Only round at the last possible moment.
     KEY: {
       UP: 38,
       W: 87,

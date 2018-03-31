@@ -1,9 +1,9 @@
-define(['constants'], (C) => {
+define(['constants', 'round'], (C, round) => {
   // Control the movement of the main player via keyboard keys.
   class PlayerMovement {
     constructor(camera) {
       this.forwardSpeed = C.PLAYER_FORWARD_SPEED;
-      this.backwardSpeed = Math.round(C.PLAYER_FORWARD_SPEED / C.PLAYER_BACKWARD_SPEED_SLOWING_FACTOR * 100) / 100;
+      this.backwardSpeed = round(C.PLAYER_FORWARD_SPEED / C.PLAYER_BACKWARD_SPEED_SLOWING_FACTOR, 2);
       this.turnSpeed = C.PLAYER_TURN_SPEED;
       this.moveForward = false;
       this.moveBackward = false;
