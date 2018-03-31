@@ -1,11 +1,13 @@
-define(['ground', 'static-meshes'], (Ground, StaticMeshes) => {
+define(['ground', 'static-meshes', 'round'], (Ground, StaticMeshes, round) => {
   class Zone {
     constructor(x, z) {
+      // Origin at scale 1000 of this zone based on input from camera position.
+      this.x = round(x / 1000);
+      this.z = round(z / 1000);
+
       // Main container for all static meshes that make up a zone.
       this.meshes = new THREE.Object3D();
-
-      this.x = Math.round(x / 1000);
-      this.z = Math.round(z / 1000);
+      this.meshes.position.set(this.x * 1000, 0, this.z * 1000)
 
       // Near the zone edges, the adjacent zones should be loaded.
       this.edges = {

@@ -1,4 +1,4 @@
-define(['cube'], (Cube) => {
+define(['cube', 'round'], (Cube, round) => {
   // Generate multiple static meshes and bind them to a single parent,
   // so they are more performant and can be added to the scene in one go.
   class StaticMeshes {
@@ -21,9 +21,9 @@ define(['cube'], (Cube) => {
       const staticCubes = new Array(2000).fill({}).map(input => {
         const staticCube = new Cube(1, false, 0x03300);
 
-        staticCube.position.x = Math.round(Math.random() * 1000 - 500);
+        staticCube.position.x = round(Math.random() * 1000 - 500);
         staticCube.position.y = 0.5;
-        staticCube.position.z = Math.round(Math.random() * 1000 - 500);
+        staticCube.position.z = round(Math.random() * 1000 - 500);
 
         meshes.add(staticCube);
 
