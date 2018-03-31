@@ -20,6 +20,7 @@ p {
   background-image: url('images/orc-shamans-and-goblin-wizard.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: top;
 }
 #loading header {
   background-color: rgba(0,0,0, .7);
@@ -43,14 +44,16 @@ p {
   background-color: black;
   color: white;
   font-size: 32px;
-  padding: 6px;
+  padding: 6px 32px;
   border-radius: 8px;
   cursor: pointer;
   position: absolute;
   bottom: 35px;
-  left: 30%;
-  width: 40%;
+  width: 240px;
   border: solid 1px;
+  left: 50%;
+  margin-left: -120px;
+  text-transform: uppercase;
 }
 #play:disabled {
   opacity: .5;
@@ -66,7 +69,7 @@ p {
 }
 
 /* style common to several ui windows like target and debug */
-.ui-window {
+.ui-panel {
   position: absolute;
   right: 5px;
   width: 141px;
@@ -76,31 +79,31 @@ p {
 }
 
 /* target window */
-#target-window {
+#target-panel {
   background-color: rgba(255,255,255,.5);
   top: 5px;  
   font-size: 16px;
   text-align: center;
 }
-#target-window:hover {
+#target-panel:hover {
   background-color: rgba(255,255,255,.75);
 }
-#target-window p {
+#target-panel p {
   margin: 0;
   line-height: 1.25em;
 }
 
 /* debug window */
-#debug-window {
+#debug-panel {
   top: 60px;
   background-color: rgba(255,255,255,1);
   font-size: 10px;
   display: none;
 }
-#debug-window ul {
+#debug-panel ul {
   margin: 0;
   padding: 0;
 }
-#debug-window ul li {
+#debug-panel ul li {
   list-style: none;
 }

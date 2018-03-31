@@ -7,8 +7,8 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['toggle-loading', 'light', 'animate', 'sky', 'player-movement', 'zone', 'setup-stats-panel'],
-  (toggleLoading, Light, animate, sky, PlayerMovement, Zone, setupStatsPanel) => {
+  ['toggle-loading', 'light', 'animate', 'sky', 'player-movement', 'zone', 'setup-stats-panel', 'setup-debug-panel'],
+  (toggleLoading, Light, animate, sky, PlayerMovement, Zone, setupStatsPanel, setupDebugPanel) => {
     toggleLoading();
     const statsPanel = setupStatsPanel();
 
@@ -52,6 +52,8 @@ requirejs(
     // Overall world lighting.
     const sunlight = new Light();
     scene.add(sunlight);
+
+    const debugPanel = setupDebugPanel(playerMovement);
 
     // Create a canvas where everything 3D will be rendered.
     const renderer = new THREE.WebGLRenderer();

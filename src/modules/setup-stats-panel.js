@@ -6,8 +6,7 @@ define([], () => {
     stats.showPanel(false);
     document.body.appendChild(stats.dom);
 
-    // todo: when a key is pressed, 
-
+    // Pres ESC key to show the stats.
     const toggleStats = (e) => {
       stats.showPanel(0);
     };
@@ -15,7 +14,7 @@ define([], () => {
     document.addEventListener('toggle-stats', toggleStats);
 
     return stats;
-  }
+  };
 
   return setupStatsPanel;
 });

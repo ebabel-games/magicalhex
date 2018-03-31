@@ -15,6 +15,7 @@ define([], () => {
         right: 39,
         d: 68,
         esc: 27,
+        backtickTilde: 192,
       };
       this.moveForward = false;
       this.moveBackward = false;
@@ -71,6 +72,9 @@ define([], () => {
           break;
         case this.key.esc:
           document.dispatchEvent(new CustomEvent('toggle-stats'));
+          break;
+        case this.key.backtickTilde:
+          document.dispatchEvent(new CustomEvent('toggle-debug'));
           break;
       }
     }
