@@ -44,7 +44,11 @@ requirejs(
     // Initialize player movement.
     const playerMovement = new PlayerMovement(camera);
 
-    // Overall world lighting.
+    // Overall ambient light.
+    const ambientLight = new THREE.AmbientLight(0x002200);
+    scene.add(ambientLight);
+
+    // Sunlight setup.
     const sunlight = new Light();
     scene.add(sunlight);
 

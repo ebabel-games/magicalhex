@@ -49,11 +49,11 @@ define([], () => {
       Z: 15,
     },
     SUNLIGHT: {
-      COLOR: 0xffff00,
+      COLOR: 0xffffff,
       INTENSITY: 0.75,
-      X: 500,
-      Y: 1500,
-      Z: 1000,
+      X: 0,
+      Y: 10,
+      Z: 0,
       NAME: 'sunlight',
     },
   };

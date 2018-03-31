@@ -4,16 +4,7 @@ define(['constants'], (C) => {
       const light = new THREE.DirectionalLight(color, intensity);
       light.position.set(x, y, z);
       light.name = name;
-
-      // Shadows setup.
       light.castShadow = true;
-      light.shadow.mapSize.width = 2048;  // Resolution, crispiness of the shadows. High values are more crisp but cost more computation.
-      light.shadow.mapSize.height = 2048;
-      light.shadow.camera.far = 2500;
-      light.shadow.camera.left = -1000;
-      light.shadow.camera.right = 1000;
-      light.shadow.camera.top = 1000;
-      light.shadow.camera.bottom = -1000;
       
       return light;
     }
