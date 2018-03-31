@@ -23,7 +23,7 @@ p {
 }
 #loading header {
   background-color: rgba(0,0,0, .7);
-  padding: 20px 0 60px;
+  padding: 30px 0 100px;
   color: #fff;
   position: absolute;
   bottom: 0;
@@ -31,18 +31,15 @@ p {
   right: 0;
 }
 #loading h1 {
+  margin: 0;
   font-size: 60px;
   line-height: 100px;
   font-family: fantasy;
-}
-#loading h1,
-#loading p {
-  margin: 0;
+  cursor: default;
 }
 
 /* play button */
 #play {
-  display: none;
   background-color: black;
   color: white;
   font-size: 32px;
@@ -54,6 +51,10 @@ p {
   left: 30%;
   width: 40%;
   border: solid 1px;
+}
+#play:disabled {
+  opacity: .5;
+  cursor: default;
 }
 
 /* game */

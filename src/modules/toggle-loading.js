@@ -11,8 +11,8 @@ define([], () => {
     };
     
     THREE.DefaultLoadingManager.onLoad = () => {
-      document.getElementById('please-wait').style.visibility = 'hidden';
-      document.getElementById('play').style.display = 'block';
+      document.getElementById('play').disabled = false;
+      document.getElementById('play').innerText = 'Play';
     };
     
     THREE.DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
