@@ -34,9 +34,11 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Basic version of lighting and shadows, this will need improving in a future release.
 - Refactor handling pressing keys separately, because it's not just about player movement. It's a separate concern.
 - Persist position of camera to localStorage and when reloading start there instead of origin.
+- Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to.
 
 #### Currently being developed
-- Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to. These procedural zones should then stored in localStorage and read from there next time.
+
+- Zones meshes should be persisted in localStorage and read from there next time they are loaded, so the whole world is persisted for a single player and remains the same from the moment it has been procedurally generated the first time a zone is loaded.
 
 #### Next to develop
 - Bug: when loading from a position other than zone-0:0, everything looks dark. Where did the zone light go?
