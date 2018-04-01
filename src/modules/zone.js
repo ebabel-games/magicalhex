@@ -1,4 +1,4 @@
-define(['constants', 'ground', 'static-meshes', 'round', 'light'], (C, Ground, StaticMeshes, round, Light) => {
+define(['constants', 'ground', 'round'], (C, Ground, round) => {
   class Zone {
     constructor(x, z, loadedZones) {
       // Origin at scale C.ZONE_SIZE of this zone based on input from camera position.
@@ -31,33 +31,57 @@ define(['constants', 'ground', 'static-meshes', 'round', 'light'], (C, Ground, S
       return this;
     }
 
-    // Main container for all static meshes that make up a zone.
-    createMeshes() {
-      const meshes = new THREE.Object3D();
+    log(name) {
+      return console.log(`[INFO] ${name} is loaded.`);
+    }
 
+    // Create all the static meshes of this zone.
+    createMeshes(meshes = new THREE.Object3D()) {
       // Place the parent at the correct co-ordinates based on camera current position.
       meshes.position.set(this.x * C.ZONE_SIZE, 0, this.z * C.ZONE_SIZE)
 
       // Identify a zone name from the camera x and z position.
       meshes.name = this.name;
 
+      // Check if the creation already happened in a previous game and was persisted to localStorage.
+      if (localStorage[this.name]) {
+        return this.createMeshesFromPersistedData(meshes);
+      }
+
       // Add the ground.
       const ground = new Ground(`ground-${meshes.name}`);
       meshes.add(ground);
-      ground.position.set(0, 0, 0); // Position of the ground is relative to its own zone.
+      ground.position.set(ground.persist.p[0], ground.persist.p[1], ground.persist.p[2]); // Position of the ground is relative to its own zone.
 
-      // Add the test static meshes.
-      // todo: delete these static meshes and use a procedural routine to decide what to place in the zone.
-      meshes.add(new StaticMeshes());
+      // Last step: persist the zone.
+      this.persistData(meshes);
 
-      // Add the zone light.
-      const zonelight = new Light(C.ZONE_LIGHT.COLOR, C.ZONE_LIGHT.INTENSITY, `zonelight-${meshes.name}`);
-      meshes.add(zonelight);
-      zonelight.position.set(0, 10, 0); // Positioned in relation to this zone.
-
-      console.log(`[INFO] ${this.name} is loaded.`);
+      this.log(this.name);
 
       return meshes;
+    }
+
+    // Create all the static meshes of this zone from a previous game persisted in localStorage.
+    createMeshesFromPersistedData(meshes = new THREE.Object3D()) {
+      const data = JSON.parse(localStorage[this.name]);
+
+      // Add all static meshes in a generic way, based on the persist data stored in localStorage.
+      data.map(d => {
+        const module = require([d.c], (Module) => {
+          const instance = new Module(d.i);
+          meshes.add(instance);
+          instance.position.set(d.p[0], d.p[1], d.p[2]);
+        });
+      });
+
+      this.log(this.name);
+
+      return meshes;
+    }
+
+    persistData(meshes) {
+      const data = meshes.children.map(mesh => mesh.persist);
+      localStorage[this.name] = JSON.stringify(data);
     }
 
     // From a given coordinate not to scale, from camera for example, get the zone scaled x coordinate.

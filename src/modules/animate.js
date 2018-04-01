@@ -4,18 +4,6 @@ define(['update-debug-panel', 'zone', 'update-current-zone'], (updateDebugPanel,
     statsPanel.begin();
     updateDebugPanel(camera);
 
-    // Test animations, these should be made generic, like a list of everything that needs animating and each item documenting how it should be animated.
-    const plainCube = scene.getObjectByName('plain-cube');
-    if (plainCube) {
-      plainCube.rotation.x += 0.02;
-      plainCube.rotation.y += 0.02;
-    }
-    const wireframeCube = scene.getObjectByName('wireframe-cube');
-    if (wireframeCube) {
-      wireframeCube.rotation.x += 0.01;
-      wireframeCube.rotation.y += 0.01;
-    }
-
     // Keyboard controls make it possible to move around the game (subjective perspective).
     keyboardControls.playerMovement.update();
     keyboardControls.playerMovement.persist();

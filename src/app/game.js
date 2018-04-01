@@ -62,7 +62,6 @@ requirejs(
     // Create a canvas where everything 3D will be rendered.
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.shadowMap.enabled = true;
     document.body.appendChild(renderer.domElement);
 
     // Kickstarts the animation.
