@@ -1,4 +1,4 @@
-define(['ground', 'static-meshes', 'round'], (Ground, StaticMeshes, round) => {
+define(['ground', 'static-meshes', 'round', 'light'], (Ground, StaticMeshes, round, Light) => {
   class Zone {
     constructor(x, z) {
       // Origin at scale 1000 of this zone based on input from camera position.
@@ -31,6 +31,12 @@ define(['ground', 'static-meshes', 'round'], (Ground, StaticMeshes, round) => {
       // Add the test static meshes.
       // todo: delete these static meshes and use a procedural routine to decide what to place in the zone.
       this.meshes.add(new StaticMeshes());
+
+      // Add the zone light.
+      const zonelight = new Light(C.ZONELIGHT.COLOR, C.ZONELIGHT.INTENSITY, `zonelight-${this.meshes.name}`);
+      this.meshes.add(zonelight);
+      zonelight.position.set(0, 10, 0); // Positioned in relation to this zone.
+
 
       console.log(`${this.name} is ready.`)
 

@@ -7,8 +7,8 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['constants', 'toggle-loading', 'light', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate'],
-  (C, toggleLoading, Light, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate) => {
+  ['constants', 'toggle-loading', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate'],
+  (C, toggleLoading, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate) => {
     toggleLoading();
     const statsPanel = setupStatsPanel();
 
@@ -56,10 +56,6 @@ requirejs(
     // Overall ambient light.
     const ambientLight = new THREE.AmbientLight(0x002200);
     scene.add(ambientLight);
-
-    // Sunlight setup.
-    const sunlight = new Light();
-    scene.add(sunlight);
 
     const debugPanel = setupDebugPanel(keyboardControls);
 

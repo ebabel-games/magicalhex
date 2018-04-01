@@ -55,13 +55,12 @@ define([], () => {
         Z: 0,
       },
     },
-    SUNLIGHT: {
+    ZONELIGHT: {
       COLOR: 0xffffff,
       INTENSITY: 0.75,
       X: 0,
       Y: 10,
       Z: 0,
-      NAME: 'sunlight',
     },
     PERSIST: {
       CAMERA_X: 'CAMERA_X',
