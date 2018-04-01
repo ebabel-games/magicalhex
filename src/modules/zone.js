@@ -1,55 +1,78 @@
 define(['constants', 'ground', 'static-meshes', 'round', 'light'], (C, Ground, StaticMeshes, round, Light) => {
   class Zone {
-    constructor(x, z) {
+    constructor(x, z, loadedZones) {
       // Origin at scale C.ZONE_SIZE of this zone based on input from camera position.
-      this.x = parseInt(round(x / C.ZONE_SIZE));
-      this.z = parseInt(round(z / C.ZONE_SIZE));
-      this.name = `zone${this.x}:${this.z}`;
+      this.x = this.scaleCoordinate(x);
+      this.z = this.scaleCoordinate(z);
+      this.name = this.getZoneName(x, z);
 
-      // Main container for all static meshes that make up a zone.
-      this.meshes = new THREE.Object3D();
-
-      // Place the parent at the correct co-ordinates based on camera current position.
-      this.meshes.position.set(this.x * C.ZONE_SIZE, 0, this.z * C.ZONE_SIZE)
+      // Check if the meshes are already created with the name either found or not in loadedZones array.
+      if (loadedZones.indexOf(this.name) === -1) {
+        this.meshes = this.createMeshes();
+      }
 
       // Beyond a zone line, the current zone should be updated.
       this.lines = {
-        north: this.z * C.ZONE_SIZE,
-        south: this.z * C.ZONE_SIZE,
-        east: this.x * C.ZONE_SIZE,
-        west: this.x * C.ZONE_SIZE,
+        north: this.z * C.ZONE_SIZE - (C.ZONE_SIZE / 2),
+        south: this.z * C.ZONE_SIZE + (C.ZONE_SIZE / 2),
+        east: this.x * C.ZONE_SIZE + (C.ZONE_SIZE / 2),
+        west: this.x * C.ZONE_SIZE - (C.ZONE_SIZE / 2),
       };
 
       // Near the zone edges, the adjacent zones should be loaded.
-      const zoneSizeBuffer = (C.ZONE_SIZE / 2) - 100;
       this.edges = {
-        north: this.lines.north - zoneSizeBuffer,
-        south: this.lines.south + zoneSizeBuffer,
-        east: this.lines.east + zoneSizeBuffer,
-        west: this.lines.west - zoneSizeBuffer,
+        north: this.lines.north + C.ZONE_BUFFER,
+        south: this.lines.south - C.ZONE_BUFFER,
+        east: this.lines.east - C.ZONE_BUFFER,
+        west: this.lines.west + C.ZONE_BUFFER,
       };
 
+      // Last step.
+      return this;
+    }
+
+    // Main container for all static meshes that make up a zone.
+    createMeshes() {
+      const meshes = new THREE.Object3D();
+
+      // Place the parent at the correct co-ordinates based on camera current position.
+      meshes.position.set(this.x * C.ZONE_SIZE, 0, this.z * C.ZONE_SIZE)
+
       // Identify a zone name from the camera x and z position.
-      this.meshes.name = this.name;
+      meshes.name = this.name;
 
       // Add the ground.
-      const ground = new Ground(`ground-${this.meshes.name}`);
-      this.meshes.add(ground);
+      const ground = new Ground(`ground-${meshes.name}`);
+      meshes.add(ground);
       ground.position.set(0, 0, 0); // Position of the ground is relative to its own zone.
 
       // Add the test static meshes.
       // todo: delete these static meshes and use a procedural routine to decide what to place in the zone.
-      this.meshes.add(new StaticMeshes());
+      meshes.add(new StaticMeshes());
 
       // Add the zone light.
-      const zonelight = new Light(C.ZONE_LIGHT.COLOR, C.ZONE_LIGHT.INTENSITY, `zonelight-${this.meshes.name}`);
-      this.meshes.add(zonelight);
+      const zonelight = new Light(C.ZONE_LIGHT.COLOR, C.ZONE_LIGHT.INTENSITY, `zonelight-${meshes.name}`);
+      meshes.add(zonelight);
       zonelight.position.set(0, 10, 0); // Positioned in relation to this zone.
 
-      console.log(`${this.name} is ready.`)
+      console.log(`[INFO] ${this.name} is loaded.`);
 
-      // Last step.
-      return this;
+      return meshes;
+    }
+
+    // From a given coordinate not to scale, from camera for example, get the zone scaled x coordinate.
+    scaleCoordinate(input) {
+      return parseInt(round(input / C.ZONE_SIZE));
+    }
+
+    // From a given x and z, return what the name of the zone would be.
+    getZoneName(x, z) {
+      return `zone${this.scaleCoordinate(x)}:${this.scaleCoordinate(z)}`;
+    }
+
+    // For a given x and z, from the camera current position, return if that location is beyond the zone lines.
+    isOutsideZone(x, z) {
+      return z < this.lines.north || z > this.lines.south || x < this.lines.west || x > this.lines.east;
     }
 
     // For a given x and z, from the camera current position for example, return if that position is on one or several edges for this zone.

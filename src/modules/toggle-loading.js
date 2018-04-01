@@ -7,7 +7,7 @@ define(['constants'], (C) => {
     });
 
     THREE.DefaultLoadingManager.onStart = (url, itemsLoaded, itemsTotal ) => {
-      console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+      console.log(`[INFO] loading file ${url}.\n[INFO] loaded ${itemsLoaded} of ${itemsTotal} files.`);
     };
     
     THREE.DefaultLoadingManager.onLoad = () => {
@@ -16,11 +16,11 @@ define(['constants'], (C) => {
     };
     
     THREE.DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
-      console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+      console.log(`[INFO] loading file ${url}.\n[INFO] loaded ${itemsLoaded} of ${itemsTotal} files.`);
     };
     
     THREE.DefaultLoadingManager.onError = (url) => {
-      console.log( 'There was an error loading ' + url );
+      console.error(`[ERROR] loading ${url} failed.`);
     };
   };
 

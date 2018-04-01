@@ -56,6 +56,7 @@ define([], () => {
       },
     },
     ZONE_SIZE: 1000,
+    ZONE_BUFFER: 100, // Defines the area near a zone line where the game needs to load an contiguous zone.
     ZONE_LIGHT: {
       COLOR: 0xffffff,
       INTENSITY: 0.75,
