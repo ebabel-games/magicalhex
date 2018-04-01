@@ -64,7 +64,10 @@ define([], () => {
       Y: 10,
       Z: 0,
     },
-    AMBIENT_COLOR: 0x002200,
+    AMBIENT_LIGHT: {
+      COLOR: 0x002200,
+      INTENSITY: 5,
+    },
     PERSIST: {
       CAMERA_X: 'CAMERA_X',
       CAMERA_Y: 'CAMERA_Y',

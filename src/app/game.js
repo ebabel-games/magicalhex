@@ -43,18 +43,18 @@ requirejs(
     // Only add the camera to the scene after the sky has been added to the camera.
     scene.add(camera);
 
-    // Initialize the spell gate, so that it can be cast.
-    setupSpellGate(camera);
-
     // Initialize the currentZone as null (will be set in animate.js) and the collection of zones already loaded as empty.
     const currentZone = null;
     const loadedZones = [];
+
+    // Initialize the spell gate, so that it can be cast.
+    setupSpellGate(currentZone, scene, camera, loadedZones);
 
     // Initialize player movement.
     const keyboardControls = new KeyboardControls(camera);
 
     // Overall ambient light.
-    const ambientLight = new THREE.AmbientLight(C.AMBIENT_COLOR);
+    const ambientLight = new THREE.AmbientLight(C.AMBIENT_LIGHT.COLOR, C.AMBIENT_LIGHT.INTENSITY);
     scene.add(ambientLight);
 
     const debugPanel = setupDebugPanel(keyboardControls);
