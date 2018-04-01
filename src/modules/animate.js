@@ -36,6 +36,54 @@ define(['update-debug-panel', 'zone'], (updateDebugPanel, Zone) => {
       }
     }
 
+    if (edges.isOnEastEdge) {
+      const eastEdgeZoneMeshes = scene.getObjectByName(contiguousZones.east.name);
+      if (!eastEdgeZoneMeshes) {
+        const eastEdgeZone = new Zone(contiguousZones.east.x, contiguousZones.east.z);
+        scene.add(eastEdgeZone.meshes);
+      }
+    }
+
+    if (edges.isOnWestEdge) {
+      const westEdgeZoneMeshes = scene.getObjectByName(contiguousZones.west.name);
+      if (!westEdgeZoneMeshes) {
+        const westEdgeZone = new Zone(contiguousZones.west.x, contiguousZones.west.z);
+        scene.add(westEdgeZone.meshes);
+      }
+    }
+
+    if (edges.isOnNorthEdge && edges.isOnEastEdge) {
+      const northEastEdgeZoneMeshes = scene.getObjectByName(contiguousZones.northEast.name);
+      if (!northEastEdgeZoneMeshes) {
+        const northEastEdgeZone = new Zone(contiguousZones.northEast.x, contiguousZones.northEast.z);
+        scene.add(northEastEdgeZone.meshes);
+      }
+    }
+
+    if (edges.isOnSouthEdge && edges.isOnEastEdge) {
+      const southEastEdgeZoneMeshes = scene.getObjectByName(contiguousZones.southEast.name);
+      if (!southEastEdgeZoneMeshes) {
+        const southEastEdgeZone = new Zone(contiguousZones.southEast.x, contiguousZones.southEast.z);
+        scene.add(southEastEdgeZone.meshes);
+      }
+    }
+
+    if (edges.isOnSouthEdge && edges.isOnWestEdge) {
+      const southWestEdgeZoneMeshes = scene.getObjectByName(contiguousZones.southWest.name);
+      if (!southWestEdgeZoneMeshes) {
+        const southWestEdgeZone = new Zone(contiguousZones.southWest.x, contiguousZones.southWest.z);
+        scene.add(southWestEdgeZone.meshes);
+      }
+    }
+
+    if (edges.isOnNorthEdge && edges.isOnWestEdge) {
+      const northWestEdgeZoneMeshes = scene.getObjectByName(contiguousZones.northWest.name);
+      if (!northWestEdgeZoneMeshes) {
+        const northWestEdgeZone = new Zone(contiguousZones.northWest.x, contiguousZones.northWest.z);
+        scene.add(northWestEdgeZone.meshes);
+      }
+    }
+
     // Render everyting.
     renderer.render(scene, camera);
 

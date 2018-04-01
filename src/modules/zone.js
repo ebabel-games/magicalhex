@@ -4,6 +4,7 @@ define(['ground', 'static-meshes', 'round'], (Ground, StaticMeshes, round) => {
       // Origin at scale 1000 of this zone based on input from camera position.
       this.x = parseInt(round(x / 1000));
       this.z = parseInt(round(z / 1000));
+      this.name = `zone${this.x}:${this.z}`;
 
       // Main container for all static meshes that make up a zone.
       this.meshes = new THREE.Object3D();
@@ -20,17 +21,19 @@ define(['ground', 'static-meshes', 'round'], (Ground, StaticMeshes, round) => {
       };
 
       // Identify a zone name from the camera x and z position.
-      this.meshes.name = `zone${this.x}:${this.z}`;
+      this.meshes.name = this.name;
 
       // Add the ground.
       const ground = new Ground(`ground-${this.meshes.name}`);
       this.meshes.add(ground);
-      ground.position.set(0, 0, 0);
+      ground.position.set(0, 0, 0); // Position of the ground is relative to its own zone.
 
       // Add the test static meshes.
       // todo: delete these static meshes and use a procedural routine to decide what to place in the zone.
       this.meshes.add(new StaticMeshes());
-      
+
+      console.log(`${this.name} is ready.`)
+
       // Last step.
       return this;
     }
