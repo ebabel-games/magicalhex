@@ -36,12 +36,12 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Persist position of camera to localStorage and when reloading start there instead of origin.
 - Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to.
 - Bug solve: when loading from a position other than zone-0:0, everything looks dark.
-
-#### Currently being developed
 - Persist zones: each time the game loads, load the zone that has been procedurally generated.
 
-#### Next to develop
+#### Currently being developed
 - Use trees, stones and cut tree trunks instead of cubes.
+
+#### Next to develop
 - Remove from scene zone meshes (and update loadedZones array) when the player has moved far enough from them, or the memory will run out.
 - Enable clicking on meshes (target). See raycaster in game.js
 - Use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU. See Clock in game.js
