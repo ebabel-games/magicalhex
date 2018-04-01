@@ -37,13 +37,13 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to.
 
 #### Currently being developed
-
-- Zones meshes should be persisted in localStorage and read from there next time they are loaded, so the whole world is persisted for a single player and remains the same from the moment it has been procedurally generated the first time a zone is loaded.
+- Bug: when loading from a position other than zone-0:0, everything looks dark. Where did the zone light go?
 
 #### Next to develop
-- Bug: when loading from a position other than zone-0:0, everything looks dark. Where did the zone light go?
 - Bug: same as above, then casting Gate spell (key 7) and the origin cube is not animated. Why is that?
 - Persist zones: each time the game loads, load the zone that has been procedurally generated where the player current is.
+- Use trees, stones and cut tree trunks instead of cubes.
+- Remove from scene zone meshes (and update loadedZones array) when the player has moved far enough from them, or the memory will run out.
 - Enable clicking on meshes (target). See raycaster in game.js
 - Use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU. See Clock in game.js
 - If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 
