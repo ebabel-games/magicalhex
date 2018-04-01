@@ -24,10 +24,10 @@ define(['constants'], (C) => {
 
       // Properties used to persist this mesh and recreate it later.
       mesh.persist = {
-        n: name,      // mesh name
-        c: 'Ground',  // constructor
-        i: [name],    // array of input values for the class constructor
-        p: [0, 0, 0],  // x, y, z position coordinates
+        n: name,      // mesh name.
+        c: 'Ground',  // class to instantiate.
+        i: [name],    // array of input values for the class constructor.
+        p: [0, 0, 0],  // x, y, z position coordinates.
       };
   
       return mesh;
