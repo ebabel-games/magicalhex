@@ -1,6 +1,6 @@
-define([], () => {
-  const width = 1000;
-  const height = 1000;
+define(['constants'], (C) => {
+  const width = C.ZONE_SIZE;
+  const height = C.ZONE_SIZE;
 
   const sky = () => {
     const texture = new THREE.TextureLoader().load('textures/sky.jpg');

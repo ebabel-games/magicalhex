@@ -1,7 +1,7 @@
-define([], () => {
+define(['constants'], (C) => {
   // Note: these constants never change, regardless of the ground instance.
-  const width = 1000;
-  const height = 1000;
+  const width = C.ZONE_SIZE;
+  const height = C.ZONE_SIZE;
 
   const texture = new THREE.TextureLoader().load('textures/ground.jpg');
   texture.wrapS = THREE.RepeatWrapping;

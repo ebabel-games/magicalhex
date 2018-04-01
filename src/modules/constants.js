@@ -55,7 +55,8 @@ define([], () => {
         Z: 0,
       },
     },
-    ZONELIGHT: {
+    ZONE_SIZE: 1000,
+    ZONE_LIGHT: {
       COLOR: 0xffffff,
       INTENSITY: 0.75,
       X: 0,

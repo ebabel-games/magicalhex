@@ -1,23 +1,24 @@
-define(['ground', 'static-meshes', 'round', 'light'], (Ground, StaticMeshes, round, Light) => {
+define(['constants', 'ground', 'static-meshes', 'round', 'light'], (C, Ground, StaticMeshes, round, Light) => {
   class Zone {
     constructor(x, z) {
-      // Origin at scale 1000 of this zone based on input from camera position.
-      this.x = parseInt(round(x / 1000));
-      this.z = parseInt(round(z / 1000));
+      // Origin at scale C.ZONE_SIZE of this zone based on input from camera position.
+      this.x = parseInt(round(x / C.ZONE_SIZE));
+      this.z = parseInt(round(z / C.ZONE_SIZE));
       this.name = `zone${this.x}:${this.z}`;
 
       // Main container for all static meshes that make up a zone.
       this.meshes = new THREE.Object3D();
 
       // Place the parent at the correct co-ordinates based on camera current position.
-      this.meshes.position.set(this.x * 1000, 0, this.z * 1000)
+      this.meshes.position.set(this.x * C.ZONE_SIZE, 0, this.z * C.ZONE_SIZE)
 
       // Near the zone edges, the adjacent zones should be loaded.
+      const zoneSizeBuffer = (C.ZONE_SIZE / 2) - 100;
       this.edges = {
-        north: this.z * 1000 - 400,
-        south: this.z * 1000 + 400,
-        east: this.x * 1000 + 400,
-        west: this.x * 1000 - 400,
+        north: this.z * C.ZONE_SIZE - zoneSizeBuffer,
+        south: this.z * C.ZONE_SIZE + zoneSizeBuffer,
+        east: this.x * C.ZONE_SIZE + zoneSizeBuffer,
+        west: this.x * C.ZONE_SIZE - zoneSizeBuffer,
       };
 
       // Identify a zone name from the camera x and z position.
@@ -33,10 +34,9 @@ define(['ground', 'static-meshes', 'round', 'light'], (Ground, StaticMeshes, rou
       this.meshes.add(new StaticMeshes());
 
       // Add the zone light.
-      const zonelight = new Light(C.ZONELIGHT.COLOR, C.ZONELIGHT.INTENSITY, `zonelight-${this.meshes.name}`);
+      const zonelight = new Light(C.ZONE_LIGHT.COLOR, C.ZONE_LIGHT.INTENSITY, `zonelight-${this.meshes.name}`);
       this.meshes.add(zonelight);
       zonelight.position.set(0, 10, 0); // Positioned in relation to this zone.
-
 
       console.log(`${this.name} is ready.`)
 
@@ -57,14 +57,14 @@ define(['ground', 'static-meshes', 'round', 'light'], (Ground, StaticMeshes, rou
     // 8 zones touching this one.
     contiguousZones() {
       return {
-        north: { x: this.x * 1000, z: (this.z - 1) * 1000, name: `zone${this.x}:${this.z - 1}` },
-        south: { x: this.x * 1000, z: (this.z + 1) * 1000, name: `zone${this.x}:${this.z + 1}` },
-        east: { x: (this.x + 1) * 1000, z: this.z * 1000, name: `zone${this.x + 1}:${this.z}` },
-        west: { x: (this.x - 1) * 1000, z: this.z * 1000, name: `zone${this.x - 1}:${this.z}` },
-        northEast: { x: (this.x + 1) * 1000, z: (this.z - 1) * 1000, name: `zone${this.x + 1}:${this.z - 1}` },
-        southEast: { x: (this.x + 1) * 1000, z: (this.z + 1) * 1000, name: `zone${this.x + 1}:${this.z + 1}` },
-        southWest: { x: (this.x - 1) * 1000, z: (this.z + 1) * 1000, name: `zone${this.x - 1}:${this.z + 1}` },
-        northWest: { x: (this.x - 1) * 1000, z: (this.z - 1) * 1000, name: `zone${this.x - 1}:${this.z - 1}` },
+        north: { x: this.x * C.ZONE_SIZE, z: (this.z - 1) * C.ZONE_SIZE, name: `zone${this.x}:${this.z - 1}` },
+        south: { x: this.x * C.ZONE_SIZE, z: (this.z + 1) * C.ZONE_SIZE, name: `zone${this.x}:${this.z + 1}` },
+        east: { x: (this.x + 1) * C.ZONE_SIZE, z: this.z * C.ZONE_SIZE, name: `zone${this.x + 1}:${this.z}` },
+        west: { x: (this.x - 1) * C.ZONE_SIZE, z: this.z * C.ZONE_SIZE, name: `zone${this.x - 1}:${this.z}` },
+        northEast: { x: (this.x + 1) * C.ZONE_SIZE, z: (this.z - 1) * C.ZONE_SIZE, name: `zone${this.x + 1}:${this.z - 1}` },
+        southEast: { x: (this.x + 1) * C.ZONE_SIZE, z: (this.z + 1) * C.ZONE_SIZE, name: `zone${this.x + 1}:${this.z + 1}` },
+        southWest: { x: (this.x - 1) * C.ZONE_SIZE, z: (this.z + 1) * C.ZONE_SIZE, name: `zone${this.x - 1}:${this.z + 1}` },
+        northWest: { x: (this.x - 1) * C.ZONE_SIZE, z: (this.z - 1) * C.ZONE_SIZE, name: `zone${this.x - 1}:${this.z - 1}` },
       };
     }
   }
