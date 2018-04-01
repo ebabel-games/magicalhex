@@ -18,12 +18,21 @@ define(['update-debug-panel', 'zone'], (updateDebugPanel, Zone) => {
     // Check if the current position of the camera is on one or several edges for the current zone.
     const edges = currentZone.isOnEdge(camera.position.x, camera.position.z);
     const contiguousZones = currentZone.contiguousZones();
+
     if (edges.isOnNorthEdge) {
       // Check if the zone on the north edge is already created.
       const northEdgeZoneMeshes = scene.getObjectByName(contiguousZones.north.name);
       if (!northEdgeZoneMeshes) {
         const northEdgeZone = new Zone(contiguousZones.north.x, contiguousZones.north.z);
         scene.add(northEdgeZone.meshes);
+      }
+    }
+
+    if (edges.isOnSouthEdge) {
+      const southEdgeZoneMeshes = scene.getObjectByName(contiguousZones.south.name);
+      if (!southEdgeZoneMeshes) {
+        const southEdgeZone = new Zone(contiguousZones.south.x, contiguousZones.south.z);
+        scene.add(southEdgeZone.meshes);
       }
     }
 

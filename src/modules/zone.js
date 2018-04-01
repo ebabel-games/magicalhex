@@ -23,7 +23,9 @@ define(['ground', 'static-meshes', 'round'], (Ground, StaticMeshes, round) => {
       this.meshes.name = `zone${this.x}:${this.z}`;
 
       // Add the ground.
-      this.meshes.add(new Ground(`ground-${this.meshes.name}`));
+      const ground = new Ground(`ground-${this.meshes.name}`);
+      this.meshes.add(ground);
+      ground.position.set(0, 0, 0);
 
       // Add the test static meshes.
       // todo: delete these static meshes and use a procedural routine to decide what to place in the zone.

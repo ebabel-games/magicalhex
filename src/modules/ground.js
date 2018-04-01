@@ -8,17 +8,20 @@ define([], () => {
   texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set(width / 256, height / 256);
 
-  const mesh = new THREE.Mesh(
-    new THREE.PlaneBufferGeometry(width, height),
-    new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
-  );
-  mesh.rotation.set(-90 * Math.PI / 180, 0, 0);
-  mesh.receiveShadow = true;
-
   // Flat plane mesh that forms the ground in each zone.
   class Ground {
     constructor(name) {
-      mesh.name = name || 'ground';
+      if (!name) {
+        throw new Error('Missing ground name, it cannot be built without a name.');
+      }
+
+      const mesh = new THREE.Mesh(
+        new THREE.PlaneBufferGeometry(width, height),
+        new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
+      );
+      mesh.rotation.set(-90 * Math.PI / 180, 0, 0);
+      mesh.receiveShadow = true;
+      mesh.name = name;
   
       return mesh;
     }
