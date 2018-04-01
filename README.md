@@ -39,6 +39,8 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to. These procedural zones should then stored in localStorage and read from there next time.
 
 #### Next to develop
+- Bug: when loading from a position other than zone-0:0, everything looks dark. Where did the zone light go?
+- Bug: same as above, then casting Gate spell (key 7) and the origin cube is not animated. Why is that?
 - Persist zones: each time the game loads, load the zone that has been procedurally generated where the player current is.
 - Enable clicking on meshes (target). See raycaster in game.js
 - Use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU. See Clock in game.js
