@@ -12,13 +12,21 @@ define(['constants', 'ground', 'static-meshes', 'round', 'light'], (C, Ground, S
       // Place the parent at the correct co-ordinates based on camera current position.
       this.meshes.position.set(this.x * C.ZONE_SIZE, 0, this.z * C.ZONE_SIZE)
 
+      // Beyond a zone line, the current zone should be updated.
+      this.lines = {
+        north: this.z * C.ZONE_SIZE,
+        south: this.z * C.ZONE_SIZE,
+        east: this.x * C.ZONE_SIZE,
+        west: this.x * C.ZONE_SIZE,
+      };
+
       // Near the zone edges, the adjacent zones should be loaded.
       const zoneSizeBuffer = (C.ZONE_SIZE / 2) - 100;
       this.edges = {
-        north: this.z * C.ZONE_SIZE - zoneSizeBuffer,
-        south: this.z * C.ZONE_SIZE + zoneSizeBuffer,
-        east: this.x * C.ZONE_SIZE + zoneSizeBuffer,
-        west: this.x * C.ZONE_SIZE - zoneSizeBuffer,
+        north: this.lines.north - zoneSizeBuffer,
+        south: this.lines.south + zoneSizeBuffer,
+        east: this.lines.east + zoneSizeBuffer,
+        west: this.lines.west - zoneSizeBuffer,
       };
 
       // Identify a zone name from the camera x and z position.
