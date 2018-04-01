@@ -35,13 +35,12 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Refactor handling pressing keys separately, because it's not just about player movement. It's a separate concern.
 - Persist position of camera to localStorage and when reloading start there instead of origin.
 - Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to.
+- Bug solve: when loading from a position other than zone-0:0, everything looks dark.
 
 #### Currently being developed
-- Bug: when loading from a position other than zone-0:0, everything looks dark. Where did the zone light go?
+- Persist zones: each time the game loads, load the zone that has been procedurally generated.
 
 #### Next to develop
-- Bug: same as above, then casting Gate spell (key 7) and the origin cube is not animated. Why is that?
-- Persist zones: each time the game loads, load the zone that has been procedurally generated where the player current is.
 - Use trees, stones and cut tree trunks instead of cubes.
 - Remove from scene zone meshes (and update loadedZones array) when the player has moved far enough from them, or the memory will run out.
 - Enable clicking on meshes (target). See raycaster in game.js
