@@ -1,4 +1,4 @@
-define(['update-debug-panel', 'zone'], (updateDebugPanel, Zone) => {
+define(['update-debug-panel', 'zone', 'update-current-zone'], (updateDebugPanel, Zone, updateCurrentZone) => {
   // Animation that keeps getting called to render everything and all changes.
   const animate = (renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones) => {
     statsPanel.begin();
@@ -20,19 +20,8 @@ define(['update-debug-panel', 'zone'], (updateDebugPanel, Zone) => {
     keyboardControls.playerMovement.update();
     keyboardControls.playerMovement.persist();
 
-    // Set the currentZone.
-    if (!currentZone) {
-      currentZone = new Zone(camera.position.x, camera.position.z, loadedZones);
-      loadedZones.push(currentZone.name); // This name is pushed because there was no current zone at all, so this is a brand new zone just created.
-      scene.add(currentZone.meshes);
-    }
-
-    // Update which zone is the current zone if the player has moved into a zone.
-    // Note: that zone should already have been pre loaded into the game, so it should not create its meshes again.
-    if (currentZone.isOutsideZone(camera.position.x, camera.position.z)) {
-     currentZone = new Zone(camera.position.x, camera.position.z, loadedZones);
-     console.log(`[INFO] current zone: ${currentZone.name}.`);
-    }
+    // Update the currentZone.
+    currentZone = updateCurrentZone(currentZone, scene, camera, loadedZones);
 
     // Check if the current position of the camera is on one or several edges for the current zone.
     const edges = currentZone.isOnEdge(camera.position.x, camera.position.z);

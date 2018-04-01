@@ -54,7 +54,7 @@ requirejs(
     const keyboardControls = new KeyboardControls(camera);
 
     // Overall ambient light.
-    const ambientLight = new THREE.AmbientLight(0x002200);
+    const ambientLight = new THREE.AmbientLight(C.AMBIENT_COLOR);
     scene.add(ambientLight);
 
     const debugPanel = setupDebugPanel(keyboardControls);

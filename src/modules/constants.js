@@ -38,7 +38,7 @@ define([], () => {
       MB: 2,
     },
     FOG: {
-      COLOR: 0x9db3b5,
+      COLOR: 0x779977,
       DENSITY: 0.025,
     },
     CAMERA: {
@@ -64,6 +64,7 @@ define([], () => {
       Y: 10,
       Z: 0,
     },
+    AMBIENT_COLOR: 0x002200,
     PERSIST: {
       CAMERA_X: 'CAMERA_X',
       CAMERA_Y: 'CAMERA_Y',
