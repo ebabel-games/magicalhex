@@ -5,7 +5,11 @@ define(['constants', 'round', 'zone'], (C, round, Zone) => {
     if (!currentZone) {
       currentZone = new Zone(camera.position.x, camera.position.z, loadedZones);
       loadedZones.push(currentZone.name); // This name is pushed because there was no current zone at all, so this is a brand new zone just created.
-      scene.add(currentZone.meshes);
+
+      if (scene && currentZone && currentZone.meshes) {
+        scene.add(currentZone.meshes);
+      }
+
       log(currentZone.name);
     }
 
