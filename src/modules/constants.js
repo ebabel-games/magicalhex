@@ -61,11 +61,19 @@ define([], () => {
       COLOR: 0x002200,
       INTENSITY: 5,
     },
+    GRID: {
+      LINES_HEIGHT: 100,
+      LINES_WIDTH: 100,
+      COLOR: 0x00DD6C,
+    },
     PERSIST: {
       CAMERA_X: 'CAMERA_X',
       CAMERA_Y: 'CAMERA_Y',
       CAMERA_Z: 'CAMERA_Z',
       CAMERA_ROTATION_Y: 'CAMERA_ROTATION_Y',
+    },
+    ERROR: {
+      MISSING_PARAMETERS: 'Missing parameters, this class cannot be instantiated.'
     },
   };
 

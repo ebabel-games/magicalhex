@@ -24,6 +24,7 @@ requirejs(
 
     // Camera setup.
     const camera = new THREE.PerspectiveCamera(C.CAMERA.FOV, C.CAMERA.RATIO, C.CAMERA.NEAR, C.CAMERA.FAR);
+    camera.name = 'player-camera';
 
     // Read position of the camera based on the previous game.
     // This will in turn have an impact on starting the new game in the correct zone and location.
@@ -55,6 +56,7 @@ requirejs(
 
     // Overall ambient light.
     const ambientLight = new THREE.AmbientLight(C.AMBIENT_LIGHT.COLOR, C.AMBIENT_LIGHT.INTENSITY);
+    ambientLight.name = 'overall-ambient-light';
     scene.add(ambientLight);
 
     const debugPanel = setupDebugPanel(keyboardControls);

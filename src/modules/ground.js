@@ -1,4 +1,4 @@
-define(['constants'], (C) => {
+define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
   // Note: these constants never change, regardless of the ground instance.
   const width = C.ZONE_SIZE;
   const height = C.ZONE_SIZE;
@@ -7,7 +7,7 @@ define(['constants'], (C) => {
   class Ground {
     constructor(name) {
       if (!name) {
-        throw new Error('Missing ground name, it cannot be built without a name.');
+        throw new Error(C.ERROR.MISSING_PARAMETERS);
       }
 
       const texture = new THREE.TextureLoader().load('textures/ground.jpg');
@@ -19,8 +19,8 @@ define(['constants'], (C) => {
         new THREE.PlaneBufferGeometry(width, height),
         new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
       );
-      mesh.rotation.set(-90 * Math.PI / 180, 0, 0);
       mesh.name = name;
+      rotateToHorizontal(mesh);
 
       // Properties used to persist this mesh and recreate it later.
       mesh.persist = {

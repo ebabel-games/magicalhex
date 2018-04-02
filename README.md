@@ -39,9 +39,10 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Persist zones: each time the game loads, load the zone that has been procedurally generated.
 
 #### Currently being developed
-- Use trees, stones and cut tree trunks instead of cubes.
+- Make a random string map per zone to know where to place obstacles (walls) and static items (trees, stones, cut trees).
 
 #### Next to develop
+- Use trees, stones and cut tree trunks.
 - Remove from scene zone meshes (and update loadedZones array) when the player has moved far enough from them, or the memory will run out.
 - Enable clicking on meshes (target). See raycaster in game.js
 - Use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU. See Clock in game.js

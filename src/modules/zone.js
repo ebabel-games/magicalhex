@@ -1,4 +1,4 @@
-define(['constants', 'ground', 'round'], (C, Ground, round) => {
+define(['constants', 'round', 'ground', 'grid'], (C, round, Ground, Grid) => {
   class Zone {
     constructor(x, z, loadedZones) {
       // Origin at scale C.ZONE_SIZE of this zone based on input from camera position.
@@ -52,6 +52,11 @@ define(['constants', 'ground', 'round'], (C, Ground, round) => {
       const ground = new Ground(`ground-${meshes.name}`);
       meshes.add(ground);
       ground.position.set(ground.persist.p[0], ground.persist.p[1], ground.persist.p[2]); // Position of the ground is relative to its own zone.
+
+      // Add a grid.
+      const grid = new Grid(`grid-${meshes.name}`);
+      meshes.add(grid);
+      grid.position.set(grid.persist.p[0], grid.persist.p[1], grid.persist.p[2])
 
       // Last step: persist the zone.
       this.persistData(meshes);
