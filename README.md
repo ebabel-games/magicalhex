@@ -37,6 +37,7 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to.
 - Bug solve: when loading from a position other than zone-0:0, everything looks dark.
 - Persist zones: each time the game loads, load the zone that has been procedurally generated.
+- Toggle grid, stats and debug mode.
 
 #### Currently being developed
 - Make a random string map per zone to know where to place obstacles (walls) and static items (trees, stones, cut trees).

@@ -3,7 +3,7 @@ define(['constants', 'round'], (C, round) => {
   class PlayerMovement {
     constructor(camera) {
       this.forwardSpeed = C.PLAYER_FORWARD_SPEED;
-      this.backwardSpeed = round(C.PLAYER_FORWARD_SPEED / C.PLAYER_BACKWARD_SPEED_SLOWING_FACTOR, 2);
+      this.backwardSpeed = C.PLAYER_BACKWARD_SPEED;
       this.turnSpeed = C.PLAYER_TURN_SPEED;
       this.moveForward = false;
       this.moveBackward = false;

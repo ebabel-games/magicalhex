@@ -54,12 +54,13 @@ requirejs(
     // Initialize player movement.
     const keyboardControls = new KeyboardControls(camera, loadedZones, scene);
 
+    // Listen for toggling of the debug mode.
+    setupDebugPanel(keyboardControls);
+
     // Overall ambient light.
     const ambientLight = new THREE.AmbientLight(C.AMBIENT_LIGHT.COLOR, C.AMBIENT_LIGHT.INTENSITY);
     ambientLight.name = 'overall-ambient-light';
     scene.add(ambientLight);
-
-    const debugPanel = setupDebugPanel(keyboardControls);
 
     // Create a canvas where everything 3D will be rendered.
     const renderer = new THREE.WebGLRenderer();

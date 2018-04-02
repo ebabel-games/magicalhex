@@ -1,7 +1,7 @@
 define([], () => {
   const constants = {
     PLAYER_FORWARD_SPEED: 0.1,
-    PLAYER_BACKWARD_SPEED_SLOWING_FACTOR: 3,  // Player moves backward 3 times slower than forward.
+    PLAYER_BACKWARD_SPEED: 0.03,  // Player moves backward 3 times slower than forward.
     PLAYER_TURN_SPEED: 0.03, // Math.round((2 * Math.PI / 180) * 100) / 100 - note: this is not related to backward speed slowing factor.
     DEBUG_FORWARD_SPEED: 1,
     DEBUG_BACKWARD_SPEED: 1,
@@ -64,8 +64,8 @@ define([], () => {
       INTENSITY: 5,
     },
     GRID: {
-      LINES_HEIGHT: 100,
-      LINES_WIDTH: 100,
+      LINES_HEIGHT: 500,
+      LINES_WIDTH: 500,
       COLOR: 0x00DD6C,
     },
     PERSIST: {
