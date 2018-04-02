@@ -1,4 +1,4 @@
-define(['constants', 'round', 'ground', 'grid', 'trunk'], (C, round, Ground, Grid, Trunk) => {
+define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk'], (C, round, degreesToRadians, Ground, Grid, Trunk) => {
   // A zone comes from three type of sources:
   // 1. Never visited before, needs to be generated procedurally.
   // 2. Not loaded yet in the current game but has been stored in the past and can be re-built from localStorage.
@@ -150,7 +150,15 @@ define(['constants', 'round', 'ground', 'grid', 'trunk'], (C, round, Ground, Gri
       const grid = new Grid({name: `grid-${meshes.name}`});
       meshes.add(grid);
 
-      // todo: Create a string map.
+      // Create a string map.
+      const stringMap = [
+        '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \n',
+        '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \n',
+        '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \n',
+        '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \n',
+        '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \n',
+        '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ',
+      ].join('');
 
       // todo: Place trunks based on the random string map.
       // test: row of trunks
@@ -159,11 +167,13 @@ define(['constants', 'round', 'ground', 'grid', 'trunk'], (C, round, Ground, Gri
         const radius = round(Math.random() * 0.5, 2) + 0.5;
         const height = round(Math.random() * 1.5, 2) + 0.5;
         const radialSegments = round(Math.random() * 4) + 5;
+        const rotation = round(degreesToRadians(Math.random() * 360), 2);
         const trunk = new Trunk({
           name: `trunk${trunkNumber}-${meshes.name}`,
           x,
           y: 0,
           z: -21,
+          v: rotation,
           t: radius,
           b: radius,
           h: height,

@@ -8,6 +8,9 @@ define(['constants'], (C) => {
       const x = input.x;  // Position coordinates.
       const y = input.y;
       const z = input.z;
+
+      const v = input.v || 0; // Vertical rotation along the y axis. Unit in radians (not degrees).
+
       const t = input.t || C.TRUNK.RADIUS_TOP;
       const b = input.b || C.TRUNK.RADIUS_BOTTOM;
       const h = input.h || C.TRUNK.HEIGHT;
@@ -20,12 +23,13 @@ define(['constants'], (C) => {
       );
       mesh.name = name;
       mesh.position.set(x, y, z);
+      mesh.rotation.y = v;
 
       // Properties used to persist this mesh and recreate it later.
       mesh.persist = {
         n: name,
         c: 'Trunk',
-        i: {name, x, y, z, t, b, h, r, s},
+        i: {name, x, y, z, v, t, b, h, r, s},
       };
   
       return mesh;
