@@ -63,10 +63,19 @@ define([], () => {
       COLOR: 0xccffcc,
       INTENSITY: 1,
     },
+    GROUND: {
+      X: 0,
+      Y: 0,
+      Z: 0,
+    },
     GRID: {
       LINES_HEIGHT: 500,
       LINES_WIDTH: 500,
       COLOR: 0x00DD6C,
+      OPACITY: 0.2,
+      X: 0,
+      Y: 0.01,
+      Z: 0,
     },
     TRUNK: {
       RADIUS_TOP: 0.5,      // Radius of the cylinder at the top.

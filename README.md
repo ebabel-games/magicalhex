@@ -47,6 +47,7 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Remove from scene zone meshes (and update loadedZones array) when the player has moved far enough from them, or the memory will run out.
 - Enable clicking on meshes (target). See raycaster in game.js
 - Use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU. See Clock in game.js
+- Bug: empty zone when teleporting with gate spell. Steps to reproduce: move to another zone far enough from zone0:0, reload the whole page, cast the Gate spell. The zone0:0 is empty.
 - If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 
 
 ### Released tags

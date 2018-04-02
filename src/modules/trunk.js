@@ -19,7 +19,6 @@ define(['constants'], (C) => {
         new THREE.MeshLambertMaterial({map: texture})
       );
       mesh.name = name;
-
       mesh.position.set(x, y, z);
 
       // Properties used to persist this mesh and recreate it later.

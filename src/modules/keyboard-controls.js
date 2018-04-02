@@ -56,7 +56,7 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
         case C.KEY.SEVEN:
           if (e.type === 'keyup') { break; }
           document.dispatchEvent(new CustomEvent(C.EVENTS.CAST_SPELL_GATE, {
-            detail: {camera},
+            detail: {camera, loadedZones, scene},
           }));
           break;
       }

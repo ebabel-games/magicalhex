@@ -21,8 +21,8 @@ define(['constants', 'round', 'ground', 'grid', 'trunk'], (C, round, Ground, Gri
         // The meshes have already been created, so assign them to this.meshes from memory in current game.
         this.meshes = scene.getObjectByName(this.name).children;
       }
-      
-      this.lines = this.getLines();      
+
+      this.lines = this.getLines();
       this.edges = this.getEdges();
 
       // Last step.
@@ -78,17 +78,7 @@ define(['constants', 'round', 'ground', 'grid', 'trunk'], (C, round, Ground, Gri
       // Add all static meshes in a generic way, based on the persist data stored in localStorage.
       data.map(d => {
         const module = require([d.c], (Module) => {
-          let instance;
-
-          if (d.i) {
-            // Constructor has several input parameters.
-            instance = new Module(d.i);
-          } else {
-            // Constructor only needs a name.
-            instance = new Module(d.n);
-            instance.position.set(d.p[0], d.p[1], d.p[2]);
-          }
-
+          const instance = new Module(d.i);
           meshes.add(instance);
         });
       });
@@ -153,14 +143,12 @@ define(['constants', 'round', 'ground', 'grid', 'trunk'], (C, round, Ground, Gri
     // This zone has never been visited in any game, ever. Create its meshes for the very first time.
     generateMeshesProcedurally(meshes) {
       // Add the ground.
-      const ground = new Ground(`ground-${meshes.name}`);
+      const ground = new Ground({name: `ground-${meshes.name}`});
       meshes.add(ground);
-      ground.position.set(ground.persist.p[0], ground.persist.p[1], ground.persist.p[2]); // Position of the ground is relative to its own zone.
 
       // Add a grid.
-      const grid = new Grid(`grid-${meshes.name}`);
+      const grid = new Grid({name: `grid-${meshes.name}`});
       meshes.add(grid);
-      grid.position.set(grid.persist.p[0], grid.persist.p[1], grid.persist.p[2])
 
       // todo: Create a string map.
 
