@@ -69,11 +69,11 @@ define([], () => {
       COLOR: 0x00DD6C,
     },
     TRUNK: {
-      RADIUS_TOP: 0.5,
-      RADIUS_BOTTOM: 0.5,
-      HEIGHT: 1,
-      RADIAL_SEGMENTS: 5,
-      HEIGHT_SEGMENTS: 1,
+      RADIUS_TOP: 0.5,      // Radius of the cylinder at the top.
+      RADIUS_BOTTOM: 0.5,   // Radius of the cylinder at the bottom.
+      HEIGHT: 1,            // Height of the cylinder.
+      RADIAL_SEGMENTS: 5,   // Number of segmented faces around the circumference of the cylinder.
+      HEIGHT_SEGMENTS: 1,   // Number of rows of faces along the height of the cylinder.
     },
     PERSIST: {
       CAMERA_X: 'CAMERA_X',
