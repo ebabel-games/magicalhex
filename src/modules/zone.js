@@ -156,11 +156,16 @@ define(['constants', 'round', 'ground', 'grid', 'trunk'], (C, round, Ground, Gri
       // test: row of trunks
       let trunkNumber = 0;
       for (let x = -499; x <= 499; x += 2) {
+        const radius = round(Math.random() * 0.5, 2) + 0.5;
+        const height = round(Math.random() * 1.5, 2) + 0.5;
         const trunk = new Trunk({
           name: `trunk${trunkNumber}-${meshes.name}`,
           x,
           y: 0,
           z: -21,
+          t: radius,
+          b: radius,
+          h: height,
         });
         meshes.add(trunk);
         trunkNumber += 1;
