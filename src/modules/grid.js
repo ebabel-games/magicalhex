@@ -33,7 +33,7 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
         geometry.vertices.push(new THREE.Vector3(i, width, 0));
       }
     
-      const line = new THREE.LineSegments (geometry, material, THREE.LinePieces);
+      const line = new THREE.LineSegments(geometry, material, THREE.LinePieces);
 
       mesh.add(line);
       mesh.name = name;
@@ -43,7 +43,7 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
       mesh.persist = {
         n: name,
         c: 'Grid',
-        p: [0, 0.1, 0],
+        p: [0, 0.01, 0],
       };
     
       return mesh;

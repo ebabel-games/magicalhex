@@ -1,4 +1,8 @@
-define(['constants', 'round', 'ground', 'grid'], (C, round, Ground, Grid) => {
+define(['constants', 'round', 'ground', 'grid', 'trunk'], (C, round, Ground, Grid, Trunk) => {
+  // A zone comes from three type of sources:
+  // 1. Never visited before, needs to be generated procedurally.
+  // 2. Not loaded yet in the current game but has been stored in the past and can be re-built from localStorage.
+  // 3. Already loaded in the current game, its meshes just need to be assigned to this.meshes from memory.
   class Zone {
     constructor(x, z, loadedZones, scene) {
       // Origin at scale C.ZONE_SIZE of this zone based on input from camera position.
@@ -9,34 +13,40 @@ define(['constants', 'round', 'ground', 'grid'], (C, round, Ground, Grid) => {
       // Keep track of the whole scene to make dynamic changes to the zone possible.
       this.scene = scene;
 
-      // Check if the meshes are already created with the name either found or not in loadedZones array.
+      // Check if this zone has already been loaded.
       if (loadedZones.indexOf(this.name) === -1) {
+        // Create meshes since this zone hasn't been loaded.
         this.meshes = this.createMeshes();
-      }
-
-      // The meshes have already been created, so assign them to this.meshes.
-      if (loadedZones.indexOf(this.name) !== -1) {
+      } else {
+        // The meshes have already been created, so assign them to this.meshes from memory in current game.
         this.meshes = scene.getObjectByName(this.name).children;
       }
+      
+      this.lines = this.getLines();      
+      this.edges = this.getEdges();
 
-      // Beyond a zone line, the current zone should be updated.
-      this.lines = {
+      // Last step.
+      return this;
+    }
+
+    // Beyond a zone line, the current zone should be updated.
+    getLines() {
+      return {
         north: this.z * C.ZONE_SIZE - (C.ZONE_SIZE / 2),
         south: this.z * C.ZONE_SIZE + (C.ZONE_SIZE / 2),
         east: this.x * C.ZONE_SIZE + (C.ZONE_SIZE / 2),
         west: this.x * C.ZONE_SIZE - (C.ZONE_SIZE / 2),
       };
+    }
 
-      // Near the zone edges, the adjacent zones should be loaded.
-      this.edges = {
+    // Near the zone edges, the adjacent zones should be loaded.
+    getEdges() {
+      return {
         north: this.lines.north + C.ZONE_BUFFER,
         south: this.lines.south - C.ZONE_BUFFER,
         east: this.lines.east - C.ZONE_BUFFER,
         west: this.lines.west + C.ZONE_BUFFER,
       };
-
-      // Last step.
-      return this;
     }
 
     log(name) {
@@ -53,25 +63,12 @@ define(['constants', 'round', 'ground', 'grid'], (C, round, Ground, Grid) => {
 
       // Check if the creation already happened in a previous game and was persisted to localStorage.
       if (localStorage[this.name]) {
+        // This zone has already been visited in the past, build it from localStorage.
         return this.createMeshesFromPersistedData(meshes);
+      } else {
+        // This zone has never been visired by the player before in any game, generate it from scratch.
+        return this.generateMeshesProcedurally(meshes);
       }
-
-      // Add the ground.
-      const ground = new Ground(`ground-${meshes.name}`);
-      meshes.add(ground);
-      ground.position.set(ground.persist.p[0], ground.persist.p[1], ground.persist.p[2]); // Position of the ground is relative to its own zone.
-
-      // Add a grid.
-      const grid = new Grid(`grid-${meshes.name}`);
-      meshes.add(grid);
-      grid.position.set(grid.persist.p[0], grid.persist.p[1], grid.persist.p[2])
-
-      // Last step: persist the zone.
-      this.persistData(meshes);
-
-      this.log(this.name);
-
-      return meshes;
     }
 
     // Create all the static meshes of this zone from a previous game persisted in localStorage.
@@ -81,9 +78,18 @@ define(['constants', 'round', 'ground', 'grid'], (C, round, Ground, Grid) => {
       // Add all static meshes in a generic way, based on the persist data stored in localStorage.
       data.map(d => {
         const module = require([d.c], (Module) => {
-          const instance = new Module(d.n);
+          let instance;
+
+          if (d.i) {
+            // Constructor has several input parameters.
+            instance = new Module(d.i);
+          } else {
+            // Constructor only needs a name.
+            instance = new Module(d.n);
+            instance.position.set(d.p[0], d.p[1], d.p[2]);
+          }
+
           meshes.add(instance);
-          instance.position.set(d.p[0], d.p[1], d.p[2]);
         });
       });
 
@@ -143,13 +149,38 @@ define(['constants', 'round', 'ground', 'grid'], (C, round, Ground, Grid) => {
         northWest: { x: (this.x - 1) * C.ZONE_SIZE, z: (this.z - 1) * C.ZONE_SIZE, name: `zone${this.x - 1}:${this.z - 1}` },
       };
     }
+
+    // This zone has never been visited in any game, ever. Create its meshes for the very first time.
+    generateMeshesProcedurally(meshes) {
+      // Add the ground.
+      const ground = new Ground(`ground-${meshes.name}`);
+      meshes.add(ground);
+      ground.position.set(ground.persist.p[0], ground.persist.p[1], ground.persist.p[2]); // Position of the ground is relative to its own zone.
+
+      // Add a grid.
+      const grid = new Grid(`grid-${meshes.name}`);
+      meshes.add(grid);
+      grid.position.set(grid.persist.p[0], grid.persist.p[1], grid.persist.p[2])
+
+      // todo: Create a string map.
+
+      // todo: Place trunks based on the random string map.
+      const trunk = new Trunk({
+        name: `trunk1-${meshes.name}`,
+        x: -23,
+        y: 0,
+        z: -21,
+      });
+      meshes.add(trunk);
+
+      // Last step: persist the zone for future re-use.
+      this.persistData(meshes);
+
+      this.log(this.name);
+
+      return meshes;
+    }
   }
 
   return Zone;
 });
-
-// All the possible positions where meshes can be placed.
-// Ex: this.matrix[0][2] is position x = 0 and z = 2
-// this.matrix = new Array(100).fill(new Array(100).fill({}));
-// todo: work out a good, intuitive way to make a matrix.
-// see answer on https://softwareengineering.stackexchange.com/questions/212808/treating-a-1d-data-structure-as-2d-grid

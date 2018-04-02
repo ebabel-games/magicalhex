@@ -60,13 +60,20 @@ define([], () => {
     ZONE_SIZE: 1000,
     ZONE_BUFFER: 100, // Defines the area near a zone line where the game needs to load an contiguous zone.
     AMBIENT_LIGHT: {
-      COLOR: 0x002200,
-      INTENSITY: 5,
+      COLOR: 0xccffcc,
+      INTENSITY: 1,
     },
     GRID: {
       LINES_HEIGHT: 500,
       LINES_WIDTH: 500,
       COLOR: 0x00DD6C,
+    },
+    TRUNK: {
+      RADIUS_TOP: 0.5,
+      RADIUS_BOTTOM: 0.5,
+      HEIGHT: 1,
+      RADIAL_SEGMENTS: 5,
+      HEIGHT_SEGMENTS: 1,
     },
     PERSIST: {
       CAMERA_X: 'CAMERA_X',
