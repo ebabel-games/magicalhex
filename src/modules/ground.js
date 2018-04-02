@@ -2,6 +2,10 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
   // Note: these constants never change, regardless of the ground instance.
   const width = C.ZONE_SIZE;
   const height = C.ZONE_SIZE;
+  const texture = new THREE.TextureLoader().load('textures/ground.jpg');
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(width / 256, height / 256);
 
   // Flat plane mesh that forms the ground in each zone.
   class Ground {
@@ -9,11 +13,6 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
       if (!name) {
         throw new Error(C.ERROR.MISSING_PARAMETERS);
       }
-
-      const texture = new THREE.TextureLoader().load('textures/ground.jpg');
-      texture.wrapS = THREE.RepeatWrapping;
-      texture.wrapT = THREE.RepeatWrapping;
-      texture.repeat.set(width / 256, height / 256);
 
       const mesh = new THREE.Mesh(
         new THREE.PlaneBufferGeometry(width, height),

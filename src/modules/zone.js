@@ -165,13 +165,18 @@ define(['constants', 'round', 'ground', 'grid', 'trunk'], (C, round, Ground, Gri
       // todo: Create a string map.
 
       // todo: Place trunks based on the random string map.
-      const trunk = new Trunk({
-        name: `trunk1-${meshes.name}`,
-        x: -23,
-        y: 0,
-        z: -21,
-      });
-      meshes.add(trunk);
+      // test: row of trunks
+      let trunkNumber = 0;
+      for (let x = -499; x <= 499; x += 2) {
+        const trunk = new Trunk({
+          name: `trunk${trunkNumber}-${meshes.name}`,
+          x,
+          y: 0,
+          z: -21,
+        });
+        meshes.add(trunk);
+        trunkNumber += 1;
+      }
 
       // Last step: persist the zone for future re-use.
       this.persistData(meshes);
