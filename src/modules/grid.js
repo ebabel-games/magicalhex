@@ -1,9 +1,15 @@
 define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
   class Grid {
-    constructor(name, width = C.ZONE_SIZE / 2, height = C.ZONE_SIZE / 2, linesHeight = C.GRID.LINES_HEIGHT, linesWidth = C.GRID.LINES_WIDTH, color = C.GRID.COLOR) {
+    constructor(name) {
       if (!name) {
         throw new Error(C.ERROR.MISSING_PARAMETERS);
       }
+
+      const width = C.ZONE_SIZE / 2;
+      const height = C.ZONE_SIZE / 2;
+      const linesHeight = C.GRID.LINES_HEIGHT;
+      const linesWidth = C.GRID.LINES_WIDTH;
+      const color = C.GRID.COLOR;
 
       const material = new THREE.LineBasicMaterial({
         color: color,
@@ -31,12 +37,12 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
 
       mesh.add(line);
       mesh.name = name;
+      mesh.visible = false; // By default, the grid of each zone is invisible, unless toggled by the debug mode.
       rotateToHorizontal(mesh);
 
       mesh.persist = {
         n: name,
         c: 'Grid',
-        i: [name, width, height, linesHeight, linesWidth, color],
         p: [0, 0.1, 0],
       };
     

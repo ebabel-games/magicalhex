@@ -1,21 +1,21 @@
 define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => {
   // Control the movement of the main player via keyboard keys.
   class KeyboardControls {
-    constructor(camera) {
+    constructor(camera, loadedZones, scene) {
       this.playerMovement = new PlayerMovement(camera);
 
       document.addEventListener('keydown', (e) => {
-        this.handleKey(e, true);
+        this.handleKey(e, true, camera, loadedZones, scene);
       }, false);
 
       document.addEventListener('keyup', (e) => {
-        this.handleKey(e, false);
+        this.handleKey(e, false, camera, loadedZones, scene);
       }, false);
 
       return this;
     }
 
-    handleKey(e, isEnabled) {
+    handleKey(e, isEnabled, camera, loadedZones, scene) {
       switch (e.keyCode) {
         case C.KEY.UP:
         case C.KEY.W:
@@ -37,11 +37,26 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
         case C.KEY.ESC:
           document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_STATS));
           break;
+        case C.KEY.G:
+          if (e.type === 'keyup') {
+            break;  // ignore the keyup event, so that only keydown toggles the grid on and off.
+          }
+          document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_GRID, {
+            detail: {
+              x: camera.position.x,
+              z: camera.position.z,
+              loadedZones,
+              scene,
+            },
+          }));
+          break;
         case C.KEY.BACKTICK_TILDE:
           document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_DEBUG));
           break;
         case C.KEY.SEVEN:
-          document.dispatchEvent(new CustomEvent(C.EVENTS.CAST_SPELL_GATE));
+          document.dispatchEvent(new CustomEvent(C.EVENTS.CAST_SPELL_GATE, {
+            detail: {camera},
+          }));
           break;
       }
     }

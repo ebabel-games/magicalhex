@@ -18,6 +18,7 @@ define([], () => {
       ESC: 27,
       BACKTICK_TILDE: 192,
       SEVEN: 55,
+      G: 71,
     },
     UI: {
       LOADING: 'loading',
@@ -31,6 +32,7 @@ define([], () => {
       TOGGLE_STATS: 'toggle-stats',
       TOGGLE_DEBUG: 'toggle-debug',
       CAST_SPELL_GATE: 'cast-spell-gate',
+      TOGGLE_GRID: 'toggle-grid',
     },
     STATS_PANEL: {
       FPS: 0,

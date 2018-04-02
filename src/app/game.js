@@ -7,9 +7,12 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['constants', 'toggle-loading', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate'],
-  (C, toggleLoading, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate) => {
+  ['constants', 'toggle-loading', 'toggle-grid', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate'],
+  (C, toggleLoading, toggleGrid, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate) => {
+    // Register the event listeners (only once) of the toggle functions.
     toggleLoading();
+    toggleGrid();
+    setupSpellGate();
     const statsPanel = setupStatsPanel();
 
     // todo: enable clicking on meshes.
@@ -48,11 +51,8 @@ requirejs(
     const currentZone = null;
     const loadedZones = [];
 
-    // Initialize the spell gate, so that it can be cast.
-    setupSpellGate(currentZone, scene, camera, loadedZones);
-
     // Initialize player movement.
-    const keyboardControls = new KeyboardControls(camera);
+    const keyboardControls = new KeyboardControls(camera, loadedZones, scene);
 
     // Overall ambient light.
     const ambientLight = new THREE.AmbientLight(C.AMBIENT_LIGHT.COLOR, C.AMBIENT_LIGHT.INTENSITY);

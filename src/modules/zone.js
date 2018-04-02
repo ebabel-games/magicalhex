@@ -1,14 +1,22 @@
 define(['constants', 'round', 'ground', 'grid'], (C, round, Ground, Grid) => {
   class Zone {
-    constructor(x, z, loadedZones) {
+    constructor(x, z, loadedZones, scene) {
       // Origin at scale C.ZONE_SIZE of this zone based on input from camera position.
       this.x = this.scaleCoordinate(x);
       this.z = this.scaleCoordinate(z);
       this.name = this.getZoneName(x, z);
 
+      // Keep track of the whole scene to make dynamic changes to the zone possible.
+      this.scene = scene;
+
       // Check if the meshes are already created with the name either found or not in loadedZones array.
       if (loadedZones.indexOf(this.name) === -1) {
         this.meshes = this.createMeshes();
+      }
+
+      // The meshes have already been created, so assign them to this.meshes.
+      if (loadedZones.indexOf(this.name) !== -1) {
+        this.meshes = scene.getObjectByName(this.name).children;
       }
 
       // Beyond a zone line, the current zone should be updated.
@@ -73,7 +81,7 @@ define(['constants', 'round', 'ground', 'grid'], (C, round, Ground, Grid) => {
       // Add all static meshes in a generic way, based on the persist data stored in localStorage.
       data.map(d => {
         const module = require([d.c], (Module) => {
-          const instance = new Module(d.i);
+          const instance = new Module(d.n);
           meshes.add(instance);
           instance.position.set(d.p[0], d.p[1], d.p[2]);
         });
@@ -82,6 +90,14 @@ define(['constants', 'round', 'ground', 'grid'], (C, round, Ground, Grid) => {
       this.log(this.name);
 
       return meshes;
+    }
+
+    toggleGrid() {
+      const gridMesh = this.scene.getObjectByName(`grid-${this.name}`);
+
+      if (gridMesh) {
+        gridMesh.visible = !gridMesh.visible;
+      }
     }
 
     persistData(meshes) {
