@@ -35,12 +35,11 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
           this.playerMovement.turnRight = isEnabled;
           break;
         case C.KEY.ESC:
+          if (e.type === 'keyup') { break; }
           document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_STATS));
           break;
         case C.KEY.G:
-          if (e.type === 'keyup') {
-            break;  // ignore the keyup event, so that only keydown toggles the grid on and off.
-          }
+          if (e.type === 'keyup') { break; }
           document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_GRID, {
             detail: {
               x: camera.position.x,
@@ -51,9 +50,11 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
           }));
           break;
         case C.KEY.BACKTICK_TILDE:
+          if (e.type === 'keyup') { break; }
           document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_DEBUG));
           break;
         case C.KEY.SEVEN:
+          if (e.type === 'keyup') { break; }
           document.dispatchEvent(new CustomEvent(C.EVENTS.CAST_SPELL_GATE, {
             detail: {camera},
           }));

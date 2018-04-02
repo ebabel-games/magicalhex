@@ -4,11 +4,24 @@ define(['constants'], (C) => {
   const setupStatsPanel = () => {
     const stats = new Stats();
     stats.showPanel(false);
+    stats.dom.className = 'stats-panel';
     document.body.appendChild(stats.dom);
+
+    const isDisplayed = () => {
+      const fpsPanel = document.getElementsByClassName('stats-panel')[0].children[0].style.display;
+      const msPanel = document.getElementsByClassName('stats-panel')[0].children[1].style.display;
+      const mbPanel = document.getElementsByClassName('stats-panel')[0].children[2].style.display;
+
+      return fpsPanel === 'block' || msPanel === 'block' || mbPanel === 'block';
+    }
 
     // Pres ESC key to show the stats.
     const toggleStats = (e) => {
-      stats.showPanel(C.STATS_PANEL.FPS);
+      if (isDisplayed()) {
+        stats.showPanel(false); // Hide.
+      } else {
+        stats.showPanel(C.STATS_PANEL.FPS); // Show.
+      }
     };
 
     document.addEventListener(C.EVENTS.TOGGLE_STATS, toggleStats);
