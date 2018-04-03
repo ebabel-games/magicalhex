@@ -6,10 +6,10 @@ define(['constants'], (C) => {
     constructor(input) {
       const name = input.name;
       const x = input.x;  // Position coordinates.
-      const y = input.y;
+      const y = input.y || C.TRUNK.Y;
       const z = input.z;
 
-      const v = input.v || 0; // Vertical rotation along the y axis. Unit in radians (not degrees).
+      const v = input.v || C.TRUNK.V;
 
       const t = input.t || C.TRUNK.RADIUS_TOP;
       const b = input.b || C.TRUNK.RADIUS_BOTTOM;

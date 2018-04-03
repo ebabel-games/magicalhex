@@ -78,6 +78,8 @@ define([], () => {
       Z: 0,
     },
     TRUNK: {
+      Y: 0,                 // Default position y.
+      V: 0,                 // Vertical rotation along the y axis. Unit in radians (not degrees).
       RADIUS_TOP: 0.5,      // Radius of the cylinder at the top.
       RADIUS_BOTTOM: 0.5,   // Radius of the cylinder at the bottom.
       HEIGHT: 1,            // Height of the cylinder.
