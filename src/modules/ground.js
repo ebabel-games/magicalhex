@@ -17,10 +17,6 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
       const y = input.y || C.GROUND.Y;
       const z = input.z || C.GROUND.Z;
 
-      if (!name) {
-        throw new Error(C.ERROR.MISSING_PARAMETERS);
-      }
-
       const mesh = new THREE.Mesh(
         new THREE.PlaneBufferGeometry(width, height),
         new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})

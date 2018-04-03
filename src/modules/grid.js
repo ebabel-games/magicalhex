@@ -14,10 +14,6 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
       const y = input.y || C.GRID.Y;
       const z = input.z || C.GRID.Z;
 
-      if (!name) {
-        throw new Error(C.ERROR.MISSING_PARAMETERS);
-      }
-
       const mesh = new THREE.Object3D();
       const geometry = new THREE.Geometry();
       const stepw = 2 * width / linesWidth;

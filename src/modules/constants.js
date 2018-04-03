@@ -78,7 +78,7 @@ define([], () => {
       Z: 0,
     },
     TRUNK: {
-      Y: 0,                 // Default position y.
+      Y: 0.5,               // Default position y. Half of the height if it is to sit on the ground.
       V: 0,                 // Vertical rotation along the y axis. Unit in radians (not degrees).
       RADIUS_TOP: 0.5,      // Radius of the cylinder at the top.
       RADIUS_BOTTOM: 0.5,   // Radius of the cylinder at the bottom.
@@ -86,14 +86,17 @@ define([], () => {
       RADIAL_SEGMENTS: 5,   // Number of segmented faces around the circumference of the cylinder.
       HEIGHT_SEGMENTS: 1,   // Number of rows of faces along the height of the cylinder.
     },
+    WALL: {
+      Y: 3,
+      WIDTH: 2,
+      HEIGHT: 6,
+      DEPTH: 2,
+    },
     PERSIST: {
       CAMERA_X: 'CAMERA_X',
       CAMERA_Y: 'CAMERA_Y',
       CAMERA_Z: 'CAMERA_Z',
       CAMERA_ROTATION_Y: 'CAMERA_ROTATION_Y',
-    },
-    ERROR: {
-      MISSING_PARAMETERS: 'Missing parameters, this class cannot be instantiated.'
     },
   };
 
