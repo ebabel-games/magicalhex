@@ -87,9 +87,9 @@ define([], () => {
       HEIGHT_SEGMENTS: 1,   // Number of rows of faces along the height of the cylinder.
     },
     WALL: {
-      Y: 3,
+      Y: 0.9,
       WIDTH: 2,
-      HEIGHT: 6,
+      HEIGHT: 1.8,
       DEPTH: 2,
     },
     PERSIST: {

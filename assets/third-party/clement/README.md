@@ -1,0 +1,1 @@
+Copyright Clement, with license to use for the game Magical Hex.

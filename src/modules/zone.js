@@ -1,4 +1,4 @@
-define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', 'wall', 'area-small-woodland', 'area-empty-space', 'area-labyrinth'], (C, round, degreesToRadians, Ground, Grid, Trunk, Wall, areaSmallWoodland, areaEmptySpace, areaLabyrinth) => {
+define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', 'wall', 'area-small-woodland', 'area-empty-space', 'area-simple-labyrinth'], (C, round, degreesToRadians, Ground, Grid, Trunk, Wall, areaSmallWoodland, areaEmptySpace, areaSimpleLabyrinth) => {
   // A zone comes from three type of sources:
   // 1. Never visited before, needs to be generated procedurally.
   // 2. Not loaded yet in the current game but has been stored in the past and can be re-built from localStorage.
@@ -154,7 +154,7 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
       // An area is a small portion of a zone, 50 by 50, and can be randomly picked to make up a portion of a zone.
       const zoneMap = new Array(500).fill('').map((zoneRow, index) => {
         return [
-          areaLabyrinth[index],
+          areaSimpleLabyrinth[index],
           areaEmptySpace[index],
           areaSmallWoodland[index],
           areaEmptySpace[index],
@@ -167,6 +167,7 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
       let z = -499;
       zoneMap.map((row) => {
         row.split('').map((cell) => {
+          // Randomized tree trunk.
           if (cell === 't') {
             const rotation = round(degreesToRadians(Math.random() * 360), 2);
             const radius = round(Math.random() * 0.5, 2) + 0.5;
@@ -186,11 +187,24 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
             meshes.add(trunk);
           }
 
+          // Low wall, top edge is below player line of sight (default).
           if (cell === 'w') {
             const wall = new Wall({
               name: `wall${x}:${z}-${meshes.name}`,
               x,
               z,
+            });
+            meshes.add(wall);
+          }
+
+          // Tall wall, top edge is above player line of sight.
+          if (cell === 'W') {
+            const wall = new Wall({
+              name: `wall${x}:${z}-${meshes.name}`,
+              x,
+              y: 2,
+              z,
+              h: 4,
             });
             meshes.add(wall);
           }
