@@ -42,10 +42,9 @@ define(['constants', 'trunk', 'degrees-to-radians'], (C, Trunk, degreesToRadians
       mesh.position.set(x, y, z);
       mesh.rotation.y = v;
 
-      // Properties used to persist this mesh and recreate it later.
       mesh.persist = {
         n: name,
-        c: 'BaseTree',
+        c: 'base-tree',
         i: {name, x, y, z},
       };
   

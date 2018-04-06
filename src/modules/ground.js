@@ -29,7 +29,7 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
       // Properties used to persist this mesh and recreate it later.
       mesh.persist = {
         n: name,
-        c: 'Ground',
+        c: 'ground',
         i: {name, x, y, z},
       };
   

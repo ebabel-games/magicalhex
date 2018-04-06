@@ -28,7 +28,7 @@ define(['constants'], (C) => {
       // Properties used to persist this mesh and recreate it later.
       mesh.persist = {
         n: name,
-        c: 'Trunk',
+        c: 'trunk',
         i: {name, x, y, z, v, t, b, h, r, s},
       };
   

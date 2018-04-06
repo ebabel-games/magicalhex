@@ -42,7 +42,7 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
 
       mesh.persist = {
         n: name,
-        c: 'Grid',
+        c: 'grid',
         i: {name, x, y, z},
       };
 

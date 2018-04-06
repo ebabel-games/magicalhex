@@ -21,7 +21,7 @@ define(['constants'], (C) => {
 
       mesh.persist = {
         n: name,
-        c: 'Wall',
+        c: 'wall',
         i: {name, x, y, z, w, h, d},
       };
   
