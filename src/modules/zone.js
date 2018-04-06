@@ -1,4 +1,4 @@
-define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', 'wall', 'area-maps'], (C, round, degreesToRadians, Ground, Grid, Trunk, Wall, AreaMaps) => {
+define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', 'base-tree', 'wall', 'area-maps'], (C, round, degreesToRadians, Ground, Grid, Trunk, BaseTree, Wall, AreaMaps) => {
   // A zone comes from three type of sources:
   // 1. Never visited before, needs to be generated procedurally.
   // 2. Not loaded yet in the current game but has been stored in the past and can be re-built from localStorage.
@@ -160,22 +160,30 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
         row.split('').map((cell) => {
           // Randomized tree trunk.
           if (cell === 't') {
-            const rotation = round(degreesToRadians(Math.random() * 360), 2);
             const radius = round(Math.random() * 0.5, 2) + 0.5;
             const height = round(Math.random() * 0.5, 2) + 0.5;
-            const radialSegments = round(Math.random() * 4) + 5;
             const trunk = new Trunk({
               name: `trunk${x}:${z}-${meshes.name}`,
               x,
               y: round(height / 2, 2),
               z,
-              v: rotation,
+              v: round(degreesToRadians(Math.random() * 360), 2), // Vertical rotation.
               t: radius,
               b: radius,
               h: height,
-              r: radialSegments,
+              r: round(Math.random() * 4) + 5,  // Radial segments.
             });
             meshes.add(trunk);
+          }
+
+          if (cell === 'T') {
+            const baseTree = new BaseTree({
+              name: `basetree${x}:${z}-${meshes.name}`,
+              x,
+              z,
+              v: round(degreesToRadians(Math.random() * 360), 2),
+            });
+            meshes.add(baseTree);
           }
 
           // Low wall, top edge is below player line of sight (default).

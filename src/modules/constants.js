@@ -92,6 +92,11 @@ define([], () => {
       HEIGHT: 1.8,
       DEPTH: 2,
     },
+    BASE_TREE: {
+      Y: 5,
+      V: 0,
+      HEIGHT: 10,
+    },
     PERSIST: {
       CAMERA_X: 'CAMERA_X',
       CAMERA_Y: 'CAMERA_Y',
