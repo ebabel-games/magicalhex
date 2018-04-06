@@ -14,27 +14,29 @@ define(['constants', 'trunk', 'degrees-to-radians'], (C, Trunk, degreesToRadians
 
       const trunk = new Trunk({name: `trunk-${name}`, x: 0, y: -((h - 2) / 2), z: 0, v, h: h - 2});
 
-      const foliagePlanes = [
+      const foliages = [
         new THREE.Mesh(
-          new THREE.PlaneBufferGeometry(6, 3),
+          new THREE.PlaneBufferGeometry(12, 6),
           new THREE.MeshLambertMaterial({map: foliageTexture, side: THREE.DoubleSide, alphaTest: 0.5})
         ),
         new THREE.Mesh(
-          new THREE.PlaneBufferGeometry(6, 3), 
+          new THREE.PlaneBufferGeometry(12, 6), 
           new THREE.MeshLambertMaterial({map: foliageTexture, side: THREE.DoubleSide, alphaTest: 0.5})
         ),
-      ];
+      ].map((foliage, index) => {
+        foliage.name = `foliage${index}-${name}`;
+        foliage.position.y = 1.5;
 
-      foliagePlanes[0].name = `foliage0-${name}`;
+        return foliage;
+      });
 
       // Rotate vertically by 90 degrees.
-      foliagePlanes[1].name = `foliage1-${name}`;
-      foliagePlanes[1].rotation.y = degreesToRadians(90);
+      foliages[1].rotation.y = degreesToRadians(90);
 
       const mesh = new THREE.Group();
       mesh.add(trunk);
-      mesh.add(foliagePlanes[0]);
-      mesh.add(foliagePlanes[1]);
+      mesh.add(foliages[0]);
+      mesh.add(foliages[1]);
       
       mesh.name = name;
       mesh.position.set(x, y, z);
