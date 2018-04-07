@@ -1,15 +1,42 @@
-define(['constants', 'area-small-woodland', 'area-empty-space', 'area-simple-labyrinth'], (C, areaSmallWoodland, areaEmptySpace, areaSimpleLabyrinth) => {
+define(
+  ['constants', 'area-small-woodland', 'area-empty-space', 'area-simple-labyrinth', 'area-tree-circle'],
+  (C, areaSmallWoodland, areaEmptySpace, areaSimpleLabyrinth, areaTreeCircle) => {
   // A zone band is a horizontal collection of 10 randomly selected areas accross the width of a zone.
-  // pool: Pool of areas that can randomly be selected from.
-  const zoneBand = (pool = [areaSimpleLabyrinth, areaSmallWoodland]) => {
-    // Start with a zone band that is empty, filled with the area with nothing in it.
-    const band = new Array(10).fill(areaEmptySpace);
+  // pool: Pool of areas that can randomly be selected from. Each area has a weight, which represents how likely that area is to be picked.
+  const zoneBand = (pool = [
+      {area: areaSimpleLabyrinth, weight: 2},
+      {area: areaSmallWoodland, weight: 20},
+      {area: areaTreeCircle, weight: 50},
+    ]) => {
+      const totalWeight = pool.map(p => p.weight).reduce((a, b) => a + b);
 
-    // Which of the 10 possible positions in the zone band are getting an area, the rest is empty.
-    band[Math.floor(Math.random() * 10)] = pool[Math.floor(Math.random() * pool.length)];
-    band[Math.floor(Math.random() * 10)] = pool[Math.floor(Math.random() * pool.length)];
+      const randomPick = Math.floor(Math.random() * totalWeight);
 
-    return band;
+      let selected = areaEmptySpace;
+      let accumulated;
+
+      accumulated = pool[0].weight;
+      if (randomPick < accumulated) {
+        selected = pool[0].area;
+      }
+
+      accumulated += pool[1].weight;
+      if (randomPick >= pool[0].weight && randomPick < accumulated) {
+        selected = pool[1].area;
+      }
+
+      accumulated += pool[2].weight;
+      if (randomPick >= pool[1].weight && randomPick < accumulated) {
+        selected = pool[2].area;
+      }
+
+      // Start with a zone band that is empty, filled with the area with nothing in it.
+      const band = new Array(10).fill(areaEmptySpace);
+
+      // Which of the 10 possible positions in the zone band are getting an area, the rest is empty.
+      band[Math.floor(Math.random() * 10)] = selected;
+
+      return band;
   }
 
   // An area is a small portion of a zone, 50 by 50 coordinates, and each coordinate is a square of 2m by 2m, and can be randomly picked to make up a portion of a zone.
