@@ -2,7 +2,7 @@ define([], () => {
   const constants = {
     VERSION: {
       NONE: 0,
-      LATEST: 2,  // Change this value to get all clients to rebuild all zones.
+      LATEST: 16,  // Change this value to get all clients to rebuild all zones.
     },
     PLAYER_FORWARD_SPEED: 0.1,
     PLAYER_BACKWARD_SPEED: 0.03,  // Player moves backward 3 times slower than forward.
@@ -62,7 +62,8 @@ define([], () => {
       },
     },
     ZONE_SIZE: 1000,
-    ZONE_BUFFER: 100, // Defines the area near a zone line where the game needs to load an contiguous zone.
+    ZONE_BUFFER: 100,   // Defines the area near a zone line where the game needs to load an contiguous zone.
+    ZONE_UNIT_SIZE: 2,  // How big is the small unit of space, i.e. 2m by 2m here.
     AMBIENT_LIGHT: {
       COLOR: 0xccffcc,
       INTENSITY: 1,

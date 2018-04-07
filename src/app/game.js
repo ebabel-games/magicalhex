@@ -7,8 +7,8 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['constants', 'version-reset-data', 'toggle-loading', 'toggle-grid', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate'],
-  (C, versionResetData, toggleLoading, toggleGrid, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate) => {
+  ['constants', 'version-reset-data', 'toggle-loading', 'toggle-grid', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate', 'find-mesh'],
+  (C, versionResetData, toggleLoading, toggleGrid, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate, findMesh) => {
     // Reset localStorage if needed.
     versionResetData();
 
@@ -71,5 +71,5 @@ requirejs(
     document.body.appendChild(renderer.domElement);
 
     // Kickstarts the animation.
-    animate(renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones);
+    animate(renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh);
   });

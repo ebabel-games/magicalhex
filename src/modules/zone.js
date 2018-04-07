@@ -214,9 +214,9 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
             meshes.add(wall);
           }
 
-          x += 2;
+          x += C.ZONE_UNIT_SIZE;
         });
-        z += 2;
+        z += C.ZONE_UNIT_SIZE;
         x = -499;
       });
 
