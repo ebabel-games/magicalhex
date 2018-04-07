@@ -1,5 +1,9 @@
 define([], () => {
   const constants = {
+    VERSION: {
+      NONE: 0,
+      LATEST: 2,  // Change this value to get all clients to rebuild all zones.
+    },
     PLAYER_FORWARD_SPEED: 0.1,
     PLAYER_BACKWARD_SPEED: 0.03,  // Player moves backward 3 times slower than forward.
     PLAYER_TURN_SPEED: 0.03, // Math.round((2 * Math.PI / 180) * 100) / 100 - note: this is not related to backward speed slowing factor.
@@ -80,7 +84,7 @@ define([], () => {
     TRUNK: {
       Y: 0.5,               // Default position y. Half of the height if it is to sit on the ground.
       V: 0,                 // Vertical rotation along the y axis. Unit in radians (not degrees).
-      RADIUS_TOP: 0.5,      // Radius of the cylinder at the top.
+      RADIUS_TOP: 0.45,     // Radius of the cylinder at the top.
       RADIUS_BOTTOM: 0.5,   // Radius of the cylinder at the bottom.
       HEIGHT: 1,            // Height of the cylinder.
       RADIAL_SEGMENTS: 5,   // Number of segmented faces around the circumference of the cylinder.
@@ -96,6 +100,9 @@ define([], () => {
       Y: 5,
       V: 0,
       HEIGHT: 10,
+      RADIUS_TOP: 0.25,
+      RADIUS_BOTTOM: 0.5,
+      RADIAL_SEGMENTS: 7,
     },
     PERSIST: {
       CAMERA_X: 'CAMERA_X',

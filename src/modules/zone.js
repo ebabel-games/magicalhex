@@ -168,7 +168,7 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
               y: round(height / 2, 2),
               z,
               v: round(degreesToRadians(Math.random() * 360), 2), // Vertical rotation.
-              t: radius,
+              t: radius - 0.05,
               b: radius,
               h: height,
               r: round(Math.random() * 4) + 5,  // Radial segments.
@@ -177,11 +177,17 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
           }
 
           if (cell === 'T') {
+            const height = round(Math.random() * 5, 2) + 8;
             const baseTree = new BaseTree({
               name: `basetree${x}:${z}-${meshes.name}`,
               x,
+              y: round(height / 2, 2),
               z,
               v: round(degreesToRadians(Math.random() * 360), 2),
+              h: height,
+              t: (height > 10) ? C.BASE_TREE.RADIUS_TOP * 1.5 : C.BASE_TREE.RADIUS_TOP,
+              b: (height > 10) ? C.BASE_TREE.RADIUS_BOTTOM * 1.5 : C.BASE_TREE.RADIUS_BOTTOM,
+              r: (height > 10) ? C.BASE_TREE.RADIAL_SEGMENTS : 5,
             });
             meshes.add(baseTree);
           }

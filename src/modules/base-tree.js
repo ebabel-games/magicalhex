@@ -11,8 +11,21 @@ define(['constants', 'trunk', 'degrees-to-radians'], (C, Trunk, degreesToRadians
       const z = input.z;
       const v = input.v || C.BASE_TREE.V;
       const h = input.h || C.BASE_TREE.HEIGHT;
+      const t = input.t || C.BASE_TREE.RADIUS_TOP;
+      const b = input.b || C.BASE_TREE.RADIUS_BOTTOM;
+      const r = input.r || C.BASE_TREE.RADIAL_SEGMENTS;
 
-      const trunk = new Trunk({name: `trunk-${name}`, x: 0, y: -((h - 2) / 2), z: 0, v, h: h - 2});
+      const trunk = new Trunk({
+        name: `trunk-${name}`,
+        x: 0,
+        y: -((h - 2) / 2),
+        z: 0,
+        v,
+        h: h - 2,
+        t,
+        b,
+        r,
+      });
 
       const foliages = [
         new THREE.Mesh(

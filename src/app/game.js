@@ -7,8 +7,11 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(
-  ['constants', 'toggle-loading', 'toggle-grid', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate'],
-  (C, toggleLoading, toggleGrid, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate) => {
+  ['constants', 'version-reset-data', 'toggle-loading', 'toggle-grid', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate'],
+  (C, versionResetData, toggleLoading, toggleGrid, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate) => {
+    // Reset localStorage if needed.
+    versionResetData();
+
     // Register the event listeners (only once) of the toggle functions.
     toggleLoading();
     toggleGrid();
