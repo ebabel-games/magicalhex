@@ -44,6 +44,7 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Identify performance issues and fix them, until the FPS goes back to 60.
 
 #### Next to develop
+- When loading one or several new zones, if it takes more than an instant, show a loading screen.
 - Remove from scene zone meshes (and update loadedZones array) when the player has moved far enough from them, or the memory will run out.
 - Enable clicking on meshes (target). See raycaster in game.js
 - Use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU. See Clock in game.js

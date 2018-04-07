@@ -1,9 +1,16 @@
 define(['constants', 'area-small-woodland', 'area-empty-space', 'area-simple-labyrinth'], (C, areaSmallWoodland, areaEmptySpace, areaSimpleLabyrinth) => {
   // A zone band is a horizontal collection of 10 randomly selected areas accross the width of a zone.
   // pool: Pool of areas that can randomly be selected from.
-  const zoneBand = (pool = [areaEmptySpace, areaSmallWoodland]) =>
-    new Array(10).fill(null).map(selectedArea =>
-      pool[Math.floor(Math.random() * pool.length)]);
+  const zoneBand = (pool = [areaSimpleLabyrinth, areaSmallWoodland]) => {
+    // Start with a zone band that is empty, filled with the area with nothing in it.
+    const band = new Array(10).fill(areaEmptySpace);
+
+    // Which of the 10 possible positions in the zone band are getting an area, the rest is empty.
+    band[Math.floor(Math.random() * 10)] = pool[Math.floor(Math.random() * pool.length)];
+    band[Math.floor(Math.random() * 10)] = pool[Math.floor(Math.random() * pool.length)];
+
+    return band;
+  }
 
   // An area is a small portion of a zone, 50 by 50 coordinates, and each coordinate is a square of 2m by 2m, and can be randomly picked to make up a portion of a zone.
   // The total surface of each area is therefore 100m by 100m and each zone takes 100 areas.
@@ -13,7 +20,7 @@ define(['constants', 'area-small-woodland', 'area-empty-space', 'area-simple-lab
       const area = [];
 
       for (let bandIndex = 0; bandIndex < 10; bandIndex++) {
-        const band = zoneBand([areaSimpleLabyrinth, areaSmallWoodland, areaEmptySpace]);
+        const band = zoneBand();
 
         for (let index = 0; index < 50; index++) {
           const line = [

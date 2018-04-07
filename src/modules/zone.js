@@ -98,7 +98,13 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
 
     persistData(meshes) {
       const data = meshes.children.map(mesh => mesh.persist);
-      localStorage[this.name] = JSON.stringify(data);
+
+      try {
+        localStorage[this.name] = JSON.stringify(data);
+      } catch(ex) {
+        // Failed to persist the data to localStorage.
+        console.error(ex);
+      }
     }
 
     // From a given coordinate not to scale, from camera for example, get the zone scaled x coordinate.
