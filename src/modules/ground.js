@@ -1,4 +1,4 @@
-define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
+define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizontal) => {
   // Note: these constants never change, regardless of the ground instance.
   const width = C.ZONE_SIZE;
   const height = C.ZONE_SIZE;
@@ -16,9 +16,29 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
       const x = input.x || C.GROUND.X;
       const y = input.y || C.GROUND.Y;
       const z = input.z || C.GROUND.Z;
+      const d = input.d || C.GROUND.DIVISION_SIZE;
+      const n = input.n || C.GROUND.NOISE;
+      const r = input.r || C.GROUND.ROUGHNESS;
+
+      const geometry = new THREE.PlaneGeometry(width, height, d, d);
+
+      // Make the terrain bumpy
+      geometry.vertices = geometry.vertices.map(v => {
+        // The edges of the zone are always flat.
+        if (v.x > -400 && v.x < 400 && v.y > -400 && v.y < 400 && Math.random() < r) {
+          // Vertices near the center can be higher.
+          v.z = round(Math.random() * n, 2);
+        }
+
+        return v;
+      });
+
+      //ensure light is computed correctly
+      //geometry.computeFaceNormals();
+      //geometry.computeVertexNormals();
 
       const mesh = new THREE.Mesh(
-        new THREE.PlaneBufferGeometry(width, height),
+        geometry,
         new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
       );
       rotateToHorizontal(mesh);
@@ -30,9 +50,9 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
       mesh.persist = {
         n: name,
         c: 'ground',
-        i: {name, x, y, z},
+        i: {name, x, y, z, d, n},
       };
-  
+
       return mesh;
     }
   };

@@ -2,7 +2,7 @@ define([], () => {
   const constants = {
     VERSION: {
       NONE: 0,
-      LATEST: 5,  // Change this value to get all clients to rebuild all zones.
+      LATEST: 2,  // Change this value to get all clients to rebuild all zones.
     },
     PLAYER_FORWARD_SPEED: 0.1,
     PLAYER_BACKWARD_SPEED: 0.03,  // Player moves backward 3 times slower than forward.
@@ -72,6 +72,9 @@ define([], () => {
       X: 0,
       Y: 0,
       Z: 0,
+      DIVISION_SIZE: 100, // By how many times is the ground sub-divided into vertices.
+      NOISE: 1.5,     // Maximum height of a vertice height.
+      ROUGHNESS: 0.25, // How likely is it a central vertice will not be flat? From 0 (never) to 1 (always).
     },
     GRID: {
       LINES_HEIGHT: 500,
@@ -79,7 +82,7 @@ define([], () => {
       COLOR: 0x00DD6C,
       OPACITY: 0.2,
       X: 0,
-      Y: 0.01,
+      Y: 0.1,
       Z: 0,
     },
     TRUNK: {
