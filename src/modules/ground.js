@@ -22,20 +22,18 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
 
       const geometry = new THREE.PlaneGeometry(width, height, d, d);
 
-      // Make the terrain bumpy
-      geometry.vertices = geometry.vertices.map(v => {
-        // The edges of the zone are always flat.
-        if (v.x > -400 && v.x < 400 && v.y > -400 && v.y < 400 && Math.random() < r) {
-          // Vertices near the center can be higher.
-          v.z = round(Math.random() * n, 2);
-        }
-
-        return v;
-      });
-
-      //ensure light is computed correctly
-      //geometry.computeFaceNormals();
-      //geometry.computeVertexNormals();
+      // Add noise to the ground.
+      if (r) {
+        geometry.vertices = geometry.vertices.map(v => {
+          // The edges of the zone are always flat.
+          if (v.x > -400 && v.x < 400 && v.y > -400 && v.y < 400 && Math.random() < r) {
+            // Vertices near the center can be higher.
+            v.z = round(Math.random() * n, 2);
+          }
+  
+          return v;
+        });
+      }
 
       const mesh = new THREE.Mesh(
         geometry,

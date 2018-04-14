@@ -41,9 +41,12 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Make a random string map per zone to know where to place obstacles (walls) and static items (trees, stones, cut trees).
 
 #### Currently being developed
-- Identify performance issues and fix them, until the FPS goes back to 60.
+- Noize of ground with vertices height needs to be persisted.
+- Navigating the player needs to go up or down with raycaster based on ground.
+- Populating the zone areas need to take ground noise into account.
 
 #### Next to develop
+- Identify performance issues and fix them, until the FPS goes back to 60.
 - When loading one or several new zones, if it takes more than an instant, show a loading screen.
 - Remove from scene zone meshes (and update loadedZones array) when the player has moved far enough from them, or the memory will run out.
 - Enable clicking on meshes (target). See raycaster in game.js
