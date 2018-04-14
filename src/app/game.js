@@ -18,7 +18,6 @@ requirejs(
     setupSpellGate();
     const statsPanel = setupStatsPanel();
 
-    // todo: enable clicking on meshes.
     const raycaster = new THREE.Raycaster();
 
     // todo: use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU.
@@ -71,5 +70,5 @@ requirejs(
     document.body.appendChild(renderer.domElement);
 
     // Kickstarts the animation.
-    animate(renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh);
+    animate(raycaster, renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh);
   });

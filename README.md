@@ -41,7 +41,7 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Make a random string map per zone to know where to place obstacles (walls) and static items (trees, stones, cut trees).
 
 #### Currently being developed
-- Noize of ground with vertices height needs to be persisted.
+- Noise of ground with vertices height needs to be persisted.
 - Navigating the player needs to go up or down with raycaster based on ground.
 - Populating the zone areas need to take ground noise into account.
 

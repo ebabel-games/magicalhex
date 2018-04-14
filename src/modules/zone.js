@@ -19,7 +19,7 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
         this.meshes = this.createMeshes();
       } else {
         // The meshes have already been created, so assign them to this.meshes from memory in current game.
-        this.meshes = scene.getObjectByName(this.name).children;
+        this.meshes = scene.getObjectByName(this.name);
       }
 
       this.lines = this.getLines();

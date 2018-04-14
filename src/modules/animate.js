@@ -1,8 +1,25 @@
 define(['update-debug-panel', 'zone', 'update-current-zone'], (updateDebugPanel, Zone, updateCurrentZone) => {
   // Animation that keeps getting called to render everything and all changes.
-  const animate = (renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh) => {
+  const animate = (raycaster, renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh) => {
     statsPanel.begin();
     updateDebugPanel(camera);
+
+    // Check if the camera is getting too close to the ground and should adjust its y position in relation to the ground.
+    if (currentZone && currentZone.meshes && currentZone.meshes.children && currentZone.meshes.children.length > 0) {
+      const currentGround = currentZone.meshes.children.filter(mesh => mesh.name.indexOf('ground') !== -1);
+
+      const vector = new THREE.Vector3(camera.position.x, camera.position.y - 2, camera.position.z);
+      vector.normalize();
+      const cast = new THREE.Raycaster(camera.position, vector);
+      const intersect = cast.intersectObject(currentGround[0], true);
+
+      document.getElementById('targetName').innerText =
+        (intersect && intersect.length && intersect[0]) ? intersect[0].distance : '';
+
+        for (let i = 0; i < intersect.length; i++) {
+          intersect[i].object.material.color.set( 0xff0000 );      
+        }
+    }
 
     // Keyboard controls make it possible to move around the game (subjective perspective).
     keyboardControls.playerMovement.update();
@@ -96,7 +113,7 @@ define(['update-debug-panel', 'zone', 'update-current-zone'], (updateDebugPanel,
     statsPanel.end();
 
     // Last line of animation.
-    requestAnimationFrame((timestamp) => animate(renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh));
+    requestAnimationFrame((timestamp) => animate(raycaster, renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh));
   }
 
   return animate;
