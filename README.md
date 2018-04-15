@@ -13,8 +13,12 @@ http-server src
 
 Browse to `http://localhost:8080`
 
+## Performance window
+Press the ESC key to toggle the performance window. This shows the Frame Per Seconds (FPS) rate evolving over time.
+Clicking on that Performance window will switch to other measures: Milliseconds between frames, Megabytes, and back to FPS.
+
 ## Debug mode
-In your browser console, set window.debug to true and the debug mode will be switched on.
+Press the dead key below ESC to toggle the debug mode on and off.
 
 ## Versions
 
