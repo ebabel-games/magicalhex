@@ -69,4 +69,18 @@ requirejs(
 
     // Kickstarts the animation.
     animate(renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh);
+
+    // Global audio setup.
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+    const sound = new THREE.Audio(listener);
+
+    // Start theme music.
+    const audioLoader = new THREE.AudioLoader();
+    audioLoader.load('music/kairo-11P-wind.mp4', (buffer) => {
+      sound.setBuffer(buffer);
+      sound.setLoop(false); // Only plays once.
+      sound.setVolume(0.5);
+      sound.play();
+    });
   });
