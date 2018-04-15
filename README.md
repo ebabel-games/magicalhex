@@ -46,6 +46,9 @@ Press the dead key below ESC to toggle the debug mode on and off.
 - If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 
 
 ### Released tags
+* 2.0.2
+- Added theme music.
+
 * 2.0.1
 - Hills appear nearer the center of a zone.
 - Trying to fix the bouncing bug when climbing up a hill (not fixed yet).
