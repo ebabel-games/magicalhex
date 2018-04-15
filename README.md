@@ -48,6 +48,7 @@ Press the dead key below ESC to toggle the debug mode on and off.
 ### Released tags
 * 2.0.2
 - Added theme music.
+- Using Howler.js to handle sounds in a cross-browser way.
 
 * 2.0.1
 - Hills appear nearer the center of a zone.
