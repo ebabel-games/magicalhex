@@ -1,6 +1,6 @@
 define(['update-debug-panel', 'zone', 'update-current-zone'], (updateDebugPanel, Zone, updateCurrentZone) => {
   // Animation that keeps getting called to render everything and all changes.
-  const animate = (raycaster, renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh) => {
+  const animate = (renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh) => {
     statsPanel.begin();
     updateDebugPanel(camera);
 
@@ -113,7 +113,7 @@ define(['update-debug-panel', 'zone', 'update-current-zone'], (updateDebugPanel,
     statsPanel.end();
 
     // Last line of animation.
-    requestAnimationFrame((timestamp) => animate(raycaster, renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh));
+    requestAnimationFrame((timestamp) => animate(renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh));
   }
 
   return animate;

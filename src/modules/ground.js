@@ -35,6 +35,9 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
         });
       }
 
+      geometry.computeFaceNormals();
+      geometry.computeVertexNormals();
+
       const mesh = new THREE.Mesh(
         geometry,
         new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
