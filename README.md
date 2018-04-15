@@ -1,5 +1,5 @@
 # Single player adventure game
-Enchantment (working title) is a free (for ever) browser based single player adventure game.
+Magical Hex is a free (for ever) browser based single player adventure game.
 
 ## Installation
 ```

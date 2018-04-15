@@ -4,7 +4,7 @@ body {
   background-color: #fff;
   color: rgb(15, 66, 15);
   font-family: 'Lucida Grande', 'Segoe UI', 'Droid Sans', Verdana, Arial, sans-serif;
-  font-size: 20px;
+  font-size: 10px;
   overflow: hidden;
 }
 p {
@@ -81,8 +81,7 @@ p {
 
 /* target window */
 #target-panel {
-  top: 5px;  
-  font-size: 16px;
+  top: 5px;
   text-align: center;
 }
 #target-panel p {
@@ -93,7 +92,6 @@ p {
 /* debug window */
 #debug-panel {
   top: 60px;
-  font-size: 10px;
   display: none;
 }
 #debug-panel ul {

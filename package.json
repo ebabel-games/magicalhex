@@ -1,7 +1,7 @@
 {
-  "name": "enchantment",
+  "name": "magicalhex",
   "version": "2.1.0",
-  "description": "Enchantment (working title) is a free (for ever) browser based single-player adventure game.",
+  "description": "Magical Hex is a free (for ever) browser based single-player adventure game.",
   "engines": {
     "node": ">= 4.2.2"
   },
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ebabel-eu/enchantment.git"
+    "url": "git@github.com:ebabel-eu/magicalhex.git"
   },
   "keywords": [
     "free",

@@ -54,7 +54,7 @@ define([], () => {
       FAR: 75, // How far the camera can see.
       X: 0, // Default starting position.
       Y: 2,
-      Z: 15,
+      Z: 0,
       ROTATION: {
         X: 0,
         Y: 0,

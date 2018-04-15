@@ -1,27 +1,12 @@
-define(['constants', 'update-debug-panel', 'zone', 'update-current-zone'], (C, updateDebugPanel, Zone, updateCurrentZone) => {
+define(['update-debug-panel', 'zone', 'update-current-zone', 'adjust-player-y'], (updateDebugPanel, Zone, updateCurrentZone, adjustPlayerY) => {
   // Animation that keeps getting called to render everything and all changes.
   const animate = (renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh) => {
     statsPanel.begin();
     updateDebugPanel(camera);
 
-    // Check if the camera is getting too close to the ground and should adjust its y position in relation to the ground.
-    if (currentZone && currentZone.meshes && currentZone.meshes.children && currentZone.meshes.children.length > 0) {
-      const currentGround = currentZone.meshes.children.filter(mesh => mesh.name.indexOf('ground') !== -1);
-      const cameraPosition = camera.position.clone();
-      const origin = new THREE.Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z);
-      const direction = new THREE.Vector3(0, -1, 0);
-      const ray = new THREE.Raycaster(origin, direction);
-      const collisionResults = ray.intersectObjects(currentGround);
-
-      if (collisionResults.length !== 0 && collisionResults[0].distance < 2) {
-        const distance = collisionResults[0].distance;
-        camera.position.y = 2 + 2 - distance;
-      } else {
-        camera.position.y = C.CAMERA.Y;
-      }
-
-      document.getElementById('targetName').innerText = camera.position.y;
-    }
+    const newY = adjustPlayerY(currentZone, camera);
+    camera.position.y = newY;
+    document.getElementById('targetName').innerText = newY;
 
     // Keyboard controls make it possible to move around the game (subjective perspective).
     keyboardControls.playerMovement.update();
