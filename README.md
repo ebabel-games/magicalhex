@@ -18,8 +18,21 @@ In your browser console, set window.debug to true and the debug mode will be swi
 
 ## Versions
 
-### Next release tag
+### Currently being developed
 * 2.1.0
+- Noise of ground with vertices height needs to be persisted.
+- Navigating the player needs to go up or down with raycaster based on ground.
+- Populating the zone areas need to take ground noise into account.
+
+### Future versions (backlog)
+- Add more zone areas variety
+- Make each zone vary the ground parameters (density of hills)
+- When one hill is made, make sure another hill is right next to it to look more natural.
+- Introduce mobs
+- Introduce factions with different mobs
+- Introduce player hit points
+- Introduce fighting with mobs
+- Introduce equipment that can be gained from mobs
 - Identify performance issues and fix them, until the FPS goes back to 60.
 - When loading one or several new zones, if it takes more than an instant, show a loading screen.
 - Remove from scene zone meshes (and update loadedZones array) when the player has moved far enough from them, or the memory will run out.
@@ -27,11 +40,6 @@ In your browser console, set window.debug to true and the debug mode will be swi
 - Use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU. See Clock in game.js
 - Bug: empty zone when teleporting with gate spell. Steps to reproduce: move to another zone far enough from zone0:0, reload the whole page, cast the Gate spell. The zone0:0 is empty.
 - If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 
-
-#### Currently being developed
-- Noise of ground with vertices height needs to be persisted.
-- Navigating the player needs to go up or down with raycaster based on ground.
-- Populating the zone areas need to take ground noise into account.
 
 ### Released tags
 * 2.0.0
