@@ -42,7 +42,7 @@ requirejs(
     // The sky stays perpendicular to the ground and always at the same distance from the camera.
     const relativeSky = sky();
     camera.add(relativeSky);
-    relativeSky.position.set(0, 498, 0 - C.CAMERA.FAR);  // x, y, z relative to the camera position.
+    relativeSky.position.set(C.SKY.X, C.SKY.Y, C.SKY.Z - C.CAMERA.FAR);  // x, y, z relative to the camera position.
 
     // Only add the camera to the scene after the sky has been added to the camera.
     scene.add(camera);

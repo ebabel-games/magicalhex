@@ -1,4 +1,4 @@
-define(['update-debug-panel', 'zone', 'update-current-zone'], (updateDebugPanel, Zone, updateCurrentZone) => {
+define(['constants', 'update-debug-panel', 'zone', 'update-current-zone'], (C, updateDebugPanel, Zone, updateCurrentZone) => {
   // Animation that keeps getting called to render everything and all changes.
   const animate = (renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh) => {
     statsPanel.begin();
@@ -7,18 +7,20 @@ define(['update-debug-panel', 'zone', 'update-current-zone'], (updateDebugPanel,
     // Check if the camera is getting too close to the ground and should adjust its y position in relation to the ground.
     if (currentZone && currentZone.meshes && currentZone.meshes.children && currentZone.meshes.children.length > 0) {
       const currentGround = currentZone.meshes.children.filter(mesh => mesh.name.indexOf('ground') !== -1);
+      const cameraPosition = camera.position.clone();
+      const origin = new THREE.Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z);
+      const direction = new THREE.Vector3(0, -1, 0);
+      const ray = new THREE.Raycaster(origin, direction);
+      const collisionResults = ray.intersectObjects(currentGround);
 
-      const vector = new THREE.Vector3(camera.position.x, camera.position.y - 2, camera.position.z);
-      vector.normalize();
-      const cast = new THREE.Raycaster(camera.position, vector);
-      const intersect = cast.intersectObject(currentGround[0], true);
+      if (collisionResults.length !== 0 && collisionResults[0].distance < 2) {
+        const distance = collisionResults[0].distance;
+        camera.position.y = 2 + 2 - distance;
+      } else {
+        camera.position.y = C.CAMERA.Y;
+      }
 
-      document.getElementById('targetName').innerText =
-        (intersect && intersect.length && intersect[0]) ? intersect[0].distance : '';
-
-        for (let i = 0; i < intersect.length; i++) {
-          intersect[i].object.material.color.set( 0xff0000 );      
-        }
+      document.getElementById('targetName').innerText = camera.position.y;
     }
 
     // Keyboard controls make it possible to move around the game (subjective perspective).

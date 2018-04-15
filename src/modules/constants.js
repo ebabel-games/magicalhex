@@ -68,6 +68,11 @@ define([], () => {
       COLOR: 0xccffcc,
       INTENSITY: 1,
     },
+    SKY: {
+      X: 0,
+      Y: 0,
+      Z: 0,
+    },
     GROUND: {
       X: 0,
       Y: 0,

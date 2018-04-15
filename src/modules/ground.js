@@ -22,11 +22,13 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
 
       const geometry = new THREE.PlaneGeometry(width, height, d, d);
 
+      const inRange = (i) => (i > -400 && i < -50) || (i < 400 && i > 50);
+
       // Add noise to the ground.
       if (r) {
         geometry.vertices = geometry.vertices.map(v => {
-          // The edges of the zone are always flat.
-          if (v.x > -400 && v.x < 400 && v.y > -400 && v.y < 400 && Math.random() < r) {
+          // The edges and the center of the zone are always flat.
+          if (inRange(v.x) && inRange(v.y) && Math.random() < r) {
             // Vertices near the center can be higher.
             v.z = round(Math.random() * n, 2);
           }
