@@ -46,6 +46,10 @@ Press the dead key below ESC to toggle the debug mode on and off.
 - If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 
 
 ### Released tags
+* 2.0.1
+- Hills appear nearer the center of a zone.
+- Trying to fix the bouncing bug when climbing up a hill (not fixed yet).
+
 * 2.0.0
 - Switched license from MIT to GPL 3.0
 - Upgraded three.js from 87 to 91
