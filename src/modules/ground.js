@@ -22,7 +22,7 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
 
       const geometry = new THREE.PlaneGeometry(width, height, d, d);
 
-      const inRange = (i) => (i > -400 && i < -50) || (i < 400 && i > 50);
+      const inRange = (i) => (i > -400 && i < -20) || (i < 400 && i > 20);
 
       // Add noise to the ground.
       if (r) {

@@ -12,6 +12,7 @@ define(['constants'], (C) => {
       const origin = new THREE.Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z);
       const direction = new THREE.Vector3(0, -500, 0);
       const rayDown = new THREE.Raycaster(origin, direction);
+      rayDown.setFromCamera(direction, camera);
       const collisionResults = rayDown.intersectObjects(currentGround);
 
       if (collisionResults.length !== 0 && collisionResults[0].distance < 2) {
@@ -20,7 +21,6 @@ define(['constants'], (C) => {
       }
     }
 
-    // Default Y position of the player.
     return C.CAMERA.Y;
   }
 
