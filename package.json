@@ -1,6 +1,6 @@
 {
   "name": "magicalhex",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Magical Hex is a free (for ever) browser based single-player adventure game.",
   "engines": {
     "node": ">= 4.2.2"
