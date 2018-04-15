@@ -10,7 +10,7 @@ define(['constants'], (C) => {
 
       const cameraPosition = camera.position.clone();
       const origin = new THREE.Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z);
-      const direction = new THREE.Vector3(0, -1, 0);
+      const direction = new THREE.Vector3(0, -500, 0);
       const rayDown = new THREE.Raycaster(origin, direction);
       const collisionResults = rayDown.intersectObjects(currentGround);
 
