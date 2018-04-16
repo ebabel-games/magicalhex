@@ -4,6 +4,12 @@ Magical Hex is a free (for ever) browser based single player adventure game.
 ## Installation
 ```
 npm install -g http-server
+npm install
+```
+
+## Linting the source code
+```
+npm run lint
 ```
 
 ## Start running the game during development
@@ -24,6 +30,7 @@ Press the dead key below ESC to toggle the debug mode on and off.
 
 ### Currently being developed
 * 2.1.0
+- Added es linting.
 - Noise of ground with vertices height needs to be persisted.
 - Navigating the player needs to go up or down with raycaster based on ground.
 - Populating the zone areas need to take ground noise into account.
