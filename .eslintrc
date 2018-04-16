@@ -6,5 +6,9 @@
   },
   "parserOptions": {
     "sourceType": "script"
+  },
+  "globals": {
+    "THREE": true,
+    "define": true
   }
 }

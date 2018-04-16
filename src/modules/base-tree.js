@@ -1,6 +1,5 @@
 define(['constants', 'trunk', 'degrees-to-radians'], (C, Trunk, degreesToRadians) => {
   const foliageTexture = new THREE.TextureLoader().load('textures/foliage.png');
-  const trunkTexture = new THREE.TextureLoader().load('textures/wood.jpg');
 
   // todo: inherit from this tree (if possible) to make the WillowTree class.
   class BaseTree {

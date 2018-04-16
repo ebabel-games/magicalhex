@@ -34,7 +34,7 @@ define(['constants'], (C) => {
   
       return mesh;
     }
-  };
+  }
 
   return Trunk;
 });
