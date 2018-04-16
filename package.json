@@ -6,7 +6,7 @@
     "node": ">= 4.2.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/jasmine",
     "lint": "./node_modules/.bin/eslint ./src/"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "author": "Nadjib Amar <hello@ebabel.eu>",
   "license": "GPL-3.0",
   "devDependencies": {
-    "eslint": "~4.19.1"
+    "eslint": "~4.19.1",
+    "jasmine": "~3.1.0"
   }
 }

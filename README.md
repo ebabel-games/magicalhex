@@ -12,6 +12,11 @@ npm install
 npm run lint
 ```
 
+## Run unit tests
+```
+npm test
+```
+
 ## Start running the game during development
 ```
 http-server src
@@ -30,7 +35,8 @@ Press the dead key below ESC to toggle the debug mode on and off.
 
 ### Currently being developed
 * 2.1.0
-- Added es linting.
+- Added eslinting.
+- Add Jasmine unit tests.
 - Noise of ground with vertices height needs to be persisted.
 - Navigating the player needs to go up or down with raycaster based on ground.
 - Populating the zone areas need to take ground noise into account.
