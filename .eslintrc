@@ -5,10 +5,16 @@
     "es6": true
   },
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "impliedStrict": true
   },
   "globals": {
     "THREE": true,
-    "define": true
-  }
+    "requirejs": true,
+    "require": true,
+    "define": true,
+    "Howl": true,
+    "Stats": true
+  },
+  "extends": "airbnb-base/legacy"
 }

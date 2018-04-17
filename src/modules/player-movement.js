@@ -1,4 +1,4 @@
-define(['constants', 'round'], (C, round) => {
+define(['constants'], (C) => {
   // Control the movement of the main player via keyboard keys.
   class PlayerMovement {
     constructor(camera) {
@@ -14,7 +14,7 @@ define(['constants', 'round'], (C, round) => {
 
     update() {
       if (this.moveForward) {
-        this.camera.translateZ(- this.forwardSpeed);
+        this.camera.translateZ(-this.forwardSpeed);
       }
 
       if (this.moveBackward) {

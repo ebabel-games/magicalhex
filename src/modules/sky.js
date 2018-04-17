@@ -9,8 +9,8 @@ define(['constants'], (C) => {
     texture.repeat.set(width / 256, height / 256);
 
     const mesh = new THREE.Mesh(
-        new THREE.PlaneGeometry(width, height),
-        new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
+      new THREE.PlaneGeometry(width, height),
+      new THREE.MeshLambertMaterial({ map: texture, side: THREE.FrontSide })
     );
 
     mesh.name = 'sky';

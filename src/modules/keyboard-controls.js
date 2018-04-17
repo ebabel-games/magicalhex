@@ -24,7 +24,8 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
         case C.KEY.DOWN:
         case C.KEY.S:
           this.playerMovement.moveBackward = isEnabled;
-          e.preventDefault(); // Prevent the whole page scrolling down when using the down arrow key.
+          // Prevent the whole page scrolling down when using the down arrow key.
+          e.preventDefault();
           break;
         case C.KEY.LEFT:
         case C.KEY.A:
@@ -45,8 +46,8 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
               x: camera.position.x,
               z: camera.position.z,
               loadedZones,
-              scene,
-            },
+              scene
+            }
           }));
           break;
         case C.KEY.BACKTICK_TILDE:
@@ -56,8 +57,10 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
         case C.KEY.SEVEN:
           if (e.type === 'keyup') { break; }
           document.dispatchEvent(new CustomEvent(C.EVENTS.CAST_SPELL_GATE, {
-            detail: {camera, loadedZones, scene},
+            detail: { camera, loadedZones, scene }
           }));
+          break;
+        default:
           break;
       }
     }

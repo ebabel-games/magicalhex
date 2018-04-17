@@ -32,7 +32,7 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
             // Vertices near the center can be higher.
             v.z = round(Math.random() * n, 2);
           }
-  
+
           return v;
         });
       }
@@ -42,7 +42,7 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
 
       const mesh = new THREE.Mesh(
         geometry,
-        new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
+        new THREE.MeshLambertMaterial({ map: texture, side: THREE.FrontSide })
       );
       rotateToHorizontal(mesh);
 
@@ -53,12 +53,14 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
       mesh.persist = {
         n: name,
         c: 'ground',
-        i: {name, x, y, z, d, n},
+        i: {
+          name, x, y, z, d, n
+        }
       };
 
       return mesh;
     }
-  };
+  }
 
   return Ground;
 });

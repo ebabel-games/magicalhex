@@ -49,5 +49,5 @@ define([], () => [
   '  W    w              w    w                   W  ',
   '  WWWWWWWWWWWWWWWWWWWWW    WWWWWWWWWWWWWWWWWWWWW  ',
   '       W    W    W    W    W    W    W    W       ',
-  '                      W    W                      ',
+  '                      W    W                      '
 ]);

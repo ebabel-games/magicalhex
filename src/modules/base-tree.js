@@ -23,18 +23,22 @@ define(['constants', 'trunk', 'degrees-to-radians'], (C, Trunk, degreesToRadians
         h: h - 2,
         t,
         b,
-        r,
+        r
       });
 
       const foliages = [
         new THREE.Mesh(
           new THREE.PlaneBufferGeometry(12, 6),
-          new THREE.MeshLambertMaterial({map: foliageTexture, side: THREE.DoubleSide, alphaTest: 0.5})
+          new THREE.MeshLambertMaterial({
+            map: foliageTexture, side: THREE.DoubleSide, alphaTest: 0.5
+          })
         ),
         new THREE.Mesh(
-          new THREE.PlaneBufferGeometry(12, 6), 
-          new THREE.MeshLambertMaterial({map: foliageTexture, side: THREE.DoubleSide, alphaTest: 0.5})
-        ),
+          new THREE.PlaneBufferGeometry(12, 6),
+          new THREE.MeshLambertMaterial({
+            map: foliageTexture, side: THREE.DoubleSide, alphaTest: 0.5
+          })
+        )
       ].map((foliage, index) => {
         foliage.name = `foliage${index}-${name}`;
         foliage.position.y = 1.5;
@@ -49,7 +53,7 @@ define(['constants', 'trunk', 'degrees-to-radians'], (C, Trunk, degreesToRadians
       mesh.add(trunk);
       mesh.add(foliages[0]);
       mesh.add(foliages[1]);
-      
+
       mesh.name = name;
       mesh.position.set(x, y, z);
       mesh.rotation.y = v;
@@ -57,12 +61,14 @@ define(['constants', 'trunk', 'degrees-to-radians'], (C, Trunk, degreesToRadians
       mesh.persist = {
         n: name,
         c: 'base-tree',
-        i: {name, x, y, z},
+        i: {
+          name, x, y, z
+        }
       };
-  
+
       return mesh;
     }
-  };
+  }
 
   return BaseTree;
 });

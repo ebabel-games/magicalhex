@@ -1,13 +1,13 @@
 {
   "name": "magicalhex",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Magical Hex is a free (for ever) browser based single-player adventure game.",
   "engines": {
     "node": ">= 4.2.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint ./src/"
+    "lint": "./node_modules/.bin/eslint ./src"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,8 @@
   "author": "Nadjib Amar <hello@ebabel.eu>",
   "license": "GPL-3.0",
   "devDependencies": {
-    "eslint": "~4.19.1"
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0"
   }
 }

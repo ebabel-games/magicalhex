@@ -1,8 +1,10 @@
 define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', 'base-tree', 'wall', 'area-maps'], (C, round, degreesToRadians, Ground, Grid, Trunk, BaseTree, Wall, AreaMaps) => {
   // A zone comes from three type of sources:
   // 1. Never visited before, needs to be generated procedurally.
-  // 2. Not loaded yet in the current game but has been stored in the past and can be re-built from localStorage.
-  // 3. Already loaded in the current game, its meshes just need to be assigned to this.meshes from memory.
+  // 2. Not loaded yet in the current game but has been stored in
+  // the past and can be re-built from localStorage.
+  // 3. Already loaded in the current game, its meshes just need
+  // to be assigned to this.meshes from memory.
   class Zone {
     constructor(x, z, loadedZones, scene) {
       // Origin at scale C.ZONE_SIZE of this zone based on input from camera position.
@@ -18,7 +20,8 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
         // Create meshes since this zone hasn't been loaded.
         this.meshes = this.createMeshes();
       } else {
-        // The meshes have already been created, so assign them to this.meshes from memory in current game.
+        // The meshes have already been created, so assign
+        // them to this.meshes from memory in current game.
         this.meshes = scene.getObjectByName(this.name);
       }
 
@@ -32,10 +35,10 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
     // Beyond a zone line, the current zone should be updated.
     getLines() {
       return {
-        north: this.z * C.ZONE_SIZE - (C.ZONE_SIZE / 2),
-        south: this.z * C.ZONE_SIZE + (C.ZONE_SIZE / 2),
-        east: this.x * C.ZONE_SIZE + (C.ZONE_SIZE / 2),
-        west: this.x * C.ZONE_SIZE - (C.ZONE_SIZE / 2),
+        north: (this.z * C.ZONE_SIZE) - (C.ZONE_SIZE / 2),
+        south: (this.z * C.ZONE_SIZE) + (C.ZONE_SIZE / 2),
+        east: (this.x * C.ZONE_SIZE) + (C.ZONE_SIZE / 2),
+        west: (this.x * C.ZONE_SIZE) - (C.ZONE_SIZE / 2)
       };
     }
 
@@ -45,30 +48,32 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
         north: this.lines.north + C.ZONE_BUFFER,
         south: this.lines.south - C.ZONE_BUFFER,
         east: this.lines.east - C.ZONE_BUFFER,
-        west: this.lines.west + C.ZONE_BUFFER,
+        west: this.lines.west + C.ZONE_BUFFER
       };
     }
 
     log(name) {
-      return console.log(`[INFO] ${name} is loaded.`);
+      console.log(`[INFO] ${name || this.name} is loaded.`);
     }
 
     // Create all the static meshes of this zone.
     createMeshes(meshes = new THREE.Object3D()) {
       // Place the parent at the correct co-ordinates based on camera current position.
-      meshes.position.set(this.x * C.ZONE_SIZE, 0, this.z * C.ZONE_SIZE)
+      meshes.position.set(this.x * C.ZONE_SIZE, 0, this.z * C.ZONE_SIZE);
 
       // Identify a zone name from the camera x and z position.
       meshes.name = this.name;
 
-      // Check if the creation already happened in a previous game and was persisted to localStorage.
+      // Check if the creation already happened in a previous game
+      // and was persisted to localStorage.
       if (localStorage[this.name]) {
         // This zone has already been visited in the past, build it from localStorage.
         return this.createMeshesFromPersistedData(meshes);
-      } else {
-        // This zone has never been visired by the player before in any game, generate it from scratch.
-        return this.generateMeshesProcedurally(meshes);
       }
+
+      // This zone has never been visired by the player before
+      // in any game, generate it from scratch.
+      return this.generateMeshesProcedurally(meshes);
     }
 
     // Create all the static meshes of this zone from a previous game persisted in localStorage.
@@ -81,6 +86,8 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
           const instance = new Module(d.i);
           meshes.add(instance);
         });
+
+        return module;
       });
 
       this.log(this.name);
@@ -96,20 +103,29 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
       }
     }
 
+    toggleGround() {
+      const groundMesh = this.scene.getObjectByName(`ground-${this.name}`);
+
+      if (groundMesh) {
+        groundMesh.visible = !groundMesh.visible;
+      }
+    }
+
     persistData(meshes) {
       const data = meshes.children.map(mesh => mesh.persist);
 
       try {
         localStorage[this.name] = JSON.stringify(data);
-      } catch(ex) {
+      } catch (ex) {
         // Failed to persist the data to localStorage.
         console.error(ex);
       }
     }
 
-    // From a given coordinate not to scale, from camera for example, get the zone scaled x coordinate.
+    // From a given coordinate not to scale, from camera
+    // for example, get the zone scaled x coordinate.
     scaleCoordinate(input) {
-      return parseInt(round(input / C.ZONE_SIZE));
+      return parseInt(round(input / C.ZONE_SIZE), 10);
     }
 
     // From a given x and z, return what the name of the zone would be.
@@ -117,18 +133,21 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
       return `zone${this.scaleCoordinate(x)}:${this.scaleCoordinate(z)}`;
     }
 
-    // For a given x and z, from the camera current position, return if that location is beyond the zone lines.
+    // For a given x and z, from the camera current position,
+    // return if that location is beyond the zone lines.
     isOutsideZone(x, z) {
-      return z < this.lines.north || z > this.lines.south || x < this.lines.west || x > this.lines.east;
+      return z < this.lines.north || z > this.lines.south
+        || x < this.lines.west || x > this.lines.east;
     }
 
-    // For a given x and z, from the camera current position for example, return if that position is on one or several edges for this zone.
+    // For a given x and z, from the camera current position for example,
+    // return if that position is on one or several edges for this zone.
     isOnEdge(x, z) {
       return {
         isOnNorthEdge: z < this.edges.north,
         isOnSouthEdge: z > this.edges.south,
         isOnEastEdge: x > this.edges.east,
-        isOnWestEdge: x < this.edges.west,
+        isOnWestEdge: x < this.edges.west
       };
     }
 
@@ -142,18 +161,19 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
         northEast: { x: (this.x + 1) * C.ZONE_SIZE, z: (this.z - 1) * C.ZONE_SIZE, name: `zone${this.x + 1}:${this.z - 1}` },
         southEast: { x: (this.x + 1) * C.ZONE_SIZE, z: (this.z + 1) * C.ZONE_SIZE, name: `zone${this.x + 1}:${this.z + 1}` },
         southWest: { x: (this.x - 1) * C.ZONE_SIZE, z: (this.z + 1) * C.ZONE_SIZE, name: `zone${this.x - 1}:${this.z + 1}` },
-        northWest: { x: (this.x - 1) * C.ZONE_SIZE, z: (this.z - 1) * C.ZONE_SIZE, name: `zone${this.x - 1}:${this.z - 1}` },
+        northWest: { x: (this.x - 1) * C.ZONE_SIZE, z: (this.z - 1) * C.ZONE_SIZE, name: `zone${this.x - 1}:${this.z - 1}` }
       };
     }
 
-    // This zone has never been visited in any game, ever. Create its meshes for the very first time.
+    // This zone has never been visited in any game, ever.
+    // Create its meshes for the very first time.
     generateMeshesProcedurally(meshes) {
       // Add the ground.
-      const ground = new Ground({name: `ground-${meshes.name}`});
+      const ground = new Ground({ name: `ground-${meshes.name}` });
       meshes.add(ground);
 
       // Add a grid.
-      const grid = new Grid({name: `grid-${meshes.name}`});
+      const grid = new Grid({ name: `grid-${meshes.name}` });
       meshes.add(grid);
 
       // Create a map for this new zone, from area maps.
@@ -177,7 +197,7 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
               t: radius - 0.05,
               b: radius,
               h: height,
-              r: round(Math.random() * 4) + 5,  // Radial segments.
+              r: round(Math.random() * 4) + 5 // Radial segments.
             });
             meshes.add(trunk);
           }
@@ -187,13 +207,13 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
             const baseTree = new BaseTree({
               name: `basetree${x}:${z}-${meshes.name}`,
               x,
-              y: round(height / 2, 2),
+              y: round(height - 2, 2),
               z,
               v: round(degreesToRadians(Math.random() * 360), 2),
               h: height,
               t: (height > 10) ? C.BASE_TREE.RADIUS_TOP * 1.5 : C.BASE_TREE.RADIUS_TOP,
               b: (height > 10) ? C.BASE_TREE.RADIUS_BOTTOM * 1.5 : C.BASE_TREE.RADIUS_BOTTOM,
-              r: (height > 10) ? C.BASE_TREE.RADIAL_SEGMENTS : 5,
+              r: (height > 10) ? C.BASE_TREE.RADIAL_SEGMENTS : 5
             });
             meshes.add(baseTree);
           }
@@ -203,7 +223,7 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
             const wall = new Wall({
               name: `wall${x}:${z}-${meshes.name}`,
               x,
-              z,
+              z
             });
             meshes.add(wall);
           }
@@ -215,7 +235,7 @@ define(['constants', 'round', 'degrees-to-radians', 'ground', 'grid', 'trunk', '
               x,
               y: 2,
               z,
-              h: 4,
+              h: 4
             });
             meshes.add(wall);
           }

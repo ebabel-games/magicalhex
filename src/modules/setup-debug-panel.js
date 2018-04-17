@@ -11,7 +11,9 @@ define(['constants'], (C) => {
         keyboardControls.playerMovement.forwardSpeed = C.PLAYER_FORWARD_SPEED;
         keyboardControls.playerMovement.backwardSpeed = C.PLAYER_BACKWARD_SPEED;
         debugPanel.style.display = 'none';
-      }      
+      }
+
+      e.preventDefault();
     };
 
     document.addEventListener(C.EVENTS.TOGGLE_DEBUG, toggleDebug);

@@ -1,14 +1,20 @@
 requirejs.config({
   baseUrl: 'modules',
   paths: {
-      app: '../app'
+    app: '../app'
   }
 });
 
 // Start the main app logic.
 requirejs(
-  ['constants', 'version-reset-data', 'toggle-loading', 'toggle-grid', 'animate', 'sky', 'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate', 'find-mesh'],
-  (C, versionResetData, toggleLoading, toggleGrid, animate, sky, KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate, findMesh) => {
+  [
+    'constants', 'version-reset-data', 'toggle-loading', 'toggle-grid', 'animate', 'sky',
+    'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate', 'find-mesh'
+  ],
+  (
+    C, versionResetData, toggleLoading, toggleGrid, animate, sky,
+    KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate, findMesh
+  ) => {
     // Reset localStorage if needed.
     versionResetData();
 
@@ -18,15 +24,17 @@ requirejs(
     setupSpellGate();
     const statsPanel = setupStatsPanel();
 
-    // todo: use the Clock to calculate delta and make sure animate runs at a consistent speed rather than be reliant on CPU.
-    const clock = new THREE.Clock();
+    // todo: use the Clock to calculate delta and make sure animate runs at a consistent speed
+    // rather than be reliant on CPU.
+    // const clock = new THREE.Clock();
 
     // Initialize a three.js scene.
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(C.FOG.COLOR, C.FOG.DENSITY);
 
     // Camera setup.
-    const camera = new THREE.PerspectiveCamera(C.CAMERA.FOV, C.CAMERA.RATIO, C.CAMERA.NEAR, C.CAMERA.FAR);
+    const camera =
+      new THREE.PerspectiveCamera(C.CAMERA.FOV, C.CAMERA.RATIO, C.CAMERA.NEAR, C.CAMERA.FAR);
     camera.name = 'player-camera';
 
     // Read position of the camera based on the previous game.
@@ -36,18 +44,22 @@ requirejs(
       parseFloat(localStorage[C.PERSIST.CAMERA_Y]) || C.CAMERA.Y,
       parseFloat(localStorage[C.PERSIST.CAMERA_Z]) || C.CAMERA.Z
     );
-    camera.rotation.y = parseFloat(localStorage[C.PERSIST.CAMERA_ROTATION_Y]) || C.CAMERA.ROTATION.Y;
+    camera.rotation.y = parseFloat(localStorage[C.PERSIST.CAMERA_ROTATION_Y])
+      || C.CAMERA.ROTATION.Y;
 
     // Relative sky is always in front of the camera, wherever the camera is pointing.
     // The sky stays perpendicular to the ground and always at the same distance from the camera.
     const relativeSky = sky();
     camera.add(relativeSky);
-    relativeSky.position.set(C.SKY.X, C.SKY.Y, C.SKY.Z - C.CAMERA.FAR);  // x, y, z relative to the camera position.
+
+    // x, y, z relative to the camera position.
+    relativeSky.position.set(C.SKY.X, C.SKY.Y, C.SKY.Z - C.CAMERA.FAR);
 
     // Only add the camera to the scene after the sky has been added to the camera.
     scene.add(camera);
 
-    // Initialize the currentZone as null (will be set in animate.js) and the collection of zones already loaded as empty.
+    // Initialize the currentZone as null (will be set in animate.js) and the collection
+    // of zones already loaded as empty.
     const currentZone = null;
     const loadedZones = [];
 
@@ -68,11 +80,15 @@ requirejs(
     document.body.appendChild(renderer.domElement);
 
     // Kickstarts the animation.
-    animate(renderer, scene, camera, keyboardControls, statsPanel, currentZone, loadedZones, findMesh);
+    animate(
+      renderer, scene, camera, keyboardControls,
+      statsPanel, currentZone, loadedZones, findMesh
+    );
 
     // Start theme music.
     const themeMusic = new Howl({
-      src: ['music/kairo-11P-wind.webm', 'music/kairo-11P-wind.mp4'],
+      src: ['music/kairo-11P-wind.webm', 'music/kairo-11P-wind.mp4']
     });
     themeMusic.play();
-  });
+  }
+);
