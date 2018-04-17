@@ -36,8 +36,6 @@ Press the Z key to either mute or enable all music and sounds.
 
 ### Currently being developed
 * 2.1.0
-    - When pressing the Z key, the master volume of all sounds is toggled (muted or default volume).
-    - [fixed] When trees are placed on the ground, the first time it's correct but when reloading some of them are floating in the air.
     - When player camera goes up a hill, he starts bumping up and down. Needs to be fixed.
     - Populating the zone areas need to take ground noise into account.
     - Noise of ground with vertices height needs to be persisted.
@@ -61,6 +59,10 @@ Press the Z key to either mute or enable all music and sounds.
     - If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 
 
 ### Released tags
+* 2.0.4
+    - When pressing the Z key, the master volume of all sounds is toggled (muted or default volume).
+    - [fixed] When trees are placed on the ground, the first time it's correct but when reloading some of them are floating in the air.
+
 * 2.0.3
     - Raised the trees, half their trunk heights were hidden below the ground.
     - Key G toggles current zone ground visibility on or off as well as the grid
