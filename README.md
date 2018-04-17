@@ -30,7 +30,8 @@ Press the dead key below ESC to toggle the debug mode on and off.
 
 ### Currently being developed
 * 2.1.0
-    - Navigating the player needs to go up or down with raycaster based on ground.
+    - When trees are placed on the ground, the first time it's correct but when reloading some of them are floating in the air.
+    - When player camera goes up a hill, he starts bumping up and down. Needs to be fixed.
     - Populating the zone areas need to take ground noise into account.
     - Noise of ground with vertices height needs to be persisted.
 
