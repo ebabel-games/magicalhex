@@ -36,7 +36,8 @@ Press the dead key below ESC to toggle the debug mode on and off.
     - Noise of ground with vertices height needs to be persisted.
     - Added linting.
 
-### Future versions (backlog)
+### Future versions
+* Backlog
     - Add more zone areas variety
     - Make each zone vary the ground parameters (density of hills)
     - When one hill is made, make sure another hill is right next to it to look more natural.
