@@ -30,10 +30,10 @@ Press the dead key below ESC to toggle the debug mode on and off.
 
 ### Currently being developed
 * 2.1.0
-- Added es linting.
-- Noise of ground with vertices height needs to be persisted.
 - Navigating the player needs to go up or down with raycaster based on ground.
 - Populating the zone areas need to take ground noise into account.
+- Noise of ground with vertices height needs to be persisted.
+- Added linting.
 
 ### Future versions (backlog)
 - Add more zone areas variety
