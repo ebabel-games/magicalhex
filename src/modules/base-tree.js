@@ -62,7 +62,7 @@ define(['constants', 'trunk', 'degrees-to-radians'], (C, Trunk, degreesToRadians
         n: name,
         c: 'base-tree',
         i: {
-          name, x, y, z
+          name, x, y, z, v, h, t, b, r
         }
       };
 

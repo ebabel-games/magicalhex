@@ -60,6 +60,10 @@ define(['constants', 'round', 'player-movement'], (C, round, PlayerMovement) => 
             detail: { camera, loadedZones, scene }
           }));
           break;
+        case C.KEY.Z:
+          if (e.type === 'keyup') { break; }
+          document.dispatchEvent(new CustomEvent(C.EVENTS.TOGGLE_MUTE));
+          break;
         default:
           break;
       }

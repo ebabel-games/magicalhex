@@ -14,6 +14,7 @@
     "require": true,
     "define": true,
     "Howl": true,
+    "Howler": true,
     "Stats": true
   },
   "extends": "airbnb-base/legacy"

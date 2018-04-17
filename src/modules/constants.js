@@ -4,6 +4,10 @@ define([], () => {
       NONE: 0,
       LATEST: 2 // Change this value to get all clients to rebuild all zones.
     },
+    MASTER_VOLUME: {
+      DEFAULT: 0.5,
+      MUTE: 0
+    },
     PLAYER_FORWARD_SPEED: 0.1,
     PLAYER_BACKWARD_SPEED: 0.03, // Player moves backward 3 times slower than forward.
     // Math.round((2 * Math.PI / 180) * 100) / 100
@@ -25,7 +29,8 @@ define([], () => {
       ESC: 27,
       BACKTICK_TILDE: 192,
       SEVEN: 55,
-      G: 71
+      G: 71,
+      Z: 90
     },
     UI: {
       LOADING: 'loading',
@@ -39,7 +44,8 @@ define([], () => {
       TOGGLE_STATS: 'toggle-stats',
       TOGGLE_DEBUG: 'toggle-debug',
       CAST_SPELL_GATE: 'cast-spell-gate',
-      TOGGLE_GRID: 'toggle-grid'
+      TOGGLE_GRID: 'toggle-grid',
+      TOGGLE_MUTE: 'toggle-mute'
     },
     STATS_PANEL: {
       FPS: 0,

@@ -9,11 +9,13 @@ requirejs.config({
 requirejs(
   [
     'constants', 'version-reset-data', 'toggle-loading', 'toggle-grid', 'animate', 'sky',
-    'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate', 'find-mesh'
+    'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate',
+    'find-mesh', 'setup-mute'
   ],
   (
     C, versionResetData, toggleLoading, toggleGrid, animate, sky,
-    KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate, findMesh
+    KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate,
+    findMesh, setupMute
   ) => {
     // Reset localStorage if needed.
     versionResetData();
@@ -22,6 +24,7 @@ requirejs(
     toggleLoading();
     toggleGrid();
     setupSpellGate();
+    setupMute();
     const statsPanel = setupStatsPanel();
 
     // todo: use the Clock to calculate delta and make sure animate runs at a consistent speed
@@ -86,8 +89,12 @@ requirejs(
     );
 
     // Start theme music.
+    Howler.volume(C.MASTER_VOLUME.DEFAULT);
     const themeMusic = new Howl({
-      src: ['music/kairo-11P-wind.webm', 'music/kairo-11P-wind.mp4']
+      src: ['music/kairo-11P-wind.webm', 'music/kairo-11P-wind.mp4'],
+      html5: true,
+      loop: true,
+      preload: true
     });
     themeMusic.play();
   }

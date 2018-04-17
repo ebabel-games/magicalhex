@@ -26,11 +26,18 @@ Clicking on that Performance window will switch to other measures: Milliseconds 
 ## Debug mode
 Press the dead key below ESC to toggle the debug mode on and off.
 
+## Grid/ground
+Press the G key to toggle either the grid or the ground mesh.
+
+## Mute/play music
+Press the Z key to either mute or enable all music and sounds.
+
 ## Versions
 
 ### Currently being developed
 * 2.1.0
-    - When trees are placed on the ground, the first time it's correct but when reloading some of them are floating in the air.
+    - When pressing the Z key, the master volume of all sounds is toggled (muted or default volume).
+    - [fixed] When trees are placed on the ground, the first time it's correct but when reloading some of them are floating in the air.
     - When player camera goes up a hill, he starts bumping up and down. Needs to be fixed.
     - Populating the zone areas need to take ground noise into account.
     - Noise of ground with vertices height needs to be persisted.
