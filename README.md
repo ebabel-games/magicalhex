@@ -57,6 +57,7 @@ Press the dead key below ESC to toggle the debug mode on and off.
     - Raised the trees, half their trunk heights were hidden below the ground.
     - Key G toggles current zone ground visibility on or off as well as the grid
     - Added linting.
+    - Fixed most linting issues.
 
 * 2.0.2
     - Added theme music.
