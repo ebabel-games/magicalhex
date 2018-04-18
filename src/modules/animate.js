@@ -8,7 +8,9 @@ define(['update-debug-panel', 'zone', 'update-current-zone', 'adjust-player-y'],
     updateDebugPanel(camera);
 
     const newY = adjustPlayerY(currentZone, camera);
-    camera.position.y = newY;
+    if (newY !== camera.position.y) {
+      camera.position.y = newY;
+    }
     document.getElementById('targetName').innerText = newY;
 
     // Keyboard controls make it possible to move around the game (subjective perspective).

@@ -42,6 +42,7 @@ Press the Z key to either mute or enable all music and sounds.
 
 ### Future versions
 * Backlog
+    - Use userData instead of persist.
     - Add more zone areas variety
     - Make each zone vary the ground parameters (density of hills)
     - When one hill is made, make sure another hill is right next to it to look more natural.
