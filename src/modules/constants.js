@@ -90,7 +90,7 @@ define([], () => {
       // By how many times is the ground sub-divided into vertices.
       DIVISION_SIZE: 50,
       // Maximum height of a vertice height.
-      NOISE: 5,
+      NOISE: 10,
       // How likely is it a central vertice will not be flat? From 0 (never) to 1 (always).
       ROUGHNESS: 0.25
     },

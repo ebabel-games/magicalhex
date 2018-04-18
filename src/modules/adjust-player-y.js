@@ -1,4 +1,4 @@
-define(['constants'], (C) => {
+define(['constants', 'round'], (C, round) => {
   // Check if the camera is getting too close to the ground and should
   // adjust its y position in relation to the ground.
   const adjustPlayerY = (currentZone, camera) => {
@@ -17,9 +17,9 @@ define(['constants'], (C) => {
       rayDown.setFromCamera(direction, camera);
       const collisionResults = rayDown.intersectObjects(currentGround);
 
-      if (collisionResults.length !== 0 && collisionResults[0].distance < 2) {
+      if (collisionResults.length !== 0) {
         const distance = collisionResults[0].distance;
-        return Math.abs(C.CAMERA.Y - distance) + C.CAMERA.Y;
+        return round(Math.abs(C.CAMERA.Y - distance) + C.CAMERA.Y, 1);
       }
     }
 
