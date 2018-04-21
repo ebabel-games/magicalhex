@@ -10,12 +10,12 @@ requirejs(
   [
     'constants', 'version-reset-data', 'toggle-loading', 'toggle-grid', 'animate', 'sky',
     'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate',
-    'find-mesh', 'setup-mute'
+    'find-mesh', 'setup-mute', 'pyramid'
   ],
   (
     C, versionResetData, toggleLoading, toggleGrid, animate, sky,
     KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate,
-    findMesh, setupMute
+    findMesh, setupMute, Pyramid
   ) => {
     // Reset localStorage if needed.
     versionResetData();
@@ -34,6 +34,9 @@ requirejs(
     // Initialize a three.js scene.
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(C.FOG.COLOR, C.FOG.DENSITY);
+
+    // Temporary test: the Pyramid from JSON loader
+    const pyramid = new Pyramid({ scene });
 
     // Camera setup.
     const camera =
