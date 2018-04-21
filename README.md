@@ -35,13 +35,14 @@ Press the Z key to either mute or enable all music and sounds.
 ## Versions
 
 ### Currently being developed
-* 2.1.0
-    - When player camera goes up a hill, he starts bumping up and down. Needs to be fixed.
-    - Populating the zone areas need to take ground noise into account.
-    - Noise of ground with vertices height needs to be persisted.
+* 2.0.5
+    - Rusty truck placed near the default start of the game.
 
 ### Future versions
 * Backlog
+    - When player camera goes up a hill, he starts bumping up and down. Needs to be fixed.
+    - Populating the zone areas need to take ground noise into account.
+    - Noise of ground with vertices height needs to be persisted.
     - Use userData instead of persist.
     - Add more zone areas variety
     - Make each zone vary the ground parameters (density of hills)
