@@ -138,6 +138,13 @@ define([], () => {
       CAMERA_Y: 'CAMERA_Y',
       CAMERA_Z: 'CAMERA_Z',
       CAMERA_ROTATION_Y: 'CAMERA_ROTATION_Y'
+    },
+    JSON_MODEL: {
+      X: 0,
+      Y: 0.1,
+      Z: 0,
+      ALPHA_TEST: 0.3,
+      SIDE: THREE.FrontSide
     }
   };
 

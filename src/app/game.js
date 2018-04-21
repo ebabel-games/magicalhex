@@ -10,12 +10,12 @@ requirejs(
   [
     'constants', 'version-reset-data', 'toggle-loading', 'toggle-grid', 'animate', 'sky',
     'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate',
-    'find-mesh', 'setup-mute', 'pyramid'
+    'find-mesh', 'setup-mute', 'json-model'
   ],
   (
     C, versionResetData, toggleLoading, toggleGrid, animate, sky,
     KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate,
-    findMesh, setupMute, Pyramid
+    findMesh, setupMute, JsonModel
   ) => {
     // Reset localStorage if needed.
     versionResetData();
@@ -35,8 +35,12 @@ requirejs(
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(C.FOG.COLOR, C.FOG.DENSITY);
 
-    // Temporary test: the Pyramid from JSON loader
-    const pyramid = new Pyramid({ scene });
+    // Rusty truck.
+    // todo: improve by making it a Promise that will then add to scene (or not).
+    // scene will no longer be passed as a parameter.
+    const rustyTruck = new JsonModel({
+      scene, model: 'rusty-truck', texture: 'rusty-truck.png', x: 10, y: 1.2, z: 10
+    });
 
     // Camera setup.
     const camera =
