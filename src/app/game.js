@@ -39,7 +39,7 @@ requirejs(
     // todo: improve by making it a Promise that will then add to scene (or not).
     // scene will no longer be passed as a parameter.
     const rustyTruck = new JsonModel({
-      scene, model: 'rusty-truck', texture: 'rusty-truck.png', x: 10, y: 1.2, z: 10, side: THREE.DoubleSide
+      scene, model: 'rusty-truck', texture: 'rusty-truck.png', x: 10, y: 1.2, z: 10
     });
 
     // Camera setup.
