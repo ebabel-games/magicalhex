@@ -35,13 +35,14 @@ Press the Z key to either mute or enable all music and sounds.
 ## Versions
 
 ### Currently being developed
-* 2.1.0
-    - When player camera goes up a hill, he starts bumping up and down. Needs to be fixed.
-    - Populating the zone areas need to take ground noise into account.
-    - Noise of ground with vertices height needs to be persisted.
+* 2.0.6
+    - Improve the texture of the rusty truck.
 
 ### Future versions
 * Backlog
+    - When player camera goes up a hill, he starts bumping up and down. Needs to be fixed.
+    - Populating the zone areas need to take ground noise into account.
+    - Noise of ground with vertices height needs to be persisted.
     - Use userData instead of persist.
     - Add more zone areas variety
     - Make each zone vary the ground parameters (density of hills)
@@ -60,6 +61,8 @@ Press the Z key to either mute or enable all music and sounds.
     - If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 
 
 ### Released tags
+* 2.0.5
+    - Rusty truck placed near the default start of the game.
 * 2.0.4
     - When pressing the Z key, the master volume of all sounds is toggled (muted or default volume).
     - [fixed] When trees are placed on the ground, the first time it's correct but when reloading some of them are floating in the air.

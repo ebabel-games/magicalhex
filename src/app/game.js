@@ -10,12 +10,12 @@ requirejs(
   [
     'constants', 'version-reset-data', 'toggle-loading', 'toggle-grid', 'animate', 'sky',
     'keyboard-controls', 'zone', 'setup-stats-panel', 'setup-debug-panel', 'setup-spell-gate',
-    'find-mesh', 'setup-mute'
+    'find-mesh', 'setup-mute', 'json-model'
   ],
   (
     C, versionResetData, toggleLoading, toggleGrid, animate, sky,
     KeyboardControls, Zone, setupStatsPanel, setupDebugPanel, setupSpellGate,
-    findMesh, setupMute
+    findMesh, setupMute, JsonModel
   ) => {
     // Reset localStorage if needed.
     versionResetData();
@@ -34,6 +34,19 @@ requirejs(
     // Initialize a three.js scene.
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(C.FOG.COLOR, C.FOG.DENSITY);
+
+    // Rusty truck.
+    // todo: improve by making it a Promise that will then add to scene (or not).
+    // scene will no longer be passed as a parameter.
+    const rustyTruck = new JsonModel({
+      scene, model: 'rusty-truck', texture: 'rusty-truck.png', x: 10, y: 1.2, z: 10, side: THREE.DoubleSide
+    });
+
+    // Orange cube
+    // testing the possibility of coloring a mesh with a shared texture of plain colors.
+    const orangeCube = new JsonModel({
+      scene, model: 'orange-cube', texture: 'color-cube.png', x: 2, y: 2, z: 2
+    });
 
     // Camera setup.
     const camera =

@@ -1,12 +1,12 @@
 {
   "name": "magicalhex",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Magical Hex is a free (for ever) browser based single-player adventure game.",
   "engines": {
     "node": ">= 4.2.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run lint",
     "lint": "./node_modules/.bin/eslint ./src"
   },
   "repository": {
