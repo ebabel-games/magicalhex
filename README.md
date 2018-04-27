@@ -36,11 +36,11 @@ Press the Z key to either mute or enable all music and sounds.
 
 ### Currently being developed
 * 2.0.6
-    - Improve the texture of the rusty truck.
+    - When player camera goes up a hill, he starts bumping up and down. Needs to be fixed.
 
 ### Future versions
 * Backlog
-    - When player camera goes up a hill, he starts bumping up and down. Needs to be fixed.
+    - Improve the texture of the rusty truck.
     - Populating the zone areas need to take ground noise into account.
     - Noise of ground with vertices height needs to be persisted.
     - Use userData instead of persist.
