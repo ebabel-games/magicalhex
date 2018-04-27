@@ -11,13 +11,13 @@ define(
       statsPanel.begin();
       updateDebugPanel(camera);
 
-      // Keyboard controls make it possible to move around the game (subjective perspective).
-      keyboardControls.playerMovement.update();
-      keyboardControls.playerMovement.persist();
-
       // Update the currentZone.
       currentZone = updateCurrentZone(currentZone, scene, camera, loadedZones);
 
+      // Keyboard controls make it possible to move around the game (subjective perspective).
+      keyboardControls.playerMovement.update(currentZone);
+      keyboardControls.playerMovement.persist();
+      
       // Check if the current position of the camera is on one
       // or several edges for the current zone.
       const edges = currentZone.isOnEdge(camera.position.x, camera.position.z);

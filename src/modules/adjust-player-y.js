@@ -1,4 +1,4 @@
-define(['constants', 'round'], (C, round) => {
+define(['constants'], (C) => {
   // Check if the camera is getting too close to the ground and should
   // adjust its y position in relation to the ground.
   const adjustPlayerY = (currentZone, camera) => {
@@ -19,7 +19,7 @@ define(['constants', 'round'], (C, round) => {
 
       if (collisionResults.length !== 0) {
         const distance = collisionResults[0].distance;
-        return round(Math.abs(C.CAMERA.Y - distance) + C.CAMERA.Y, 1);
+        return Math.abs(C.CAMERA.Y - distance) + C.CAMERA.Y;
       }
     }
 
