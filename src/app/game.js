@@ -42,12 +42,6 @@ requirejs(
       scene, model: 'rusty-truck', texture: 'rusty-truck.png', x: 10, y: 1.2, z: 10, side: THREE.DoubleSide
     });
 
-    // Orange cube
-    // testing the possibility of coloring a mesh with a shared texture of plain colors.
-    const orangeCube = new JsonModel({
-      scene, model: 'orange-cube', texture: 'color-cube.png', x: 2, y: 2, z: 2
-    });
-
     // Camera setup.
     const camera =
       new THREE.PerspectiveCamera(C.CAMERA.FOV, C.CAMERA.RATIO, C.CAMERA.NEAR, C.CAMERA.FAR);

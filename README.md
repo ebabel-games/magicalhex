@@ -40,7 +40,10 @@ Press the Z key to either mute or enable all music and sounds.
 
 ### Future versions
 * Backlog
-    - Improve the texture of the rusty truck.
+    - Improve the texture of the rusty truck. If the truck is kept, change the texture map size to 1024 x 1014 or 512 x 512. The current size is wrong.
+    - Improve tree texture for the foliage by adding gaps between branches.
+    - Redo trees to look damaged and dying, desperate looking. Review the art direction to clarify the look and feel of the game universe.
+    - Change all colors to almost black, greys and almost white. Do not use any color, unless it's exceptional (spell particles).
     - Populating the zone areas need to take ground noise into account.
     - Noise of ground with vertices height needs to be persisted.
     - Use userData instead of persist.
