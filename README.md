@@ -3,18 +3,17 @@ Magical Hex is a free (for ever) browser based single player adventure game.
 
 ## Installation
 ```
-npm install -g http-server
 npm install
 ```
 
 ## Linting the source code
 ```
-npm run lint
+npm test
 ```
 
 ## Start running the game during development
 ```
-http-server src
+npm start
 ```
 
 Browse to `http://localhost:8080`
