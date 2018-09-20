@@ -22,7 +22,7 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
 
       const geometry = new THREE.PlaneGeometry(width, height, d, d);
 
-      const inRange = (i) => (i > -400 && i < -20) || (i < 400 && i > 20);
+      const inRange = (i) => (i > -400 && i < -25) || (i < 400 && i > 25);
 
       // Add noise to the ground.
       if (r) {
@@ -32,7 +32,7 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
             // Vertices near the center can be higher.
             v.z = round(Math.random() * n, 2);
           }
-  
+
           return v;
         });
       }
@@ -42,7 +42,7 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
 
       const mesh = new THREE.Mesh(
         geometry,
-        new THREE.MeshLambertMaterial({map: texture, side: THREE.FrontSide})
+        new THREE.MeshLambertMaterial({ map: texture, side: THREE.FrontSide })
       );
       rotateToHorizontal(mesh);
 
@@ -53,12 +53,14 @@ define(['constants', 'round', 'rotate-to-horizontal'], (C, round, rotateToHorizo
       mesh.persist = {
         n: name,
         c: 'ground',
-        i: {name, x, y, z, d, n},
+        i: {
+          name, x, y, z, d, n
+        }
       };
 
       return mesh;
     }
-  };
+  }
 
   return Ground;
 });

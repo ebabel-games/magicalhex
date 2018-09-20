@@ -5,7 +5,7 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
   const linesWidth = C.GRID.LINES_WIDTH;
   const color = C.GRID.COLOR;
 
-  const material = new THREE.LineBasicMaterial({color: color, opacity: C.GRID.OPACITY});
+  const material = new THREE.LineBasicMaterial({ color: color, opacity: C.GRID.OPACITY });
 
   class Grid {
     constructor(input) {
@@ -16,8 +16,8 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
 
       const mesh = new THREE.Object3D();
       const geometry = new THREE.Geometry();
-      const stepw = 2 * width / linesWidth;
-      const steph = 2 * height / linesHeight;
+      const stepw = (2 * width) / linesWidth;
+      const steph = (2 * height) / linesHeight;
 
       // Width.
       for (let i = -width; i <= width; i += stepw) {
@@ -34,7 +34,8 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
       const line = new THREE.LineSegments(geometry, material, THREE.LinePieces);
 
       mesh.add(line);
-      mesh.visible = false; // By default, the grid of each zone is invisible, unless toggled by the debug mode.
+      // By default, the grid of each zone is invisible, unless toggled by the debug mode.
+      mesh.visible = false;
       rotateToHorizontal(mesh);
 
       mesh.name = name;
@@ -43,7 +44,9 @@ define(['constants', 'rotate-to-horizontal'], (C, rotateToHorizontal) => {
       mesh.persist = {
         n: name,
         c: 'grid',
-        i: {name, x, y, z},
+        i: {
+          name, x, y, z
+        }
       };
 
       return mesh;

@@ -3,23 +3,17 @@ Magical Hex is a free (for ever) browser based single player adventure game.
 
 ## Installation
 ```
-npm install -g http-server
 npm install
 ```
 
-## Linting the source code
-```
-npm run lint
-```
-
-## Run unit tests
+## Run unit tests and linting
 ```
 npm test
 ```
 
 ## Start running the game during development
 ```
-http-server src
+npm start
 ```
 
 Browse to `http://localhost:8080`
@@ -31,9 +25,16 @@ Clicking on that Performance window will switch to other measures: Milliseconds 
 ## Debug mode
 Press the dead key below ESC to toggle the debug mode on and off.
 
+## Grid/ground
+Press the G key to toggle either the grid or the ground mesh.
+
+## Mute/play music
+Press the Z key to either mute or enable all music and sounds.
+
 ## Versions
 
 ### Currently being developed
+
 * 2.1.0
 - Added eslinting.
 - Add Jasmine unit tests.
@@ -41,7 +42,14 @@ Press the dead key below ESC to toggle the debug mode on and off.
 - Navigating the player needs to go up or down with raycaster based on ground.
 - Populating the zone areas need to take ground noise into account.
 
-### Future versions (backlog)
+### Future versions
+- Improve the texture of the rusty truck. If the truck is kept, change the texture map size to 1024 x 1014 or 512 x 512. The current size is wrong.
+- Improve tree texture for the foliage by adding gaps between branches.
+- Redo trees to look damaged and dying, desperate looking. Review the art direction to clarify the look and feel of the game universe.
+- Change all colors to almost black, greys and almost white. Do not use any color, unless it's exceptional (spell particles).
+- Populating the zone areas need to take ground noise into account.
+- Noise of ground with vertices height needs to be persisted.
+- Use userData instead of persist.
 - Add more zone areas variety
 - Make each zone vary the ground parameters (density of hills)
 - When one hill is made, make sure another hill is right next to it to look more natural.
@@ -59,34 +67,46 @@ Press the dead key below ESC to toggle the debug mode on and off.
 - If I create a player character, this should be progressive and part of learning how to play the game interactively, like in Bethesda Game, The Elder Scrolls III: Morrowind 
 
 ### Released tags
+* 2.0.5
+  - Rusty truck placed near the default start of the game.
+* 2.0.4
+  - When pressing the Z key, the master volume of all sounds is toggled (muted or default volume).
+  - [fixed] When trees are placed on the ground, the first time it's correct but when reloading some of them are floating in the air.
+
+* 2.0.3
+  - Raised the trees, half their trunk heights were hidden below the ground.
+  - Key G toggles current zone ground visibility on or off as well as the grid
+  - Added linting.
+  - Fixed most linting issues.
+
 * 2.0.2
-- Added theme music.
-- Using Howler.js to handle sounds in a cross-browser way.
+  - Added theme music.
+  - Using Howler.js to handle sounds in a cross-browser way.
 
 * 2.0.1
-- Hills appear nearer the center of a zone.
-- Trying to fix the bouncing bug when climbing up a hill (not fixed yet).
+  - Hills appear nearer the center of a zone.
+  - Trying to fix the bouncing bug when climbing up a hill (not fixed yet).
 
 * 2.0.0
-- Switched license from MIT to GPL 3.0
-- Upgraded three.js from 87 to 91
-- Switch to require.js modules
-- Remove webpack
-- Remove build step
-- Remove React.js (just Three.js and plain Javascript)
-- Remove Firebase
-- Build procedural zones and store them locally for future reuse
-- Show performance stats (top left) when key ESC is pressed.
-- Add debug mode attached to the backtick/tilde key (just below ESC).
-- Loading screen and play button.
-- Basic version of lighting and shadows, this will need improving in a future release.
-- Refactor handling pressing keys separately, because it's not just about player movement. It's a separate concern.
-- Persist position of camera to localStorage and when reloading start there instead of origin.
-- Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to.
-- Bug solve: when loading from a position other than zone-0:0, everything looks dark.
-- Persist zones: each time the game loads, load the zone that has been procedurally generated.
-- Toggle grid, stats and debug mode.
-- Make a random string map per zone to know where to place obstacles (walls) and static items (trees, stones, cut trees).
+  - Switched license from MIT to GPL 3.0
+  - Upgraded three.js from 87 to 91
+  - Switch to require.js modules
+  - Remove webpack
+  - Remove build step
+  - Remove React.js (just Three.js and plain Javascript)
+  - Remove Firebase
+  - Build procedural zones and store them locally for future reuse
+  - Show performance stats (top left) when key ESC is pressed.
+  - Add debug mode attached to the backtick/tilde key (just below ESC).
+  - Loading screen and play button.
+  - Basic version of lighting and shadows, this will need improving in a future release.
+  - Refactor handling pressing keys separately, because it's not just about player movement. It's a separate concern.
+  - Persist position of camera to localStorage and when reloading start there instead of origin.
+  - Infinite zones: when player goes near edges of the current zone, generate procedurally the zones where he is likely to go to.
+  - Bug solve: when loading from a position other than zone-0:0, everything looks dark.
+  - Persist zones: each time the game loads, load the zone that has been procedurally generated.
+  - Toggle grid, stats and debug mode.
+  - Make a random string map per zone to know where to place obstacles (walls) and static items (trees, stones, cut trees).
 
 * 1.0.0 remove Facebook integration and let anyone move around virtual environment without any login
 * 0.10.1 single player fixes

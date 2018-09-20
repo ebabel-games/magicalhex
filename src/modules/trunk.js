@@ -5,7 +5,7 @@ define(['constants'], (C) => {
   class Trunk {
     constructor(input) {
       const name = input.name;
-      const x = input.x;  // Position coordinates.
+      const x = input.x; // Position coordinates.
       const y = input.y || C.TRUNK.Y;
       const z = input.z;
 
@@ -19,7 +19,7 @@ define(['constants'], (C) => {
 
       const mesh = new THREE.Mesh(
         new THREE.CylinderBufferGeometry(t, b, h, r, s),
-        new THREE.MeshLambertMaterial({map: texture})
+        new THREE.MeshLambertMaterial({ map: texture })
       );
       mesh.name = name;
       mesh.position.set(x, y, z);
@@ -29,9 +29,11 @@ define(['constants'], (C) => {
       mesh.persist = {
         n: name,
         c: 'trunk',
-        i: {name, x, y, z, v, t, b, h, r, s},
+        i: {
+          name, x, y, z, v, t, b, h, r, s
+        }
       };
-  
+
       return mesh;
     }
   }

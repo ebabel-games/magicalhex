@@ -9,12 +9,14 @@ define(['constants', 'zone'], (C, Zone) => {
 
     // Move the player camera to the default origin location.
     e.detail.camera.position.set(C.CAMERA.X, C.CAMERA.Y, C.CAMERA.Z);
+
+    e.preventDefault();
   };
 
   // Handle pressing the gate spell key: 7.
   const setupSpellGate = () => {
     document.addEventListener(C.EVENTS.CAST_SPELL_GATE, castGate, false);
-  }
+  };
 
   return setupSpellGate;
 });
